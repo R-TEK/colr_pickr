@@ -1,3 +1,5 @@
+'use-strict';
+
 // Defining require dependencies
 const gulp = require('gulp');
 const concatJS = require('gulp-concat');
@@ -5,29 +7,36 @@ const uglifyJS = require('gulp-uglify-es').default;
 const concatCSS = require('gulp-concat-css');
 const uglifyCSS = require('gulp-uglifycss');
 const markdown = require('gulp-markdown');
+const sass = require('gulp-sass');
+
+sass.compiler = require('node-sass');
 
 /*
- * Production
+ * Color picker files
  */
 
 // Moving, concatting and minifying my own script (.js) files
 gulp.task('scripts', async function () {
 	gulp.src('src/js/*.js')
 		.pipe(concatJS('color_picker.js'))
-		.pipe(uglifyJS())
+		// .pipe(uglifyJS())
 		.pipe(gulp.dest('build'));
 });
 
-// Moving, concatting and minifying style (.css) files
-gulp.task('styles', async function () {
-	gulp.src('src/css/*.css')
-		.pipe(concatCSS('color_picker.css'))
-		.pipe(uglifyCSS())
-		.pipe(gulp.dest('build'))
+// Compiling SASS and minifying files
+gulp.task('sass', async function () {
+	gulp.src('src/scss/*.scss')
+		.pipe(sass().on('error', sass.logError))
+		.pipe(gulp.dest('build'));
+});
+
+gulp.task('watch', function () {
+	gulp.watch('src/js/*.js', gulp.series('scripts'));
+	gulp.watch('src/scss/*.scss', gulp.series('sass'));
 });
 
 // Combining mulitple tasks into one build
-gulp.task('build', gulp.series('scripts', 'styles'));
+gulp.task('build', gulp.series('scripts', 'sass'));
 
 /*
  * Static site /docs files

@@ -1,0 +1,10 @@
+// Function to position an element centerX
+@function center-width-align ($width) {
+	$val: $width / 2;
+	@return calc(50% - $val px)
+}
+
+// Function to position an element centerY
+@function center-height-align ($height) {
+	@return 50% - ($height / 2) + 'px'
+}

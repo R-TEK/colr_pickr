@@ -1,0 +1,142 @@
+@import 'variables';
+@import 'mixins';
+
+#color_picker {
+	position: fixed;
+	width: 350px;
+	min-height: 400px;
+	left: calc(50% - 175px);
+	top: 20%;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: $shadow;
+	z-index: 99;
+	@include no-select;
+}
+
+#color_picker_bg {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: #000;
+	opacity: 0.8;
+	z-index: 98;
+}
+
+#color_picker {
+	#color_picked_preview {
+		display: inline-block;
+		margin: 0 1px 0 7px;
+		border-radius: 50%;
+	}
+
+	#sliders {
+		display: inline-block;
+		width: 285px;
+		height: 55px;
+	}
+
+	#color_slider {
+		position: relative;
+		bottom: 1px;
+	}
+
+	#hex_box {
+		padding: 9px 0 6px 0;
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		text-align: center;
+	}
+
+	#hex_input {
+		width: 100px;
+		height: 30px;
+		outline: none;
+		font-family: monospace;
+		font-size: 14px;
+		color: #333;
+		text-align: center;
+	}
+
+	#hex_input:focus {
+		padding: 2px 1px;
+		border: 1px solid #007cff;
+	}
+
+	#hex_text {
+		font-family: $font;
+		font-size: 12px;
+		color: $light-text;
+	}
+
+	#custom_colors_title {
+		margin: 5px 5px;
+		font-family: $font;
+		font-size: 12px;
+		font-weight: 400;
+		color: $light-text;
+	}
+
+	#custom_colors_box {
+		padding: 0 5px 5px 8px;
+	}
+
+	#custom_colors_add {
+		display: inline-block;
+		padding: 0;
+		width: 18px;
+		height: 22px;
+		background-color: #fff;
+		border: none;
+		border-radius: 3px;
+		font-size: 20px;
+		color: $light-text;
+		outline: none;
+		cursor: pointer;
+	}
+
+	#custom_colors_add:hover {
+		color: #000;
+	}
+
+	.custom_colors_preview {
+		position: relative;
+		margin: 0 6px 6px 0;
+		width: 18px;
+		height: 18px;
+		top: 1px;
+		border: none;
+		border-radius: 3px;
+		outline: none;
+		cursor: pointer;
+	}
+
+	#color_context_menu {
+		display: none;
+		position: fixed;
+		padding: 3px 0;
+		width: 115px;
+		background: #fff;
+		border: 1px solid #d2d2d2;
+		box-shadow: $shadow;
+	}
+
+	#color_clear_single, #color_clear_all {
+		padding: 4px;
+		width: 100%;
+		background: none;
+		border: none;
+		outline: none;
+		font-family: $font;
+		font-size: 12px;
+		color: $dark-text;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	#color_clear_single:hover, #color_clear_all:hover {
+		background-color: #ececec;
+	}
+}
