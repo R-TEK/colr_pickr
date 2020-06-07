@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'mixins';
+@import "variables";
+@import "mixins";
 
 #color_picker {
 	position: fixed;
@@ -53,6 +53,7 @@
 	#hex_input {
 		width: 100px;
 		height: 30px;
+		border: 1px solid #ccc;
 		outline: none;
 		font-family: monospace;
 		font-size: 14px;
@@ -61,7 +62,6 @@
 	}
 
 	#hex_input:focus {
-		padding: 2px 1px;
 		border: 1px solid #007cff;
 	}
 
@@ -123,7 +123,8 @@
 		box-shadow: $shadow;
 	}
 
-	#color_clear_single, #color_clear_all {
+	#color_clear_single,
+	#color_clear_all {
 		padding: 4px;
 		width: 100%;
 		background: none;
@@ -136,7 +137,8 @@
 		cursor: pointer;
 	}
 
-	#color_clear_single:hover, #color_clear_all:hover {
+	#color_clear_single:hover,
+	#color_clear_all:hover {
 		background-color: #ececec;
 	}
 }
