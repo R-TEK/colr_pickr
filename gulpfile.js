@@ -19,13 +19,16 @@ sass.compiler = require("node-sass");
 gulp.task("scripts", async function () {
 	gulp.src(["src/js/setup.js", "src/js/*.js"])
 		.pipe(concatJS("color_picker.js"))
-		.pipe(uglifyJS())
+		//.pipe(uglifyJS())
 		.pipe(gulp.dest("build"));
 });
 
 // Compiling SASS and minifying files
 gulp.task("sass", async function () {
-	gulp.src("src/scss/*.scss").pipe(sass().on("error", sass.logError)).pipe(gulp.dest("build"));
+	gulp.src("src/scss/*.scss")
+		.pipe(sass().on("error", sass.logError))
+		//.pipe(uglifyCSS())
+		.pipe(gulp.dest("build"));
 });
 
 gulp.task("watch", function () {
