@@ -5,13 +5,13 @@
 // Function to handle changes to the HUE slider
 let colorSliderHandler = function (position) {
 	// Defining the slider and dragger
-	const sliderContainer = document.getElementById('color_slider');
-	const sliderDragger = document.getElementById('color_slider_dragger');
+	const sliderContainer = document.getElementById("color_slider");
+	const sliderDragger = document.getElementById("color_slider_dragger");
 
 	// Defining the X position
 	let eventX = position - sliderContainer.getBoundingClientRect().left;
 
-	// Making conditions so that the user dont drag outside the box
+	// Making conditions so that the user don't drag outside the box
 	if (eventX < 11) {
 		eventX = 11;
 	}
@@ -33,23 +33,23 @@ let colorSliderHandler = function (position) {
 	// Updating the Hue value in the data object
 	colorPicker.hue = HColor;
 
-	// Full HSL color
-	const HSL = `hsl(${HColor}, ${colorPicker.saturation}%, ${colorPicker.lightness}%)`;
-
-	// Applying the equivilant HEX value to the input
-	let hexValue = hslToHex(HColor, colorPicker.saturation, colorPicker.lightness);
-	document.getElementById('hex_input').value = hexValue;
+	// Full HSLA color
+	const HSLA = `hsl(${HColor}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
 
 	// Updating the color for the color preview
-	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSL);
+	document.getElementById("color_picked_preview").children[0].setAttribute("fill", HSLA);
 
 	// Updating the Hue color in the Saturation and lightness box
-	document.getElementById('saturation')
-		.children[1].attributes[1].nodeValue = `hsl(${HColor}, 100%, 50%)`;
-}
+	document.getElementById(
+		"saturation"
+	).children[1].attributes[1].nodeValue = `hsl(${HColor}, 100%, 50%)`;
+
+	// Update the color text values
+	updateColorValueInput();
+};
 
 // Start the slider drag
-document.getElementById('color_slider').addEventListener('mousedown', function (event) {
+document.getElementById("color_slider").addEventListener("mousedown", function (event) {
 	// Updating the status in the data object
 	colorPicker.sliderStatus = true;
 	// Calling handler function
@@ -57,7 +57,7 @@ document.getElementById('color_slider').addEventListener('mousedown', function (
 });
 
 // Moving the slider drag
-document.addEventListener('mousemove', function (event) {
+document.addEventListener("mousemove", function (event) {
 	// Checking that the drag has started
 	if (colorPicker.sliderStatus === true) {
 		// Calling handler function
@@ -66,7 +66,7 @@ document.addEventListener('mousemove', function (event) {
 });
 
 // End the slider drag
-document.addEventListener('mouseup', function () {
+document.addEventListener("mouseup", function () {
 	// Checking that the drag has started
 	if (colorPicker.sliderStatus === true) {
 		// Updating the status in the data object

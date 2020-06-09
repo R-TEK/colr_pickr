@@ -1,3 +1,13 @@
+/*!
+ * JS Color Picker
+ *
+ * R-TEK
+ *
+ * https://github.com/R-TEK/js_color_picker
+ *
+ * MIT License
+ */
+
 /*
  * Set-up
  */
@@ -6,10 +16,12 @@
 let colorPicker = {
 	boxStatus: false,
 	sliderStatus: false,
+	opacityStatus: false,
+	colorTypeStatus: "HEXA",
 	hue: 0,
 	saturation: 100,
 	lightness: 50,
-	buttonElem: null,
+	alpha: 1,
 	contextMenuElem: null,
 };
 
@@ -105,10 +117,61 @@ let runColorPicker = function (event) {
 				</svg>
 			</svg>
 		</div>
-		<div id="hex_box">
-			<input id="hex_input" type="text" value="#ff0000" max="9" />
-			<br>
-			<label id="hex_text">HEX</label>
+		<div id="color_text_values">
+			<button id="switch_color_type">
+				<svg viewBox="0 0 24 24" width="20" height="20">
+					<path fill="#555" d="M6 11v-4l-6 5 6 5v-4h12v4l6-5-6-5v4z"/>
+				</svg>
+			</button>
+			<div id="hexa">
+				<input id="hex_input" name="hex_input" type="text" value="#ff0000" spellcheck="false" />
+				<br>
+				<label for="hex_input" class="label_text">HEX</label>
+			</div>
+			<div id="rgba" style="display: none;">
+				<div class="rgba_divider">
+					<input class="rgba_input" name="r" type="text" value="255" spellcheck="false" />
+					<br>
+					<label for="r" class="label_text">R</label>
+				</div>
+				<div class="rgba_divider">
+					<input class="rgba_input" name="g" type="text" value="255" spellcheck="false" />
+					<br>
+					<label for="g" class="label_text">G</label>
+				</div>
+				<div class="rgba_divider">
+					<input class="rgba_input" name="b" type="text" value="255" spellcheck="false" />
+					<br>
+					<label for="b" class="label_text">B</label>
+				</div>
+				<div class="rgba_divider">
+					<input class="rgba_input" name="a" type="text" value="1" spellcheck="false" />
+					<br>
+					<label for="a" class="label_text">A</label>
+				</div>
+			</div>
+			<div id="hsla" style="display: none;">
+				<div class="hsla_divider">
+					<input class="hsla_input" name="h" type="text" value="0" spellcheck="false" />
+					<br>
+					<label for="h" class="label_text">H</label>
+				</div>
+				<div class="hsla_divider">
+					<input class="hsla_input" name="s" type="text" value="50" spellcheck="false" />
+					<br>
+					<label for="s" class="label_text">S%</label>
+				</div>
+				<div class="hsla_divider">
+					<input class="hsla_input" name="l" type="text" value="100" spellcheck="false" />
+					<br>
+					<label for="l" class="label_text">L%</label>
+				</div>
+				<div class="rgba_divider">
+					<input class="hsla_input" name="a" type="text" value="1" spellcheck="false" />
+					<br>
+					<label for="a" class="label_text">A</label>
+				</div>
+			</div>
 		</div>
 		<div id="custom_colors">
 			<h6 id="custom_colors_title">Custom Colors:</h6>
@@ -165,16 +228,11 @@ document.addEventListener("mousedown", function () {
 	if (event.target.id != "color_context_menu") {
 		document.getElementById("color_context_menu").style.display = "none";
 	}
+});
 
-	console.log(event.target.offsetParent);
-	// Close color picker
-	if (
-		event.target.offsetParent != document.getElementById("color_picker") &&
-		event.target.parentNode.tagName != "svg" &&
-		event.target.className != "color_ctx_menu"
-	) {
-		if (event.target.className != "color_picker") {
-			document.getElementById("color_picker").style.display = "none";
-		}
-	}
+// Click the darken background to close the color picker
+document.getElementById("color_picker_bg").addEventListener("click", function () {
+	// Hiding elements
+	document.getElementById("color_picker").style.display = "none";
+	document.getElementById("color_picker_bg").style.display = "none";
 });

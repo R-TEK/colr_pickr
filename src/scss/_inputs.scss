@@ -1,0 +1,15 @@
+#color_picker {
+	input {
+		height: 30px;
+		border: 1px solid #ccc;
+		outline: none;
+		font-family: monospace;
+		font-size: 12px;
+		color: #333;
+		text-align: center;
+	}
+
+	input:focus {
+		border: 1px solid #007cff;
+	}
+}

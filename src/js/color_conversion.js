@@ -2,117 +2,149 @@
  * Color Value Converter
  */
 
-// Function to convert HSL into HEX
-let hslToHex = function (h, s, l) {
-	let r, g, b, m, c, x;
+// Convert HSLA to RGBA
+let HSLAToRGBA = function (h, s, l, a, toHex) {
+	// Must be fractions of 1
+	s /= 100;
+	l /= 100;
 
-	if (!isFinite(h)) h = 0;
-	if (!isFinite(s)) s = 0;
-	if (!isFinite(l)) l = 0;
+	let c = (1 - Math.abs(2 * l - 1)) * s,
+		x = c * (1 - Math.abs(((h / 60) % 2) - 1)),
+		m = l - c / 2,
+		r = 0,
+		g = 0,
+		b = 0;
 
-	h /= 60;
-	if (h < 0) h = 6 - (-h % 6);
-	h %= 6;
-
-	s = Math.max(0, Math.min(1, s / 100));
-	l = Math.max(0, Math.min(1, l / 100));
-
-	c = (1 - Math.abs(2 * l - 1)) * s;
-	x = c * (1 - Math.abs((h % 2) - 1));
-
-	if (h < 1) {
+	if (0 <= h && h < 60) {
 		r = c;
 		g = x;
 		b = 0;
-	} else if (h < 2) {
+	} else if (60 <= h && h < 120) {
 		r = x;
 		g = c;
 		b = 0;
-	} else if (h < 3) {
+	} else if (120 <= h && h < 180) {
 		r = 0;
 		g = c;
 		b = x;
-	} else if (h < 4) {
+	} else if (180 <= h && h < 240) {
 		r = 0;
 		g = x;
 		b = c;
-	} else if (h < 5) {
+	} else if (240 <= h && h < 300) {
 		r = x;
 		g = 0;
 		b = c;
-	} else {
+	} else if (300 <= h && h < 360) {
 		r = c;
 		g = 0;
 		b = x;
 	}
 
-	m = l - c / 2;
 	r = Math.round((r + m) * 255);
 	g = Math.round((g + m) * 255);
 	b = Math.round((b + m) * 255);
 
-	r = r.toString(16);
-	r = r.length == 1 ? "0" + r : r;
-
-	g = g.toString(16);
-	g = g.length == 1 ? "0" + g : g;
-
-	b = b.toString(16);
-	b = b.length == 1 ? "0" + b : b;
-
-	return "#" + r + g + b;
+	if (toHex === true) {
+		return RGBAToHexA(r, g, b, a);
+	} else {
+		return {
+			r: r,
+			g: g,
+			b: b,
+			a: a,
+		};
+	}
 };
 
-// Function to convert HEX into HSL
-let hexToHsl = function (hex, format) {
-	const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+// Convert RGBA to HSLA
+let RGBAToHSLA = function (r, g, b, a) {
+	console.log(r, g, b, a);
+	// Make r, g, and b fractions of 1
+	r /= 255;
+	g /= 255;
+	b /= 255;
 
-	r = parseInt(result[1], 16);
-	g = parseInt(result[2], 16);
-	b = parseInt(result[3], 16);
+	// Find greatest and smallest channel values
+	let cmin = Math.min(r, g, b),
+		cmax = Math.max(r, g, b),
+		delta = cmax - cmin,
+		h = 0,
+		s = 0,
+		l = 0;
 
-	let r1 = r / 255;
-	let g1 = g / 255;
-	let b1 = b / 255;
+	// Calculate hue
+	if (delta == 0) h = 0;
+	// Red is max
+	else if (cmax == r) h = ((g - b) / delta) % 6;
+	// Green is max
+	else if (cmax == g) h = (b - r) / delta + 2;
+	// Blue is max
+	else h = (r - g) / delta + 4;
 
-	let maxColor = Math.max(r1, g1, b1);
-	let minColor = Math.min(r1, g1, b1);
+	h = Math.round(h * 60);
 
-	let L = (maxColor + minColor) / 2;
-	let S = 0;
-	let H = 0;
+	// Make negative hues positive behind 360°
+	if (h < 0) h += 360;
 
-	if (maxColor != minColor) {
-		if (L < 0.5) {
-			S = (maxColor - minColor) / (maxColor + minColor);
-		} else {
-			S = (maxColor - minColor) / (2.0 - maxColor - minColor);
-		}
+	// Calculate lightness
+	l = (cmax + cmin) / 2;
 
-		if (r1 == maxColor) {
-			H = (g1 - b1) / (maxColor - minColor);
-		} else if (g1 == maxColor) {
-			H = 2.0 + (b1 - r1) / (maxColor - minColor);
-		} else {
-			H = 4.0 + (r1 - g1) / (maxColor - minColor);
-		}
-	}
+	// Calculate saturation
+	s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
 
-	L = L * 100;
-	S = S * 100;
-	H = H * 60;
+	// Multiply l and s by 100
+	s = +(s * 100).toFixed(1);
+	l = +(l * 100).toFixed(1);
 
-	if (H < 0) {
-		H += 360;
-	}
+	console.log(h, s, l, a);
 
-	if (format == true) {
-		return {
-			hue: H,
-			saturation: S,
-			lightness: L,
-		};
+	return "hsla(" + h + "," + s + "%," + l + "%," + a + ")";
+};
+
+// Convert RGBA to HexA
+let RGBAToHexA = function (r, g, b, a) {
+	r = r.toString(16);
+	g = g.toString(16);
+	b = b.toString(16);
+	a = Math.round(a * 255).toString(16);
+
+	if (r.length == 1) r = "0" + r;
+	if (g.length == 1) g = "0" + g;
+	if (b.length == 1) b = "0" + b;
+	if (a.length == 1) a = "0" + a;
+
+	if (a == "ff") {
+		return "#" + r + g + b;
 	} else {
-		return `hsl(${H}, ${S}%, ${L}%)`;
+		return "#" + r + g + b + a;
+	}
+};
+
+// Convert HexA to RGBA
+let hexAToRGBA = function (h, toHSL) {
+	let r = 0,
+		g = 0,
+		b = 0,
+		a = 1;
+
+	if (h.length == 5) {
+		r = "0x" + h[1] + h[1];
+		g = "0x" + h[2] + h[2];
+		b = "0x" + h[3] + h[3];
+		a = "0x" + h[4] + h[4];
+	} else if (h.length == 9) {
+		r = "0x" + h[1] + h[2];
+		g = "0x" + h[3] + h[4];
+		b = "0x" + h[5] + h[6];
+		a = "0x" + h[7] + h[8];
+	}
+
+	a = +(a / 255).toFixed(3);
+
+	if (toHSL === true) {
+		return RGBAToHSLA(+r, +g, +b, a);
+	} else {
+		return "rgba(" + +r + "," + +g + "," + +b + "," + a + ")";
 	}
 };

@@ -19,7 +19,7 @@ sass.compiler = require("node-sass");
 gulp.task("scripts", async function () {
 	gulp.src(["src/js/setup.js", "src/js/*.js"])
 		.pipe(concatJS("color_picker.js"))
-		//.pipe(uglifyJS())
+		.pipe(uglifyJS())
 		.pipe(gulp.dest("build"));
 });
 
