@@ -17,11 +17,12 @@ let colorPicker = {
 	boxStatus: false,
 	sliderStatus: false,
 	opacityStatus: false,
-	colorTypeStatus: "HEXA",
+	colorTypeStatus: 'HEXA',
 	hue: 0,
 	saturation: 100,
 	lightness: 50,
 	alpha: 1,
+	buttonElem: 'bill',
 	contextMenuElem: null,
 };
 
@@ -32,29 +33,37 @@ let LSCustomColors = { 0: [] };
 let runColorPicker = function (event) {
 	// Defining elements
 	const target = event.target;
-	const colorPicker = document.getElementById("color_picker");
+	const colorPicker = document.getElementById('color_picker');
+
+	document.getElementById('color_picker').style.display = 'block';
+	document.getElementById('color_picker_bg').style.display = 'block';
+
+	console.log(target);
+
+	colorPicker.buttonElem = target;
+	console.log(colorPicker.buttonElem);
 };
 
 // Function to setup the color picker
 (function () {
-	console.log("dwqdqwd");
+	console.log('dwqdqwd');
 	// Looping through each declared color picker
-	for (y in document.getElementsByClassName("color_picker")) {
+	for (y in document.getElementsByClassName('color_picker')) {
 		// Checking the value isnt a number
 		if (isNaN(y) === true) {
 			continue;
 		}
 
-		console.log(document.getElementsByClassName("color_picker")[y]);
+		console.log(document.getElementsByClassName('color_picker')[y]);
 
 		// Assigning the button with a function to run the color picker
-		document.getElementsByClassName("color_picker")[y].onclick = runColorPicker;
+		document.getElementsByClassName('color_picker')[y].onclick = runColorPicker;
 
 		// Getting the default data the user set
 		let dataColor = document
-			.getElementsByClassName("color_picker")
-			[y].getAttribute("data-color");
-		document.getElementsByClassName("color_picker")[y].style.background = dataColor;
+			.getElementsByClassName('color_picker')
+			[y].getAttribute('data-color');
+		document.getElementsByClassName('color_picker')[y].style.background = dataColor;
 	}
 
 	// Creating the HTML content
@@ -186,53 +195,53 @@ let runColorPicker = function (event) {
 	`;
 
 	// Creating a node to store the data HTML in
-	const colorPickerContainer = document.createElement("ASIDE");
-	colorPickerContainer.id = "color_picker";
+	const colorPickerContainer = document.createElement('ASIDE');
+	colorPickerContainer.id = 'color_picker';
 	colorPickerContainer.innerHTML = HTMLContent;
-	document.getElementsByTagName("BODY")[0].appendChild(colorPickerContainer);
+	document.getElementsByTagName('BODY')[0].appendChild(colorPickerContainer);
 
 	// Creating a darken background node
-	const colorPickerBackground = document.createElement("DIV");
-	colorPickerBackground.id = "color_picker_bg";
-	document.getElementsByTagName("BODY")[0].appendChild(colorPickerBackground);
+	const colorPickerBackground = document.createElement('DIV');
+	colorPickerBackground.id = 'color_picker_bg';
+	document.getElementsByTagName('BODY')[0].appendChild(colorPickerBackground);
 
 	// Checking if a local storage variable has been set
-	if (localStorage.getItem("custom_colors") === null) {
+	if (localStorage.getItem('custom_colors') === null) {
 		// If not then I set one
-		localStorage.setItem("custom_colors", '{"0": []}');
+		localStorage.setItem('custom_colors', '{"0": []}');
 	} else {
 		// If it has then I define the LSCustomColors with the value for this
-		LSCustomColors = JSON.parse(localStorage.getItem("custom_colors"));
+		LSCustomColors = JSON.parse(localStorage.getItem('custom_colors'));
 
 		// Looping through the data to update the DOM with the custom colors
 		for (let x = LSCustomColors[0].length - 1; x >= 0; x--) {
 			// Creating the element
-			let customColorElem = document.createElement("BUTTON");
-			customColorElem.className = "custom_colors_preview";
+			let customColorElem = document.createElement('BUTTON');
+			customColorElem.className = 'custom_colors_preview';
 			customColorElem.style.background = LSCustomColors[0][x];
-			customColorElem.setAttribute("data-color", LSCustomColors[0][x]);
+			customColorElem.setAttribute('data-color', LSCustomColors[0][x]);
 			// Placing the element in the DOM
 			document
-				.getElementById("custom_colors_box")
+				.getElementById('custom_colors_box')
 				.insertBefore(
 					customColorElem,
-					document.getElementById("custom_colors_box").children[0]
+					document.getElementById('custom_colors_box').children[0]
 				);
 		}
 	}
 })();
 
 // Click anywhere to close a pop-up
-document.addEventListener("mousedown", function () {
+document.addEventListener('mousedown', function () {
 	// Close context menu
-	if (event.target.id != "color_context_menu") {
-		document.getElementById("color_context_menu").style.display = "none";
+	if (event.target.id != 'color_context_menu') {
+		document.getElementById('color_context_menu').style.display = 'none';
 	}
 });
 
 // Click the darken background to close the color picker
-document.getElementById("color_picker_bg").addEventListener("click", function () {
+document.getElementById('color_picker_bg').addEventListener('click', function () {
 	// Hiding elements
-	document.getElementById("color_picker").style.display = "none";
-	document.getElementById("color_picker_bg").style.display = "none";
+	document.getElementById('color_picker').style.display = 'none';
+	document.getElementById('color_picker_bg').style.display = 'none';
 });

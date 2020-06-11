@@ -5,8 +5,8 @@
 // Function to handle changes to the saturation and lightness box
 let colorBoxHandler = function (positionX, positionY) {
 	// Defining the box and dragger
-	const boxContainer = document.getElementById("color_box");
-	const boxDragger = document.getElementById("box_dragger");
+	const boxContainer = document.getElementById('color_box');
+	const boxDragger = document.getElementById('box_dragger');
 
 	// Defining X and Y position
 	let eventX = positionX - boxContainer.getBoundingClientRect().left;
@@ -52,17 +52,17 @@ let colorBoxHandler = function (positionX, positionY) {
 
 	// Full HSLA color
 	const HSLA = `hsl(${colorPicker.hue}, ${SPercent}%, ${LPercent}%)`;
-	document.getElementsByClassName("color_picker")[0].innerHTML = HSLA;
+	document.getElementsByClassName('color_picker')[0].innerHTML = HSLA;
 
 	// Applying the color to the color preview
-	document.getElementById("color_picked_preview").children[0].setAttribute("fill", HSLA);
+	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
 
 	// Update the color text values
 	updateColorValueInput();
 };
 
 // Start box drag listener
-document.getElementById("color_box").addEventListener("mousedown", function (event) {
+document.getElementById('color_box').addEventListener('mousedown', function (event) {
 	// Updating the status in the data object
 	colorPicker.boxStatus = true;
 	// Calling handler function
@@ -70,7 +70,7 @@ document.getElementById("color_box").addEventListener("mousedown", function (eve
 });
 
 // Moving box drag listener
-document.addEventListener("mousemove", function (event) {
+document.addEventListener('mousemove', function (event) {
 	// Checking that the drag has started
 	if (colorPicker.boxStatus === true) {
 		// Calling handler function
@@ -79,7 +79,7 @@ document.addEventListener("mousemove", function (event) {
 });
 
 // End box drag listener
-document.addEventListener("mouseup", function (event) {
+document.addEventListener('mouseup', function (event) {
 	// Checking that the drag has started
 	if (colorPicker.boxStatus === true) {
 		// Updating the status in the data object

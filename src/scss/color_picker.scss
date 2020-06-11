@@ -8,9 +8,9 @@
  * MIT License
  */
 
-@import "variables";
-@import "mixins";
-@import "inputs";
+@import 'variables';
+@import 'mixins';
+@import 'inputs';
 
 #color_picker {
 	position: fixed;
@@ -69,6 +69,11 @@
 		border: none;
 		outline: none;
 		cursor: pointer;
+		transition: $quickTransition;
+	}
+
+	#switch_color_type:hover {
+		transform: $hoverEnlarge;
 	}
 
 	.label_text {
@@ -132,6 +137,11 @@
 		border-radius: 3px;
 		outline: none;
 		cursor: pointer;
+		transition: $quickTransition;
+	}
+
+	.custom_colors_preview:hover {
+		transform: $hoverEnlarge;
 	}
 
 	#color_context_menu {

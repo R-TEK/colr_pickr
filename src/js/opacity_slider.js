@@ -5,8 +5,8 @@
 // Function to handle changes to the opacity slider
 let opacitySliderHandler = function (position) {
 	// Defining the slider and dragger
-	const sliderContainer = document.getElementById("opacity_slider");
-	const sliderDragger = document.getElementById("opacity_slider_dragger");
+	const sliderContainer = document.getElementById('opacity_slider');
+	const sliderDragger = document.getElementById('opacity_slider_dragger');
 
 	// Defining the X position
 	let eventX = position - sliderContainer.getBoundingClientRect().left;
@@ -29,7 +29,7 @@ let opacitySliderHandler = function (position) {
 	// Finding the value for the percentage of 1
 	let alpha = (1 / 100) * percent;
 	// Rounding the value to the nearest 2 decimals
-	alpha = Number(Math.round(alpha + "e" + 2) + "e-" + 2);
+	alpha = Number(Math.round(alpha + 'e' + 2) + 'e-' + 2);
 
 	// Updating the data objects
 	colorPicker.alpha = alpha;
@@ -38,14 +38,14 @@ let opacitySliderHandler = function (position) {
 	const HSLA = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${alpha})`;
 
 	// Updating the color for the color preview
-	document.getElementById("color_picked_preview").children[0].setAttribute("fill", HSLA);
+	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
 
 	// Update the color text values
 	updateColorValueInput();
 };
 
 // Start the slider drag for opacity
-document.getElementById("opacity_slider").addEventListener("mousedown", function (event) {
+document.getElementById('opacity_slider').addEventListener('mousedown', function (event) {
 	// Updating the status in the data object
 	colorPicker.opacityStatus = true;
 	// Calling the handler function
@@ -53,7 +53,7 @@ document.getElementById("opacity_slider").addEventListener("mousedown", function
 });
 
 // Moving the slider drag for opacity
-document.addEventListener("mousemove", function (event) {
+document.addEventListener('mousemove', function (event) {
 	// Checking that the drag has started
 	if (colorPicker.opacityStatus === true) {
 		// Calling the handler function
@@ -62,7 +62,7 @@ document.addEventListener("mousemove", function (event) {
 });
 
 // End the slider drag
-document.addEventListener("mouseup", function () {
+document.addEventListener('mouseup', function () {
 	// Checking that the drag has started
 	if (colorPicker.opacityStatus === true) {
 		// Updating the status in the data object

@@ -4,8 +4,12 @@
 
 // Backgrounds
 $shadow: 0 0 10px 0 rgba(1, 1, 1, 0.5);
+$hoverEnlarge: scale(1.1);
 
 // Texts
 $font: Arial, Helvetica, sans-serif;
 $dark-text: #111;
 $light-text: #555;
+
+// Effects
+$quickTransition: all 0.2s;

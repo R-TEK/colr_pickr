@@ -7,4 +7,878 @@
  *
  * MIT License
  */
-let colorPicker={boxStatus:!1,sliderStatus:!1,opacityStatus:!1,colorTypeStatus:"HEXA",hue:0,saturation:100,lightness:50,alpha:1,contextMenuElem:null},LSCustomColors={0:[]},runColorPicker=function(t){t.target,document.getElementById("color_picker")};!function(){for(y in console.log("dwqdqwd"),document.getElementsByClassName("color_picker")){if(!0===isNaN(y))continue;console.log(document.getElementsByClassName("color_picker")[y]),document.getElementsByClassName("color_picker")[y].onclick=runColorPicker;let t=document.getElementsByClassName("color_picker")[y].getAttribute("data-color");document.getElementsByClassName("color_picker")[y].style.background=t}const t=document.createElement("ASIDE");t.id="color_picker",t.innerHTML='\n\t\t<svg id="color_box" width="348" height="185">\n\t\t\t<defs>\n\t\t\t\t<linearGradient id="saturation" x1="0%" y1="0%" x2="100%" y2="0%">\n\t\t\t\t\t<stop offset="0%" stop-color="#fff"></stop>\n\t\t\t\t\t<stop offset="100%" stop-color="hsl(0,100%,50%)"></stop>\n\t\t\t\t</linearGradient>\n\t\t\t\t<linearGradient id="brightness" x1="0%" y1="0%" x2="0%" y2="100%">\n\t\t\t\t\t<stop offset="0%" stop-color="rgba(0,0,0,0)"></stop>\n\t\t\t\t\t<stop offset="100%" stop-color="#000"></stop>\n\t\t\t\t</linearGradient>\n\t\t\t\t<pattern id="pattern_config" width="100%" height="100%">\n\t\t\t\t\t<rect x="0" y="0" width="100%" height="100%" fill="url(#saturation)"></rect> }\n\t\t\t\t\t<rect x="0" y="0" width="100%" height="100%" fill="url(#brightness)"></rect>\n\t\t\t\t</pattern>\n\t\t\t</defs>\n\t\t\t<rect rx="5" ry="5" x="1" y="1" width="348" height="185" stroke="#fff" stroke-width="2" fill="url(#pattern_config)"></rect>\n\t\t\t<svg id="box_dragger" x="336" y="14" style="overflow: visible;">\n\t\t\t\t<circle r="9" fill="none" stroke="#000" stroke-width="2"></circle>\n\t\t\t\t<circle r="7" fill="none" stroke="#fff" stroke-width="2"></circle>\n\t\t\t</svg>\n\t\t</svg>\n\t\t<br>\n\t\t<svg id="color_picked_preview" width="40" height="50">\n\t\t\t<circle cx="20" cy="29" r="18" stroke="#a7a7a7" stroke-width="1"></circle>\n\t\t</svg>\n\t\t<div id="sliders">\n\t\t\t<svg id="color_slider" width="285" height="20">\n\t\t\t\t<defs>\n\t\t\t\t\t<linearGradient id="hue" x1="100%" y1="0%" x2="0%" y2="0%">\n\t\t\t\t\t\t<stop offset="0%" stop-color="#f00"></stop>\n\t\t\t\t\t\t<stop offset="16.666%" stop-color="#ff0"></stop>\n\t\t\t\t\t\t<stop offset="33.333%" stop-color="#0f0"></stop>\n\t\t\t\t\t\t<stop offset="50%" stop-color="#0ff"></stop>\n\t\t\t\t\t\t<stop offset="66.666%" stop-color="#00f"></stop>\n\t\t\t\t\t\t<stop offset="83.333%" stop-color="#f0f"></stop>\n\t\t\t\t\t\t<stop offset="100%" stop-color="#f00"></stop>\n\t\t\t\t\t</linearGradient>\n\t\t\t\t</defs>\n\t\t\t\t<rect rx="5" ry="5" x="1" y="1" width="285" height="20" stroke="#fff" stroke-width="2" fill="url(#hue)"></rect>\n\t\t\t\t<svg id="color_slider_dragger" x="277" y="11" style="overflow: visible;">\n\t\t\t\t\t<circle r="7" fill="none" stroke="#000" stroke-width="2"></circle>\n\t\t\t\t\t<circle r="5" fill="none" stroke="#fff" stroke-width="2"></circle>\n\t\t\t\t</svg>\n\t\t\t</svg>\n\t\t\t<svg id="opacity_slider" width="285" height="20">\n\t\t\t\t<defs>\n\t\t\t\t\t<linearGradient id="opacity" x1="100%" y1="0%" x2="0%" y2="0%">\n\t\t\t\t\t\t<stop offset="0%" stop-color="#000"></stop>\n\t\t\t\t\t\t<stop offset="100%" stop-color="#fff"></stop>\n\t\t\t\t\t</linearGradient>\n\t\t\t\t</defs>\n\t\t\t\t<rect rx="5" ry="5" x="1" y="6" width="285" height="10" stroke="#fff" stroke-width="2" fill="url(#opacity)"></rect>\n\t\t\t\t<svg id="opacity_slider_dragger" x="277" y="11" style="overflow: visible;">\n\t\t\t\t\t<circle r="7" fill="none" stroke="#000" stroke-width="2"></circle>\n\t\t\t\t\t<circle r="5" fill="none" stroke="#fff" stroke-width="2"></circle>\n\t\t\t\t</svg>\n\t\t\t</svg>\n\t\t</div>\n\t\t<div id="color_text_values">\n\t\t\t<button id="switch_color_type">\n\t\t\t\t<svg viewBox="0 0 24 24" width="20" height="20">\n\t\t\t\t\t<path fill="#555" d="M6 11v-4l-6 5 6 5v-4h12v4l6-5-6-5v4z"/>\n\t\t\t\t</svg>\n\t\t\t</button>\n\t\t\t<div id="hexa">\n\t\t\t\t<input id="hex_input" name="hex_input" type="text" value="#ff0000" spellcheck="false" />\n\t\t\t\t<br>\n\t\t\t\t<label for="hex_input" class="label_text">HEX</label>\n\t\t\t</div>\n\t\t\t<div id="rgba" style="display: none;">\n\t\t\t\t<div class="rgba_divider">\n\t\t\t\t\t<input class="rgba_input" name="r" type="text" value="255" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="r" class="label_text">R</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="rgba_divider">\n\t\t\t\t\t<input class="rgba_input" name="g" type="text" value="255" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="g" class="label_text">G</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="rgba_divider">\n\t\t\t\t\t<input class="rgba_input" name="b" type="text" value="255" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="b" class="label_text">B</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="rgba_divider">\n\t\t\t\t\t<input class="rgba_input" name="a" type="text" value="1" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="a" class="label_text">A</label>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div id="hsla" style="display: none;">\n\t\t\t\t<div class="hsla_divider">\n\t\t\t\t\t<input class="hsla_input" name="h" type="text" value="0" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="h" class="label_text">H</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="hsla_divider">\n\t\t\t\t\t<input class="hsla_input" name="s" type="text" value="50" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="s" class="label_text">S%</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="hsla_divider">\n\t\t\t\t\t<input class="hsla_input" name="l" type="text" value="100" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="l" class="label_text">L%</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="rgba_divider">\n\t\t\t\t\t<input class="hsla_input" name="a" type="text" value="1" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="a" class="label_text">A</label>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div id="custom_colors">\n\t\t\t<h6 id="custom_colors_title">Custom Colors:</h6>\n\t\t\t<div id="custom_colors_box">\n\t\t\t\t<button id="custom_colors_add">+</button>\n\t\t\t</div>\n\t\t</div>\n\t\t<div id="color_context_menu" class="color_ctx_menu">\n\t\t\t<button id="color_clear_single" class="color_ctx_menu">Remove Color</button>\n\t\t\t<button id="color_clear_all" class="color_ctx_menu">Remove All</button>\n\t\t</div>\n\t',document.getElementsByTagName("BODY")[0].appendChild(t);const e=document.createElement("DIV");if(e.id="color_picker_bg",document.getElementsByTagName("BODY")[0].appendChild(e),null===localStorage.getItem("custom_colors"))localStorage.setItem("custom_colors",'{"0": []}');else{LSCustomColors=JSON.parse(localStorage.getItem("custom_colors"));for(let t=LSCustomColors[0].length-1;t>=0;t--){let e=document.createElement("BUTTON");e.className="custom_colors_preview",e.style.background=LSCustomColors[0][t],e.setAttribute("data-color",LSCustomColors[0][t]),document.getElementById("custom_colors_box").insertBefore(e,document.getElementById("custom_colors_box").children[0])}}}(),document.addEventListener("mousedown",(function(){"color_context_menu"!=event.target.id&&(document.getElementById("color_context_menu").style.display="none")})),document.getElementById("color_picker_bg").addEventListener("click",(function(){document.getElementById("color_picker").style.display="none",document.getElementById("color_picker_bg").style.display="none"}));let HSLAToRGBA=function(t,e,o,l,n){e/=100,o/=100;let r=(1-Math.abs(2*o-1))*e,s=r*(1-Math.abs(t/60%2-1)),c=o-r/2,i=0,a=0,d=0;return 0<=t&&t<60?(i=r,a=s,d=0):60<=t&&t<120?(i=s,a=r,d=0):120<=t&&t<180?(i=0,a=r,d=s):180<=t&&t<240?(i=0,a=s,d=r):240<=t&&t<300?(i=s,a=0,d=r):300<=t&&t<360&&(i=r,a=0,d=s),i=Math.round(255*(i+c)),a=Math.round(255*(a+c)),d=Math.round(255*(d+c)),!0===n?RGBAToHexA(i,a,d,l):{r:i,g:a,b:d,a:l}},RGBAToHSLA=function(t,e,o,l){console.log(t,e,o,l),t/=255,e/=255,o/=255;let n=Math.min(t,e,o),r=Math.max(t,e,o),s=r-n,c=0,i=0,a=0;return c=0==s?0:r==t?(e-o)/s%6:r==e?(o-t)/s+2:(t-e)/s+4,c=Math.round(60*c),c<0&&(c+=360),a=(r+n)/2,i=0==s?0:s/(1-Math.abs(2*a-1)),i=+(100*i).toFixed(1),a=+(100*a).toFixed(1),console.log(c,i,a,l),"hsla("+c+","+i+"%,"+a+"%,"+l+")"},RGBAToHexA=function(t,e,o,l){return t=t.toString(16),e=e.toString(16),o=o.toString(16),l=Math.round(255*l).toString(16),1==t.length&&(t="0"+t),1==e.length&&(e="0"+e),1==o.length&&(o="0"+o),1==l.length&&(l="0"+l),"ff"==l?"#"+t+e+o:"#"+t+e+o+l},hexAToRGBA=function(t,e){let o=0,l=0,n=0,r=1;return 5==t.length?(o="0x"+t[1]+t[1],l="0x"+t[2]+t[2],n="0x"+t[3]+t[3],r="0x"+t[4]+t[4]):9==t.length&&(o="0x"+t[1]+t[2],l="0x"+t[3]+t[4],n="0x"+t[5]+t[6],r="0x"+t[7]+t[8]),r=+(r/255).toFixed(3),!0===e?RGBAToHSLA(+o,+l,+n,r):"rgba("+ +o+","+ +l+","+ +n+","+r+")"},switchColorType=function(){if("HEXA"==colorPicker.colorTypeStatus){colorPicker.colorTypeStatus="RGBA",document.getElementById("hexa").style.display="none",document.getElementById("rgba").style.display="block";const t=HSLAToRGBA(colorPicker.hue,colorPicker.saturation,colorPicker.lightness,colorPicker.alpha);document.getElementsByClassName("rgba_input")[0].value=t.r,document.getElementsByClassName("rgba_input")[1].value=t.g,document.getElementsByClassName("rgba_input")[2].value=t.b,document.getElementsByClassName("rgba_input")[3].value=t.a}else if("RGBA"==colorPicker.colorTypeStatus)colorPicker.colorTypeStatus="HSLA",document.getElementById("rgba").style.display="none",document.getElementById("hsla").style.display="block",document.getElementsByClassName("hsla_input")[0].value=colorPicker.hue,document.getElementsByClassName("hsla_input")[1].value=colorPicker.saturation,document.getElementsByClassName("hsla_input")[2].value=colorPicker.lightness,document.getElementsByClassName("hsla_input")[3].value=colorPicker.alpha;else if("HSLA"==colorPicker.colorTypeStatus){colorPicker.colorTypeStatus="HEXA",document.getElementById("hsla").style.display="none",document.getElementById("hexa").style.display="block";const t=HSLAToRGBA(colorPicker.hue,colorPicker.saturation,colorPicker.lightness,colorPicker.alpha,!0);document.getElementById("hex_input").value=t}};document.getElementById("switch_color_type").addEventListener("click",(function(){switchColorType()})),document.getElementById("hex_input").addEventListener("blur",(function(){console.log("leave")}));let addCustomColor=function(){const t=`hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%)`;let e=document.createElement("BUTTON");e.className="custom_colors_preview",e.style.background=t,e.setAttribute("data-color",t),document.getElementById("custom_colors_box").insertBefore(e,document.getElementById("custom_colors_box").children[0]),LSCustomColors[0].unshift(t),localStorage.setItem("custom_colors",JSON.stringify(LSCustomColors))};document.getElementById("custom_colors_add").addEventListener("click",(function(){addCustomColor()})),document.getElementById("custom_colors_box").addEventListener("contextmenu",(function(t){if("custom_colors_preview"==t.target.className){t.preventDefault();const e=document.getElementById("color_context_menu");e.style.display="block",e.style.top=t.target.getBoundingClientRect().top+25+"px",e.style.left=t.target.getBoundingClientRect().left+"px",colorPicker.contextMenuElem=t.target}}));let clearSingleCustomColor=function(){for(x in console.log("wef"),document.getElementById("custom_colors_box").removeChild(colorPicker.contextMenuElem),LSCustomColors={0:[]},document.getElementsByClassName("custom_colors_preview"))!0!==isNaN(x)&&LSCustomColors[0].push(document.getElementsByClassName("custom_colors_preview")[x].getAttribute("data-color"));localStorage.setItem("custom_colors",JSON.stringify(LSCustomColors))};document.getElementById("color_clear_single").addEventListener("mousedown",(function(){clearSingleCustomColor()}));let clearAllCustomColors=function(){for(LSCustomColors={0:[]};document.getElementsByClassName("custom_colors_preview").length>0;)document.getElementById("custom_colors_box").removeChild(document.getElementsByClassName("custom_colors_preview")[0]);localStorage.setItem("custom_colors",JSON.stringify(LSCustomColors))};document.getElementById("color_clear_all").addEventListener("mousedown",(function(){clearAllCustomColors()}));let colorSliderHandler=function(t){const e=document.getElementById("color_slider"),o=document.getElementById("color_slider_dragger");let l=t-e.getBoundingClientRect().left;l<11&&(l=11),l>277&&(l=277),o.attributes.x.nodeValue=l;const n=(l-11)/266*100,r=Math.round(359-3.59*n);colorPicker.hue=r;const s=`hsl(${r}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;document.getElementById("color_picked_preview").children[0].setAttribute("fill",s),document.getElementById("saturation").children[1].attributes[1].nodeValue=`hsl(${r}, 100%, 50%)`,updateColorValueInput()};document.getElementById("color_slider").addEventListener("mousedown",(function(t){colorPicker.sliderStatus=!0,colorSliderHandler(t.pageX)})),document.addEventListener("mousemove",(function(t){!0===colorPicker.sliderStatus&&colorSliderHandler(t.pageX)})),document.addEventListener("mouseup",(function(){!0===colorPicker.sliderStatus&&(colorPicker.sliderStatus=!1)}));let opacitySliderHandler=function(t){const e=document.getElementById("opacity_slider"),o=document.getElementById("opacity_slider_dragger");let l=t-e.getBoundingClientRect().left;l<11&&(l=11),l>277&&(l=277),o.attributes.x.nodeValue=l;let n=.01*((l-11)/266*100);n=Number(Math.round(n+"e2")+"e-2"),colorPicker.alpha=n;const r=`hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${n})`;document.getElementById("color_picked_preview").children[0].setAttribute("fill",r),updateColorValueInput()};document.getElementById("opacity_slider").addEventListener("mousedown",(function(t){colorPicker.opacityStatus=!0,opacitySliderHandler(t.pageX)})),document.addEventListener("mousemove",(function(t){!0===colorPicker.opacityStatus&&opacitySliderHandler(t.pageX)})),document.addEventListener("mouseup",(function(){!0===colorPicker.opacityStatus&&(colorPicker.opacityStatus=!1)}));let colorBoxHandler=function(t,e){const o=document.getElementById("color_box"),l=document.getElementById("box_dragger");let n=t-o.getBoundingClientRect().left,r=e-o.getBoundingClientRect().top;n<14&&(n=14),n>336&&(n=336),r<14&&(r=14),r>173&&(r=173),l.attributes.y.nodeValue=r,l.attributes.x.nodeValue=n;const s=Math.round((n-15)/322*100),c=100-s/2,i=100-(r-15)/159*100,a=Math.round(i/100*c);colorPicker.saturation=s,colorPicker.lightness=a;const d=`hsl(${colorPicker.hue}, ${s}%, ${a}%)`;document.getElementsByClassName("color_picker")[0].innerHTML=d,document.getElementById("color_picked_preview").children[0].setAttribute("fill",d),updateColorValueInput()};document.getElementById("color_box").addEventListener("mousedown",(function(t){colorPicker.boxStatus=!0,colorBoxHandler(t.pageX,t.pageY)})),document.addEventListener("mousemove",(function(t){!0===colorPicker.boxStatus&&colorBoxHandler(t.pageX,t.pageY)})),document.addEventListener("mouseup",(function(t){!0===colorPicker.boxStatus&&(colorPicker.boxStatus=!1)}));let updateColorDisplays=function(t){t=hexToHsl(t,!0),console.log(t);document.getElementById("color_box");const e=document.getElementById("box_dragger");document.getElementById("color_slider"),document.getElementById("slider_dragger");let o,l;o=2.24*t.saturation+14,l=100-100*t.lightness/t.saturation*2,console.log(l),e.attributes.x.nodeValue=o,e.attributes.y.nodeValue=l},updateColorValueInput=function(){if("HEXA"==colorPicker.colorTypeStatus){const t=HSLAToRGBA(colorPicker.hue,colorPicker.saturation,colorPicker.lightness,colorPicker.alpha,!0);document.getElementById("hex_input").value=t}else if("RGBA"==colorPicker.colorTypeStatus){const t=HSLAToRGBA(colorPicker.hue,colorPicker.saturation,colorPicker.lightness,colorPicker.alpha);document.getElementsByClassName("rgba_input")[0].value=t.r,document.getElementsByClassName("rgba_input")[1].value=t.g,document.getElementsByClassName("rgba_input")[2].value=t.b,document.getElementsByClassName("rgba_input")[3].value=t.a}else document.getElementsByClassName("hsla_input")[0].value=colorPicker.hue,document.getElementsByClassName("hsla_input")[1].value=colorPicker.saturation,document.getElementsByClassName("hsla_input")[2].value=colorPicker.lightness,document.getElementsByClassName("hsla_input")[3].value=colorPicker.alpha};
+
+/*
+ * Set-up
+ */
+
+// Color Picker data
+let colorPicker = {
+	boxStatus: false,
+	sliderStatus: false,
+	opacityStatus: false,
+	colorTypeStatus: 'HEXA',
+	hue: 0,
+	saturation: 100,
+	lightness: 50,
+	alpha: 1,
+	buttonElem: 'bill',
+	contextMenuElem: null,
+};
+
+// Local storage variable
+let LSCustomColors = { 0: [] };
+
+// Function to open the color picker
+let runColorPicker = function (event) {
+	// Defining elements
+	const target = event.target;
+	const colorPicker = document.getElementById('color_picker');
+
+	document.getElementById('color_picker').style.display = 'block';
+	document.getElementById('color_picker_bg').style.display = 'block';
+
+	console.log(target);
+
+	colorPicker.buttonElem = target;
+	console.log(colorPicker.buttonElem);
+};
+
+// Function to setup the color picker
+(function () {
+	console.log('dwqdqwd');
+	// Looping through each declared color picker
+	for (y in document.getElementsByClassName('color_picker')) {
+		// Checking the value isnt a number
+		if (isNaN(y) === true) {
+			continue;
+		}
+
+		console.log(document.getElementsByClassName('color_picker')[y]);
+
+		// Assigning the button with a function to run the color picker
+		document.getElementsByClassName('color_picker')[y].onclick = runColorPicker;
+
+		// Getting the default data the user set
+		let dataColor = document
+			.getElementsByClassName('color_picker')
+			[y].getAttribute('data-color');
+		document.getElementsByClassName('color_picker')[y].style.background = dataColor;
+	}
+
+	// Creating the HTML content
+	const HTMLContent = `
+		<svg id="color_box" width="348" height="185">
+			<defs>
+				<linearGradient id="saturation" x1="0%" y1="0%" x2="100%" y2="0%">
+					<stop offset="0%" stop-color="#fff"></stop>
+					<stop offset="100%" stop-color="hsl(0,100%,50%)"></stop>
+				</linearGradient>
+				<linearGradient id="brightness" x1="0%" y1="0%" x2="0%" y2="100%">
+					<stop offset="0%" stop-color="rgba(0,0,0,0)"></stop>
+					<stop offset="100%" stop-color="#000"></stop>
+				</linearGradient>
+				<pattern id="pattern_config" width="100%" height="100%">
+					<rect x="0" y="0" width="100%" height="100%" fill="url(#saturation)"></rect> }
+					<rect x="0" y="0" width="100%" height="100%" fill="url(#brightness)"></rect>
+				</pattern>
+			</defs>
+			<rect rx="5" ry="5" x="1" y="1" width="348" height="185" stroke="#fff" stroke-width="2" fill="url(#pattern_config)"></rect>
+			<svg id="box_dragger" x="336" y="14" style="overflow: visible;">
+				<circle r="9" fill="none" stroke="#000" stroke-width="2"></circle>
+				<circle r="7" fill="none" stroke="#fff" stroke-width="2"></circle>
+			</svg>
+		</svg>
+		<br>
+		<svg id="color_picked_preview" width="40" height="50">
+			<circle cx="20" cy="29" r="18" stroke="#a7a7a7" stroke-width="1"></circle>
+		</svg>
+		<div id="sliders">
+			<svg id="color_slider" width="285" height="20">
+				<defs>
+					<linearGradient id="hue" x1="100%" y1="0%" x2="0%" y2="0%">
+						<stop offset="0%" stop-color="#f00"></stop>
+						<stop offset="16.666%" stop-color="#ff0"></stop>
+						<stop offset="33.333%" stop-color="#0f0"></stop>
+						<stop offset="50%" stop-color="#0ff"></stop>
+						<stop offset="66.666%" stop-color="#00f"></stop>
+						<stop offset="83.333%" stop-color="#f0f"></stop>
+						<stop offset="100%" stop-color="#f00"></stop>
+					</linearGradient>
+				</defs>
+				<rect rx="5" ry="5" x="1" y="1" width="285" height="20" stroke="#fff" stroke-width="2" fill="url(#hue)"></rect>
+				<svg id="color_slider_dragger" x="277" y="11" style="overflow: visible;">
+					<circle r="7" fill="none" stroke="#000" stroke-width="2"></circle>
+					<circle r="5" fill="none" stroke="#fff" stroke-width="2"></circle>
+				</svg>
+			</svg>
+			<svg id="opacity_slider" width="285" height="20">
+				<defs>
+					<linearGradient id="opacity" x1="100%" y1="0%" x2="0%" y2="0%">
+						<stop offset="0%" stop-color="#000"></stop>
+						<stop offset="100%" stop-color="#fff"></stop>
+					</linearGradient>
+				</defs>
+				<rect rx="5" ry="5" x="1" y="6" width="285" height="10" stroke="#fff" stroke-width="2" fill="url(#opacity)"></rect>
+				<svg id="opacity_slider_dragger" x="277" y="11" style="overflow: visible;">
+					<circle r="7" fill="none" stroke="#000" stroke-width="2"></circle>
+					<circle r="5" fill="none" stroke="#fff" stroke-width="2"></circle>
+				</svg>
+			</svg>
+		</div>
+		<div id="color_text_values">
+			<button id="switch_color_type">
+				<svg viewBox="0 0 24 24" width="20" height="20">
+					<path fill="#555" d="M6 11v-4l-6 5 6 5v-4h12v4l6-5-6-5v4z"/>
+				</svg>
+			</button>
+			<div id="hexa">
+				<input id="hex_input" name="hex_input" type="text" value="#ff0000" spellcheck="false" />
+				<br>
+				<label for="hex_input" class="label_text">HEX</label>
+			</div>
+			<div id="rgba" style="display: none;">
+				<div class="rgba_divider">
+					<input class="rgba_input" name="r" type="text" value="255" spellcheck="false" />
+					<br>
+					<label for="r" class="label_text">R</label>
+				</div>
+				<div class="rgba_divider">
+					<input class="rgba_input" name="g" type="text" value="255" spellcheck="false" />
+					<br>
+					<label for="g" class="label_text">G</label>
+				</div>
+				<div class="rgba_divider">
+					<input class="rgba_input" name="b" type="text" value="255" spellcheck="false" />
+					<br>
+					<label for="b" class="label_text">B</label>
+				</div>
+				<div class="rgba_divider">
+					<input class="rgba_input" name="a" type="text" value="1" spellcheck="false" />
+					<br>
+					<label for="a" class="label_text">A</label>
+				</div>
+			</div>
+			<div id="hsla" style="display: none;">
+				<div class="hsla_divider">
+					<input class="hsla_input" name="h" type="text" value="0" spellcheck="false" />
+					<br>
+					<label for="h" class="label_text">H</label>
+				</div>
+				<div class="hsla_divider">
+					<input class="hsla_input" name="s" type="text" value="50" spellcheck="false" />
+					<br>
+					<label for="s" class="label_text">S%</label>
+				</div>
+				<div class="hsla_divider">
+					<input class="hsla_input" name="l" type="text" value="100" spellcheck="false" />
+					<br>
+					<label for="l" class="label_text">L%</label>
+				</div>
+				<div class="rgba_divider">
+					<input class="hsla_input" name="a" type="text" value="1" spellcheck="false" />
+					<br>
+					<label for="a" class="label_text">A</label>
+				</div>
+			</div>
+		</div>
+		<div id="custom_colors">
+			<h6 id="custom_colors_title">Custom Colors:</h6>
+			<div id="custom_colors_box">
+				<button id="custom_colors_add">+</button>
+			</div>
+		</div>
+		<div id="color_context_menu" class="color_ctx_menu">
+			<button id="color_clear_single" class="color_ctx_menu">Remove Color</button>
+			<button id="color_clear_all" class="color_ctx_menu">Remove All</button>
+		</div>
+	`;
+
+	// Creating a node to store the data HTML in
+	const colorPickerContainer = document.createElement('ASIDE');
+	colorPickerContainer.id = 'color_picker';
+	colorPickerContainer.innerHTML = HTMLContent;
+	document.getElementsByTagName('BODY')[0].appendChild(colorPickerContainer);
+
+	// Creating a darken background node
+	const colorPickerBackground = document.createElement('DIV');
+	colorPickerBackground.id = 'color_picker_bg';
+	document.getElementsByTagName('BODY')[0].appendChild(colorPickerBackground);
+
+	// Checking if a local storage variable has been set
+	if (localStorage.getItem('custom_colors') === null) {
+		// If not then I set one
+		localStorage.setItem('custom_colors', '{"0": []}');
+	} else {
+		// If it has then I define the LSCustomColors with the value for this
+		LSCustomColors = JSON.parse(localStorage.getItem('custom_colors'));
+
+		// Looping through the data to update the DOM with the custom colors
+		for (let x = LSCustomColors[0].length - 1; x >= 0; x--) {
+			// Creating the element
+			let customColorElem = document.createElement('BUTTON');
+			customColorElem.className = 'custom_colors_preview';
+			customColorElem.style.background = LSCustomColors[0][x];
+			customColorElem.setAttribute('data-color', LSCustomColors[0][x]);
+			// Placing the element in the DOM
+			document
+				.getElementById('custom_colors_box')
+				.insertBefore(
+					customColorElem,
+					document.getElementById('custom_colors_box').children[0]
+				);
+		}
+	}
+})();
+
+// Click anywhere to close a pop-up
+document.addEventListener('mousedown', function () {
+	// Close context menu
+	if (event.target.id != 'color_context_menu') {
+		document.getElementById('color_context_menu').style.display = 'none';
+	}
+});
+
+// Click the darken background to close the color picker
+document.getElementById('color_picker_bg').addEventListener('click', function () {
+	// Hiding elements
+	document.getElementById('color_picker').style.display = 'none';
+	document.getElementById('color_picker_bg').style.display = 'none';
+});
+
+/*
+ * Color Value Converter
+ */
+
+// Convert HSLA to RGBA
+let HSLAToRGBA = function (h, s, l, a, toHex) {
+	s /= 100;
+	l /= 100;
+
+	let c = (1 - Math.abs(2 * l - 1)) * s,
+		x = c * (1 - Math.abs(((h / 60) % 2) - 1)),
+		m = l - c / 2,
+		r = 0,
+		g = 0,
+		b = 0;
+
+	if (0 <= h && h < 60) {
+		r = c;
+		g = x;
+		b = 0;
+	} else if (60 <= h && h < 120) {
+		r = x;
+		g = c;
+		b = 0;
+	} else if (120 <= h && h < 180) {
+		r = 0;
+		g = c;
+		b = x;
+	} else if (180 <= h && h < 240) {
+		r = 0;
+		g = x;
+		b = c;
+	} else if (240 <= h && h < 300) {
+		r = x;
+		g = 0;
+		b = c;
+	} else if (300 <= h && h < 360) {
+		r = c;
+		g = 0;
+		b = x;
+	}
+
+	r = Math.round((r + m) * 255);
+	g = Math.round((g + m) * 255);
+	b = Math.round((b + m) * 255);
+
+	if (toHex === true) {
+		return RGBAToHexA(r, g, b, a);
+	} else {
+		return {
+			r: r,
+			g: g,
+			b: b,
+			a: a,
+		};
+	}
+};
+
+// Convert RGBA to HSLA
+let RGBAToHSLA = function (r, g, b, a) {
+	console.log(r, g, b, a);
+	r /= 255;
+	g /= 255;
+	b /= 255;
+
+	let cmin = Math.min(r, g, b),
+		cmax = Math.max(r, g, b),
+		delta = cmax - cmin,
+		h = 0,
+		s = 0,
+		l = 0;
+
+	if (delta == 0) h = 0;
+	else if (cmax == r) h = ((g - b) / delta) % 6;
+	else if (cmax == g) h = (b - r) / delta + 2;
+	else h = (r - g) / delta + 4;
+
+	h = Math.round(h * 60);
+
+	if (h < 0) h += 360;
+
+	l = (cmax + cmin) / 2;
+
+	s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+
+	s = +(s * 100).toFixed(1);
+	l = +(l * 100).toFixed(1);
+
+	console.log(h, s, l, a);
+
+	return {
+		h: h,
+		s: s,
+		l: l,
+		a: a,
+	};
+};
+
+// Convert RGBA to HexA
+let RGBAToHexA = function (r, g, b, a) {
+	r = r.toString(16);
+	g = g.toString(16);
+	b = b.toString(16);
+	a = Math.round(a * 255).toString(16);
+
+	if (r.length == 1) r = '0' + r;
+	if (g.length == 1) g = '0' + g;
+	if (b.length == 1) b = '0' + b;
+	if (a.length == 1) a = '0' + a;
+
+	if (a == 'ff') {
+		return '#' + r + g + b;
+	} else {
+		return '#' + r + g + b + a;
+	}
+};
+
+// Convert HexA to RGBA
+let hexAToRGBA = function (h, toHSL) {
+	if (h.length == 7) h += 'ff';
+	else if (h.length == 4) h += h.substring(1, 4) + 'ff';
+
+	let r = 0,
+		g = 0,
+		b = 0,
+		a = 1;
+
+	if (h.length == 5) {
+		r = '0x' + h[1] + h[1];
+		g = '0x' + h[2] + h[2];
+		b = '0x' + h[3] + h[3];
+		a = '0x' + h[4] + h[4];
+	} else if (h.length == 9) {
+		r = '0x' + h[1] + h[2];
+		g = '0x' + h[3] + h[4];
+		b = '0x' + h[5] + h[6];
+		a = '0x' + h[7] + h[8];
+	}
+
+	a = +(a / 255).toFixed(3);
+
+	if (toHSL === true) {
+		console.log(+r, +g, +b, +a + ' - run');
+		return RGBAToHSLA(+r, +g, +b, a);
+	} else {
+		return 'rgba(' + +r + ',' + +g + ',' + +b + ',' + a + ')';
+	}
+};
+
+/*
+ * Color Text Values
+ */
+
+// Function to switch the color type inputs
+let switchColorType = function () {
+	// Checking the current selected input color type
+	if (colorPicker.colorTypeStatus == 'HEXA') {
+		// Updating the data object
+		colorPicker.colorTypeStatus = 'RGBA';
+
+		// Displaying the correct elements
+		document.getElementById('hexa').style.display = 'none';
+		document.getElementById('rgba').style.display = 'block';
+
+		// Converting the value
+		const RGBAValue = HSLAToRGBA(
+			colorPicker.hue,
+			colorPicker.saturation,
+			colorPicker.lightness,
+			colorPicker.alpha
+		);
+
+		// Applying the value to the inputs
+		document.getElementsByClassName('rgba_input')[0].value = RGBAValue.r;
+		document.getElementsByClassName('rgba_input')[1].value = RGBAValue.g;
+		document.getElementsByClassName('rgba_input')[2].value = RGBAValue.b;
+		document.getElementsByClassName('rgba_input')[3].value = RGBAValue.a;
+	} else if (colorPicker.colorTypeStatus == 'RGBA') {
+		// Updating the data object
+		colorPicker.colorTypeStatus = 'HSLA';
+
+		// Displaying the correct elements
+		document.getElementById('rgba').style.display = 'none';
+		document.getElementById('hsla').style.display = 'block';
+
+		// Applying the value to the inputs
+		document.getElementsByClassName('hsla_input')[0].value = colorPicker.hue;
+		document.getElementsByClassName('hsla_input')[1].value = colorPicker.saturation;
+		document.getElementsByClassName('hsla_input')[2].value = colorPicker.lightness;
+		document.getElementsByClassName('hsla_input')[3].value = colorPicker.alpha;
+	} else if (colorPicker.colorTypeStatus == 'HSLA') {
+		// Updating the data object
+		colorPicker.colorTypeStatus = 'HEXA';
+
+		// Displaying the correct elements
+		document.getElementById('hsla').style.display = 'none';
+		document.getElementById('hexa').style.display = 'block';
+
+		// Converting the value
+		const hexValue = HSLAToRGBA(
+			colorPicker.hue,
+			colorPicker.saturation,
+			colorPicker.lightness,
+			colorPicker.alpha,
+			true
+		);
+
+		// Applying the value to the input
+		document.getElementById('hex_input').value = hexValue;
+	}
+};
+document.getElementById('switch_color_type').addEventListener('click', function () {
+	switchColorType();
+});
+
+document.getElementById('hex_input').addEventListener('blur', function () {
+	console.log('leave');
+});
+
+/*
+ * Custom Colors
+ */
+
+// Function to add a new custom color
+let addCustomColor = function () {
+	// Getting the color
+	const color = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%)`;
+
+	// Creating the element
+	let customColorElem = document.createElement('BUTTON');
+	customColorElem.className = 'custom_colors_preview';
+	customColorElem.style.background = color;
+	customColorElem.setAttribute('data-color', color);
+	// Placing the element in the DOM
+	document
+		.getElementById('custom_colors_box')
+		.insertBefore(customColorElem, document.getElementById('custom_colors_box').children[0]);
+
+	// Pushing the color to the top of the array
+	LSCustomColors[0].unshift(color);
+
+	// Updating the local storage with the new custom color
+	localStorage.setItem('custom_colors', JSON.stringify(LSCustomColors));
+};
+document.getElementById('custom_colors_add').addEventListener('click', function () {
+	addCustomColor();
+});
+
+// Event to fire for a context menu
+document.getElementById('custom_colors_box').addEventListener('contextmenu', function (event) {
+	// Making sure the users has selected a color preview
+	if (event.target.className == 'custom_colors_preview') {
+		// Preventing default
+		event.preventDefault();
+
+		// Defining the context menu
+		const contextMenu = document.getElementById('color_context_menu');
+
+		// Updating the styling of the menu
+		contextMenu.style.display = 'block';
+		contextMenu.style.top = event.target.getBoundingClientRect().top + 25 + 'px';
+		contextMenu.style.left = event.target.getBoundingClientRect().left + 'px';
+
+		// Defining the color selected
+		colorPicker.contextMenuElem = event.target;
+	}
+});
+
+// Clears a selected custom color
+let clearSingleCustomColor = function () {
+	console.log('wef');
+	// Removing the element
+	document.getElementById('custom_colors_box').removeChild(colorPicker.contextMenuElem);
+
+	// Clearing the variable
+	LSCustomColors = { '0': [] };
+
+	// Looping through the custom colors to repopulate the variable
+	for (x in document.getElementsByClassName('custom_colors_preview')) {
+		// Continuing if its a number
+		if (isNaN(x) === true) {
+			continue;
+		}
+
+		// Pushing the colors to the array
+		LSCustomColors[0].push(
+			document.getElementsByClassName('custom_colors_preview')[x].getAttribute('data-color')
+		);
+	}
+
+	// Updating the local storage
+	localStorage.setItem('custom_colors', JSON.stringify(LSCustomColors));
+};
+document.getElementById('color_clear_single').addEventListener('mousedown', function () {
+	clearSingleCustomColor();
+});
+
+// Clears all custom colors
+let clearAllCustomColors = function () {
+	// Clearing variable
+	LSCustomColors = { '0': [] };
+
+	// Looping through the custom colors to repopulate the variable
+	while (document.getElementsByClassName('custom_colors_preview').length > 0) {
+		document
+			.getElementById('custom_colors_box')
+			.removeChild(document.getElementsByClassName('custom_colors_preview')[0]);
+	}
+
+	// Updating the local storage
+	localStorage.setItem('custom_colors', JSON.stringify(LSCustomColors));
+};
+document.getElementById('color_clear_all').addEventListener('mousedown', function () {
+	clearAllCustomColors();
+});
+
+/*
+ * Hue Slider
+ */
+
+// Function to handle changes to the HUE slider
+let colorSliderHandler = function (position) {
+	// Defining the slider and dragger
+	const sliderContainer = document.getElementById('color_slider');
+	const sliderDragger = document.getElementById('color_slider_dragger');
+
+	// Defining the X position
+	let eventX = position - sliderContainer.getBoundingClientRect().left;
+
+	// Making conditions so that the user don't drag outside the box
+	if (eventX < 11) {
+		eventX = 11;
+	}
+
+	if (eventX > 277) {
+		eventX = 277;
+	}
+
+	// Updating the X property of the dragger
+	sliderDragger.attributes.x.nodeValue = eventX;
+
+	// Percentage of the dragger on the X axis
+	const percent = ((eventX - 11) / 266) * 100;
+	// Calculating the color
+	// Max number for hue colors is 359, I find the percentage of this, from the percent variable
+	// I take it away from the max number because the slider should work backwards
+	const HColor = Math.round(359 - (359 / 100) * percent);
+
+	// Updating the Hue value in the data object
+	colorPicker.hue = HColor;
+
+	// Full HSLA color
+	const HSLA = `hsl(${HColor}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
+
+	// Updating the color for the color preview
+	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
+
+	// Updating the Hue color in the Saturation and lightness box
+	document.getElementById(
+		'saturation'
+	).children[1].attributes[1].nodeValue = `hsl(${HColor}, 100%, 50%)`;
+
+	// Update the color text values
+	updateColorValueInput();
+};
+
+// Start the slider drag
+document.getElementById('color_slider').addEventListener('mousedown', function (event) {
+	// Updating the status in the data object
+	colorPicker.sliderStatus = true;
+	// Calling handler function
+	colorSliderHandler(event.pageX);
+});
+
+// Moving the slider drag
+document.addEventListener('mousemove', function (event) {
+	// Checking that the drag has started
+	if (colorPicker.sliderStatus === true) {
+		// Calling handler function
+		colorSliderHandler(event.pageX);
+	}
+});
+
+// End the slider drag
+document.addEventListener('mouseup', function () {
+	// Checking that the drag has started
+	if (colorPicker.sliderStatus === true) {
+		// Updating the status in the data object
+		colorPicker.sliderStatus = false;
+	}
+});
+
+/*
+ * Opacity Slider
+ */
+
+// Function to handle changes to the opacity slider
+let opacitySliderHandler = function (position) {
+	// Defining the slider and dragger
+	const sliderContainer = document.getElementById('opacity_slider');
+	const sliderDragger = document.getElementById('opacity_slider_dragger');
+
+	// Defining the X position
+	let eventX = position - sliderContainer.getBoundingClientRect().left;
+
+	// Making conditions so that the user don't drag outside the box
+	if (eventX < 11) {
+		eventX = 11;
+	}
+
+	if (eventX > 277) {
+		eventX = 277;
+	}
+
+	// Update the X property of the dragger
+	sliderDragger.attributes.x.nodeValue = eventX;
+
+	// Percentage of the dragger on the X axis
+	const percent = ((eventX - 11) / 266) * 100;
+
+	// Finding the value for the percentage of 1
+	let alpha = (1 / 100) * percent;
+	// Rounding the value to the nearest 2 decimals
+	alpha = Number(Math.round(alpha + 'e' + 2) + 'e-' + 2);
+
+	// Updating the data objects
+	colorPicker.alpha = alpha;
+
+	// Full HSLA color
+	const HSLA = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${alpha})`;
+
+	// Updating the color for the color preview
+	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
+
+	// Update the color text values
+	updateColorValueInput();
+};
+
+// Start the slider drag for opacity
+document.getElementById('opacity_slider').addEventListener('mousedown', function (event) {
+	// Updating the status in the data object
+	colorPicker.opacityStatus = true;
+	// Calling the handler function
+	opacitySliderHandler(event.pageX);
+});
+
+// Moving the slider drag for opacity
+document.addEventListener('mousemove', function (event) {
+	// Checking that the drag has started
+	if (colorPicker.opacityStatus === true) {
+		// Calling the handler function
+		opacitySliderHandler(event.pageX);
+	}
+});
+
+// End the slider drag
+document.addEventListener('mouseup', function () {
+	// Checking that the drag has started
+	if (colorPicker.opacityStatus === true) {
+		// Updating the status in the data object
+		colorPicker.opacityStatus = false;
+	}
+});
+
+/*
+ * Saturation and Lightness Box
+ */
+
+// Function to handle changes to the saturation and lightness box
+let colorBoxHandler = function (positionX, positionY) {
+	// Defining the box and dragger
+	const boxContainer = document.getElementById('color_box');
+	const boxDragger = document.getElementById('box_dragger');
+
+	// Defining X and Y position
+	let eventX = positionX - boxContainer.getBoundingClientRect().left;
+	let eventY = positionY - boxContainer.getBoundingClientRect().top;
+
+	// Making conditions so that the user don't drag outside the box
+	if (eventX < 14) {
+		eventX = 14;
+	}
+
+	if (eventX > 336) {
+		eventX = 336;
+	}
+
+	if (eventY < 14) {
+		eventY = 14;
+	}
+
+	if (eventY > 173) {
+		eventY = 173;
+	}
+
+	// Changes X and Y properties of the dragger
+	boxDragger.attributes.y.nodeValue = eventY;
+	boxDragger.attributes.x.nodeValue = eventX;
+
+	// Calculating the Saturation Percent value
+	// SPercent is just the percent of where the dragger is on the X axis
+	// 322 is the max number of pixels the dragger can move
+	const SPercent = Math.round(((eventX - 15) / 322) * 100);
+
+	// Calculating the X and Y Percent Values
+	const percentX = 100 - SPercent / 2;
+	const percentY = 100 - ((eventY - 15) / 159) * 100;
+
+	// Calculating the LPercent
+	// LPercent is the the X percentage of the of the Y percentage of the dragger
+	const LPercent = Math.round((percentY / 100) * percentX);
+
+	// Applying the Saturation and Lightness to the data object
+	colorPicker.saturation = SPercent;
+	colorPicker.lightness = LPercent;
+
+	// Full HSLA color
+	const HSLA = `hsl(${colorPicker.hue}, ${SPercent}%, ${LPercent}%)`;
+	document.getElementsByClassName('color_picker')[0].innerHTML = HSLA;
+
+	// Applying the color to the color preview
+	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
+
+	// Update the color text values
+	updateColorValueInput();
+};
+
+// Start box drag listener
+document.getElementById('color_box').addEventListener('mousedown', function (event) {
+	// Updating the status in the data object
+	colorPicker.boxStatus = true;
+	// Calling handler function
+	colorBoxHandler(event.pageX, event.pageY);
+});
+
+// Moving box drag listener
+document.addEventListener('mousemove', function (event) {
+	// Checking that the drag has started
+	if (colorPicker.boxStatus === true) {
+		// Calling handler function
+		colorBoxHandler(event.pageX, event.pageY);
+	}
+});
+
+// End box drag listener
+document.addEventListener('mouseup', function (event) {
+	// Checking that the drag has started
+	if (colorPicker.boxStatus === true) {
+		// Updating the status in the data object
+		colorPicker.boxStatus = false;
+	}
+});
+
+/*
+ * Update Picker
+ */
+
+// Function to update color displays
+let updateColorDisplays = function (color) {
+	// TODO: check what type of value I get from color, then do the correct conversions
+	// TODO: Change hue colors for the color box
+
+	color = hexAToRGBA(color, true);
+
+	// Color box (saturation and lightness) config
+	// Defining the box and dragger
+	const boxDragger = document.getElementById('box_dragger');
+
+	let x, y;
+
+	// Calculating y value
+	const percentY = 100 - (color.l / (100 - color.s / 2)) * 100;
+	y = (159 / 100) * percentY + 14;
+
+	// Calculating x value
+	x = (322 / 100) * color.s + 14;
+
+	// Making changes the the UI
+	boxDragger.attributes.x.nodeValue = x;
+	boxDragger.attributes.y.nodeValue = y;
+
+	// Hue slider config
+	// Defining the hue slider and dragger
+	const hueSliderDragger = document.getElementById('color_slider_dragger');
+
+	let percentHue = 100 - (color.h / 359) * 100;
+	let hueX = (266 / 100) * percentHue + 11;
+
+	hueSliderDragger.attributes.x.nodeValue = hueX;
+
+	// Alpha slider config
+	// Defining the opacity slider and dragger
+	const alphaSliderDragger = document.getElementById('opacity_slider_dragger');
+
+	let alphaX = (266 / 100) * (color.a * 100) + 11;
+
+	alphaSliderDragger.attributes.x.nodeValue = alphaX;
+};
+
+// Update the color value inputs
+let updateColorValueInput = function () {
+	// Checking the value color type the user has selected
+	if (colorPicker.colorTypeStatus == 'HEXA') {
+		// Converting the value
+		const hexValue = HSLAToRGBA(
+			colorPicker.hue,
+			colorPicker.saturation,
+			colorPicker.lightness,
+			colorPicker.alpha,
+			true
+		);
+
+		// Applying the value to the input
+		document.getElementById('hex_input').value = hexValue;
+	} else if (colorPicker.colorTypeStatus == 'RGBA') {
+		// Converting the value
+		const RGBAValue = HSLAToRGBA(
+			colorPicker.hue,
+			colorPicker.saturation,
+			colorPicker.lightness,
+			colorPicker.alpha
+		);
+
+		// Applying the value to the inputs
+		document.getElementsByClassName('rgba_input')[0].value = RGBAValue.r;
+		document.getElementsByClassName('rgba_input')[1].value = RGBAValue.g;
+		document.getElementsByClassName('rgba_input')[2].value = RGBAValue.b;
+		document.getElementsByClassName('rgba_input')[3].value = RGBAValue.a;
+	} else {
+		// Applying the value to the inputs
+		document.getElementsByClassName('hsla_input')[0].value = colorPicker.hue;
+		document.getElementsByClassName('hsla_input')[1].value = colorPicker.saturation;
+		document.getElementsByClassName('hsla_input')[2].value = colorPicker.lightness;
+		document.getElementsByClassName('hsla_input')[3].value = colorPicker.alpha;
+	}
+};
