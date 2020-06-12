@@ -22,8 +22,7 @@ let colorPicker = {
 	saturation: 100,
 	lightness: 50,
 	alpha: 1,
-	buttonElem: 'bill',
-	contextMenuElem: null,
+	contextMenuElem: null
 };
 
 // Local storage variable
@@ -35,13 +34,15 @@ let runColorPicker = function (event) {
 	const target = event.target;
 	const colorPicker = document.getElementById('color_picker');
 
+	// Opening the color picker
 	document.getElementById('color_picker').style.display = 'block';
 	document.getElementById('color_picker_bg').style.display = 'block';
 
-	console.log(target);
+	// Updating the color picker
+	updateColorDisplays(event.target.getAttribute('data-color'));
 
-	colorPicker.buttonElem = target;
-	console.log(colorPicker.buttonElem);
+	// Giving the button the active button attribute
+	target.setAttribute('data-color-active', true);
 };
 
 // Function to setup the color picker
@@ -219,7 +220,7 @@ let runColorPicker = function (event) {
 			let customColorElem = document.createElement('BUTTON');
 			customColorElem.className = 'custom_colors_preview';
 			customColorElem.style.background = LSCustomColors[0][x];
-			customColorElem.setAttribute('data-color', LSCustomColors[0][x]);
+			customColorElem.setAttribute('data-custom-color', LSCustomColors[0][x]);
 			// Placing the element in the DOM
 			document
 				.getElementById('custom_colors_box')
@@ -244,4 +245,15 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 	// Hiding elements
 	document.getElementById('color_picker').style.display = 'none';
 	document.getElementById('color_picker_bg').style.display = 'none';
+
+	// Making changes to the active button
+	const activeButton = document.querySelectorAll('[data-color-active="true"]')[0];
+	// Changing color attributes
+	activeButton.setAttribute(
+		'data-color',
+		`hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
+	);
+	activeButton.style.background = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
+	// Removing the active attribute
+	activeButton.removeAttribute('data-color-active');
 });

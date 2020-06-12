@@ -13,6 +13,7 @@
 @import 'inputs';
 
 #color_picker {
+	display: none;
 	position: fixed;
 	width: 350px;
 	min-height: 400px;
@@ -26,6 +27,7 @@
 }
 
 #color_picker_bg {
+	display: none;
 	position: fixed;
 	width: 100vw;
 	height: 100vh;

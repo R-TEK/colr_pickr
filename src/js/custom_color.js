@@ -2,16 +2,26 @@
  * Custom Colors
  */
 
+document.getElementById('custom_colors_box').addEventListener('click', function (event) {
+	// Making sure the users has selected a color preview
+	if (event.target.className == 'custom_colors_preview') {
+		// Color
+		const color = event.target.getAttribute('data-custom-color');
+		// Updating the picker with that color
+		updateColorDisplays(color);
+	}
+});
+
 // Function to add a new custom color
 let addCustomColor = function () {
 	// Getting the color
-	const color = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%)`;
+	const color = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
 
 	// Creating the element
 	let customColorElem = document.createElement('BUTTON');
 	customColorElem.className = 'custom_colors_preview';
 	customColorElem.style.background = color;
-	customColorElem.setAttribute('data-color', color);
+	customColorElem.setAttribute('data-custom-color', color);
 	// Placing the element in the DOM
 	document
 		.getElementById('custom_colors_box')

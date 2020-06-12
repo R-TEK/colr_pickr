@@ -51,17 +51,17 @@ let HSLAToRGBA = function (h, s, l, a, toHex) {
 			r: r,
 			g: g,
 			b: b,
-			a: a,
+			a: a
 		};
 	}
 };
 
 // Convert RGBA to HSLA
 let RGBAToHSLA = function (r, g, b, a) {
-	console.log(r, g, b, a);
 	r /= 255;
 	g /= 255;
 	b /= 255;
+	a = a == undefined ? 1 : a;
 
 	let cmin = Math.min(r, g, b),
 		cmax = Math.max(r, g, b),
@@ -92,7 +92,7 @@ let RGBAToHSLA = function (r, g, b, a) {
 		h: h,
 		s: s,
 		l: l,
-		a: a,
+		a: a
 	};
 };
 

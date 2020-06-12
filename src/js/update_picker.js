@@ -4,10 +4,47 @@
 
 // Function to update color displays
 let updateColorDisplays = function (color) {
-	// TODO: check what type of value I get from color, then do the correct conversions
-	// TODO: Change hue colors for the color box
+	// Checking the color type that has been given
+	if (color.substring(0, 1) == '#') {
+		// Converting the color to HSLA
+		color = hexAToRGBA(color, true);
+	} else if (color.substring(0, 1) == 'r') {
+		// Extracting the values
+		const rgb = color.match(/[.?\d]+/g);
+		// Making sure there is a alpha value
+		rgb[3] = rgb[3] == undefined ? 1 : rgb[3];
+		// Converting the color to HSLA
+		color = RGBAToHSLA(rgb[0], rgb[1], rgb[2], rgb[3]);
+	} else {
+		// Extracting the values
+		const hsl = color.match(/[.?\d]+/g);
+		// Making sure there is a alpha value
+		hsl[3] = hsl[3] == undefined ? 1 : hsl[3];
+		// Formatting the value properly
+		color = {
+			h: hsl[0],
+			s: hsl[1],
+			l: hsl[2],
+			a: hsl[3]
+		};
+	}
 
-	color = hexAToRGBA(color, true);
+	// Updating the data object
+	colorPicker.hue = color.h;
+	colorPicker.saturation = color.s;
+	colorPicker.lightness = color.l;
+	colorPicker.alpha = color.a;
+
+	// Updating the input values
+	updateColorValueInput();
+
+	// Updating color preview and box hue color initially
+	document
+		.getElementById('color_picked_preview')
+		.children[0].setAttribute('fill', `hsl(${color.h}, ${color.s}%, ${color.l}%, ${color.a}`);
+	document.getElementById(
+		'saturation'
+	).children[1].attributes[1].nodeValue = `hsl(${color.h}, 100%, 50%)`;
 
 	// Color box (saturation and lightness) config
 	// Defining the box and dragger
@@ -30,17 +67,21 @@ let updateColorDisplays = function (color) {
 	// Defining the hue slider and dragger
 	const hueSliderDragger = document.getElementById('color_slider_dragger');
 
+	// Calculating x value
 	let percentHue = 100 - (color.h / 359) * 100;
 	let hueX = (266 / 100) * percentHue + 11;
 
+	// Making changes the the UI
 	hueSliderDragger.attributes.x.nodeValue = hueX;
 
 	// Alpha slider config
 	// Defining the opacity slider and dragger
 	const alphaSliderDragger = document.getElementById('opacity_slider_dragger');
 
+	// Calculating x value
 	let alphaX = (266 / 100) * (color.a * 100) + 11;
 
+	// Making changes the the UI
 	alphaSliderDragger.attributes.x.nodeValue = alphaX;
 };
 

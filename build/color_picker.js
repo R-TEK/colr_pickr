@@ -22,8 +22,7 @@ let colorPicker = {
 	saturation: 100,
 	lightness: 50,
 	alpha: 1,
-	buttonElem: 'bill',
-	contextMenuElem: null,
+	contextMenuElem: null
 };
 
 // Local storage variable
@@ -35,13 +34,15 @@ let runColorPicker = function (event) {
 	const target = event.target;
 	const colorPicker = document.getElementById('color_picker');
 
+	// Opening the color picker
 	document.getElementById('color_picker').style.display = 'block';
 	document.getElementById('color_picker_bg').style.display = 'block';
 
-	console.log(target);
+	// Updating the color picker
+	updateColorDisplays(event.target.getAttribute('data-color'));
 
-	colorPicker.buttonElem = target;
-	console.log(colorPicker.buttonElem);
+	// Giving the button the active button attribute
+	target.setAttribute('data-color-active', true);
 };
 
 // Function to setup the color picker
@@ -219,7 +220,7 @@ let runColorPicker = function (event) {
 			let customColorElem = document.createElement('BUTTON');
 			customColorElem.className = 'custom_colors_preview';
 			customColorElem.style.background = LSCustomColors[0][x];
-			customColorElem.setAttribute('data-color', LSCustomColors[0][x]);
+			customColorElem.setAttribute('data-custom-color', LSCustomColors[0][x]);
 			// Placing the element in the DOM
 			document
 				.getElementById('custom_colors_box')
@@ -244,6 +245,17 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 	// Hiding elements
 	document.getElementById('color_picker').style.display = 'none';
 	document.getElementById('color_picker_bg').style.display = 'none';
+
+	// Making changes to the active button
+	const activeButton = document.querySelectorAll('[data-color-active="true"]')[0];
+	// Changing color attributes
+	activeButton.setAttribute(
+		'data-color',
+		`hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
+	);
+	activeButton.style.background = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
+	// Removing the active attribute
+	activeButton.removeAttribute('data-color-active');
 });
 
 /*
@@ -299,17 +311,17 @@ let HSLAToRGBA = function (h, s, l, a, toHex) {
 			r: r,
 			g: g,
 			b: b,
-			a: a,
+			a: a
 		};
 	}
 };
 
 // Convert RGBA to HSLA
 let RGBAToHSLA = function (r, g, b, a) {
-	console.log(r, g, b, a);
 	r /= 255;
 	g /= 255;
 	b /= 255;
+	a = a == undefined ? 1 : a;
 
 	let cmin = Math.min(r, g, b),
 		cmax = Math.max(r, g, b),
@@ -340,7 +352,7 @@ let RGBAToHSLA = function (r, g, b, a) {
 		h: h,
 		s: s,
 		l: l,
-		a: a,
+		a: a
 	};
 };
 
@@ -469,16 +481,26 @@ document.getElementById('hex_input').addEventListener('blur', function () {
  * Custom Colors
  */
 
+document.getElementById('custom_colors_box').addEventListener('click', function (event) {
+	// Making sure the users has selected a color preview
+	if (event.target.className == 'custom_colors_preview') {
+		// Color
+		const color = event.target.getAttribute('data-custom-color');
+		// Updating the picker with that color
+		updateColorDisplays(color);
+	}
+});
+
 // Function to add a new custom color
 let addCustomColor = function () {
 	// Getting the color
-	const color = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%)`;
+	const color = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
 
 	// Creating the element
 	let customColorElem = document.createElement('BUTTON');
 	customColorElem.className = 'custom_colors_preview';
 	customColorElem.style.background = color;
-	customColorElem.setAttribute('data-color', color);
+	customColorElem.setAttribute('data-custom-color', color);
 	// Placing the element in the DOM
 	document
 		.getElementById('custom_colors_box')
@@ -805,10 +827,47 @@ document.addEventListener('mouseup', function (event) {
 
 // Function to update color displays
 let updateColorDisplays = function (color) {
-	// TODO: check what type of value I get from color, then do the correct conversions
-	// TODO: Change hue colors for the color box
+	// Checking the color type that has been given
+	if (color.substring(0, 1) == '#') {
+		// Converting the color to HSLA
+		color = hexAToRGBA(color, true);
+	} else if (color.substring(0, 1) == 'r') {
+		// Extracting the values
+		const rgb = color.match(/[.?\d]+/g);
+		// Making sure there is a alpha value
+		rgb[3] = rgb[3] == undefined ? 1 : rgb[3];
+		// Converting the color to HSLA
+		color = RGBAToHSLA(rgb[0], rgb[1], rgb[2], rgb[3]);
+	} else {
+		// Extracting the values
+		const hsl = color.match(/[.?\d]+/g);
+		// Making sure there is a alpha value
+		hsl[3] = hsl[3] == undefined ? 1 : hsl[3];
+		// Formatting the value properly
+		color = {
+			h: hsl[0],
+			s: hsl[1],
+			l: hsl[2],
+			a: hsl[3]
+		};
+	}
 
-	color = hexAToRGBA(color, true);
+	// Updating the data object
+	colorPicker.hue = color.h;
+	colorPicker.saturation = color.s;
+	colorPicker.lightness = color.l;
+	colorPicker.alpha = color.a;
+
+	// Updating the input values
+	updateColorValueInput();
+
+	// Updating color preview and box hue color initially
+	document
+		.getElementById('color_picked_preview')
+		.children[0].setAttribute('fill', `hsl(${color.h}, ${color.s}%, ${color.l}%, ${color.a}`);
+	document.getElementById(
+		'saturation'
+	).children[1].attributes[1].nodeValue = `hsl(${color.h}, 100%, 50%)`;
 
 	// Color box (saturation and lightness) config
 	// Defining the box and dragger
@@ -831,17 +890,21 @@ let updateColorDisplays = function (color) {
 	// Defining the hue slider and dragger
 	const hueSliderDragger = document.getElementById('color_slider_dragger');
 
+	// Calculating x value
 	let percentHue = 100 - (color.h / 359) * 100;
 	let hueX = (266 / 100) * percentHue + 11;
 
+	// Making changes the the UI
 	hueSliderDragger.attributes.x.nodeValue = hueX;
 
 	// Alpha slider config
 	// Defining the opacity slider and dragger
 	const alphaSliderDragger = document.getElementById('opacity_slider_dragger');
 
+	// Calculating x value
 	let alphaX = (266 / 100) * (color.a * 100) + 11;
 
+	// Making changes the the UI
 	alphaSliderDragger.attributes.x.nodeValue = alphaX;
 };
 
