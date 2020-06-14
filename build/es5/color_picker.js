@@ -1,3 +1,62 @@
+/*!
+ * JS Color Picker
+ *
+ * R-TEK
+ *
+ * https://github.com/R-TEK/js_color_picker
+ *
+ * MIT License
+ */
+var colorPicker = {
+  boxStatus: !1,
+  sliderStatus: !1,
+  opacityStatus: !1,
+  colorTypeStatus: "HEXA",
+  hue: 0,
+  saturation: 100,
+  lightness: 50,
+  alpha: 1,
+  contextMenuElem: null
+},
+    LSCustomColors = {
+  0: []
+},
+    runColorPicker = function runColorPicker(t) {
+  var e = t.target;
+  document.getElementById("color_picker");
+  document.getElementById("color_picker").style.display = "block", document.getElementById("color_picker_bg").style.display = "block", updateColorDisplays(e.getAttribute("data-color")), e.setAttribute("data-color-active", !0);
+};
+
+!function () {
+  for (y in console.log("dwqdqwd"), document.getElementsByClassName("color_picker")) {
+    if (!0 === isNaN(y)) continue;
+    console.log(document.getElementsByClassName("color_picker")[y]), document.getElementsByClassName("color_picker")[y].onclick = runColorPicker;
+
+    var _t = document.getElementsByClassName("color_picker")[y].getAttribute("data-color");
+
+    document.getElementsByClassName("color_picker")[y].style.background = _t;
+  }
+
+  var t = document.createElement("ASIDE");
+  t.id = "color_picker", t.innerHTML = '\n\t\t<svg id="color_box" width="348" height="185">\n\t\t\t<defs>\n\t\t\t\t<linearGradient id="saturation" x1="0%" y1="0%" x2="100%" y2="0%">\n\t\t\t\t\t<stop offset="0%" stop-color="#fff"></stop>\n\t\t\t\t\t<stop offset="100%" stop-color="hsl(0,100%,50%)"></stop>\n\t\t\t\t</linearGradient>\n\t\t\t\t<linearGradient id="brightness" x1="0%" y1="0%" x2="0%" y2="100%">\n\t\t\t\t\t<stop offset="0%" stop-color="rgba(0,0,0,0)"></stop>\n\t\t\t\t\t<stop offset="100%" stop-color="#000"></stop>\n\t\t\t\t</linearGradient>\n\t\t\t\t<pattern id="pattern_config" width="100%" height="100%">\n\t\t\t\t\t<rect x="0" y="0" width="100%" height="100%" fill="url(#saturation)"></rect> }\n\t\t\t\t\t<rect x="0" y="0" width="100%" height="100%" fill="url(#brightness)"></rect>\n\t\t\t\t</pattern>\n\t\t\t</defs>\n\t\t\t<rect rx="5" ry="5" x="1" y="1" width="348" height="185" stroke="#fff" stroke-width="2" fill="url(#pattern_config)"></rect>\n\t\t\t<svg id="box_dragger" x="336" y="14" style="overflow: visible;">\n\t\t\t\t<circle r="9" fill="none" stroke="#000" stroke-width="2"></circle>\n\t\t\t\t<circle r="7" fill="none" stroke="#fff" stroke-width="2"></circle>\n\t\t\t</svg>\n\t\t</svg>\n\t\t<br>\n\t\t<svg id="color_picked_preview" width="40" height="50">\n\t\t\t<circle cx="20" cy="29" r="18" stroke="#a7a7a7" stroke-width="1"></circle>\n\t\t</svg>\n\t\t<div id="sliders">\n\t\t\t<svg id="color_slider" width="285" height="20">\n\t\t\t\t<defs>\n\t\t\t\t\t<linearGradient id="hue" x1="100%" y1="0%" x2="0%" y2="0%">\n\t\t\t\t\t\t<stop offset="0%" stop-color="#f00"></stop>\n\t\t\t\t\t\t<stop offset="16.666%" stop-color="#ff0"></stop>\n\t\t\t\t\t\t<stop offset="33.333%" stop-color="#0f0"></stop>\n\t\t\t\t\t\t<stop offset="50%" stop-color="#0ff"></stop>\n\t\t\t\t\t\t<stop offset="66.666%" stop-color="#00f"></stop>\n\t\t\t\t\t\t<stop offset="83.333%" stop-color="#f0f"></stop>\n\t\t\t\t\t\t<stop offset="100%" stop-color="#f00"></stop>\n\t\t\t\t\t</linearGradient>\n\t\t\t\t</defs>\n\t\t\t\t<rect rx="5" ry="5" x="1" y="1" width="285" height="20" stroke="#fff" stroke-width="2" fill="url(#hue)"></rect>\n\t\t\t\t<svg id="color_slider_dragger" x="277" y="11" style="overflow: visible;">\n\t\t\t\t\t<circle r="7" fill="none" stroke="#000" stroke-width="2"></circle>\n\t\t\t\t\t<circle r="5" fill="none" stroke="#fff" stroke-width="2"></circle>\n\t\t\t\t</svg>\n\t\t\t</svg>\n\t\t\t<svg id="opacity_slider" width="285" height="20">\n\t\t\t\t<defs>\n\t\t\t\t\t<linearGradient id="opacity" x1="100%" y1="0%" x2="0%" y2="0%">\n\t\t\t\t\t\t<stop offset="0%" stop-color="#000"></stop>\n\t\t\t\t\t\t<stop offset="100%" stop-color="#fff"></stop>\n\t\t\t\t\t</linearGradient>\n\t\t\t\t</defs>\n\t\t\t\t<rect rx="5" ry="5" x="1" y="6" width="285" height="10" stroke="#fff" stroke-width="2" fill="url(#opacity)"></rect>\n\t\t\t\t<svg id="opacity_slider_dragger" x="277" y="11" style="overflow: visible;">\n\t\t\t\t\t<circle r="7" fill="none" stroke="#000" stroke-width="2"></circle>\n\t\t\t\t\t<circle r="5" fill="none" stroke="#fff" stroke-width="2"></circle>\n\t\t\t\t</svg>\n\t\t\t</svg>\n\t\t</div>\n\t\t<div id="color_text_values">\n\t\t\t<button id="switch_color_type">\n\t\t\t\t<svg viewBox="0 0 24 24" width="20" height="20">\n\t\t\t\t\t<path fill="#555" d="M6 11v-4l-6 5 6 5v-4h12v4l6-5-6-5v4z"/>\n\t\t\t\t</svg>\n\t\t\t</button>\n\t\t\t<div id="hexa">\n\t\t\t\t<input id="hex_input" name="hex_input" type="text" spellcheck="false" />\n\t\t\t\t<br>\n\t\t\t\t<label for="hex_input" class="label_text">HEX</label>\n\t\t\t</div>\n\t\t\t<div id="rgba" style="display: none;">\n\t\t\t\t<div class="rgba_divider">\n\t\t\t\t\t<input class="rgba_input" name="r" type="number" min="0" max="255" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="r" class="label_text">R</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="rgba_divider">\n\t\t\t\t\t<input class="rgba_input" name="g" type="number" min="0" max="255" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="g" class="label_text">G</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="rgba_divider">\n\t\t\t\t\t<input class="rgba_input" name="b" type="number" min="0" max="255" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="b" class="label_text">B</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="rgba_divider">\n\t\t\t\t\t<input class="rgba_input" name="a" type="number" step="0.1" min="0" max="1" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="a" class="label_text">A</label>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div id="hsla" style="display: none;">\n\t\t\t\t<div class="hsla_divider">\n\t\t\t\t\t<input class="hsla_input" name="h" type="number" min="0" max="359" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="h" class="label_text">H</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="hsla_divider">\n\t\t\t\t\t<input class="hsla_input" name="s" type="number" min="0" max="100" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="s" class="label_text">S%</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="hsla_divider">\n\t\t\t\t\t<input class="hsla_input" name="l" type="number" min="0" max="100" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="l" class="label_text">L%</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="rgba_divider">\n\t\t\t\t\t<input class="hsla_input" name="a" type="number" step="0.1" min="0" max="1" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="a" class="label_text">A</label>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div id="custom_colors">\n\t\t\t<h6 id="custom_colors_title">Custom Colors:</h6>\n\t\t\t<div id="custom_colors_box">\n\t\t\t\t<button id="custom_colors_add">+</button>\n\t\t\t</div>\n\t\t</div>\n\t\t<div id="color_context_menu" class="color_ctx_menu">\n\t\t\t<button id="color_clear_single" class="color_ctx_menu">Remove Color</button>\n\t\t\t<button id="color_clear_all" class="color_ctx_menu">Remove All</button>\n\t\t</div>\n\t', document.getElementsByTagName("BODY")[0].appendChild(t);
+  var e = document.createElement("DIV");
+  if (e.id = "color_picker_bg", document.getElementsByTagName("BODY")[0].appendChild(e), null === localStorage.getItem("custom_colors")) localStorage.setItem("custom_colors", '{"0": []}');else {
+    LSCustomColors = JSON.parse(localStorage.getItem("custom_colors"));
+
+    for (var _t2 = LSCustomColors[0].length - 1; _t2 >= 0; _t2--) {
+      var _e = document.createElement("BUTTON");
+
+      _e.className = "custom_colors_preview", _e.style.background = LSCustomColors[0][_t2], _e.setAttribute("data-custom-color", LSCustomColors[0][_t2]), document.getElementById("custom_colors_box").insertBefore(_e, document.getElementById("custom_colors_box").children[0]);
+    }
+  }
+}(), document.addEventListener("mousedown", function () {
+  "color_context_menu" != event.target.id && (document.getElementById("color_context_menu").style.display = "none");
+}), document.getElementById("color_picker_bg").addEventListener("click", function () {
+  document.getElementById("color_picker").style.display = "none", document.getElementById("color_picker_bg").style.display = "none";
+  var t = document.querySelectorAll('[data-color-active="true"]')[0];
+  t.setAttribute("data-color", "hsl(".concat(colorPicker.hue, ", ").concat(colorPicker.saturation, "%, ").concat(colorPicker.lightness, "%, ").concat(colorPicker.alpha, ")")), t.style.background = "hsl(".concat(colorPicker.hue, ", ").concat(colorPicker.saturation, "%, ").concat(colorPicker.lightness, "%, ").concat(colorPicker.alpha, ")"), t.removeAttribute("data-color-active");
+});
+
 var HSLAToRGBA = function HSLAToRGBA(t, e, o, l, n) {
   e /= 100, o /= 100;
   var r = (1 - Math.abs(2 * o - 1)) * e,
@@ -47,9 +106,9 @@ var HSLAToRGBA = function HSLAToRGBA(t, e, o, l, n) {
   } else if ("RGBA" == colorPicker.colorTypeStatus) colorPicker.colorTypeStatus = "HSLA", document.getElementById("rgba").style.display = "none", document.getElementById("hsla").style.display = "block", document.getElementsByClassName("hsla_input")[0].value = colorPicker.hue, document.getElementsByClassName("hsla_input")[1].value = colorPicker.saturation, document.getElementsByClassName("hsla_input")[2].value = colorPicker.lightness, document.getElementsByClassName("hsla_input")[3].value = colorPicker.alpha;else if ("HSLA" == colorPicker.colorTypeStatus) {
     colorPicker.colorTypeStatus = "HEXA", document.getElementById("hsla").style.display = "none", document.getElementById("hexa").style.display = "block";
 
-    var _t = HSLAToRGBA(colorPicker.hue, colorPicker.saturation, colorPicker.lightness, colorPicker.alpha, !0);
+    var _t3 = HSLAToRGBA(colorPicker.hue, colorPicker.saturation, colorPicker.lightness, colorPicker.alpha, !0);
 
-    document.getElementById("hex_input").value = _t;
+    document.getElementById("hex_input").value = _t3;
   }
 };
 
@@ -168,65 +227,6 @@ document.getElementById("color_box").addEventListener("mousedown", function (t) 
   !0 === colorPicker.boxStatus && colorBoxHandler(t.pageX, t.pageY);
 }), document.addEventListener("mouseup", function (t) {
   !0 === colorPicker.boxStatus && (colorPicker.boxStatus = !1);
-});
-/*!
- * JS Color Picker
- *
- * R-TEK
- *
- * https://github.com/R-TEK/js_color_picker
- *
- * MIT License
- */
-
-var colorPicker = {
-  boxStatus: !1,
-  sliderStatus: !1,
-  opacityStatus: !1,
-  colorTypeStatus: "HEXA",
-  hue: 0,
-  saturation: 100,
-  lightness: 50,
-  alpha: 1,
-  contextMenuElem: null
-},
-    LSCustomColors = {
-  0: []
-},
-    runColorPicker = function runColorPicker(t) {
-  var e = t.target;
-  document.getElementById("color_picker");
-  document.getElementById("color_picker").style.display = "block", document.getElementById("color_picker_bg").style.display = "block", updateColorDisplays(e.getAttribute("data-color")), e.setAttribute("data-color-active", !0);
-};
-
-!function () {
-  for (y in console.log("dwqdqwd"), document.getElementsByClassName("color_picker")) {
-    if (!0 === isNaN(y)) continue;
-    console.log(document.getElementsByClassName("color_picker")[y]), document.getElementsByClassName("color_picker")[y].onclick = runColorPicker;
-
-    var _t2 = document.getElementsByClassName("color_picker")[y].getAttribute("data-color");
-
-    document.getElementsByClassName("color_picker")[y].style.background = _t2;
-  }
-
-  var t = document.createElement("ASIDE");
-  t.id = "color_picker", t.innerHTML = '\n\t\t<svg id="color_box" width="348" height="185">\n\t\t\t<defs>\n\t\t\t\t<linearGradient id="saturation" x1="0%" y1="0%" x2="100%" y2="0%">\n\t\t\t\t\t<stop offset="0%" stop-color="#fff"></stop>\n\t\t\t\t\t<stop offset="100%" stop-color="hsl(0,100%,50%)"></stop>\n\t\t\t\t</linearGradient>\n\t\t\t\t<linearGradient id="brightness" x1="0%" y1="0%" x2="0%" y2="100%">\n\t\t\t\t\t<stop offset="0%" stop-color="rgba(0,0,0,0)"></stop>\n\t\t\t\t\t<stop offset="100%" stop-color="#000"></stop>\n\t\t\t\t</linearGradient>\n\t\t\t\t<pattern id="pattern_config" width="100%" height="100%">\n\t\t\t\t\t<rect x="0" y="0" width="100%" height="100%" fill="url(#saturation)"></rect> }\n\t\t\t\t\t<rect x="0" y="0" width="100%" height="100%" fill="url(#brightness)"></rect>\n\t\t\t\t</pattern>\n\t\t\t</defs>\n\t\t\t<rect rx="5" ry="5" x="1" y="1" width="348" height="185" stroke="#fff" stroke-width="2" fill="url(#pattern_config)"></rect>\n\t\t\t<svg id="box_dragger" x="336" y="14" style="overflow: visible;">\n\t\t\t\t<circle r="9" fill="none" stroke="#000" stroke-width="2"></circle>\n\t\t\t\t<circle r="7" fill="none" stroke="#fff" stroke-width="2"></circle>\n\t\t\t</svg>\n\t\t</svg>\n\t\t<br>\n\t\t<svg id="color_picked_preview" width="40" height="50">\n\t\t\t<circle cx="20" cy="29" r="18" stroke="#a7a7a7" stroke-width="1"></circle>\n\t\t</svg>\n\t\t<div id="sliders">\n\t\t\t<svg id="color_slider" width="285" height="20">\n\t\t\t\t<defs>\n\t\t\t\t\t<linearGradient id="hue" x1="100%" y1="0%" x2="0%" y2="0%">\n\t\t\t\t\t\t<stop offset="0%" stop-color="#f00"></stop>\n\t\t\t\t\t\t<stop offset="16.666%" stop-color="#ff0"></stop>\n\t\t\t\t\t\t<stop offset="33.333%" stop-color="#0f0"></stop>\n\t\t\t\t\t\t<stop offset="50%" stop-color="#0ff"></stop>\n\t\t\t\t\t\t<stop offset="66.666%" stop-color="#00f"></stop>\n\t\t\t\t\t\t<stop offset="83.333%" stop-color="#f0f"></stop>\n\t\t\t\t\t\t<stop offset="100%" stop-color="#f00"></stop>\n\t\t\t\t\t</linearGradient>\n\t\t\t\t</defs>\n\t\t\t\t<rect rx="5" ry="5" x="1" y="1" width="285" height="20" stroke="#fff" stroke-width="2" fill="url(#hue)"></rect>\n\t\t\t\t<svg id="color_slider_dragger" x="277" y="11" style="overflow: visible;">\n\t\t\t\t\t<circle r="7" fill="none" stroke="#000" stroke-width="2"></circle>\n\t\t\t\t\t<circle r="5" fill="none" stroke="#fff" stroke-width="2"></circle>\n\t\t\t\t</svg>\n\t\t\t</svg>\n\t\t\t<svg id="opacity_slider" width="285" height="20">\n\t\t\t\t<defs>\n\t\t\t\t\t<linearGradient id="opacity" x1="100%" y1="0%" x2="0%" y2="0%">\n\t\t\t\t\t\t<stop offset="0%" stop-color="#000"></stop>\n\t\t\t\t\t\t<stop offset="100%" stop-color="#fff"></stop>\n\t\t\t\t\t</linearGradient>\n\t\t\t\t</defs>\n\t\t\t\t<rect rx="5" ry="5" x="1" y="6" width="285" height="10" stroke="#fff" stroke-width="2" fill="url(#opacity)"></rect>\n\t\t\t\t<svg id="opacity_slider_dragger" x="277" y="11" style="overflow: visible;">\n\t\t\t\t\t<circle r="7" fill="none" stroke="#000" stroke-width="2"></circle>\n\t\t\t\t\t<circle r="5" fill="none" stroke="#fff" stroke-width="2"></circle>\n\t\t\t\t</svg>\n\t\t\t</svg>\n\t\t</div>\n\t\t<div id="color_text_values">\n\t\t\t<button id="switch_color_type">\n\t\t\t\t<svg viewBox="0 0 24 24" width="20" height="20">\n\t\t\t\t\t<path fill="#555" d="M6 11v-4l-6 5 6 5v-4h12v4l6-5-6-5v4z"/>\n\t\t\t\t</svg>\n\t\t\t</button>\n\t\t\t<div id="hexa">\n\t\t\t\t<input id="hex_input" name="hex_input" type="text" spellcheck="false" />\n\t\t\t\t<br>\n\t\t\t\t<label for="hex_input" class="label_text">HEX</label>\n\t\t\t</div>\n\t\t\t<div id="rgba" style="display: none;">\n\t\t\t\t<div class="rgba_divider">\n\t\t\t\t\t<input class="rgba_input" name="r" type="number" min="0" max="255" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="r" class="label_text">R</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="rgba_divider">\n\t\t\t\t\t<input class="rgba_input" name="g" type="number" min="0" max="255" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="g" class="label_text">G</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="rgba_divider">\n\t\t\t\t\t<input class="rgba_input" name="b" type="number" min="0" max="255" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="b" class="label_text">B</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="rgba_divider">\n\t\t\t\t\t<input class="rgba_input" name="a" type="number" step="0.1" min="0" max="1" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="a" class="label_text">A</label>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div id="hsla" style="display: none;">\n\t\t\t\t<div class="hsla_divider">\n\t\t\t\t\t<input class="hsla_input" name="h" type="number" min="0" max="359" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="h" class="label_text">H</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="hsla_divider">\n\t\t\t\t\t<input class="hsla_input" name="s" type="number" min="0" max="100" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="s" class="label_text">S%</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="hsla_divider">\n\t\t\t\t\t<input class="hsla_input" name="l" type="number" min="0" max="100" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="l" class="label_text">L%</label>\n\t\t\t\t</div>\n\t\t\t\t<div class="rgba_divider">\n\t\t\t\t\t<input class="hsla_input" name="a" type="number" step="0.1" min="0" max="1" spellcheck="false" />\n\t\t\t\t\t<br>\n\t\t\t\t\t<label for="a" class="label_text">A</label>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div id="custom_colors">\n\t\t\t<h6 id="custom_colors_title">Custom Colors:</h6>\n\t\t\t<div id="custom_colors_box">\n\t\t\t\t<button id="custom_colors_add">+</button>\n\t\t\t</div>\n\t\t</div>\n\t\t<div id="color_context_menu" class="color_ctx_menu">\n\t\t\t<button id="color_clear_single" class="color_ctx_menu">Remove Color</button>\n\t\t\t<button id="color_clear_all" class="color_ctx_menu">Remove All</button>\n\t\t</div>\n\t', document.getElementsByTagName("BODY")[0].appendChild(t);
-  var e = document.createElement("DIV");
-  if (e.id = "color_picker_bg", document.getElementsByTagName("BODY")[0].appendChild(e), null === localStorage.getItem("custom_colors")) localStorage.setItem("custom_colors", '{"0": []}');else {
-    LSCustomColors = JSON.parse(localStorage.getItem("custom_colors"));
-
-    for (var _t3 = LSCustomColors[0].length - 1; _t3 >= 0; _t3--) {
-      var _e = document.createElement("BUTTON");
-
-      _e.className = "custom_colors_preview", _e.style.background = LSCustomColors[0][_t3], _e.setAttribute("data-custom-color", LSCustomColors[0][_t3]), document.getElementById("custom_colors_box").insertBefore(_e, document.getElementById("custom_colors_box").children[0]);
-    }
-  }
-}(), document.addEventListener("mousedown", function () {
-  "color_context_menu" != event.target.id && (document.getElementById("color_context_menu").style.display = "none");
-}), document.getElementById("color_picker_bg").addEventListener("click", function () {
-  document.getElementById("color_picker").style.display = "none", document.getElementById("color_picker_bg").style.display = "none";
-  var t = document.querySelectorAll('[data-color-active="true"]')[0];
-  t.setAttribute("data-color", "hsl(".concat(colorPicker.hue, ", ").concat(colorPicker.saturation, "%, ").concat(colorPicker.lightness, "%, ").concat(colorPicker.alpha, ")")), t.style.background = "hsl(".concat(colorPicker.hue, ", ").concat(colorPicker.saturation, "%, ").concat(colorPicker.lightness, "%, ").concat(colorPicker.alpha, ")"), t.removeAttribute("data-color-active");
 });
 
 var updateColorDisplays = function updateColorDisplays(t) {

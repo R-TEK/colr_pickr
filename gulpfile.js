@@ -17,7 +17,7 @@ sass.compiler = require('node-sass');
  * Color picker files
  */
 
-// Moving, concatting and minifying my own script (.js) files - DEV BUILD
+// Moving, concatenating and minifying my own script (.js) files - DEV BUILD
 gulp.task('devScripts', async function () {
 	gulp.src(['src/js/setup.js', 'src/js/*.js'])
 		.pipe(concatJS('color_picker.js'))
@@ -31,7 +31,7 @@ gulp.task('devSass', async function () {
 		.pipe(gulp.dest('build'));
 });
 
-// Moving, concatting and minifying my own script (.js) files - PRODUCTION BUILD
+// Moving, concatenating and minifying my own script (.js) files - PRODUCTION BUILD
 gulp.task('productionScripts', async function () {
 	gulp.src(['src/js/setup.js', 'src/js/*.js'])
 		.pipe(concatJS('color_picker.js'))
@@ -47,8 +47,9 @@ gulp.task('productionSass', async function () {
 		.pipe(gulp.dest('build'));
 });
 
+// Compiling all code for an ES5 (older browser) version
 gulp.task('babelCompiler', async function () {
-	gulp.src('src/js/*.js')
+	gulp.src(['src/js/setup.js', 'src/js/*.js'])
 		.pipe(plumber())
 		.pipe(concatJS('color_picker.js'))
 		.pipe(uglifyJS())

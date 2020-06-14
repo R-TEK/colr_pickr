@@ -7,6 +7,7 @@
 		"doc": "docs"
 	},
 	"scripts": {
+		"build": "gulp productionBuild",
 		"doc": "jsdoc -c jsdoc.json"
 	},
 	"repository": {
