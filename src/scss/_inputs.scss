@@ -1,3 +1,7 @@
+/*
+ * Styling for inputs
+ */
+
 #color_picker {
 	input {
 		height: 30px;
@@ -11,5 +15,17 @@
 
 	input:focus {
 		border: 1px solid #007cff;
+	}
+
+	/* Remove spinner buttons */
+
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input[type='number'] {
+		-moz-appearance: textfield;
 	}
 }

@@ -35,10 +35,14 @@ let switchColorType = function () {
 		document.getElementById('hsla').style.display = 'block';
 
 		// Applying the value to the inputs
-		document.getElementsByClassName('hsla_input')[0].value = colorPicker.hue;
-		document.getElementsByClassName('hsla_input')[1].value = colorPicker.saturation;
-		document.getElementsByClassName('hsla_input')[2].value = colorPicker.lightness;
-		document.getElementsByClassName('hsla_input')[3].value = colorPicker.alpha;
+		document.getElementsByClassName('hsla_input')[0].value =
+			colorPicker.hue;
+		document.getElementsByClassName('hsla_input')[1].value =
+			colorPicker.saturation;
+		document.getElementsByClassName('hsla_input')[2].value =
+			colorPicker.lightness;
+		document.getElementsByClassName('hsla_input')[3].value =
+			colorPicker.alpha;
 	} else if (colorPicker.colorTypeStatus == 'HSLA') {
 		// Updating the data object
 		colorPicker.colorTypeStatus = 'HEXA';
@@ -60,10 +64,12 @@ let switchColorType = function () {
 		document.getElementById('hex_input').value = hexValue;
 	}
 };
-document.getElementById('switch_color_type').addEventListener('click', function () {
-	switchColorType();
-});
+document
+	.getElementById('switch_color_type')
+	.addEventListener('click', function () {
+		switchColorType();
+	});
 
-document.getElementById('hex_input').addEventListener('blur', function () {
-	console.log('leave');
+document.getElementById('hex_input').addEventListener('blur', function (event) {
+	console.log(event);
 });

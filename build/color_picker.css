@@ -13,17 +13,27 @@
 /*
  * Mixins
  */
-#color_picker input {
-  height: 30px;
-  border: 1px solid #ccc;
-  outline: none;
-  font-family: monospace;
-  font-size: 12px;
-  color: #333;
-  text-align: center; }
-
-#color_picker input:focus {
-  border: 1px solid #007cff; }
+/*
+ * Styling for inputs
+ */
+#color_picker {
+  /* Remove spinner buttons */ }
+  #color_picker input {
+    height: 30px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-family: monospace;
+    font-size: 12px;
+    color: #333;
+    text-align: center; }
+  #color_picker input:focus {
+    border: 1px solid #007cff; }
+  #color_picker input::-webkit-outer-spin-button,
+  #color_picker input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; }
+  #color_picker input[type='number'] {
+    -moz-appearance: textfield; }
 
 #color_picker {
   display: none;
