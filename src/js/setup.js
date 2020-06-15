@@ -57,7 +57,7 @@ let runColorPicker = function (event) {
 (function () {
 	console.log('dwqdqwd');
 	// Looping through each declared color picker
-	for (y in document.getElementsByClassName('color_picker')) {
+	for (let y in document.getElementsByClassName('color_picker')) {
 		// Checking the value is not a number
 		if (isNaN(y) === true) {
 			continue;
@@ -66,17 +66,13 @@ let runColorPicker = function (event) {
 		console.log(document.getElementsByClassName('color_picker')[y]);
 
 		// Assigning the button with a function to run the color picker
-		document.getElementsByClassName('color_picker')[
-			y
-		].onclick = runColorPicker;
+		document.getElementsByClassName('color_picker')[y].onclick = runColorPicker;
 
 		// Getting the default data the user set
 		let dataColor = document
 			.getElementsByClassName('color_picker')
 			[y].getAttribute('data-color');
-		document.getElementsByClassName('color_picker')[
-			y
-		].style.background = dataColor;
+		document.getElementsByClassName('color_picker')[y].style.background = dataColor;
 	}
 
 	// Creating the HTML content
@@ -146,50 +142,50 @@ let runColorPicker = function (event) {
 				</svg>
 			</button>
 			<div id="hexa">
-				<input id="hex_input" name="hex_input" type="text" spellcheck="false" />
+				<input id="hex_input" name="hex_input" type="text" maxlength="9" spellcheck="false" />
 				<br>
 				<label for="hex_input" class="label_text">HEX</label>
 			</div>
 			<div id="rgba" style="display: none;">
 				<div class="rgba_divider">
-					<input class="rgba_input" name="r" type="number" min="0" max="255" spellcheck="false" />
+					<input class="rgba_input" name="r" type="number" min="0" max="255" />
 					<br>
 					<label for="r" class="label_text">R</label>
 				</div>
 				<div class="rgba_divider">
-					<input class="rgba_input" name="g" type="number" min="0" max="255" spellcheck="false" />
+					<input class="rgba_input" name="g" type="number" min="0" max="255" />
 					<br>
 					<label for="g" class="label_text">G</label>
 				</div>
 				<div class="rgba_divider">
-					<input class="rgba_input" name="b" type="number" min="0" max="255" spellcheck="false" />
+					<input class="rgba_input" name="b" type="number" min="0" max="255" />
 					<br>
 					<label for="b" class="label_text">B</label>
 				</div>
 				<div class="rgba_divider">
-					<input class="rgba_input" name="a" type="number" step="0.1" min="0" max="1" spellcheck="false" />
+					<input class="rgba_input" name="a" type="number" step="0.1" min="0" max="1" />
 					<br>
 					<label for="a" class="label_text">A</label>
 				</div>
 			</div>
 			<div id="hsla" style="display: none;">
 				<div class="hsla_divider">
-					<input class="hsla_input" name="h" type="number" min="0" max="359" spellcheck="false" />
+					<input class="hsla_input" name="h" type="number" min="0" max="359" />
 					<br>
 					<label for="h" class="label_text">H</label>
 				</div>
 				<div class="hsla_divider">
-					<input class="hsla_input" name="s" type="number" min="0" max="100" spellcheck="false" />
+					<input class="hsla_input" name="s" type="number" min="0" max="100" />
 					<br>
 					<label for="s" class="label_text">S%</label>
 				</div>
 				<div class="hsla_divider">
-					<input class="hsla_input" name="l" type="number" min="0" max="100" spellcheck="false" />
+					<input class="hsla_input" name="l" type="number" min="0" max="100" />
 					<br>
 					<label for="l" class="label_text">L%</label>
 				</div>
 				<div class="rgba_divider">
-					<input class="hsla_input" name="a" type="number" step="0.1" min="0" max="1" spellcheck="false" />
+					<input class="hsla_input" name="a" type="number" step="0.1" min="0" max="1" />
 					<br>
 					<label for="a" class="label_text">A</label>
 				</div>
@@ -232,10 +228,7 @@ let runColorPicker = function (event) {
 			let customColorElem = document.createElement('BUTTON');
 			customColorElem.className = 'custom_colors_preview';
 			customColorElem.style.background = LSCustomColors[0][x];
-			customColorElem.setAttribute(
-				'data-custom-color',
-				LSCustomColors[0][x]
-			);
+			customColorElem.setAttribute('data-custom-color', LSCustomColors[0][x]);
 			// Placing the element in the DOM
 			document
 				.getElementById('custom_colors_box')
@@ -256,23 +249,19 @@ document.addEventListener('mousedown', function () {
 });
 
 // Click the darken background to close the color picker
-document
-	.getElementById('color_picker_bg')
-	.addEventListener('click', function () {
-		// Hiding elements
-		document.getElementById('color_picker').style.display = 'none';
-		document.getElementById('color_picker_bg').style.display = 'none';
+document.getElementById('color_picker_bg').addEventListener('click', function () {
+	// Hiding elements
+	document.getElementById('color_picker').style.display = 'none';
+	document.getElementById('color_picker_bg').style.display = 'none';
 
-		// Making changes to the active button
-		const activeButton = document.querySelectorAll(
-			'[data-color-active="true"]'
-		)[0];
-		// Changing color attributes
-		activeButton.setAttribute(
-			'data-color',
-			`hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
-		);
-		activeButton.style.background = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
-		// Removing the active attribute
-		activeButton.removeAttribute('data-color-active');
-	});
+	// Making changes to the active button
+	const activeButton = document.querySelectorAll('[data-color-active="true"]')[0];
+	// Changing color attributes
+	activeButton.setAttribute(
+		'data-color',
+		`hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
+	);
+	activeButton.style.background = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
+	// Removing the active attribute
+	activeButton.removeAttribute('data-color-active');
+});

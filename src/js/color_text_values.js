@@ -35,14 +35,10 @@ let switchColorType = function () {
 		document.getElementById('hsla').style.display = 'block';
 
 		// Applying the value to the inputs
-		document.getElementsByClassName('hsla_input')[0].value =
-			colorPicker.hue;
-		document.getElementsByClassName('hsla_input')[1].value =
-			colorPicker.saturation;
-		document.getElementsByClassName('hsla_input')[2].value =
-			colorPicker.lightness;
-		document.getElementsByClassName('hsla_input')[3].value =
-			colorPicker.alpha;
+		document.getElementsByClassName('hsla_input')[0].value = colorPicker.hue;
+		document.getElementsByClassName('hsla_input')[1].value = colorPicker.saturation;
+		document.getElementsByClassName('hsla_input')[2].value = colorPicker.lightness;
+		document.getElementsByClassName('hsla_input')[3].value = colorPicker.alpha;
 	} else if (colorPicker.colorTypeStatus == 'HSLA') {
 		// Updating the data object
 		colorPicker.colorTypeStatus = 'HEXA';
@@ -64,12 +60,42 @@ let switchColorType = function () {
 		document.getElementById('hex_input').value = hexValue;
 	}
 };
-document
-	.getElementById('switch_color_type')
-	.addEventListener('click', function () {
-		switchColorType();
-	});
+document.getElementById('switch_color_type').addEventListener('click', function () {
+	switchColorType();
+});
+
+// TODO: Make Comments for the below
 
 document.getElementById('hex_input').addEventListener('blur', function (event) {
-	console.log(event);
+	// TODO: Find a HEXA Regex
+});
+
+document.querySelectorAll('.rgba_input').forEach((element) => {
+	element.addEventListener('change', function () {
+		const rgbaInput = document.querySelectorAll('.rgba_input');
+
+		if (rgbaInput[0].value > 255) throw 'Value must be below 256';
+		if (rgbaInput[1].value > 255) throw 'Value must be below 256';
+		if (rgbaInput[2].value > 255) throw 'Value must be below 256';
+		if (rgbaInput[3].value > 1) throw 'Value must be equal to or below 1';
+
+		updateColorDisplays(
+			`rgba(${rgbaInput[0].value}, ${rgbaInput[1].value}, ${rgbaInput[2].value}, ${rgbaInput[3].value})`
+		);
+	});
+});
+
+document.querySelectorAll('.hsla_input').forEach((element) => {
+	element.addEventListener('change', function () {
+		const hslaInput = document.querySelectorAll('.hsla_input');
+
+		if (hslaInput[0].value > 359) throw 'Value must be below 360';
+		if (hslaInput[1].value > 100) throw 'Value must be below 100';
+		if (hslaInput[2].value > 100) throw 'Value must be below 100';
+		if (hslaInput[3].value > 1) throw 'Value must be equal to or below 1';
+
+		updateColorDisplays(
+			`rgba(${hslaInput[0].value}, ${hslaInput[1].value}%, ${hslaInput[2].value}%, ${hslaInput[3].value})`
+		);
+	});
 });

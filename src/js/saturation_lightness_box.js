@@ -55,23 +55,19 @@ let colorBoxHandler = function (positionX, positionY) {
 	document.getElementsByClassName('color_picker')[0].innerHTML = HSLA;
 
 	// Applying the color to the color preview
-	document
-		.getElementById('color_picked_preview')
-		.children[0].setAttribute('fill', HSLA);
+	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
 
 	// Update the color text values
 	updateColorValueInput();
 };
 
 // Start box drag listener
-document
-	.getElementById('color_box')
-	.addEventListener('mousedown', function (event) {
-		// Updating the status in the data object
-		colorPicker.boxStatus = true;
-		// Calling handler function
-		colorBoxHandler(event.pageX, event.pageY);
-	});
+document.getElementById('color_box').addEventListener('mousedown', function (event) {
+	// Updating the status in the data object
+	colorPicker.boxStatus = true;
+	// Calling handler function
+	colorBoxHandler(event.pageX, event.pageY);
+});
 
 // Moving box drag listener
 document.addEventListener('mousemove', function (event) {
