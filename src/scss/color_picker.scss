@@ -18,7 +18,7 @@
 	width: 350px;
 	min-height: 400px;
 	left: calc(50% - 175px);
-	top: 20%;
+	top: calc(50% - 200px);
 	background-color: #fff;
 	border-radius: 5px;
 	box-shadow: $shadow;
@@ -175,3 +175,9 @@
 		background-color: #ececec;
 	}
 }
+
+/*
+ * Media Queries
+ */
+
+@import '366px_mq';

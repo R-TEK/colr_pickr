@@ -1,0 +1,26 @@
+/*
+ * Media Query for screen sizes 366 pixels or less
+ */
+
+@media only screen and (max-width: 366px) {
+	#color_picker {
+		#color_picked_preview {
+			position: relative;
+			margin: 0;
+			left: calc(50% - 15px);
+			bottom: 7px;
+		}
+
+		#sliders {
+			margin: 0 0 0 32px;
+		}
+
+		#switch_color_type {
+			right: 20px;
+		}
+
+		#custom_colors {
+			padding: 0 24px;
+		}
+	}
+}
