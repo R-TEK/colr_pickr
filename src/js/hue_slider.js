@@ -48,6 +48,10 @@ let colorSliderHandler = function (position) {
 	updateColorValueInput();
 };
 
+/*
+ * Mouse Events
+ */
+
 // Start the slider drag
 document.getElementById('color_slider').addEventListener('mousedown', function (event) {
 	// Updating the status in the data object
@@ -71,5 +75,35 @@ document.addEventListener('mouseup', function () {
 	if (colorPicker.sliderStatus === true) {
 		// Updating the status in the data object
 		colorPicker.sliderStatus = false;
+	}
+});
+
+/*
+ * Touch Events
+ */
+
+// Start the slider drag on touch
+document.getElementById('color_slider').addEventListener('touchstart', function (event) {
+	// Updating the status
+	colorPicker.sliderStatusTouch = true;
+	// Calling the handler function
+	colorSliderHandler(event.changedTouches[0].clientX);
+});
+
+// Moving the slider drag on touch
+document.addEventListener('touchmove', function () {
+	// Checking that the touch drag has started
+	if (colorPicker.sliderStatusTouch === true) {
+		// Calling the handler function
+		colorSliderHandler(event.changedTouches[0].clientX);
+	}
+});
+
+// End the slider drag on touch
+document.addEventListener('touchend', function () {
+	// Checking that the touch drag has started
+	if (colorPicker.sliderStatusTouch === true) {
+		// Updating the status
+		colorPicker.sliderStatusTouch = false;
 	}
 });

@@ -15,12 +15,14 @@
 /**
  * All global states and variables needed for reference over the entire project
  *
- * @type {{boxStatus: boolean, sliderStatus: boolean, opacityStatus: boolean, colorTypeStatus: string, hue: number, saturation: number, lightness: number, alpha: number, contextMenuElem: HTMLElement | null}}
+ * @type {{boxStatus: boolean, sliderStatus: boolean, sliderStatusTouch: boolean, opacityStatus: boolean, opacityStatusTouch: boolean, colorTypeStatus: string, hue: number, saturation: number, lightness: number, alpha: number, contextMenuElem: HTMLElement | null}}
  */
 let colorPicker = {
 	boxStatus: false,
 	sliderStatus: false,
+	sliderStatusTouch: false,
 	opacityStatus: false,
+	opacityStatusTouch: false,
 	colorTypeStatus: 'HEXA',
 	hue: 0,
 	saturation: 100,

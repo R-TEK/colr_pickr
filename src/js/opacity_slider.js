@@ -44,6 +44,10 @@ let opacitySliderHandler = function (position) {
 	updateColorValueInput();
 };
 
+/*
+ * Mouse Events
+ */
+
 // Start the slider drag for opacity
 document.getElementById('opacity_slider').addEventListener('mousedown', function (event) {
 	// Updating the status in the data object
@@ -67,5 +71,35 @@ document.addEventListener('mouseup', function () {
 	if (colorPicker.opacityStatus === true) {
 		// Updating the status in the data object
 		colorPicker.opacityStatus = false;
+	}
+});
+
+/*
+ * Touch Events
+ */
+
+// Start the slider drag on touch
+document.getElementById('opacity_slider').addEventListener('touchstart', function (event) {
+	// Updating the status
+	colorPicker.opacityStatusTouch = true;
+	// Calling the handler function
+	opacitySliderHandler(event.changedTouches[0].clientX);
+});
+
+// Moving the slider drag on touch
+document.addEventListener('touchmove', function () {
+	// Checking that the touch drag has started
+	if (colorPicker.opacityStatusTouch === true) {
+		// Calling the handler function
+		opacitySliderHandler(event.changedTouches[0].clientX);
+	}
+});
+
+// End the slider drag on touch
+document.addEventListener('touchend', function () {
+	// Checking that the touch drag has started
+	if (colorPicker.opacityStatusTouch === true) {
+		// Updating the status
+		colorPicker.opacityStatusTouch = false;
 	}
 });

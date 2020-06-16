@@ -61,6 +61,10 @@ let colorBoxHandler = function (positionX, positionY) {
 	updateColorValueInput();
 };
 
+/*
+ * Mouse Events
+ */
+
 // Start box drag listener
 document.getElementById('color_box').addEventListener('mousedown', function (event) {
 	// Updating the status in the data object
@@ -84,5 +88,35 @@ document.addEventListener('mouseup', function (event) {
 	if (colorPicker.boxStatus === true) {
 		// Updating the status in the data object
 		colorPicker.boxStatus = false;
+	}
+});
+
+/*
+ * Touch Events
+ */
+
+// Start the box drag on touch
+document.getElementById('color_box').addEventListener('touchstart', function (event) {
+	// Updating the status
+	colorPicker.boxStatusTouch = true;
+	// Calling the handler function
+	colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+});
+
+// Moving the box drag on touch
+document.addEventListener('touchmove', function () {
+	// Checking that the touch drag has started
+	if (colorPicker.boxStatusTouch === true) {
+		// Calling the handler function
+		colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+	}
+});
+
+// End box drag on touch
+document.addEventListener('touchend', function () {
+	// Checking that the touch drag has started
+	if (colorPicker.boxStatusTouch === true) {
+		// Calling the handler function
+		colorPicker.boxStatusTouch = false;
 	}
 });
