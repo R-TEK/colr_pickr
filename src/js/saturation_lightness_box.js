@@ -44,7 +44,7 @@ let colorBoxHandler = function (positionX, positionY) {
 
 	// Calculating the LPercent
 	// LPercent is the the X percentage of the of the Y percentage of the dragger
-	const LPercent = Math.round((percentY / 100) * percentX);
+	let LPercent = Math.floor((percentY / 100) * percentX);
 
 	// Applying the Saturation and Lightness to the data object
 	colorPicker.saturation = SPercent;
@@ -104,13 +104,19 @@ document.getElementById('color_box').addEventListener('touchstart', function (ev
 });
 
 // Moving the box drag on touch
-document.addEventListener('touchmove', function () {
-	// Checking that the touch drag has started
-	if (colorPicker.boxStatusTouch === true) {
-		// Calling the handler function
-		colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
-	}
-});
+document.addEventListener(
+	'touchmove',
+	function () {
+		// Checking that the touch drag has started
+		if (colorPicker.boxStatusTouch === true) {
+			// Prevent page scrolling
+			event.preventDefault();
+			// Calling the handler function
+			colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+		}
+	},
+	{ passive: false }
+);
 
 // End box drag on touch
 document.addEventListener('touchend', function () {

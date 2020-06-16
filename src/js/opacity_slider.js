@@ -87,13 +87,19 @@ document.getElementById('opacity_slider').addEventListener('touchstart', functio
 });
 
 // Moving the slider drag on touch
-document.addEventListener('touchmove', function () {
-	// Checking that the touch drag has started
-	if (colorPicker.opacityStatusTouch === true) {
-		// Calling the handler function
-		opacitySliderHandler(event.changedTouches[0].clientX);
-	}
-});
+document.addEventListener(
+	'touchmove',
+	function () {
+		// Checking that the touch drag has started
+		if (colorPicker.opacityStatusTouch === true) {
+			// Prevent page scrolling
+			event.preventDefault();
+			// Calling the handler function
+			opacitySliderHandler(event.changedTouches[0].clientX);
+		}
+	},
+	{ passive: false }
+);
 
 // End the slider drag on touch
 document.addEventListener('touchend', function () {

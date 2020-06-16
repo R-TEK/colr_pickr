@@ -91,13 +91,19 @@ document.getElementById('color_slider').addEventListener('touchstart', function 
 });
 
 // Moving the slider drag on touch
-document.addEventListener('touchmove', function () {
-	// Checking that the touch drag has started
-	if (colorPicker.sliderStatusTouch === true) {
-		// Calling the handler function
-		colorSliderHandler(event.changedTouches[0].clientX);
-	}
-});
+document.addEventListener(
+	'touchmove',
+	function () {
+		// Checking that the touch drag has started
+		if (colorPicker.sliderStatusTouch === true) {
+			// Prevent page scrolling
+			event.preventDefault();
+			// Calling the handler function
+			colorSliderHandler(event.changedTouches[0].clientX);
+		}
+	},
+	{ passive: false }
+);
 
 // End the slider drag on touch
 document.addEventListener('touchend', function () {

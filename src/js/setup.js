@@ -15,10 +15,11 @@
 /**
  * All global states and variables needed for reference over the entire project
  *
- * @type {{boxStatus: boolean, sliderStatus: boolean, sliderStatusTouch: boolean, opacityStatus: boolean, opacityStatusTouch: boolean, colorTypeStatus: string, hue: number, saturation: number, lightness: number, alpha: number, contextMenuElem: HTMLElement | null}}
+ * @type {{boxStatus: boolean, boxStatusTouch: boolean, sliderStatus: boolean, sliderStatusTouch: boolean, opacityStatus: boolean, opacityStatusTouch: boolean, colorTypeStatus: string, hue: number, saturation: number, lightness: number, alpha: number, contextMenuElem: HTMLElement | null, doubleTapTime: number}}
  */
 let colorPicker = {
 	boxStatus: false,
+	boxStatusTouch: false,
 	sliderStatus: false,
 	sliderStatusTouch: false,
 	opacityStatus: false,
@@ -28,7 +29,8 @@ let colorPicker = {
 	saturation: 100,
 	lightness: 50,
 	alpha: 1,
-	contextMenuElem: null
+	contextMenuElem: null,
+	doubleTapTime: 0
 };
 
 /**
@@ -239,6 +241,10 @@ let runColorPicker = function (event) {
 					document.getElementById('custom_colors_box').children[0]
 				);
 		}
+
+		// Check whether to display the add color button
+		if (LSCustomColors[0].length == 28)
+			document.getElementById('custom_colors_add').style.display = 'none';
 	}
 })();
 
