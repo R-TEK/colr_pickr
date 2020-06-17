@@ -189,7 +189,11 @@ function ColorPicker(element, color) {
 		<div id="custom_colors">
 			<h6 id="custom_colors_title">Custom Colors:</h6>
 			<div id="custom_colors_box">
-				<button id="custom_colors_add">+</button>
+				<button id="custom_colors_add">
+				<svg viewBox="0 0 24 24" width="12" height="14">
+					<path fill="#555" d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
+				</svg>
+				</button>
 			</div>
 		</div>
 		<div id="color_context_menu" class="color_ctx_menu">
@@ -225,12 +229,7 @@ function ColorPicker(element, color) {
 			customColorElem.style.background = LSCustomColors[0][x];
 			customColorElem.setAttribute('data-custom-color', LSCustomColors[0][x]);
 			// Placing the element in the DOM
-			document
-				.getElementById('custom_colors_box')
-				.insertBefore(
-					customColorElem,
-					document.getElementById('custom_colors_box').children[0]
-				);
+			document.getElementById('custom_colors_box').appendChild(customColorElem);
 		}
 
 		// Check whether to display the add color button

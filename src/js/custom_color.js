@@ -2,6 +2,7 @@
  * Custom Colors
  */
 
+// Click on color listener to update the picker
 document.getElementById('custom_colors_box').addEventListener('click', function (event) {
 	// Making sure the users has selected a color preview
 	if (event.target.className == 'custom_colors_preview') {
@@ -27,9 +28,7 @@ let addCustomColor = function () {
 	customColorElem.style.background = color;
 	customColorElem.setAttribute('data-custom-color', color);
 	// Placing the element in the DOM
-	document
-		.getElementById('custom_colors_box')
-		.insertBefore(customColorElem, document.getElementById('custom_colors_box').children[0]);
+	document.getElementById('custom_colors_box').appendChild(customColorElem);
 
 	// Pushing the color to the top of the array
 	LSCustomColors[0].unshift(color);
@@ -63,8 +62,7 @@ document.getElementById('custom_colors_box').addEventListener('contextmenu', fun
 
 // Clears a selected custom color
 let clearSingleCustomColor = function (element) {
-	console.log(element);
-	const elemToRemove = element === null ? colorPicker.contextMenuElem : element;
+	const elemToRemove = element === undefined ? colorPicker.contextMenuElem : element;
 
 	// Removing the element
 	document.getElementById('custom_colors_box').removeChild(elemToRemove);

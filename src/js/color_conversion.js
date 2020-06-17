@@ -86,8 +86,6 @@ let RGBAToHSLA = function (r, g, b, a) {
 	s = +(s * 100).toFixed(1);
 	l = +(l * 100).toFixed(1);
 
-	console.log(h, s, l, a);
-
 	return {
 		h: h,
 		s: s,
@@ -140,7 +138,6 @@ let hexAToRGBA = function (h, toHSL) {
 	a = +(a / 255).toFixed(3);
 
 	if (toHSL === true) {
-		console.log(+r, +g, +b, +a + ' - run');
 		return RGBAToHSLA(+r, +g, +b, a);
 	} else {
 		return 'rgba(' + +r + ',' + +g + ',' + +b + ',' + a + ')';

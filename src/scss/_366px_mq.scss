@@ -4,8 +4,8 @@
 
 @media only screen and (max-width: 366px) {
 	#color_picker {
-		min-height: 469px;
-		top: calc(50% - 240px);
+		min-height: 488px;
+		top: calc(50% - 244px);
 	}
 
 	#color_picker {
@@ -26,6 +26,14 @@
 
 		#custom_colors {
 			padding: 0 24px;
+		}
+
+		#custom_colors_title {
+			margin: 14px 5px;
+		}
+
+		#custom_colors_add {
+			right: 40px;
 		}
 
 		#custom_colors_preview {

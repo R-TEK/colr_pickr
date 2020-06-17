@@ -26,9 +26,7 @@ gulp.task('devScripts', async function () {
 
 // Compiling SASS and minifying files - DEV BUILD
 gulp.task('devSass', async function () {
-	gulp.src('src/scss/*.scss')
-		.pipe(sass().on('error', sass.logError))
-		.pipe(gulp.dest('build'));
+	gulp.src('src/scss/*.scss').pipe(sass().on('error', sass.logError)).pipe(gulp.dest('build'));
 });
 
 // Moving, concatenating and minifying my own script (.js) files - PRODUCTION BUILD
@@ -65,7 +63,7 @@ gulp.task('babelCompiler', async function () {
 				]
 			})
 		)
-		.pipe(gulp.dest('build/es5'));
+		.pipe(gulp.dest('build/e11'));
 });
 
 // Watch the edited file and run gulp script on save
@@ -78,7 +76,4 @@ gulp.task('watch', function () {
 gulp.task('devBuild', gulp.series('devScripts', 'devSass'));
 
 // Combining multiple tasks into one build - DEV BUILD
-gulp.task(
-	'productionBuild',
-	gulp.series('productionScripts', 'productionSass', 'babelCompiler')
-);
+gulp.task('productionBuild', gulp.series('productionScripts', 'productionSass', 'babelCompiler'));

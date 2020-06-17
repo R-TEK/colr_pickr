@@ -18,7 +18,7 @@
 	width: 350px;
 	min-height: 400px;
 	left: calc(50% - 175px);
-	top: calc(50% - 200px);
+	top: calc(50% - 205px);
 	background-color: #fff;
 	border-radius: 5px;
 	box-shadow: $shadow;
@@ -100,7 +100,7 @@
 	}
 
 	#custom_colors_title {
-		margin: 5px 5px;
+		margin: 12px 5px;
 		font-family: $font;
 		font-size: 12px;
 		font-weight: 400;
@@ -113,20 +113,19 @@
 
 	#custom_colors_add {
 		display: inline-block;
+		position: absolute;
+		margin: -28px 0 0 0;
 		padding: 0;
-		width: 18px;
-		height: 18px;
-		background-color: #fff;
+		right: 12px;
+		background: none;
 		border: none;
-		border-radius: 3px;
-		font-size: 20px;
-		color: $light-text;
 		outline: none;
 		cursor: pointer;
+		transition: $quickTransition;
 	}
 
 	#custom_colors_add:hover {
-		color: #000;
+		transform: $hoverEnlarge;
 	}
 
 	.custom_colors_preview {

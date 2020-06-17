@@ -8,8 +8,6 @@ let colorBoxHandler = function (positionX, positionY, touch) {
 	const boxContainer = document.getElementById('color_box');
 	const boxDragger = document.getElementById('box_dragger');
 
-	console.log(document.getElementsByTagName('HTML')[0].scrollTop);
-
 	// Defining X and Y position, Y differently works with scroll so I make conditions for that
 	let eventX = positionX - boxContainer.getBoundingClientRect().left;
 	let eventY =

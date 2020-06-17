@@ -109,8 +109,6 @@ document.querySelectorAll('.hsla_input').forEach((element) => {
 		if (hslaInput[2].value > 100) throw 'Value must be below 100';
 		if (hslaInput[3].value > 1) throw 'Value must be equal to or below 1';
 
-		console.log(hslaInput[0].value, hslaInput[1].value, hslaInput[2].value, hslaInput[3].value);
-
 		// Updating the picker
 		updateColorDisplays(
 			`hsl(${hslaInput[0].value}, ${hslaInput[1].value}%, ${hslaInput[2].value}%, ${hslaInput[3].value})`
