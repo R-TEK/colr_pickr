@@ -3,16 +3,23 @@
  */
 
 // Function to handle changes to the saturation and lightness box
-let colorBoxHandler = function (positionX, positionY) {
+let colorBoxHandler = function (positionX, positionY, touch) {
 	// Defining the box and dragger
 	const boxContainer = document.getElementById('color_box');
 	const boxDragger = document.getElementById('box_dragger');
 
-	// Defining X and Y position
-	let eventX = positionX - boxContainer.getBoundingClientRect().left;
-	let eventY = positionY - boxContainer.getBoundingClientRect().top;
+	console.log(document.getElementsByTagName('HTML')[0].scrollTop);
 
-	// Making conditions so that the user don't drag outside the box
+	// Defining X and Y position, Y differently works with scroll so I make conditions for that
+	let eventX = positionX - boxContainer.getBoundingClientRect().left;
+	let eventY =
+		touch === true
+			? positionY - boxContainer.getBoundingClientRect().top
+			: positionY -
+			  boxContainer.getBoundingClientRect().top -
+			  document.getElementsByTagName('HTML')[0].scrollTop;
+
+	// Making conditions so that the user don'-t drag outside the box
 	if (eventX < 14) {
 		eventX = 14;
 	}
@@ -99,7 +106,7 @@ document.getElementById('color_box').addEventListener('touchstart', function (ev
 	// Updating the status
 	colorPicker.boxStatusTouch = true;
 	// Calling the handler function
-	colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+	colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY, true);
 });
 
 // Moving the box drag on touch
@@ -111,7 +118,7 @@ document.addEventListener(
 			// Prevent page scrolling
 			event.preventDefault();
 			// Calling the handler function
-			colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+			colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY, true);
 		}
 	},
 	{ passive: false }
