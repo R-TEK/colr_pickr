@@ -15,9 +15,10 @@
 /**
  * All global states and variables needed for reference over the entire project
  *
- * @type {{boxStatus: boolean, boxStatusTouch: boolean, sliderStatus: boolean, sliderStatusTouch: boolean, opacityStatus: boolean, opacityStatusTouch: boolean, colorTypeStatus: string, hue: number, saturation: number, lightness: number, alpha: number, contextMenuElem: HTMLElement | null, doubleTapTime: number}}
+ * @type {{instance: object | null, boxStatus: boolean, boxStatusTouch: boolean, sliderStatus: boolean, sliderStatusTouch: boolean, opacityStatus: boolean, opacityStatusTouch: boolean, colorTypeStatus: string, hue: number, saturation: number, lightness: number, alpha: number, contextMenuElem: HTMLElement | null, doubleTapTime: number}}
  */
 let colorPicker = {
+	instance: null,
 	boxStatus: false,
 	boxStatusTouch: false,
 	sliderStatus: false,
@@ -40,45 +41,35 @@ let colorPicker = {
  */
 let LSCustomColors = { 0: [] };
 
-// Function to open the color picker
-let runColorPicker = function (event) {
-	// Defining elements
-	const target = event.target;
-	const colorPicker = document.getElementById('color_picker');
+// Constructor
+function ColorPicker(element, color) {
+	// Adding the element to the instance
+	this.element = element;
 
-	// Opening the color picker
-	document.getElementById('color_picker').style.display = 'block';
-	document.getElementById('color_picker_bg').style.display = 'block';
+	// Adding the object to the elements object
+	element.colorPickerObj = this;
 
-	// Updating the color picker
-	updateColorDisplays(target.getAttribute('data-color'));
+	// Setting color value as a data attribute and changing elements color if color param is given
+	element.setAttribute('data-color', color);
+	element.style.background = color;
 
-	// Giving the button the active button attribute
-	target.setAttribute('data-color-active', true);
-};
+	// Click listener to have the button open the color picker interface
+	element.addEventListener('click', function (event) {
+		// Applying the items instance to the color picker object
+		colorPicker.instance = event.target.colorPickerObj;
+
+		// Displaying the color picker
+		document.getElementById('color_picker').style.display = 'block';
+		document.getElementById('color_picker_bg').style.display = 'block';
+
+		// Updating the color picker
+		if (event.target.getAttribute('data-color') != 'undefined')
+			updateColorDisplays(event.target.getAttribute('data-color'));
+	});
+}
 
 // Function to setup the color picker
 (function () {
-	console.log('dwqdqwd');
-	// Looping through each declared color picker
-	for (let y in document.getElementsByClassName('color_picker')) {
-		// Checking the value is not a number
-		if (isNaN(y) === true) {
-			continue;
-		}
-
-		console.log(document.getElementsByClassName('color_picker')[y]);
-
-		// Assigning the button with a function to run the color picker
-		document.getElementsByClassName('color_picker')[y].onclick = runColorPicker;
-
-		// Getting the default data the user set
-		let dataColor = document
-			.getElementsByClassName('color_picker')
-			[y].getAttribute('data-color');
-		document.getElementsByClassName('color_picker')[y].style.background = dataColor;
-	}
-
 	// Creating the HTML content
 	const HTMLContent = `
 		<svg id="color_box" width="348" height="185">
@@ -263,16 +254,38 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 	document.getElementById('color_picker_bg').style.display = 'none';
 
 	// Making changes to the active button
-	const activeButton = document.querySelectorAll('[data-color-active="true"]')[0];
+	const activeButton = colorPicker.instance.element;
+
 	// Changing color attributes
 	activeButton.setAttribute(
 		'data-color',
 		`hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
 	);
 	activeButton.style.background = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
-	// Removing the active attribute
-	activeButton.removeAttribute('data-color-active');
+
+	// Call the colorChange event for any listeners
+	colorChange(
+		`hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
+	);
 });
+
+/*
+ * Custom Color Change Event
+ */
+
+// Custom color change event function
+function colorChange(color) {
+	// Creating the event
+	const event = new CustomEvent('colorChange', {
+		// Adding the response details
+		detail: {
+			color: color
+		}
+	});
+
+	// Dispatching the event for the active object
+	colorPicker.instance.element.dispatchEvent(event);
+}
 
 /*
  * Color Value Converter
@@ -961,7 +974,6 @@ let colorBoxHandler = function (positionX, positionY) {
 
 	// Full HSLA color
 	const HSLA = `hsl(${colorPicker.hue}, ${SPercent}%, ${LPercent}%, ${colorPicker.alpha})`;
-	document.getElementsByClassName('color_picker')[0].innerHTML = HSLA;
 
 	// Applying the color to the color preview
 	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);

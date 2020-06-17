@@ -52,7 +52,6 @@ let colorBoxHandler = function (positionX, positionY) {
 
 	// Full HSLA color
 	const HSLA = `hsl(${colorPicker.hue}, ${SPercent}%, ${LPercent}%, ${colorPicker.alpha})`;
-	document.getElementsByClassName('color_picker')[0].innerHTML = HSLA;
 
 	// Applying the color to the color preview
 	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);

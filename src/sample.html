@@ -13,7 +13,7 @@
 			<br />
 			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
 		</p>
-		<button class="color_picker" style="width: 200px; height: 20px; color: #fff;"></button>
+		<button id="color" style="width: 200px; height: 20px; color: #fff;"></button>
 		<p>
 			Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
 			Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla
@@ -31,8 +31,7 @@
 			libero malesuada feugiat. Quisque velit nisi, pretium ut lacinia in, elementum id enim.
 		</p>
 		<button
-			class="color_picker"
-			data-color="#ff0000"
+			id="text"
 			style="
 				width: 30px;
 				height: 30px;
@@ -64,8 +63,7 @@
 			<br />
 		</p>
 		<button
-			class="color_picker"
-			data-color="#1d4288"
+			id="background"
 			style="
 				width: 30px;
 				height: 30px;
@@ -75,54 +73,64 @@
 				cursor: pointer;
 			"
 		></button>
-		<button
-			class="color_picker"
-			data-color="#680690"
-			style="
-				width: 30px;
-				height: 30px;
-				border-radius: 50%;
-				border: none;
-				outline: none;
-				cursor: pointer;
-			"
-		></button>
-		<button
-			class="color_picker"
-			data-color="#0d6d65"
-			style="
-				width: 30px;
-				height: 30px;
-				border-radius: 50%;
-				border: none;
-				outline: none;
-				cursor: pointer;
-			"
-		></button>
-		<button
-			class="color_picker"
-			data-color="#1e6900"
-			style="
-				width: 30px;
-				height: 30px;
-				border-radius: 50%;
-				border: none;
-				outline: none;
-				cursor: pointer;
-			"
-		></button>
-		<button
-			class="color_picker"
-			data-color="#c35b00"
-			style="
-				width: 30px;
-				height: 30px;
-				border-radius: 50%;
-				border: none;
-				outline: none;
-				cursor: pointer;
-			"
-		></button>
+		<p>
+			Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget
+			malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+			cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
+			ligula.
+			<br />
+			<br />
+			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu
+			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
+			imperdiet et, porttitor at sem.
+			<br />
+			<br />
+			Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci
+			porta dapibus. Cras ultricies ligula sed magna dictum porta.
+			<br />
+			<br />
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
+			id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.
+			<br />
+			<br />
+		</p>
+		<p>
+			Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget
+			malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+			cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
+			ligula.
+			<br />
+			<br />
+			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu
+			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
+			imperdiet et, porttitor at sem.
+			<br />
+			<br />
+			Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci
+			porta dapibus. Cras ultricies ligula sed magna dictum porta.
+			<br />
+			<br />
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
+			id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.
+			<br />
+			<br />
+		</p>
 		<script type="text/javascript" src="../build/color_picker.js"></script>
+		<script type="text/javascript">
+			let bob = new ColorPicker(document.getElementById('color'), '#ff0000');
+			let text = new ColorPicker(document.getElementById('text'));
+			let background = new ColorPicker(document.getElementById('background'));
+
+			document.getElementById('color').addEventListener('colorChange', function () {
+				console.log('color');
+				console.log(event);
+			});
+			document.getElementById('text').addEventListener('colorChange', function () {
+				console.log('text');
+			});
+			document.getElementById('background').addEventListener('colorChange', function () {
+				console.log('background');
+			});
+		</script>
 	</body>
 </html>
