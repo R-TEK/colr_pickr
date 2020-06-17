@@ -253,17 +253,7 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 	document.getElementById('color_picker').style.display = 'none';
 	document.getElementById('color_picker_bg').style.display = 'none';
 
-	// Making changes to the active button
-	const activeButton = colorPicker.instance.element;
-
-	// Changing color attributes
-	activeButton.setAttribute(
-		'data-color',
-		`hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
-	);
-	activeButton.style.background = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
-
-	// Call the colorChange event for any listeners
+	// Calling Event to make all the necessary changes
 	colorChange(
 		`hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
 	);

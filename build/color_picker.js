@@ -253,17 +253,7 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 	document.getElementById('color_picker').style.display = 'none';
 	document.getElementById('color_picker_bg').style.display = 'none';
 
-	// Making changes to the active button
-	const activeButton = colorPicker.instance.element;
-
-	// Changing color attributes
-	activeButton.setAttribute(
-		'data-color',
-		`hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
-	);
-	activeButton.style.background = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
-
-	// Call the colorChange event for any listeners
+	// Calling Event to make all the necessary changes
 	colorChange(
 		`hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
 	);
@@ -274,7 +264,7 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
  */
 
 // Custom color change event function
-function colorChange(color) {
+function colorChange(color, elem) {
 	// Creating the event
 	const event = new CustomEvent('colorChange', {
 		// Adding the response details
@@ -283,8 +273,15 @@ function colorChange(color) {
 		}
 	});
 
+	// Defining element
+	const element = elem === undefined ? colorPicker.instance.element : elem;
+
+	// Changing color attributes
+	element.setAttribute('data-color', color);
+	element.style.background = color;
+
 	// Dispatching the event for the active object
-	colorPicker.instance.element.dispatchEvent(event);
+	element.dispatchEvent(event);
 }
 
 /*

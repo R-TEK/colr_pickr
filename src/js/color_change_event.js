@@ -3,7 +3,7 @@
  */
 
 // Custom color change event function
-function colorChange(color) {
+function colorChange(color, elem) {
 	// Creating the event
 	const event = new CustomEvent('colorChange', {
 		// Adding the response details
@@ -12,6 +12,13 @@ function colorChange(color) {
 		}
 	});
 
+	// Defining element
+	const element = elem === undefined ? colorPicker.instance.element : elem;
+
+	// Changing color attributes
+	element.setAttribute('data-color', color);
+	element.style.background = color;
+
 	// Dispatching the event for the active object
-	colorPicker.instance.element.dispatchEvent(event);
+	element.dispatchEvent(event);
 }
