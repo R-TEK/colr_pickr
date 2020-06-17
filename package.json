@@ -1,25 +1,23 @@
 {
-	"name": "js_color_picker",
+	"name": "js_color_pickr",
 	"version": "1.0.0",
-	"description": "",
+	"description": "JS Color Pickr, a vanilla JavaScript color picking component built with SVGs, with features like saving colors. Similar design to the chrome-dev-tools color picker.",
 	"main": "build/color_picker.js",
-	"directories": {
-		"doc": "docs"
-	},
 	"scripts": {
 		"build": "gulp productionBuild",
-		"doc": "jsdoc -c jsdoc.json"
+		"doc": "jsdoc -c jsdoc.json",
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/R-TEK/js_color_picker.git"
+		"url": "git+https://github.com/R-TEK/js_color_pickr.git"
 	},
 	"author": "R-TEK",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/R-TEK/js_color_picker/issues"
+		"url": "https://r-tek.github.io/js_color_pickr/"
 	},
-	"homepage": "https://github.com/R-TEK/js_color_picker#readme",
+	"homepage": "https://r-tek.github.io/js_color_pickr/",
 	"devDependencies": {
 		"@babel/core": "^7.10.2",
 		"@babel/preset-env": "^7.10.2",
