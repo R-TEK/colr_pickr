@@ -195,9 +195,9 @@
 		</p>
 		<script type="text/javascript" src="../build/color_picker.js"></script>
 		<script type="text/javascript">
-			let bob = new ColorPicker(document.getElementById('title'), '#ff0000');
-			let text = new ColorPicker(document.getElementById('text'));
-			let background = new ColorPicker(document.getElementById('background'));
+			let bob = new ColorPicker(document.getElementById('title'));
+			let text = new ColorPicker(document.getElementById('text'), '#1a00ad');
+			let background = new ColorPicker(document.getElementById('background'), '#ff0000');
 
 			document.getElementById('title').addEventListener('colorChange', function () {
 				document.getElementById('ti').style.color = event.detail.color;
