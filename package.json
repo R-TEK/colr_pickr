@@ -2,7 +2,7 @@
 	"name": "js_color_pickr",
 	"version": "1.0.0",
 	"description": "JS Color Pickr, a vanilla JavaScript color picking component built with SVGs, with features like saving colors. Similar design to the chrome-dev-tools color picker.",
-	"main": "build/color_picker.js",
+	"main": "build/color_pickr_min.js",
 	"scripts": {
 		"build": "gulp productionBuild",
 		"doc": "jsdoc -c jsdoc.json",
@@ -32,5 +32,6 @@
 		"gulp-uglifycss": "^1.1.0",
 		"jsdoc": "^3.6.4",
 		"node-sass": "^4.14.1"
-	}
+	},
+	"dependencies": {}
 }

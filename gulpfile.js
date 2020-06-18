@@ -8,7 +8,6 @@ const concatJS = require('gulp-concat');
 const uglifyJS = require('gulp-uglify-es').default;
 const concatCSS = require('gulp-concat-css');
 const uglifyCSS = require('gulp-uglifycss');
-const markdown = require('gulp-markdown');
 const sass = require('gulp-sass');
 
 sass.compiler = require('node-sass');
@@ -32,7 +31,7 @@ gulp.task('devSass', async function () {
 // Moving, concatenating and minifying my own script (.js) files - PRODUCTION BUILD
 gulp.task('productionScripts', async function () {
 	gulp.src(['src/js/setup.js', 'src/js/*.js'])
-		.pipe(concatJS('color_pickr.js'))
+		.pipe(concatJS('color_pickr_min.js'))
 		.pipe(uglifyJS())
 		.pipe(gulp.dest('build'));
 });
@@ -41,6 +40,7 @@ gulp.task('productionScripts', async function () {
 gulp.task('productionSass', async function () {
 	gulp.src('src/scss/*.scss')
 		.pipe(sass().on('error', sass.logError))
+		.pipe(concatCSS('color_pickr_min.css'))
 		.pipe(uglifyCSS())
 		.pipe(gulp.dest('build'));
 });
@@ -49,7 +49,7 @@ gulp.task('productionSass', async function () {
 gulp.task('babelCompiler', async function () {
 	gulp.src(['src/js/setup.js', 'src/js/*.js'])
 		.pipe(plumber())
-		.pipe(concatJS('color_pickr.js'))
+		.pipe(concatJS('color_pickr_min_e11.js'))
 		.pipe(uglifyJS())
 		.pipe(
 			babel({
@@ -76,4 +76,7 @@ gulp.task('watch', function () {
 gulp.task('devBuild', gulp.series('devScripts', 'devSass'));
 
 // Combining multiple tasks into one build - DEV BUILD
-gulp.task('productionBuild', gulp.series('productionScripts', 'productionSass', 'babelCompiler'));
+gulp.task(
+	'productionBuild',
+	gulp.series('productionScripts', 'productionSass', 'babelCompiler', 'devScripts', 'devSass')
+);
