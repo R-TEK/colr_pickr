@@ -39,7 +39,7 @@ let colorPicker = {
  *
  * @type {{0: Array}}
  */
-let LSCustomColors = { 0: [] };
+window.LSCustomColors = { 0: [] };
 
 // Constructor
 function ColorPicker(element, color) {
@@ -219,21 +219,21 @@ function ColorPicker(element, color) {
 		localStorage.setItem('custom_colors', '{"0": []}');
 	} else {
 		// If it has then I define the LSCustomColors with the value for this
-		LSCustomColors = JSON.parse(localStorage.getItem('custom_colors'));
+		window.LSCustomColors = JSON.parse(localStorage.getItem('custom_colors'));
 
 		// Looping through the data to update the DOM with the custom colors
-		for (let x = LSCustomColors[0].length - 1; x >= 0; x--) {
+		for (let x = window.LSCustomColors[0].length - 1; x >= 0; x--) {
 			// Creating the element
 			let customColorElem = document.createElement('BUTTON');
 			customColorElem.className = 'custom_colors_preview';
-			customColorElem.style.background = LSCustomColors[0][x];
-			customColorElem.setAttribute('data-custom-color', LSCustomColors[0][x]);
+			customColorElem.style.background = window.LSCustomColors[0][x];
+			customColorElem.setAttribute('data-custom-color', window.LSCustomColors[0][x]);
 			// Placing the element in the DOM
 			document.getElementById('custom_colors_box').appendChild(customColorElem);
 		}
 
 		// Check whether to display the add color button
-		if (LSCustomColors[0].length == 28)
+		if (window.LSCustomColors[0].length == 28)
 			document.getElementById('custom_colors_add').style.display = 'none';
 	}
 })();
@@ -565,7 +565,7 @@ document.getElementById('custom_colors_box').addEventListener('click', function 
 // Function to add a new custom color
 let addCustomColor = function () {
 	// Limiting a custom color to two rows
-	if (LSCustomColors[0].length == 27)
+	if (window.LSCustomColors[0].length == 27)
 		document.getElementById('custom_colors_add').style.display = 'none';
 
 	// Getting the color
@@ -580,10 +580,10 @@ let addCustomColor = function () {
 	document.getElementById('custom_colors_box').appendChild(customColorElem);
 
 	// Pushing the color to the top of the array
-	LSCustomColors[0].unshift(color);
+	window.LSCustomColors[0].unshift(color);
 
 	// Updating the local storage with the new custom color
-	localStorage.setItem('custom_colors', JSON.stringify(LSCustomColors));
+	localStorage.setItem('custom_colors', JSON.stringify(window.LSCustomColors));
 };
 document.getElementById('custom_colors_add').addEventListener('mouseup', function () {
 	addCustomColor();
@@ -617,7 +617,7 @@ let clearSingleCustomColor = function (element) {
 	document.getElementById('custom_colors_box').removeChild(elemToRemove);
 
 	// Clearing the variable
-	LSCustomColors = { '0': [] };
+	window.LSCustomColors = { '0': [] };
 
 	// Looping through the custom colors to repopulate the variable
 	for (let x in document.getElementsByClassName('custom_colors_preview')) {
@@ -627,7 +627,7 @@ let clearSingleCustomColor = function (element) {
 		}
 
 		// Pushing the colors to the array
-		LSCustomColors[0].push(
+		window.LSCustomColors[0].push(
 			document
 				.getElementsByClassName('custom_colors_preview')
 				[x].getAttribute('data-custom-color')
@@ -635,7 +635,7 @@ let clearSingleCustomColor = function (element) {
 	}
 
 	// Updating the local storage
-	localStorage.setItem('custom_colors', JSON.stringify(LSCustomColors));
+	localStorage.setItem('custom_colors', JSON.stringify(window.LSCustomColors));
 
 	// Making sure the add color button is displaying
 	document.getElementById('custom_colors_add').style.display = 'inline-block';
@@ -664,7 +664,7 @@ document.getElementById('custom_colors_box').addEventListener('touchstart', func
 // Clears all custom colors
 let clearAllCustomColors = function () {
 	// Clearing variable
-	LSCustomColors = { '0': [] };
+	window.LSCustomColors = { '0': [] };
 
 	// Looping through the custom colors to repopulate the variable
 	while (document.getElementsByClassName('custom_colors_preview').length > 0) {
@@ -674,7 +674,7 @@ let clearAllCustomColors = function () {
 	}
 
 	// Updating the local storage
-	localStorage.setItem('custom_colors', JSON.stringify(LSCustomColors));
+	localStorage.setItem('custom_colors', JSON.stringify(window.LSCustomColors));
 
 	// Making sure the add color button is displaying
 	document.getElementById('custom_colors_add').style.display = 'inline-block';

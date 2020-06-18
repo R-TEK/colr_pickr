@@ -1,5 +1,3 @@
-'use-strict';
-
 // Defining require dependencies
 const gulp = require('gulp');
 const babel = require('gulp-babel');
