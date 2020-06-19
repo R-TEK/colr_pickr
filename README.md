@@ -1,19 +1,22 @@
 <!-- prettier-ignore -->
 <h1 align="center" style="color: rgb(7, 128, 228)">
-    <a href="https://r-tek.github.io/js_color_pickr/" target="blank">
+    <a href="https://r-tek.github.io/colr_pickr/" target="blank">
         <img height="340" src="/assets/img/interface_view.png"/>
         <br />
-        JS Color Pickr
+        Colr Pickr
     </a>
 </h1>
 
 <p align="center">
-    <b>JS Color Pickr, a vanilla JavaScript color picking component built with SVGs, with features like saving colors. Similar design to the chrome-dev-tools color picker</b>
+    <b>Colr Pickr, a vanilla JavaScript color picking component built with SVGs, with features like saving colors. Similar design to the chrome-dev-tools color picker</b>
 </p>
 
 <p align="center">
-    <a href="https://github.com/R-TEK/js_color_pickr/blob/master/LICENSE">
-        <img src="https://badgen.net/github/license/R-TEK/js_color_pickr?color=ff0000" alt="license" />
+    <a href="https://github.com/R-TEK/colr_pickr/blob/master/LICENSE">
+        <img src="https://badgen.net/github/license/R-TEK/colr_pickr?color=ff0000" alt="license" />
+    </a>
+    <a href="https://github.com/R-TEK/colr_pickr/graphs/contributors">
+        <img src="https://badgen.net/badge/maintained/Yes?color=008c17">
     </a>
     <a href="https://www.npmjs.com/package/js_color_pickr">
         <img src="https://badgen.net/npm/v/js_color_pickr?color=7000c5" alt="version" />
@@ -21,9 +24,7 @@
     <a href="https://bundlephobia.com/result?p=js_color_pickr@1.0.0">
         <img src="https://badgen.net/bundlephobia/minzip/js_color_pickr?color=158fcc" alt="minzip size" />
     </a>
-    <a href="https://github.com/R-TEK/js_color_pickr/graphs/contributors">
-        <img src="https://badgen.net/badge/maintained/Yes?color=008c17">
-    </a>
+	<a href="https://lgtm.com/projects/g/R-TEK/colr_pickr/context:javascript"><img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/R-TEK/colr_pickr.svg?logo=lgtm&logoWidth=18"/></a>
 </p>
 
 <br/>
@@ -41,7 +42,7 @@
 
 ### Examples:
 
--   https://r-tek.github.io/js_color_pickr/
+-   https://r-tek.github.io/colr_pickr/
 -   https://codepen.io/TEK-Projects/pen/mdVRPZa#unsupported-modal
 
 ### Getting Started:
@@ -50,15 +51,18 @@
 
 -   Install with NPM:
     ```javascript
-    npm i js_color_pickr
-    ```
-    ```javascript
-    const Picker = require(js_color_pickr / modules);
+    Available Soon
     ```
 
 <br />
 
 -   Using the CDN via jsDelivr:
+    ```html
+    <script
+    	type="text/javascript"
+    	src="https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.1/build/color_pickr_min.js"
+    ></script>
+    ```
     ```html
     <link
     	rel="stylesheet"
@@ -66,16 +70,10 @@
     	href="https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.1/build/color_pickr_min.css"
     />
     ```
-    ```html
-    <script
-    	type="text/javascript"
-    	src="https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.1/build/color_pickr_min.js"
-    ></script>
-    ```
 
 <br />
 
--   Alternatively, you could clone/download the zip. Under the build directory, include the `color_pickr_min.css` and the `color_pickr_min.js` in your project.
+-   Alternatively, you could clone/download the zip. Under the /build directory, include the `colr_pickr_min.js` and the `colr_pickr_min.css` in your project.
 
 ###### Usage
 
@@ -127,7 +125,7 @@
 ### Color Value Information:
 
 When you give the Color Picker a color value to read, it has to be a supported value format.
-JS Color Pickr support all the popular choices, the table below show all supported value formats:
+Colr Pickr support all the popular choices, the table below show all supported value formats:
 
 | Format Name | Example Format              |
 | :---------- | :-------------------------- |
@@ -141,9 +139,9 @@ JS Color Pickr support all the popular choices, the table below show all support
 ### Change Log
 
 You can check out the change log for information on latest updates here:
-https://github.com/R-TEK/js_color_pickr/blob/master/CHANGELOG.md
+https://github.com/R-TEK/colr_pickr/blob/master/CHANGELOG.md
 
 ### License
 
 The MIT License - see the link below for more details:
-https://github.com/R-TEK/js_color_pickr/blob/master/LICENSE
+https://github.com/R-TEK/colr_pickr/blob/master/LICENSE

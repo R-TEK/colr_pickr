@@ -1,9 +1,9 @@
 /*!
- * JS Color Pickr
+ * Colr Pickr
  *
  * R-TEK
  *
- * https://github.com/R-TEK/js_color_pickr
+ * https://github.com/R-TEK/colr_pickr
  *
  * MIT License
  */

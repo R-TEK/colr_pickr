@@ -17,7 +17,7 @@ sass.compiler = require('node-sass');
 // Moving, concatenating and minifying my own script (.js) files - DEV BUILD
 gulp.task('devScripts', async function () {
 	gulp.src(['src/js/setup.js', 'src/js/*.js'])
-		.pipe(concatJS('color_pickr.js'))
+		.pipe(concatJS('colr_pickr.js'))
 		.pipe(gulp.dest('build'));
 });
 
@@ -29,7 +29,7 @@ gulp.task('devSass', async function () {
 // Moving, concatenating and minifying my own script (.js) files - PRODUCTION BUILD
 gulp.task('productionScripts', async function () {
 	gulp.src(['src/js/setup.js', 'src/js/*.js'])
-		.pipe(concatJS('color_pickr_min.js'))
+		.pipe(concatJS('colr_pickr_min.js'))
 		.pipe(uglifyJS())
 		.pipe(gulp.dest('build'));
 });
@@ -38,7 +38,7 @@ gulp.task('productionScripts', async function () {
 gulp.task('productionSass', async function () {
 	gulp.src('src/scss/*.scss')
 		.pipe(sass().on('error', sass.logError))
-		.pipe(concatCSS('color_pickr_min.css'))
+		.pipe(concatCSS('colr_pickr_min.css'))
 		.pipe(uglifyCSS())
 		.pipe(gulp.dest('build'));
 });
@@ -47,7 +47,7 @@ gulp.task('productionSass', async function () {
 gulp.task('babelCompiler', async function () {
 	gulp.src(['src/js/setup.js', 'src/js/*.js'])
 		.pipe(plumber())
-		.pipe(concatJS('color_pickr_min_e11.js'))
+		.pipe(concatJS('colr_pickr_min_e11.js'))
 		.pipe(uglifyJS())
 		.pipe(
 			babel({
