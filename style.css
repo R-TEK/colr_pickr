@@ -1,51 +1,68 @@
-body {
-	margin: 0;
+@font-face {
+	font-family: Fredoka;
+	src: url('assets/font/Fredoka_One/FredokaOne-Regular.ttf');
 }
 
-#top {
-	width: 100vw;
-	height: 100vh;
-	background-color: #20232a;
+* {
+	user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-moz-user-select: none;
+}
+
+html {
+	margin: 0;
+	min-height: 100%;
+	background-image: linear-gradient(to bottom, #2b5876, #4e4376);
 	text-align: center;
 }
 
-#top_main {
+body {
+	margin: 50px;
+}
+
+main {
 	position: relative;
-	top: calc(50% - 226px);
+	padding: 10px 0;
+	width: 50%;
+	height: 781px;
+	left: 25%;
+	background-image: linear-gradient(to bottom, #386f94, #605290);
+	border-radius: 20px;
+	box-shadow: -22px 20px 20px 5px #0000003d;
 }
 
 #title {
-	margin: 0 0 75px 0;
-	font-family: Arial;
-	font-size: 90px;
-	background-color: #00b4eb;
-	color: #fff;
-	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 6px 6px 0 #000;
-}
-
-.desc {
-	margin: 10px 0;
-	font-family: Arial;
-	font-size: 27px;
+	margin: 0 0 20px 0;
+	padding: 10px 0 0 0;
+	font-family: Fredoka, Arial, sans-serif;
+	font-size: 70px;
+	font-weight: 400;
 	color: #fff;
 }
 
-#color_picker_starter {
+#file_size {
+	margin: -25px 0 0 0;
+	font-family: Arial;
+	font-size: 16px;
+	color: #fff;
+}
+
+#picker_container {
+	margin: 30px 0 20px 0;
+}
+
+#desc {
+	margin: 60px 0 40px 0;
+	padding: 0 45px;
+	min-height: 42px;
+	font-family: Arial;
+	font-size: 18px;
+	color: #fff;
+}
+
+#links_box {
 	margin: 30px 0 0 0;
-	width: 55px;
-	height: 50px;
-	background-color: #00b4eb;
-	border: 2px solid #fff;
-	outline: 0;
-	cursor: pointer;
-}
-
-.color_input_bg {
-	background-color: #fff;
-}
-
-#top_links {
-	margin: 30px 0;
 }
 
 .links {
@@ -60,6 +77,11 @@ body {
 	font-size: 16px;
 	color: #fff;
 	cursor: pointer;
+	transition: all 0.5s;
+}
+
+.links:hover {
+	background-color: #fff;
 }
 
 #github_icon {
@@ -67,4 +89,64 @@ body {
 	position: relative;
 	bottom: 4px;
 	right: 5px;
+	transition: all 0.5s;
+}
+
+#github:hover #github_icon {
+	fill: #111;
+}
+
+#github_text {
+	transition: all 0.5s;
+}
+
+#github:hover #github_text {
+	color: #111;
+}
+
+#get_starter {
+	transition: all 0.5s;
+}
+
+#get_started:hover {
+	color: #111;
+}
+
+@media only screen and (max-width: 1340px) {
+	main {
+		width: 80%;
+		left: 10%;
+	}
+}
+
+@media only screen and (max-width: 720px) {
+	main {
+		width: 100%;
+		left: 0;
+		background-image: none;
+		box-shadow: none;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	html {
+		background-color: #385f94;
+		background-image: none;
+	}
+
+	body {
+		margin: 10px;
+	}
+
+	main {
+		padding: 0;
+	}
+
+	#desc {
+		padding: 0;
+	}
+
+	.links {
+		margin: 5px 0;
+	}
 }
