@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 	<head>
 		<title>Colr Pickr</title>
 		<meta charset="UTF-8" />
@@ -14,20 +14,20 @@
 		<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png" />
 		<link rel="manifest" href="assets/img/site.webmanifest" />
+		<link rel="stylesheet" type="text/css" href="lib.css" />
 		<link rel="stylesheet" type="text/css" href="style.css" />
-		<link rel="stylesheet" type="text/css" href="lib/color_picker.css" />
 	</head>
 
 	<body>
 		<main>
 			<h1 id="title">Colr Pickr</h1>
 			<p id="file_size">~4kb minzipped JavaScript File Size. No Dependencies.</p>
-			<div id="picker_container"></div>
+			<section id="picker_container"></section>
 			<p id="desc">
 				Colr Pickr, a vanilla JavaScript color picking component built with SVGs, with
 				features like saving colors. Similar design to the chrome-dev-tools color picker.
 			</p>
-			<div id="links_box">
+			<section id="links_box">
 				<a href="https://github.com/R-TEK/colr_pickr"
 					><button id="github" class="links">
 						<svg
@@ -47,10 +47,9 @@
 				<a href="./get_started.html"
 					><button id="get_started" class="links">Get Started</button></a
 				>
-			</div>
+			</section>
 		</main>
-		<script type="text/javascript" src="lib/color_picker.js"></script>
-		<script type="text/javascript" src="lib/typeit.min.js"></script>
+		<script type="text/javascript" src="lib.js"></script>
 		<script type="text/javascript" src="script.js"></script>
 	</body>
 </html>

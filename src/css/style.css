@@ -1,6 +1,6 @@
 @font-face {
 	font-family: Fredoka;
-	src: url('assets/font/Fredoka_One/FredokaOne-Regular.ttf');
+	src: url('../assets/font/Fredoka_One/FredokaOne-Regular.ttf');
 }
 
 * {
@@ -15,6 +15,7 @@ html {
 	min-height: 100%;
 	background-image: linear-gradient(to bottom, #2b5876, #4e4376);
 	text-align: center;
+	overflow-x: hidden;
 }
 
 body {
@@ -35,7 +36,7 @@ main {
 #title {
 	margin: 0 0 20px 0;
 	padding: 10px 0 0 0;
-	font-family: Fredoka, Arial, sans-serif;
+	font-family: Fredoka, Arial, Helvetica, sans-serif;
 	font-size: 70px;
 	font-weight: 400;
 	color: #fff;
@@ -43,7 +44,7 @@ main {
 
 #file_size {
 	margin: -25px 0 0 0;
-	font-family: Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	color: #fff;
 }
@@ -56,7 +57,7 @@ main {
 	margin: 60px 0 40px 0;
 	padding: 0 45px;
 	min-height: 42px;
-	font-family: Arial;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 18px;
 	color: #fff;
 }
