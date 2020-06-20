@@ -14,13 +14,13 @@ gulp.task('productionMarkdowns', async function () {
 				basepath: '@file'
 			})
 		)
-		.pipe(gulp.dest('dist'));
+		.pipe(gulp.dest('./'));
 });
 
 // Moving HTML files to build
 gulp.task('productionMarkups', async function () {
 	gulp.src(['src/html/*.html', '!src/html/README.html', '!src/html/getting_started.html']).pipe(
-		gulp.dest('dist')
+		gulp.dest('./')
 	);
 });
 
