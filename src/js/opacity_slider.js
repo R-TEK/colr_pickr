@@ -79,12 +79,16 @@ document.addEventListener('mouseup', function () {
  */
 
 // Start the slider drag on touch
-document.getElementById('opacity_slider').addEventListener('touchstart', function (event) {
-	// Updating the status
-	colorPicker.opacityStatusTouch = true;
-	// Calling the handler function
-	opacitySliderHandler(event.changedTouches[0].clientX);
-});
+document.getElementById('opacity_slider').addEventListener(
+	'touchstart',
+	function (event) {
+		// Updating the status
+		colorPicker.opacityStatusTouch = true;
+		// Calling the handler function
+		opacitySliderHandler(event.changedTouches[0].clientX);
+	},
+	{ passive: true }
+);
 
 // Moving the slider drag on touch
 document.addEventListener(

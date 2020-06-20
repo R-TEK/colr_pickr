@@ -108,9 +108,13 @@ let clearSingleCustomColorTouch = function (event) {
 		}
 	}
 };
-document.getElementById('custom_colors_box').addEventListener('touchstart', function () {
-	clearSingleCustomColorTouch(event);
-});
+document.getElementById('custom_colors_box').addEventListener(
+	'touchstart',
+	function () {
+		clearSingleCustomColorTouch(event);
+	},
+	{ passive: true }
+);
 
 // Clears all custom colors
 let clearAllCustomColors = function () {

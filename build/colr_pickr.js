@@ -657,9 +657,13 @@ let clearSingleCustomColorTouch = function (event) {
 		}
 	}
 };
-document.getElementById('custom_colors_box').addEventListener('touchstart', function () {
-	clearSingleCustomColorTouch(event);
-});
+document.getElementById('custom_colors_box').addEventListener(
+	'touchstart',
+	function () {
+		clearSingleCustomColorTouch(event);
+	},
+	{ passive: true }
+);
 
 // Clears all custom colors
 let clearAllCustomColors = function () {
@@ -768,12 +772,16 @@ document.addEventListener('mouseup', function () {
  */
 
 // Start the slider drag on touch
-document.getElementById('color_slider').addEventListener('touchstart', function (event) {
-	// Updating the status
-	colorPicker.sliderStatusTouch = true;
-	// Calling the handler function
-	colorSliderHandler(event.changedTouches[0].clientX);
-});
+document.getElementById('color_slider').addEventListener(
+	'touchstart',
+	function (event) {
+		// Updating the status
+		colorPicker.sliderStatusTouch = true;
+		// Calling the handler function
+		colorSliderHandler(event.changedTouches[0].clientX);
+	},
+	{ passive: true }
+);
 
 // Moving the slider drag on touch
 document.addEventListener(
@@ -880,12 +888,16 @@ document.addEventListener('mouseup', function () {
  */
 
 // Start the slider drag on touch
-document.getElementById('opacity_slider').addEventListener('touchstart', function (event) {
-	// Updating the status
-	colorPicker.opacityStatusTouch = true;
-	// Calling the handler function
-	opacitySliderHandler(event.changedTouches[0].clientX);
-});
+document.getElementById('opacity_slider').addEventListener(
+	'touchstart',
+	function (event) {
+		// Updating the status
+		colorPicker.opacityStatusTouch = true;
+		// Calling the handler function
+		opacitySliderHandler(event.changedTouches[0].clientX);
+	},
+	{ passive: true }
+);
 
 // Moving the slider drag on touch
 document.addEventListener(
@@ -1013,12 +1025,16 @@ document.addEventListener('mouseup', function (event) {
  */
 
 // Start the box drag on touch
-document.getElementById('color_box').addEventListener('touchstart', function (event) {
-	// Updating the status
-	colorPicker.boxStatusTouch = true;
-	// Calling the handler function
-	colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY, true);
-});
+document.getElementById('color_box').addEventListener(
+	'touchstart',
+	function (event) {
+		// Updating the status
+		colorPicker.boxStatusTouch = true;
+		// Calling the handler function
+		colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY, true);
+	},
+	{ passive: true }
+);
 
 // Moving the box drag on touch
 document.addEventListener(

@@ -100,12 +100,16 @@ document.addEventListener('mouseup', function (event) {
  */
 
 // Start the box drag on touch
-document.getElementById('color_box').addEventListener('touchstart', function (event) {
-	// Updating the status
-	colorPicker.boxStatusTouch = true;
-	// Calling the handler function
-	colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY, true);
-});
+document.getElementById('color_box').addEventListener(
+	'touchstart',
+	function (event) {
+		// Updating the status
+		colorPicker.boxStatusTouch = true;
+		// Calling the handler function
+		colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY, true);
+	},
+	{ passive: true }
+);
 
 // Moving the box drag on touch
 document.addEventListener(

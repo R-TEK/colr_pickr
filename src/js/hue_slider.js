@@ -83,12 +83,16 @@ document.addEventListener('mouseup', function () {
  */
 
 // Start the slider drag on touch
-document.getElementById('color_slider').addEventListener('touchstart', function (event) {
-	// Updating the status
-	colorPicker.sliderStatusTouch = true;
-	// Calling the handler function
-	colorSliderHandler(event.changedTouches[0].clientX);
-});
+document.getElementById('color_slider').addEventListener(
+	'touchstart',
+	function (event) {
+		// Updating the status
+		colorPicker.sliderStatusTouch = true;
+		// Calling the handler function
+		colorSliderHandler(event.changedTouches[0].clientX);
+	},
+	{ passive: true }
+);
 
 // Moving the slider drag on touch
 document.addEventListener(

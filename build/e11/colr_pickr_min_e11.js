@@ -191,6 +191,8 @@ var clearSingleCustomColorTouch = function clearSingleCustomColorTouch(t) {
 
 document.getElementById("custom_colors_box").addEventListener("touchstart", function () {
   clearSingleCustomColorTouch(event);
+}, {
+  passive: !0
 });
 
 var clearAllCustomColors = function clearAllCustomColors() {
@@ -227,6 +229,8 @@ document.getElementById("color_slider").addEventListener("mousedown", function (
   !0 === colorPicker.sliderStatus && (colorPicker.sliderStatus = !1);
 }), document.getElementById("color_slider").addEventListener("touchstart", function (t) {
   colorPicker.sliderStatusTouch = !0, colorSliderHandler(t.changedTouches[0].clientX);
+}, {
+  passive: !0
 }), document.addEventListener("touchmove", function () {
   !0 === colorPicker.sliderStatusTouch && (event.preventDefault(), colorSliderHandler(event.changedTouches[0].clientX));
 }, {
@@ -254,6 +258,8 @@ document.getElementById("opacity_slider").addEventListener("mousedown", function
   !0 === colorPicker.opacityStatus && (colorPicker.opacityStatus = !1);
 }), document.getElementById("opacity_slider").addEventListener("touchstart", function (t) {
   colorPicker.opacityStatusTouch = !0, opacitySliderHandler(t.changedTouches[0].clientX);
+}, {
+  passive: !0
 }), document.addEventListener("touchmove", function () {
   !0 === colorPicker.opacityStatusTouch && (event.preventDefault(), opacitySliderHandler(event.changedTouches[0].clientX));
 }, {
@@ -285,6 +291,8 @@ document.getElementById("color_box").addEventListener("mousedown", function (t) 
   !0 === colorPicker.boxStatus && (colorPicker.boxStatus = !1);
 }), document.getElementById("color_box").addEventListener("touchstart", function (t) {
   colorPicker.boxStatusTouch = !0, colorBoxHandler(t.changedTouches[0].clientX, t.changedTouches[0].clientY, !0);
+}, {
+  passive: !0
 }), document.addEventListener("touchmove", function () {
   !0 === colorPicker.boxStatusTouch && (event.preventDefault(), colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY, !0));
 }, {
