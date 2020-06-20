@@ -1,4 +1,3 @@
-<!-- prettier-ignore -->
 <h1 align="center" style="color: rgb(7, 128, 228)">
     <a href="https://r-tek.github.io/colr_pickr/" target="blank">
         <img height="340" src="/assets/img/interface_view.png"/>
@@ -23,8 +22,8 @@
     </a>
     <a href="https://bundlephobia.com/result?p=js_color_pickr@1.0.0">
         <img src="https://badgen.net/bundlephobia/minzip/js_color_pickr?color=158fcc" alt="minzip size" />
+		<a href="https://lgtm.com/projects/g/R-TEK/js_color_pickr/context:javascript"><img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/R-TEK/js_color_pickr.svg?logo=lgtm&logoWidth=18"/></a>
     </a>
-	<a href="https://lgtm.com/projects/g/R-TEK/colr_pickr/context:javascript"><img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/R-TEK/colr_pickr.svg?logo=lgtm&logoWidth=18"/></a>
 </p>
 
 <br/>
@@ -145,3 +144,7 @@ https://github.com/R-TEK/colr_pickr/blob/master/CHANGELOG.md
 
 The MIT License - see the link below for more details:
 https://github.com/R-TEK/colr_pickr/blob/master/LICENSE
+
+---
+
+&copy; [R-TEK](https://github.com/R-TEK)
