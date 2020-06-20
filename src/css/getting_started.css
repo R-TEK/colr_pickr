@@ -8,7 +8,6 @@ body {
 }
 
 header {
-	margin: 0 0 50px 0;
 	height: 300px;
 	background-image: linear-gradient(to left, #2b5876, #4e4376);
 	box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.44);
@@ -30,25 +29,38 @@ article {
 }
 
 h2 {
+	margin: 50px 0;
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-#mypicker {
-	width: 40px;
+.btn {
+	width: 100px;
 	height: 40px;
 	background: none;
-	border: 2px solid #000;
-	border-radius: 50%;
+	border: 2px solid #a7a7a7;
+	border-radius: 2px;
 	outline: none;
+	font-family: Arial, Helvetica, sans-serif`;
+	font-weight: 600;
+	color: #fff;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 	cursor: pointer;
 }
 
 #listener {
 	margin: 15px 0;
+	padding: 10px;
 	width: 300px;
-	height: 43px;
-	background: #f00000;
-	border-radius: 5px;
+	height: 200px;
+	background: #2e5776;
+	border: 5px solid #4e4376;
+	border-radius: 2px;
+	box-sizing: border-box;
+	overflow-wrap: break-word;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	color: #fff;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 p {
