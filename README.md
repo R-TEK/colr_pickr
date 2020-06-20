@@ -59,14 +59,14 @@
     ```html
     <script
     	type="text/javascript"
-    	src="https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.0/build/color_pickr_min.js"
+    	src="https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.0/build/color_picker.js"
     ></script>
     ```
     ```html
     <link
     	rel="stylesheet"
     	type="text/css"
-    	href="https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.0/build/color_pickr_min.css"
+    	href="https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.0/build/color_picker.css"
     />
     ```
 
