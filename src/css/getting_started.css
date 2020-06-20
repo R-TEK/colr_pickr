@@ -99,7 +99,13 @@ p {
 	}
 
 	h1 {
-		padding: 86px 20px;
-		font-size: 20px;
+		margin: 0;
+		padding: 52px 20px;
+		font-size: 37px;
+		text-align: center;
+	}
+
+	.github-corner {
+		display: none;
 	}
 }
