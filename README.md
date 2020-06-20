@@ -34,14 +34,14 @@
 
 -   Drag interactive color picker allowing for easy use of finding colors, including a Saturation and Lightness box, Hue slider and Opacity slider
 -   Reads and outputs HEX(with Alpha), RGBA and HSLA color values
--   Save custom colors to re-use on return to the color picker (saved to local storage)
+-   Save custom colors to re-use on return to the color picker
 -   Full Touch Support
 -   ~4kb file size, meaning a super fast component of your application
--   Flat and modern design interface, inspired by google-chrome-dev tools color picker
+-   Flat and modern design interface, inspired by google chrome dev-tools color picker
 
 ### Examples:
 
--   https://r-tek.github.io/colr_pickr/
+-   https://r-tek.github.io/colr_pickr/getting_started.html
 -   https://codepen.io/TEK-Projects/pen/mdVRPZa#unsupported-modal
 
 ### Getting Started:
@@ -59,20 +59,20 @@
     ```html
     <script
     	type="text/javascript"
-    	src="https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.1/build/color_pickr_min.js"
+    	src="https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.0/build/color_pickr_min.js"
     ></script>
     ```
     ```html
     <link
     	rel="stylesheet"
     	type="text/css"
-    	href="https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.1/build/color_pickr_min.css"
+    	href="https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.0/build/color_pickr_min.css"
     />
     ```
 
 <br />
 
--   Alternatively, you could clone/download the zip. Under the /build directory, include the `colr_pickr_min.js` and the `colr_pickr_min.css` in your project.
+-   Alternatively, you could clone/download the repository. Under the /build directory, include the `colr_pickr_min.js` and the `colr_pickr_min.css` in your project.
 
 ###### Usage
 

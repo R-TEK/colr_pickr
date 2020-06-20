@@ -131,7 +131,7 @@ function ColorPicker(element, color) {
 			</svg>
 		</div>
 		<div id="color_text_values">
-			<button id="switch_color_type">
+			<button id="switch_color_type" name="switch-color-type">
 				<svg viewBox="0 0 24 24" width="20" height="20">
 					<path fill="#555" d="M6 11v-4l-6 5 6 5v-4h12v4l6-5-6-5v4z"/>
 				</svg>
@@ -189,7 +189,7 @@ function ColorPicker(element, color) {
 		<div id="custom_colors">
 			<h6 id="custom_colors_title">Custom Colors:</h6>
 			<div id="custom_colors_box">
-				<button id="custom_colors_add">
+				<button id="custom_colors_add" name="add-a-custom-color">
 				<svg viewBox="0 0 24 24" width="12" height="14">
 					<path fill="#555" d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/>
 				</svg>
@@ -197,8 +197,8 @@ function ColorPicker(element, color) {
 			</div>
 		</div>
 		<div id="color_context_menu" class="color_ctx_menu">
-			<button id="color_clear_single" class="color_ctx_menu">Remove Color</button>
-			<button id="color_clear_all" class="color_ctx_menu">Remove All</button>
+			<button id="color_clear_single" class="color_ctx_menu" name="remove-single-color">Remove Color</button>
+			<button id="color_clear_all" class="color_ctx_menu" name="remove-all-colors">Remove All</button>
 		</div>
 	`;
 
