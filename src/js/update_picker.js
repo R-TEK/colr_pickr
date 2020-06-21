@@ -41,10 +41,12 @@ let updateColorDisplays = function (color) {
 	// Updating color preview and box hue color initially
 	document
 		.getElementById('color_picked_preview')
-		.children[0].setAttribute('fill', `hsl(${color.h}, ${color.s}%, ${color.l}%, ${color.a}`);
-	document.getElementById(
-		'saturation'
-	).children[1].attributes[1].nodeValue = `hsl(${color.h}, 100%, 50%)`;
+		.children[0].setAttribute('fill', `hsla(${color.h}, ${color.s}%, ${color.l}%, ${color.a}`);
+
+	// Updating the Hue color in the Saturation and lightness box
+	document
+		.getElementById('saturation')
+		.children[1].setAttribute('stop-color', `hsl(${HColor}, 100%, 50%)`);
 
 	// Color box (saturation and lightness) config
 	// Defining the box and dragger

@@ -254,7 +254,7 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 
 	// Calling Event to make all the necessary changes
 	colorChange(
-		`hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
+		`hsla(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
 	);
 });
 
@@ -542,7 +542,7 @@ document.querySelectorAll('.hsla_input').forEach((element) => {
 
 		// Updating the picker
 		updateColorDisplays(
-			`hsl(${hslaInput[0].value}, ${hslaInput[1].value}%, ${hslaInput[2].value}%, ${hslaInput[3].value})`
+			`hsla(${hslaInput[0].value}, ${hslaInput[1].value}%, ${hslaInput[2].value}%, ${hslaInput[3].value})`
 		);
 	});
 });
@@ -569,7 +569,7 @@ let addCustomColor = function () {
 		document.getElementById('custom_colors_add').style.display = 'none';
 
 	// Getting the color
-	const color = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
+	const color = `hsla(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
 
 	// Creating the element
 	let customColorElem = document.createElement('BUTTON');
@@ -723,15 +723,15 @@ let colorSliderHandler = function (position) {
 	colorPicker.hue = HColor;
 
 	// Full HSLA color
-	const HSLA = `hsl(${HColor}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
+	const HSLA = `hsla(${HColor}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
 
 	// Updating the color for the color preview
 	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
 
 	// Updating the Hue color in the Saturation and lightness box
-	document.getElementById(
-		'saturation'
-	).children[1].attributes[1].nodeValue = `hsl(${HColor}, 100%, 50%)`;
+	document
+		.getElementById('saturation')
+		.children[1].setAttribute('stop-color', `hsl(${HColor}, 100%, 50%)`);
 
 	// Update the color text values
 	updateColorValueInput();
@@ -844,7 +844,8 @@ let opacitySliderHandler = function (position) {
 	colorPicker.alpha = alpha;
 
 	// Full HSLA color
-	const HSLA = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${alpha})`;
+	const HSLA = `hsla(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${alpha})`;
+console.log(HSLA)
 
 	// Updating the color for the color preview
 	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
@@ -981,7 +982,7 @@ let colorBoxHandler = function (positionX, positionY, touch) {
 	colorPicker.lightness = LPercent;
 
 	// Full HSLA color
-	const HSLA = `hsl(${colorPicker.hue}, ${SPercent}%, ${LPercent}%, ${colorPicker.alpha})`;
+	const HSLA = `hsla(${colorPicker.hue}, ${SPercent}%, ${LPercent}%, ${colorPicker.alpha})`;
 
 	// Applying the color to the color preview
 	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
@@ -1103,10 +1104,12 @@ let updateColorDisplays = function (color) {
 	// Updating color preview and box hue color initially
 	document
 		.getElementById('color_picked_preview')
-		.children[0].setAttribute('fill', `hsl(${color.h}, ${color.s}%, ${color.l}%, ${color.a}`);
-	document.getElementById(
-		'saturation'
-	).children[1].attributes[1].nodeValue = `hsl(${color.h}, 100%, 50%)`;
+		.children[0].setAttribute('fill', `hsla(${color.h}, ${color.s}%, ${color.l}%, ${color.a}`);
+
+	// Updating the Hue color in the Saturation and lightness box
+	document
+		.getElementById('saturation')
+		.children[1].setAttribute('stop-color', `hsl(${HColor}, 100%, 50%)`);
 
 	// Color box (saturation and lightness) config
 	// Defining the box and dragger

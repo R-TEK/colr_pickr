@@ -35,7 +35,8 @@ let opacitySliderHandler = function (position) {
 	colorPicker.alpha = alpha;
 
 	// Full HSLA color
-	const HSLA = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${alpha})`;
+	const HSLA = `hsla(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${alpha})`;
+console.log(HSLA)
 
 	// Updating the color for the color preview
 	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);

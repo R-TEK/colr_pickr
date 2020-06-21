@@ -111,7 +111,7 @@ document.querySelectorAll('.hsla_input').forEach((element) => {
 
 		// Updating the picker
 		updateColorDisplays(
-			`hsl(${hslaInput[0].value}, ${hslaInput[1].value}%, ${hslaInput[2].value}%, ${hslaInput[3].value})`
+			`hsla(${hslaInput[0].value}, ${hslaInput[1].value}%, ${hslaInput[2].value}%, ${hslaInput[3].value})`
 		);
 	});
 });

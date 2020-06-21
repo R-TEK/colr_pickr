@@ -34,15 +34,15 @@ let colorSliderHandler = function (position) {
 	colorPicker.hue = HColor;
 
 	// Full HSLA color
-	const HSLA = `hsl(${HColor}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
+	const HSLA = `hsla(${HColor}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
 
 	// Updating the color for the color preview
 	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
 
 	// Updating the Hue color in the Saturation and lightness box
-	document.getElementById(
-		'saturation'
-	).children[1].attributes[1].nodeValue = `hsl(${HColor}, 100%, 50%)`;
+	document
+		.getElementById('saturation')
+		.children[1].setAttribute('stop-color', `hsl(${HColor}, 100%, 50%)`);
 
 	// Update the color text values
 	updateColorValueInput();

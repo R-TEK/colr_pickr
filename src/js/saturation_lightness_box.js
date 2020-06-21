@@ -56,7 +56,7 @@ let colorBoxHandler = function (positionX, positionY, touch) {
 	colorPicker.lightness = LPercent;
 
 	// Full HSLA color
-	const HSLA = `hsl(${colorPicker.hue}, ${SPercent}%, ${LPercent}%, ${colorPicker.alpha})`;
+	const HSLA = `hsla(${colorPicker.hue}, ${SPercent}%, ${LPercent}%, ${colorPicker.alpha})`;
 
 	// Applying the color to the color preview
 	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);

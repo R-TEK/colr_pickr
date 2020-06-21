@@ -37,6 +37,7 @@
 -   Save custom colors to re-use on return to the color picker
 -   Full Touch Support
 -   ~4kb file size, meaning a super fast component of your application
+-   Works on all major browsers (tested on Chrome, Firefox, Edge(Legacy and Chromium version), and more)
 -   Flat and modern design interface, inspired by google chrome dev-tools color picker
 
 ### Examples:
@@ -135,12 +136,17 @@ Colr Pickr support all the popular choices, the table below show all supported v
 | `hsl`       | `"hsl(360, 100%, 50%)"`     |
 | `hsla`      | `"hsla(360, 100%, 50%, 1)"` |
 
-### Change Log
+### Changelog:
 
 You can check out the change log for information on latest updates here:
 https://github.com/R-TEK/colr_pickr/blob/master/CHANGELOG.md
 
-### License
+### Contribution:
+
+Read the contribution file for details on developing with the project. You can find the file here:
+https://github.com/R-TEK/colr_pickr/blob/master/CONTRIBUTION.md
+
+### License:
 
 The MIT License - see the link below for more details:
 https://github.com/R-TEK/colr_pickr/blob/master/LICENSE

@@ -20,7 +20,7 @@ let addCustomColor = function () {
 		document.getElementById('custom_colors_add').style.display = 'none';
 
 	// Getting the color
-	const color = `hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
+	const color = `hsla(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
 
 	// Creating the element
 	let customColorElem = document.createElement('BUTTON');

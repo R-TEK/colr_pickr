@@ -254,6 +254,6 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 
 	// Calling Event to make all the necessary changes
 	colorChange(
-		`hsl(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
+		`hsla(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
 	);
 });

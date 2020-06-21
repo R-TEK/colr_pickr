@@ -2,7 +2,7 @@
  * Gulp File
  */
 
-// Defining require dependencies
+// Importing required dependencies
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const plumber = require('gulp-plumber');
@@ -51,8 +51,6 @@ gulp.task('productionSass', async function () {
 gulp.task('babelCompiler', async function () {
 	gulp.src(['src/js/setup.js', 'src/js/*.js'])
 		.pipe(plumber())
-		.pipe(concatJS('colr_pickr_min_e11.js'))
-		.pipe(uglifyJS())
 		.pipe(
 			babel({
 				presets: [
@@ -65,6 +63,8 @@ gulp.task('babelCompiler', async function () {
 				]
 			})
 		)
+		.pipe(concatJS('colr_pickr_min.js'))
+		.pipe(uglifyJS())
 		.pipe(gulp.dest('build/e11'));
 });
 
