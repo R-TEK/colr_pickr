@@ -2,24 +2,40 @@
 
 -   Drag interactive color picker allowing for easy use of finding colors, including a Saturation and Lightness box, Hue slider and Opacity slider
 -   Reads and outputs HEX(with Alpha), RGBA and HSLA color values
--   Save custom colors to re-use on return to the color picker (saved to local storage)
+-   Save custom colors to re-use on return to the color picker
 -   Full Touch Support
 -   ~4kb file size, meaning a super fast component of your application
--   Flat and modern design interface, inspired by google-chrome-dev tools color picker
+-   Works on all major browsers (tested on Chrome, Firefox, Edge(Legacy and Chromium version), and more)
+-   Flat and modern design interface, inspired by google chrome dev-tools color picker
 
 ### Examples:
 
--   https://r-tek.github.io/colr_pickr/
--   https://codepen.io/TEK-Projects/pen/mdVRPZa#unsupported-modal
+-   https://r-tek.github.io/colr_pickr/getting_started.html
+-   https://codepen.io/TEK-Projects/pen/mdVRPZa
 
 ### Getting Started:
 
 ###### Installation
 
 -   Install with NPM:
-    ```javascript
-    Available Soon
+
+    ```shell
+    $ npm i @r-tek/colr_pickr
     ```
+
+    If you are using a bundler like Webpack, you can import the module:
+
+    ```javascript
+    // ES6
+    import pickr from '@r-tek/colr_pickr';
+
+    // OR
+
+    // CommonJs
+    const pickr = require('@r-tek/colr_pickr');
+    ```
+
+    For now, you'll need to bring in the CSS file through one of the methods below.
 
 <br />
 
@@ -27,20 +43,20 @@
     ```html
     <script
     	type="text/javascript"
-    	src="https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.1/build/color_pickr_min.js"
+    	src="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.0.0/build/colr_pickr_min.js"
     ></script>
     ```
     ```html
     <link
     	rel="stylesheet"
     	type="text/css"
-    	href="https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.1/build/color_pickr_min.css"
+    	href="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.0.0/build/colr_pickr_min.css"
     />
     ```
 
 <br />
 
--   Alternatively, you could clone/download the zip. Under the /build directory, include the `colr_pickr_min.js` and the `colr_pickr_min.css` in your project.
+-   Alternatively, you could clone/download the repository. Under the /build directory, include the `colr_pickr_min.js` and the `colr_pickr_min.css` in your project.
 
 ###### Usage
 
@@ -103,12 +119,17 @@ Colr Pickr support all the popular choices, the table below show all supported v
 | `hsl`       | `"hsl(360, 100%, 50%)"`     |
 | `hsla`      | `"hsla(360, 100%, 50%, 1)"` |
 
-### Change Log
+### Changelog:
 
 You can check out the change log for information on latest updates here:
 https://github.com/R-TEK/colr_pickr/blob/master/CHANGELOG.md
 
-### License
+### Contribution:
+
+Read the contribution file for details on developing with the project. You can find the file here:
+https://github.com/R-TEK/colr_pickr/blob/master/CONTRIBUTION.md
+
+### License:
 
 The MIT License - see the link below for more details:
 https://github.com/R-TEK/colr_pickr/blob/master/LICENSE

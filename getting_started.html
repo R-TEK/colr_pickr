@@ -102,20 +102,31 @@
 <ul>
 <li>Drag interactive color picker allowing for easy use of finding colors, including a Saturation and Lightness box, Hue slider and Opacity slider</li>
 <li>Reads and outputs HEX(with Alpha), RGBA and HSLA color values</li>
-<li>Save custom colors to re-use on return to the color picker (saved to local storage)</li>
+<li>Save custom colors to re-use on return to the color picker</li>
 <li>Full Touch Support</li>
 <li>~4kb file size, meaning a super fast component of your application</li>
-<li>Flat and modern design interface, inspired by google-chrome-dev tools color picker</li>
+<li>Works on all major browsers (tested on Chrome, Firefox, Edge(Legacy and Chromium version), and more)</li>
+<li>Flat and modern design interface, inspired by google chrome dev-tools color picker</li>
 </ul>
 <h3 id="examples">Examples:</h3>
 <ul>
-<li><a href="https://r-tek.github.io/colr_pickr/">https://r-tek.github.io/colr_pickr/</a></li>
-<li><a href="https://codepen.io/TEK-Projects/pen/mdVRPZa#unsupported-modal">https://codepen.io/TEK-Projects/pen/mdVRPZa#unsupported-modal</a></li>
+<li><a href="https://r-tek.github.io/colr_pickr/getting_started.html">https://r-tek.github.io/colr_pickr/getting_started.html</a></li>
+<li><a href="https://codepen.io/TEK-Projects/pen/mdVRPZa">https://codepen.io/TEK-Projects/pen/mdVRPZa</a></li>
 </ul>
 <h3 id="getting-started">Getting Started:</h3>
 <h6 id="installation">Installation</h6>
 <ul>
-<li>Install with NPM:<pre><code class="language-javascript">Available Soon</code></pre>
+<li><p>Install with NPM:</p>
+<pre><code class="language-shell">$ npm i @r-tek/colr_pickr</code></pre>
+<p>If you are using a bundler like Webpack, you can import the module:</p>
+<pre><code class="language-javascript">// ES6
+import pickr from &#39;@r-tek/colr_pickr&#39;;
+
+// OR
+
+// CommonJs
+const pickr = require(&#39;@r-tek/colr_pickr&#39;);</code></pre>
+<p>For now, you&#39;ll need to bring in the CSS file through one of the methods below.</p>
 </li>
 </ul>
 <br />
@@ -123,19 +134,19 @@
 <ul>
 <li>Using the CDN via jsDelivr:<pre><code class="language-html">&lt;script
     type=&quot;text/javascript&quot;
-    src=&quot;https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.1/build/color_pickr_min.js&quot;
+    src=&quot;https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.0.0/build/colr_pickr_min.js&quot;
 &gt;&lt;/script&gt;</code></pre>
 <pre><code class="language-html">&lt;link
     rel=&quot;stylesheet&quot;
     type=&quot;text/css&quot;
-    href=&quot;https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.1/build/color_pickr_min.css&quot;
+    href=&quot;https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.0.0/build/colr_pickr_min.css&quot;
 /&gt;</code></pre>
 </li>
 </ul>
 <br />
 
 <ul>
-<li>Alternatively, you could clone/download the zip. Under the /build directory, include the <code>colr_pickr_min.js</code> and the <code>colr_pickr_min.css</code> in your project.</li>
+<li>Alternatively, you could clone/download the repository. Under the /build directory, include the <code>colr_pickr_min.js</code> and the <code>colr_pickr_min.css</code> in your project.</li>
 </ul>
 <h6 id="usage">Usage</h6>
 <pre><code class="language-html">&lt;!-- Add a button to your HTML document and give it any ID --&gt;
@@ -215,10 +226,13 @@ Colr Pickr support all the popular choices, the table below show all supported v
 <td align="left"><code>&quot;hsla(360, 100%, 50%, 1)&quot;</code></td>
 </tr>
 </tbody></table>
-<h3 id="change-log">Change Log</h3>
+<h3 id="changelog">Changelog:</h3>
 <p>You can check out the change log for information on latest updates here:
 <a href="https://github.com/R-TEK/colr_pickr/blob/master/CHANGELOG.md">https://github.com/R-TEK/colr_pickr/blob/master/CHANGELOG.md</a></p>
-<h3 id="license">License</h3>
+<h3 id="contribution">Contribution:</h3>
+<p>Read the contribution file for details on developing with the project. You can find the file here:
+<a href="https://github.com/R-TEK/colr_pickr/blob/master/CONTRIBUTION.md">https://github.com/R-TEK/colr_pickr/blob/master/CONTRIBUTION.md</a></p>
+<h3 id="license">License:</h3>
 <p>The MIT License - see the link below for more details:
 <a href="https://github.com/R-TEK/colr_pickr/blob/master/LICENSE">https://github.com/R-TEK/colr_pickr/blob/master/LICENSE</a></p>
 <hr>

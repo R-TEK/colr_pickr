@@ -129,7 +129,7 @@ main {
 	}
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 490px) {
 	html {
 		background-color: #385f94;
 		background-image: none;
