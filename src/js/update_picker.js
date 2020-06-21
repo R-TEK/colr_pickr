@@ -83,8 +83,6 @@ let updateColorDisplays = function (color) {
 	// Calculating x value
 	let alphaX = (266 / 100) * (color.a * 100) + 11;
 
-	console.log(alphaX);
-
 	// Making changes the the UI
 	alphaSliderDragger.attributes.x.nodeValue = alphaX;
 };
