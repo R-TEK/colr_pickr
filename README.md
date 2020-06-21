@@ -20,7 +20,7 @@
     <a href="https://www.npmjs.com/package/@r-tek/colr_pickr">
         <img src="https://badgen.net/npm/v/@r-tek/colr_pickr?color=7000c5" alt="version" />
     </a>
-    <a href="https://bundlephobia.com/result?p=r-@tek/colr_pickr@1.0.0">
+    <a href="https://bundlephobia.com/result?p=@r-tek/colr_pickr@1.0.0">
         <img src="https://badgen.net/bundlephobia/minzip/@r-tek/colr_pickr?color=158fcc" alt="minzip size" />
     </a>
     <a href="https://lgtm.com/projects/g/R-TEK/colr_pickr/context:javascript">
