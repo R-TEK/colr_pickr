@@ -23,9 +23,9 @@
     <a href="https://bundlephobia.com/result?p=r-@tek/colr_pickr@1.0.0">
         <img src="https://badgen.net/bundlephobia/minzip/@r-tek/colr_pickr?color=158fcc" alt="minzip size" />
     </a>
-	<a href="https://lgtm.com/projects/g/R-TEK/js_color_pickr/context:javascript">
-		<img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/R-TEK/js_color_pickr.svg?logo=lgtm&logoWidth=18"/>
-	</a>
+    <a href="https://lgtm.com/projects/g/R-TEK/colr_pickr/context:javascript">
+        <img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/R-TEK/colr_pickr.svg?logo=lgtm&logoWidth=18"/>
+    </a>
 </p>
 
 <br/>
@@ -57,7 +57,7 @@
     $ npm i @r-tek/colr_pickr
     ```
 
-    If you are using a bundler like Webpack, you can require the module:
+    If you are using a bundler like Webpack, you can import the module:
 
     ```javascript
     // ES6
@@ -69,7 +69,7 @@
     const pickr = require('@r-tek/colr_pickr');
     ```
 
-    For now, you'll need to bring in the CSS file through one of the bottom methods.
+    For now, you'll need to bring in the CSS file through one of the methods below.
 
 <br />
 
