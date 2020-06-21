@@ -2,13 +2,17 @@
 
 ---
 
+### Get the project:
+
+Clone/Download the latest version of the repository from the master branch.
+
 ### Install dependencies:
 
 ```shell
 $ npm install
 ```
 
-### Watch change for gulp dev building:
+### Watch changes for gulp dev building:
 
 ```shell
 $ gulp watch

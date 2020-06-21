@@ -1109,7 +1109,7 @@ let updateColorDisplays = function (color) {
 	// Updating the Hue color in the Saturation and lightness box
 	document
 		.getElementById('saturation')
-		.children[1].setAttribute('stop-color', `hsl(${HColor}, 100%, 50%)`);
+		.children[1].setAttribute('stop-color', `hsl(${color.h}, 100%, 50%)`);
 
 	// Color box (saturation and lightness) config
 	// Defining the box and dragger
@@ -1145,6 +1145,8 @@ let updateColorDisplays = function (color) {
 
 	// Calculating x value
 	let alphaX = (266 / 100) * (color.a * 100) + 11;
+
+	console.log(alphaX);
 
 	// Making changes the the UI
 	alphaSliderDragger.attributes.x.nodeValue = alphaX;

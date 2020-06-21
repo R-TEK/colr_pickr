@@ -17,13 +17,15 @@
     <a href="https://github.com/R-TEK/colr_pickr/graphs/contributors">
         <img src="https://badgen.net/badge/maintained/Yes?color=008c17">
     </a>
-    <a href="https://www.npmjs.com/package/js_color_pickr">
-        <img src="https://badgen.net/npm/v/js_color_pickr?color=7000c5" alt="version" />
+    <a href="https://www.npmjs.com/package/@r-tek/colr_pickr">
+        <img src="https://badgen.net/npm/v/@r-tek/colr_pickr?color=7000c5" alt="version" />
     </a>
-    <a href="https://bundlephobia.com/result?p=js_color_pickr@1.0.0">
-        <img src="https://badgen.net/bundlephobia/minzip/js_color_pickr?color=158fcc" alt="minzip size" />
-		<a href="https://lgtm.com/projects/g/R-TEK/js_color_pickr/context:javascript"><img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/R-TEK/js_color_pickr.svg?logo=lgtm&logoWidth=18"/></a>
+    <a href="https://bundlephobia.com/result?p=r-@tek/colr_pickr@1.0.0">
+        <img src="https://badgen.net/bundlephobia/minzip/@r-tek/colr_pickr?color=158fcc" alt="minzip size" />
     </a>
+	<a href="https://lgtm.com/projects/g/R-TEK/js_color_pickr/context:javascript">
+		<img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/R-TEK/js_color_pickr.svg?logo=lgtm&logoWidth=18"/>
+	</a>
 </p>
 
 <br/>
@@ -43,16 +45,31 @@
 ### Examples:
 
 -   https://r-tek.github.io/colr_pickr/getting_started.html
--   https://codepen.io/TEK-Projects/pen/mdVRPZa#unsupported-modal
+-   https://codepen.io/TEK-Projects/pen/mdVRPZa
 
 ### Getting Started:
 
 ###### Installation
 
 -   Install with NPM:
-    ```javascript
-    Available Soon
+
+    ```shell
+    $ npm i @r-tek/colr_pickr
     ```
+
+    If you are using a bundler like Webpack, you can require the module:
+
+    ```javascript
+    // ES6
+    import pickr from '@r-tek/colr_pickr';
+
+    // OR
+
+    // CommonJs
+    const pickr = require('@r-tek/colr_pickr');
+    ```
+
+    For now, you'll need to bring in the CSS file through one of the bottom methods.
 
 <br />
 
@@ -60,14 +77,14 @@
     ```html
     <script
     	type="text/javascript"
-    	src="https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.0/build/color_picker.js"
+    	src="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.0.0/build/colr_pickr_min.js"
     ></script>
     ```
     ```html
     <link
     	rel="stylesheet"
     	type="text/css"
-    	href="https://cdn.jsdelivr.net/npm/js_color_pickr@1.0.0/build/color_picker.css"
+    	href="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.0.0/build/colr_pickr_min.css"
     />
     ```
 
