@@ -156,16 +156,21 @@ Colr Pickr support all the popular choices, the table below show all supported v
 ### Changelog:
 
 You can check out the change log for information on latest updates here:
+
 https://github.com/R-TEK/colr_pickr/blob/master/CHANGELOG.md
 
 ### Contribution:
 
 Read the contribution file for details on developing with the project. You can find the file here:
+
 https://github.com/R-TEK/colr_pickr/blob/master/CONTRIBUTION.md
+
+You can also contribute by issuing any bugs you have found or ideas for new features/optimizations to improve the component. You can do this by going to the [issues](https://github.com/R-TEK/colr_pickr/issues) page and posting your bug / feature. Once I have read the issue, I'll add it to a [Trello](https://trello.com/b/cznKuYCL) road map. With the road map you can vote for items I have added if you like that feature too, and you can view what has been accepted/rejected, what I'm working on and what has been completed.
 
 ### License:
 
 The MIT License - see the link below for more details:
+
 https://github.com/R-TEK/colr_pickr/blob/master/LICENSE
 
 ---
