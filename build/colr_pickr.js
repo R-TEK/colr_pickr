@@ -845,7 +845,6 @@ let opacitySliderHandler = function (position) {
 
 	// Full HSLA color
 	const HSLA = `hsla(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${alpha})`;
-console.log(HSLA)
 
 	// Updating the color for the color preview
 	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
@@ -1145,8 +1144,6 @@ let updateColorDisplays = function (color) {
 
 	// Calculating x value
 	let alphaX = (266 / 100) * (color.a * 100) + 11;
-
-	console.log(alphaX);
 
 	// Making changes the the UI
 	alphaSliderDragger.attributes.x.nodeValue = alphaX;
