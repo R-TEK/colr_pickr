@@ -253,7 +253,10 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 	document.getElementById('color_picker_bg').style.display = 'none';
 
 	// Calling Event to make all the necessary changes
-	colorChange(
-		`hsla(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
-	);
+	colorChange({
+		h: colorPicker.hue,
+		s: colorPicker.saturation,
+		l: colorPicker.lightness,
+		a: colorPicker.alpha
+	});
 });

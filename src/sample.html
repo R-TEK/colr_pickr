@@ -200,6 +200,7 @@
 			let background = new ColorPicker(document.getElementById('background'), '#ff0000');
 
 			document.getElementById('title').addEventListener('colorChange', function () {
+				console.log(event.detail);
 				document.getElementById('ti').style.color = event.detail.color;
 			});
 			document.getElementById('text').addEventListener('colorChange', function () {
