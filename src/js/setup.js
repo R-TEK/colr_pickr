@@ -41,7 +41,16 @@ let colorPicker = {
  */
 window.LSCustomColors = { 0: [] };
 
-// Constructor
+/**
+ * Constructor - to create an instance of the color picker
+ *
+ * @param {Element} element - This is a button element that can launch the color picker
+ * @param {string} [color] - To set the default color of this instance (Optional - default is '#ff0000')
+ *
+ * @example
+ * const launchBtn = document.getElementById('launch_btn');
+ * let picker = new ColorPicker(launchBtn, '#ff0000');
+ */
 function ColorPicker(element, color) {
 	// Adding the element to the instance
 	this.element = element;
@@ -68,7 +77,11 @@ function ColorPicker(element, color) {
 	});
 }
 
-// Function to setup the color picker
+/**
+ * @function
+ * @description Function to populate the DOM with color picker HTML, and set local storage values
+ * @module set-up
+ */
 (function () {
 	// Creating the HTML content
 	const HTMLContent = `
