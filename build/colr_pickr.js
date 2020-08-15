@@ -253,9 +253,12 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 	document.getElementById('color_picker_bg').style.display = 'none';
 
 	// Calling Event to make all the necessary changes
-	colorChange(
-		`hsla(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
-	);
+	colorChange({
+		h: colorPicker.hue,
+		s: colorPicker.saturation,
+		l: colorPicker.lightness,
+		a: colorPicker.alpha
+	});
 });
 
 /*
@@ -264,11 +267,19 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 
 // Custom color change event function
 function colorChange(color, elem) {
+	console.log(color);
+	// Defining the RGBA value conversion
+	let rgbaValue = HSLAToRGBA(color.h, color.s, color.l, color.a);
+
 	// Creating the event
 	const event = new CustomEvent('colorChange', {
 		// Adding the response details
 		detail: {
-			color: color
+			color: {
+				hsla: `hsla(${color.h}, ${color.s}%, ${color.l}%, ${color.a})`,
+				rgba: `rgba(${rgbaValue.r}, ${rgbaValue.g}, ${rgbaValue.b}, ${rgbaValue.a})`,
+				hexa: HSLAToRGBA(color.h, color.s, color.l, color.a, true)
+			}
 		}
 	});
 
