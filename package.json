@@ -1,6 +1,6 @@
 {
 	"name": "@r-tek/colr_pickr",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"description": "Colr Pickr, a vanilla JavaScript color picker component built with SVGs, with features like saving colors. Similar design to the chrome-dev-tools color picker.",
 	"author": "R-TEK",
 	"homepage": "https://r-tek.github.io/colr_pickr/",

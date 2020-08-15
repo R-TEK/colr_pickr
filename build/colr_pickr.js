@@ -267,7 +267,6 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 
 // Custom color change event function
 function colorChange(color, elem) {
-	console.log(color);
 	// Defining the RGBA value conversion
 	let rgbaValue = HSLAToRGBA(color.h, color.s, color.l, color.a);
 
