@@ -43,14 +43,14 @@
     ```html
     <script
     	type="text/javascript"
-    	src="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.0.1/build/colr_pickr_min.js"
+    	src="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.1.0/build/colr_pickr_min.js"
     ></script>
     ```
     ```html
     <link
     	rel="stylesheet"
     	type="text/css"
-    	href="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.0.1/build/colr_pickr_min.css"
+    	href="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.1.0/build/colr_pickr_min.css"
     />
     ```
 
