@@ -13,3 +13,16 @@ $light-text: #555;
 
 // Effects
 $quickTransition: all 0.2s;
+
+/*
+ * Mixins
+ */
+
+// User-select for different browsers
+@mixin no-select {
+	user-select: none;
+	-webkit-user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
