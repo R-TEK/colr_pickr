@@ -4,10 +4,8 @@
 
 // Function to update color displays
 colorPickerComp.updateColorDisplays = function (color) {
-	console.log(color);
 	// Checking if color picker has not been set
 	if (color == 'undefined') {
-		console.log('BLACKBIRD');
 		// Setting the default color positioning of the player to red
 		color = {
 			h: 0,
@@ -45,8 +43,6 @@ colorPickerComp.updateColorDisplays = function (color) {
 			};
 		}
 	}
-
-	console.log(color);
 
 	// Updating the data object
 	colorPickerComp.hue = color.h;
@@ -108,7 +104,6 @@ colorPickerComp.updateColorDisplays = function (color) {
 
 // Update the color value inputs
 colorPickerComp.updateColorValueInput = function () {
-	console.log(colorPickerComp.colorTypeStatus);
 	// Checking the value color type the user has selected
 	if (colorPickerComp.colorTypeStatus == 'HEXA') {
 		// Converting the value

@@ -34,7 +34,7 @@ gulp.task('devSass', async function () {
  * PRODUCTION BUILD
  */
 
-// Clearing all files in the ./build directory before making the build
+// Clearing all files in the ./build directory before making the build - PRODUCTION BUILD
 gulp.task('productionClean', async function () {
 	gulp.src('./build', { read: false }).pipe(clean());
 });
@@ -56,7 +56,7 @@ gulp.task('productionSass', async function () {
 		.pipe(gulp.dest('./build'));
 });
 
-// Watch the edited file and run gulp script on save
+// Watch the edited file and run gulp scripts on save
 gulp.task('watch', function () {
 	gulp.watch('./src/js/*.js', gulp.series('devScripts'));
 	gulp.watch('./src/scss/*.scss', gulp.series('devSass'));
