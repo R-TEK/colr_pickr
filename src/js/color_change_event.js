@@ -26,9 +26,11 @@ colorPickerComp.colorChange = function (color, elem) {
 	// Defining element
 	const element = elem === undefined ? colorPickerComp.instance.element : elem;
 
+	// Defining color
+
 	// Changing color attributes
-	element.setAttribute('data-color', color);
-	element.style.background = color;
+	element.setAttribute('data-color', hex);
+	element.style.background = hex;
 
 	// Dispatching the event for the active object
 	element.dispatchEvent(event);

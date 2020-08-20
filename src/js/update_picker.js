@@ -4,30 +4,49 @@
 
 // Function to update color displays
 colorPickerComp.updateColorDisplays = function (color) {
-	// Checking the color type that has been given
-	if (color.substring(0, 1) == '#') {
-		// Converting the color to HSLA
-		color = colorPickerComp.hexAToRGBA(color, true);
-	} else if (color.substring(0, 1) == 'r') {
-		// Extracting the values
-		const rgb = color.match(/[.?\d]+/g);
-		// Making sure there is a alpha value
-		rgb[3] = rgb[3] == undefined ? 1 : rgb[3];
-		// Converting the color to HSLA
-		color = colorPickerComp.RGBAToHSLA(rgb[0], rgb[1], rgb[2], rgb[3]);
-	} else {
-		// Extracting the values
-		const hsl = color.match(/[.?\d]+/g);
-		// Making sure there is a alpha value
-		hsl[3] = hsl[3] == undefined ? 1 : hsl[3];
-		// Formatting the value properly
+	console.log(color);
+	// Checking if color picker has not been set
+	if (color == 'undefined') {
+		console.log('BLACKBIRD');
+		// Setting the default color positioning of the player to red
 		color = {
-			h: hsl[0],
-			s: hsl[1],
-			l: hsl[2],
-			a: hsl[3]
+			h: 0,
+			s: 100,
+			l: 50,
+			a: 1
 		};
+	} else {
+		// Checking the color type that has been given
+		if (color.substring(0, 1) == '#') {
+			// Converting the color to HSLA
+			color = colorPickerComp.hexAToRGBA(color, true);
+		} else if (color.substring(0, 1) == 'r') {
+			// Extracting the values
+			const rgb = color.match(/[.?\d]+/g);
+
+			// Making sure there is a alpha value
+			rgb[3] = rgb[3] == undefined ? 1 : rgb[3];
+
+			// Converting the color to HSLA
+			color = colorPickerComp.RGBAToHSLA(rgb[0], rgb[1], rgb[2], rgb[3]);
+		} else {
+			// Extracting the values
+			const hsl = color.match(/[.?\d]+/g);
+
+			// Making sure there is a alpha value
+			hsl[3] = hsl[3] == undefined ? 1 : hsl[3];
+
+			// Formatting the value properly
+			color = {
+				h: hsl[0],
+				s: hsl[1],
+				l: hsl[2],
+				a: hsl[3]
+			};
+		}
 	}
+
+	console.log(color);
 
 	// Updating the data object
 	colorPickerComp.hue = color.h;
@@ -89,6 +108,7 @@ colorPickerComp.updateColorDisplays = function (color) {
 
 // Update the color value inputs
 colorPickerComp.updateColorValueInput = function () {
+	console.log(colorPickerComp.colorTypeStatus);
 	// Checking the value color type the user has selected
 	if (colorPickerComp.colorTypeStatus == 'HEXA') {
 		// Converting the value

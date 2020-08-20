@@ -37,13 +37,29 @@ function ColorPicker(element, color) {
 		document.getElementById('color_picker_bg').style.display = 'block';
 
 		// Updating the color picker
-		if (event.target.getAttribute('data-color') != 'undefined')
-			colorPickerComp.updateColorDisplays(event.target.getAttribute('data-color'));
+		colorPickerComp.updateColorDisplays(event.target.getAttribute('data-color'));
 	});
 }
 
 // Function to setup the color picker
 (function () {
+	// Adding items to the color picker object
+	colorPickerComp.instance = null;
+	colorPickerComp.boxStatus = false;
+	colorPickerComp.boxStatusTouch = false;
+	colorPickerComp.sliderStatus = false;
+	colorPickerComp.sliderStatusTouch = false;
+	colorPickerComp.opacityStatus = false;
+	colorPickerComp.opacityStatusTouch = false;
+	colorPickerComp.colorTypeStatus = 'HEXA';
+	colorPickerComp.hue = 0;
+	colorPickerComp.saturation = 100;
+	colorPickerComp.lightness = 50;
+	colorPickerComp.alpha = 1;
+	colorPickerComp.contextMenuElem = null;
+	colorPickerComp.doubleTapTime = 0;
+	colorPickerComp.LSCustomColors = { 0: [] };
+
 	// Creating the HTML content
 	const HTMLContent = `
 		<svg id="color_box" width="348" height="185">
@@ -176,22 +192,6 @@ function ColorPicker(element, color) {
 		</div>
 	`;
 
-	colorPickerComp.instance = null;
-	colorPickerComp.boxStatus = false;
-	colorPickerComp.boxStatusTouch = false;
-	colorPickerComp.sliderStatus = false;
-	colorPickerComp.sliderStatusTouch = false;
-	colorPickerComp.opacityStatus = false;
-	colorPickerComp.opacityStatusTouch = false;
-	colorPickerComp.colorTypeStatus = 'HEXA';
-	colorPickerComp.hue = 0;
-	colorPickerComp.saturation = 100;
-	colorPickerComp.lightness = 50;
-	colorPickerComp.alpha = 1;
-	colorPickerComp.contextMenuElem = null;
-	colorPickerComp.doubleTapTime = 0;
-	colorPickerComp.LSCustomColors = { 0: [] };
-
 	// Creating a node to store the data HTML in
 	const colorPickerContainer = document.createElement('ASIDE');
 	colorPickerContainer.id = 'color_picker';
@@ -242,6 +242,9 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 	document.getElementById('color_picker').style.display = 'none';
 	document.getElementById('color_picker_bg').style.display = 'none';
 
+	// Checking if the color for this instance has not been set yet
+	if (colorPickerComp.instance.element.getAttribute('data-color') == 'undefined') return;
+
 	// Calling Event to make all the necessary changes
 	colorPickerComp.colorChange({
 		h: colorPickerComp.hue,
@@ -279,9 +282,11 @@ colorPickerComp.colorChange = function (color, elem) {
 	// Defining element
 	const element = elem === undefined ? colorPickerComp.instance.element : elem;
 
+	// Defining color
+
 	// Changing color attributes
-	element.setAttribute('data-color', color);
-	element.style.background = color;
+	element.setAttribute('data-color', hex);
+	element.style.background = hex;
 
 	// Dispatching the event for the active object
 	element.dispatchEvent(event);
@@ -744,6 +749,10 @@ colorPickerComp.colorSliderHandler = function (position) {
 
 	// Update the color text values
 	colorPickerComp.updateColorValueInput();
+
+	// Setting the data-color attribute to a color string
+	// This is so that the color updates properly on instances where the color has not been set
+	colorPickerComp.instance.element.setAttribute('data-color', 'color');
 };
 
 /**
@@ -860,6 +869,10 @@ colorPickerComp.opacitySliderHandler = function (position) {
 
 	// Update the color text values
 	colorPickerComp.updateColorValueInput();
+
+	// Setting the data-color attribute to a color string
+	// This is so that the color updates properly on instances where the color has not been set
+	colorPickerComp.instance.element.setAttribute('data-color', 'color');
 };
 
 /**
@@ -997,6 +1010,10 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 
 	// Update the color text values
 	colorPickerComp.updateColorValueInput();
+
+	// Setting the data-color attribute to a color string
+	// This is so that the color updates properly on instances where the color has not been set
+	colorPickerComp.instance.element.setAttribute('data-color', 'color');
 };
 
 /**
@@ -1083,30 +1100,49 @@ document.addEventListener('touchend', function () {
 
 // Function to update color displays
 colorPickerComp.updateColorDisplays = function (color) {
-	// Checking the color type that has been given
-	if (color.substring(0, 1) == '#') {
-		// Converting the color to HSLA
-		color = colorPickerComp.hexAToRGBA(color, true);
-	} else if (color.substring(0, 1) == 'r') {
-		// Extracting the values
-		const rgb = color.match(/[.?\d]+/g);
-		// Making sure there is a alpha value
-		rgb[3] = rgb[3] == undefined ? 1 : rgb[3];
-		// Converting the color to HSLA
-		color = colorPickerComp.RGBAToHSLA(rgb[0], rgb[1], rgb[2], rgb[3]);
-	} else {
-		// Extracting the values
-		const hsl = color.match(/[.?\d]+/g);
-		// Making sure there is a alpha value
-		hsl[3] = hsl[3] == undefined ? 1 : hsl[3];
-		// Formatting the value properly
+	console.log(color);
+	// Checking if color picker has not been set
+	if (color == 'undefined') {
+		console.log('BLACKBIRD');
+		// Setting the default color positioning of the player to red
 		color = {
-			h: hsl[0],
-			s: hsl[1],
-			l: hsl[2],
-			a: hsl[3]
+			h: 0,
+			s: 100,
+			l: 50,
+			a: 1
 		};
+	} else {
+		// Checking the color type that has been given
+		if (color.substring(0, 1) == '#') {
+			// Converting the color to HSLA
+			color = colorPickerComp.hexAToRGBA(color, true);
+		} else if (color.substring(0, 1) == 'r') {
+			// Extracting the values
+			const rgb = color.match(/[.?\d]+/g);
+
+			// Making sure there is a alpha value
+			rgb[3] = rgb[3] == undefined ? 1 : rgb[3];
+
+			// Converting the color to HSLA
+			color = colorPickerComp.RGBAToHSLA(rgb[0], rgb[1], rgb[2], rgb[3]);
+		} else {
+			// Extracting the values
+			const hsl = color.match(/[.?\d]+/g);
+
+			// Making sure there is a alpha value
+			hsl[3] = hsl[3] == undefined ? 1 : hsl[3];
+
+			// Formatting the value properly
+			color = {
+				h: hsl[0],
+				s: hsl[1],
+				l: hsl[2],
+				a: hsl[3]
+			};
+		}
 	}
+
+	console.log(color);
 
 	// Updating the data object
 	colorPickerComp.hue = color.h;
@@ -1168,6 +1204,7 @@ colorPickerComp.updateColorDisplays = function (color) {
 
 // Update the color value inputs
 colorPickerComp.updateColorValueInput = function () {
+	console.log(colorPickerComp.colorTypeStatus);
 	// Checking the value color type the user has selected
 	if (colorPickerComp.colorTypeStatus == 'HEXA') {
 		// Converting the value

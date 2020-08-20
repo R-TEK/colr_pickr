@@ -46,6 +46,10 @@ colorPickerComp.colorSliderHandler = function (position) {
 
 	// Update the color text values
 	colorPickerComp.updateColorValueInput();
+
+	// Setting the data-color attribute to a color string
+	// This is so that the color updates properly on instances where the color has not been set
+	colorPickerComp.instance.element.setAttribute('data-color', 'color');
 };
 
 /**

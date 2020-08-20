@@ -1,5 +1,8 @@
 # Contribution Details
 
+//TODO: Add trello page for details on item to be worked
+//TODO: Add that they neewd to do a dev build before start working, before gulp watch
+
 ---
 
 ### Get the project:

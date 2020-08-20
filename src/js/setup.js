@@ -37,13 +37,29 @@ function ColorPicker(element, color) {
 		document.getElementById('color_picker_bg').style.display = 'block';
 
 		// Updating the color picker
-		if (event.target.getAttribute('data-color') != 'undefined')
-			colorPickerComp.updateColorDisplays(event.target.getAttribute('data-color'));
+		colorPickerComp.updateColorDisplays(event.target.getAttribute('data-color'));
 	});
 }
 
 // Function to setup the color picker
 (function () {
+	// Adding items to the color picker object
+	colorPickerComp.instance = null;
+	colorPickerComp.boxStatus = false;
+	colorPickerComp.boxStatusTouch = false;
+	colorPickerComp.sliderStatus = false;
+	colorPickerComp.sliderStatusTouch = false;
+	colorPickerComp.opacityStatus = false;
+	colorPickerComp.opacityStatusTouch = false;
+	colorPickerComp.colorTypeStatus = 'HEXA';
+	colorPickerComp.hue = 0;
+	colorPickerComp.saturation = 100;
+	colorPickerComp.lightness = 50;
+	colorPickerComp.alpha = 1;
+	colorPickerComp.contextMenuElem = null;
+	colorPickerComp.doubleTapTime = 0;
+	colorPickerComp.LSCustomColors = { 0: [] };
+
 	// Creating the HTML content
 	const HTMLContent = `
 		<svg id="color_box" width="348" height="185">
@@ -176,22 +192,6 @@ function ColorPicker(element, color) {
 		</div>
 	`;
 
-	colorPickerComp.instance = null;
-	colorPickerComp.boxStatus = false;
-	colorPickerComp.boxStatusTouch = false;
-	colorPickerComp.sliderStatus = false;
-	colorPickerComp.sliderStatusTouch = false;
-	colorPickerComp.opacityStatus = false;
-	colorPickerComp.opacityStatusTouch = false;
-	colorPickerComp.colorTypeStatus = 'HEXA';
-	colorPickerComp.hue = 0;
-	colorPickerComp.saturation = 100;
-	colorPickerComp.lightness = 50;
-	colorPickerComp.alpha = 1;
-	colorPickerComp.contextMenuElem = null;
-	colorPickerComp.doubleTapTime = 0;
-	colorPickerComp.LSCustomColors = { 0: [] };
-
 	// Creating a node to store the data HTML in
 	const colorPickerContainer = document.createElement('ASIDE');
 	colorPickerContainer.id = 'color_picker';
@@ -241,6 +241,9 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 	// Hiding elements
 	document.getElementById('color_picker').style.display = 'none';
 	document.getElementById('color_picker_bg').style.display = 'none';
+
+	// Checking if the color for this instance has not been set yet
+	if (colorPickerComp.instance.element.getAttribute('data-color') == 'undefined') return;
 
 	// Calling Event to make all the necessary changes
 	colorPickerComp.colorChange({
