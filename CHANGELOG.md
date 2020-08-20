@@ -10,6 +10,8 @@
 
 -   Added animation when opening the color picker
 
+-   Fixed issues that arise when color is not set when the color picker instance is initiated
+
 ### 1.1.0
 
 -   Added multiple output formats to select from when you reference the event info, inside the listener for the color picker.
