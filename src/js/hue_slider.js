@@ -1,4 +1,4 @@
-/*
+/**
  * Hue Slider
  */
 
@@ -48,7 +48,7 @@ colorPickerComp.colorSliderHandler = function (position) {
 	colorPickerComp.updateColorValueInput();
 };
 
-/*
+/**
  * Mouse Events
  */
 
@@ -78,7 +78,7 @@ document.addEventListener('mouseup', function () {
 	}
 });
 
-/*
+/**
  * Touch Events
  */
 

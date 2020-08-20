@@ -102,7 +102,7 @@
 <!-- The rest is in your JavaScript file, or in this case a script tag -->
 
 <script type="text/javascript">
-	/*
+	/**
 	 * Create a new ColorPicker instance, which takes 2 parameters
 	 *
 	 * Parameter 1 [HTMLElement]: the button you want to launch the editor
@@ -112,7 +112,7 @@
 	const button = document.getElementById('my_picker');
 	let picker = new ColorPicker(button, '#ff0000');
 
-	/*
+	/**
 	 * What do you want to do after you have chosen the color?
 	 *
 	 * You can specify this in an EventListener, assigned to your button
@@ -126,7 +126,7 @@
 		// Code to do what you want with that color...
 	});
 
-	/*
+	/**
 	 * You can also change the color yourself via JavaScript
 	 *
 	 * If you want to change the selected color for an instance without using the picker

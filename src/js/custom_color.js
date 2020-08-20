@@ -1,4 +1,4 @@
-/*
+/**
  * Custom Colors
  */
 

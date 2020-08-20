@@ -1,4 +1,4 @@
-/*
+/**
  * Saturation and Lightness Box
  */
 
@@ -65,7 +65,7 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 	colorPickerComp.updateColorValueInput();
 };
 
-/*
+/**
  * Mouse Events
  */
 
@@ -95,7 +95,7 @@ document.addEventListener('mouseup', function (event) {
 	}
 });
 
-/*
+/**
  * Touch Events
  */
 

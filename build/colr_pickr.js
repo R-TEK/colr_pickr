@@ -8,7 +8,7 @@
  * MIT License
  */
 
-/*
+/**
  * Set-up
  */
 
@@ -251,23 +251,27 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 	});
 });
 
-/*
+/**
  * Custom Color Change Event
  */
 
 // Custom color change event function
 colorPickerComp.colorChange = function (color, elem) {
 	// Defining the RGBA value conversion
-	let rgbaValue = colorPickerComp.HSLAToRGBA(color.h, color.s, color.l, color.a);
+	const rgbaValue = colorPickerComp.HSLAToRGBA(color.h, color.s, color.l, color.a);
+	const hex = colorPickerComp.HSLAToRGBA(color.h, color.s, color.l, color.a, true);
 
 	// Creating the event
 	const event = new CustomEvent('colorChange', {
 		// Adding the response details
 		detail: {
 			color: {
+				hsl: `hsla(${color.h}, ${color.s}%, ${color.l}%)`,
+				rgb: `rgba(${rgbaValue.r}, ${rgbaValue.g}, ${rgbaValue.b})`,
+				hex: hex,
 				hsla: `hsla(${color.h}, ${color.s}%, ${color.l}%, ${color.a})`,
 				rgba: `rgba(${rgbaValue.r}, ${rgbaValue.g}, ${rgbaValue.b}, ${rgbaValue.a})`,
-				hexa: colorPickerComp.HSLAToRGBA(color.h, color.s, color.l, color.a, true)
+				hexa: hex
 			}
 		}
 	});
@@ -283,7 +287,7 @@ colorPickerComp.colorChange = function (color, elem) {
 	element.dispatchEvent(event);
 };
 
-/*
+/**
  * Color Value Converter
  */
 
@@ -429,7 +433,7 @@ colorPickerComp.hexAToRGBA = function (h, toHSL) {
 	}
 };
 
-/*
+/**
  * Color Text Values
  */
 
@@ -547,7 +551,7 @@ document.querySelectorAll('.hsla_input').forEach((element) => {
 	});
 });
 
-/*
+/**
  * Custom Colors
  */
 
@@ -687,7 +691,7 @@ document.getElementById('color_clear_all').addEventListener('mousedown', functio
 	colorPickerComp.clearAllCustomColors();
 });
 
-/*
+/**
  * Hue Slider
  */
 
@@ -737,7 +741,7 @@ colorPickerComp.colorSliderHandler = function (position) {
 	colorPickerComp.updateColorValueInput();
 };
 
-/*
+/**
  * Mouse Events
  */
 
@@ -767,7 +771,7 @@ document.addEventListener('mouseup', function () {
 	}
 });
 
-/*
+/**
  * Touch Events
  */
 
@@ -807,7 +811,7 @@ document.addEventListener('touchend', function () {
 	}
 });
 
-/*
+/**
  * Opacity Slider
  */
 
@@ -853,7 +857,7 @@ colorPickerComp.opacitySliderHandler = function (position) {
 	colorPickerComp.updateColorValueInput();
 };
 
-/*
+/**
  * Mouse Events
  */
 
@@ -883,7 +887,7 @@ document.addEventListener('mouseup', function () {
 	}
 });
 
-/*
+/**
  * Touch Events
  */
 
@@ -923,7 +927,7 @@ document.addEventListener('touchend', function () {
 	}
 });
 
-/*
+/**
  * Saturation and Lightness Box
  */
 
@@ -990,7 +994,7 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 	colorPickerComp.updateColorValueInput();
 };
 
-/*
+/**
  * Mouse Events
  */
 
@@ -1020,7 +1024,7 @@ document.addEventListener('mouseup', function (event) {
 	}
 });
 
-/*
+/**
  * Touch Events
  */
 
@@ -1068,7 +1072,7 @@ document.addEventListener('touchend', function () {
 	}
 });
 
-/*
+/**
  * Update Picker
  */
 
