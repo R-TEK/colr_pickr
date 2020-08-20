@@ -555,6 +555,11 @@ document.querySelectorAll('.hsla_input').forEach((element) => {
  * Custom Colors
  */
 
+// Get custom colors
+colorPickerComp.getCustomColors = function () {
+	return colorPickerComp.LSCustomColors();
+};
+
 // Click on color listener to update the picker
 document.getElementById('custom_colors_box').addEventListener('click', function (event) {
 	// Making sure the users has selected a color preview
