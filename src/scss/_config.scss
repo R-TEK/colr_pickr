@@ -26,3 +26,32 @@ $quickTransition: all 0.2s;
 	-moz-user-select: none;
 	-ms-user-select: none;
 }
+
+// Adding prefixes to animation creations
+@mixin keyframes($animationName) {
+	@-webkit-keyframes #{$animationName} {
+		$browser: '-webkit-' !global;
+		@content;
+	}
+	@-moz-keyframes #{$animationName} {
+		$browser: '-moz-' !global;
+		@content;
+	}
+	@-ms-keyframes #{$animationName} {
+		$browser: '-moz-' !global;
+		@content;
+	}
+	@keyframes #{$animationName} {
+		$browser: '' !global;
+		@content;
+	}
+}
+$browser: null;
+
+// Adding prefixes to the animation properties
+@mixin animation($animation) {
+	-webkit-animation: $animation;
+	-moz-animation: $animation;
+	-ms-animation: $animation;
+	animation: $animation;
+}
