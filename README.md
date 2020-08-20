@@ -120,6 +120,7 @@
 
 	button.addEventListener('colorChange', function (event) {
 		// This will give you the color you selected
+		// TODO: Update this
 		const color = event.detail.color;
 
 		// Code to do what you want with that color...
@@ -135,6 +136,7 @@
 	 * Parameter 2 [HTMLElement]: The button that holds the instance / picker launch button
 	 */
 
+	// TODO: change this to include the comp object it is in
 	colorChange('#ff00ff', button);
 </script>
 ```

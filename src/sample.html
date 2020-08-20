@@ -196,18 +196,19 @@
 		<script type="text/javascript" src="../build/colr_pickr.js"></script>
 		<script type="text/javascript">
 			let bob = new ColorPicker(document.getElementById('title'));
-			let text = new ColorPicker(document.getElementById('text'), '#1a00ad');
-			let background = new ColorPicker(document.getElementById('background'), '#ff0000');
-
 			document.getElementById('title').addEventListener('colorChange', function () {
 				console.log(event.detail);
-				document.getElementById('ti').style.color = event.detail.color;
+				document.getElementById('ti').style.color = event.detail.color.hexa;
 			});
+
+			let text = new ColorPicker(document.getElementById('text'), '#1a00ad');
 			document.getElementById('text').addEventListener('colorChange', function () {
-				document.getElementById('te').style.color = event.detail.color;
+				document.getElementById('te').style.color = event.detail.color.hexa;
 			});
+
+			let background = new ColorPicker(document.getElementById('background'), '#ff0000');
 			document.getElementById('background').addEventListener('colorChange', function () {
-				document.getElementById('b').style.background = event.detail.color;
+				document.getElementById('b').style.background = event.detail.color.hexa;
 			});
 		</script>
 	</body>

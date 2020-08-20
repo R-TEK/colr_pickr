@@ -12,36 +12,10 @@
  * Set-up
  */
 
-/**
- * All global states and variables needed for reference over the entire project
- *
- * @type {{instance: object | null, boxStatus: boolean, boxStatusTouch: boolean, sliderStatus: boolean, sliderStatusTouch: boolean, opacityStatus: boolean, opacityStatusTouch: boolean, colorTypeStatus: string, hue: number, saturation: number, lightness: number, alpha: number, contextMenuElem: HTMLElement | null, doubleTapTime: number}}
- */
-let colorPicker = {
-	instance: null,
-	boxStatus: false,
-	boxStatusTouch: false,
-	sliderStatus: false,
-	sliderStatusTouch: false,
-	opacityStatus: false,
-	opacityStatusTouch: false,
-	colorTypeStatus: 'HEXA',
-	hue: 0,
-	saturation: 100,
-	lightness: 50,
-	alpha: 1,
-	contextMenuElem: null,
-	doubleTapTime: 0
-};
+// Creation of the colorPickerComp object
+let colorPickerComp = new Object();
 
-/**
- * Custom colors saved to local storage
- *
- * @type {{0: Array}}
- */
-window.LSCustomColors = { 0: [] };
-
-// Constructor
+// ColorPicker Constructor
 function ColorPicker(element, color) {
 	// Adding the element to the instance
 	this.element = element;
@@ -56,7 +30,7 @@ function ColorPicker(element, color) {
 	// Click listener to have the button open the color picker interface
 	element.addEventListener('click', function (event) {
 		// Applying the items instance to the color picker object
-		colorPicker.instance = event.target.colorPickerObj;
+		colorPickerComp.instance = event.target.colorPickerObj;
 
 		// Displaying the color picker
 		document.getElementById('color_picker').style.display = 'block';
@@ -64,7 +38,7 @@ function ColorPicker(element, color) {
 
 		// Updating the color picker
 		if (event.target.getAttribute('data-color') != 'undefined')
-			updateColorDisplays(event.target.getAttribute('data-color'));
+			colorPickerComp.updateColorDisplays(event.target.getAttribute('data-color'));
 	});
 }
 
@@ -202,6 +176,22 @@ function ColorPicker(element, color) {
 		</div>
 	`;
 
+	colorPickerComp.instance = null;
+	colorPickerComp.boxStatus = false;
+	colorPickerComp.boxStatusTouch = false;
+	colorPickerComp.sliderStatus = false;
+	colorPickerComp.sliderStatusTouch = false;
+	colorPickerComp.opacityStatus = false;
+	colorPickerComp.opacityStatusTouch = false;
+	colorPickerComp.colorTypeStatus = 'HEXA';
+	colorPickerComp.hue = 0;
+	colorPickerComp.saturation = 100;
+	colorPickerComp.lightness = 50;
+	colorPickerComp.alpha = 1;
+	colorPickerComp.contextMenuElem = null;
+	colorPickerComp.doubleTapTime = 0;
+	colorPickerComp.LSCustomColors = { 0: [] };
+
 	// Creating a node to store the data HTML in
 	const colorPickerContainer = document.createElement('ASIDE');
 	colorPickerContainer.id = 'color_picker';
@@ -219,21 +209,21 @@ function ColorPicker(element, color) {
 		localStorage.setItem('custom_colors', '{"0": []}');
 	} else {
 		// If it has then I define the LSCustomColors with the value for this
-		window.LSCustomColors = JSON.parse(localStorage.getItem('custom_colors'));
+		colorPickerComp.LSCustomColors = JSON.parse(localStorage.getItem('custom_colors'));
 
 		// Looping through the data to update the DOM with the custom colors
-		for (let x = window.LSCustomColors[0].length - 1; x >= 0; x--) {
+		for (let x = colorPickerComp.LSCustomColors[0].length - 1; x >= 0; x--) {
 			// Creating the element
 			let customColorElem = document.createElement('BUTTON');
 			customColorElem.className = 'custom_colors_preview';
-			customColorElem.style.background = window.LSCustomColors[0][x];
-			customColorElem.setAttribute('data-custom-color', window.LSCustomColors[0][x]);
+			customColorElem.style.background = colorPickerComp.LSCustomColors[0][x];
+			customColorElem.setAttribute('data-custom-color', colorPickerComp.LSCustomColors[0][x]);
 			// Placing the element in the DOM
 			document.getElementById('custom_colors_box').appendChild(customColorElem);
 		}
 
 		// Check whether to display the add color button
-		if (window.LSCustomColors[0].length == 28)
+		if (colorPickerComp.LSCustomColors[0].length == 28)
 			document.getElementById('custom_colors_add').style.display = 'none';
 	}
 })();
@@ -253,11 +243,11 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 	document.getElementById('color_picker_bg').style.display = 'none';
 
 	// Calling Event to make all the necessary changes
-	colorChange({
-		h: colorPicker.hue,
-		s: colorPicker.saturation,
-		l: colorPicker.lightness,
-		a: colorPicker.alpha
+	colorPickerComp.colorChange({
+		h: colorPickerComp.hue,
+		s: colorPickerComp.saturation,
+		l: colorPickerComp.lightness,
+		a: colorPickerComp.alpha
 	});
 });
 
@@ -266,9 +256,9 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
  */
 
 // Custom color change event function
-function colorChange(color, elem) {
+colorPickerComp.colorChange = function (color, elem) {
 	// Defining the RGBA value conversion
-	let rgbaValue = HSLAToRGBA(color.h, color.s, color.l, color.a);
+	let rgbaValue = colorPickerComp.HSLAToRGBA(color.h, color.s, color.l, color.a);
 
 	// Creating the event
 	const event = new CustomEvent('colorChange', {
@@ -277,13 +267,13 @@ function colorChange(color, elem) {
 			color: {
 				hsla: `hsla(${color.h}, ${color.s}%, ${color.l}%, ${color.a})`,
 				rgba: `rgba(${rgbaValue.r}, ${rgbaValue.g}, ${rgbaValue.b}, ${rgbaValue.a})`,
-				hexa: HSLAToRGBA(color.h, color.s, color.l, color.a, true)
+				hexa: colorPickerComp.HSLAToRGBA(color.h, color.s, color.l, color.a, true)
 			}
 		}
 	});
 
 	// Defining element
-	const element = elem === undefined ? colorPicker.instance.element : elem;
+	const element = elem === undefined ? colorPickerComp.instance.element : elem;
 
 	// Changing color attributes
 	element.setAttribute('data-color', color);
@@ -291,14 +281,14 @@ function colorChange(color, elem) {
 
 	// Dispatching the event for the active object
 	element.dispatchEvent(event);
-}
+};
 
 /*
  * Color Value Converter
  */
 
 // Convert HSLA to RGBA
-let HSLAToRGBA = function (h, s, l, a, toHex) {
+colorPickerComp.HSLAToRGBA = function (h, s, l, a, toHex) {
 	s /= 100;
 	l /= 100;
 
@@ -340,7 +330,7 @@ let HSLAToRGBA = function (h, s, l, a, toHex) {
 	b = Math.round((b + m) * 255);
 
 	if (toHex === true) {
-		return RGBAToHexA(r, g, b, a);
+		return colorPickerComp.RGBAToHexA(r, g, b, a);
 	} else {
 		return {
 			r: r,
@@ -352,7 +342,7 @@ let HSLAToRGBA = function (h, s, l, a, toHex) {
 };
 
 // Convert RGBA to HSLA
-let RGBAToHSLA = function (r, g, b, a) {
+colorPickerComp.RGBAToHSLA = function (r, g, b, a) {
 	r /= 255;
 	g /= 255;
 	b /= 255;
@@ -390,7 +380,7 @@ let RGBAToHSLA = function (r, g, b, a) {
 };
 
 // Convert RGBA to HexA
-let RGBAToHexA = function (r, g, b, a) {
+colorPickerComp.RGBAToHexA = function (r, g, b, a) {
 	r = r.toString(16);
 	g = g.toString(16);
 	b = b.toString(16);
@@ -409,7 +399,7 @@ let RGBAToHexA = function (r, g, b, a) {
 };
 
 // Convert HexA to RGBA
-let hexAToRGBA = function (h, toHSL) {
+colorPickerComp.hexAToRGBA = function (h, toHSL) {
 	if (h.length == 7) h += 'ff';
 	else if (h.length == 4) h += h.substring(1, 4) + 'ff';
 
@@ -433,7 +423,7 @@ let hexAToRGBA = function (h, toHSL) {
 	a = +(a / 255).toFixed(3);
 
 	if (toHSL === true) {
-		return RGBAToHSLA(+r, +g, +b, a);
+		return colorPickerComp.RGBAToHSLA(+r, +g, +b, a);
 	} else {
 		return 'rgba(' + +r + ',' + +g + ',' + +b + ',' + a + ')';
 	}
@@ -444,22 +434,22 @@ let hexAToRGBA = function (h, toHSL) {
  */
 
 // Function to switch the color type inputs
-let switchColorType = function () {
+colorPickerComp.switchColorType = function () {
 	// Checking the current selected input color type
-	if (colorPicker.colorTypeStatus == 'HEXA') {
+	if (colorPickerComp.colorTypeStatus == 'HEXA') {
 		// Updating the data object
-		colorPicker.colorTypeStatus = 'RGBA';
+		colorPickerComp.colorTypeStatus = 'RGBA';
 
 		// Displaying the correct elements
 		document.getElementById('hexa').style.display = 'none';
 		document.getElementById('rgba').style.display = 'block';
 
 		// Converting the value
-		const RGBAValue = HSLAToRGBA(
-			colorPicker.hue,
-			colorPicker.saturation,
-			colorPicker.lightness,
-			colorPicker.alpha
+		const RGBAValue = colorPickerComp.HSLAToRGBA(
+			colorPickerComp.hue,
+			colorPickerComp.saturation,
+			colorPickerComp.lightness,
+			colorPickerComp.alpha
 		);
 
 		// Applying the value to the inputs
@@ -467,33 +457,33 @@ let switchColorType = function () {
 		document.getElementsByClassName('rgba_input')[1].value = RGBAValue.g;
 		document.getElementsByClassName('rgba_input')[2].value = RGBAValue.b;
 		document.getElementsByClassName('rgba_input')[3].value = RGBAValue.a;
-	} else if (colorPicker.colorTypeStatus == 'RGBA') {
+	} else if (colorPickerComp.colorTypeStatus == 'RGBA') {
 		// Updating the data object
-		colorPicker.colorTypeStatus = 'HSLA';
+		colorPickerComp.colorTypeStatus = 'HSLA';
 
 		// Displaying the correct elements
 		document.getElementById('rgba').style.display = 'none';
 		document.getElementById('hsla').style.display = 'block';
 
 		// Applying the value to the inputs
-		document.getElementsByClassName('hsla_input')[0].value = colorPicker.hue;
-		document.getElementsByClassName('hsla_input')[1].value = colorPicker.saturation;
-		document.getElementsByClassName('hsla_input')[2].value = colorPicker.lightness;
-		document.getElementsByClassName('hsla_input')[3].value = colorPicker.alpha;
-	} else if (colorPicker.colorTypeStatus == 'HSLA') {
+		document.getElementsByClassName('hsla_input')[0].value = colorPickerComp.hue;
+		document.getElementsByClassName('hsla_input')[1].value = colorPickerComp.saturation;
+		document.getElementsByClassName('hsla_input')[2].value = colorPickerComp.lightness;
+		document.getElementsByClassName('hsla_input')[3].value = colorPickerComp.alpha;
+	} else if (colorPickerComp.colorTypeStatus == 'HSLA') {
 		// Updating the data object
-		colorPicker.colorTypeStatus = 'HEXA';
+		colorPickerComp.colorTypeStatus = 'HEXA';
 
 		// Displaying the correct elements
 		document.getElementById('hsla').style.display = 'none';
 		document.getElementById('hexa').style.display = 'block';
 
 		// Converting the value
-		const hexValue = HSLAToRGBA(
-			colorPicker.hue,
-			colorPicker.saturation,
-			colorPicker.lightness,
-			colorPicker.alpha,
+		const hexValue = colorPickerComp.HSLAToRGBA(
+			colorPickerComp.hue,
+			colorPickerComp.saturation,
+			colorPickerComp.lightness,
+			colorPickerComp.alpha,
 			true
 		);
 
@@ -502,7 +492,7 @@ let switchColorType = function () {
 	}
 };
 document.getElementById('switch_color_type').addEventListener('click', function () {
-	switchColorType();
+	colorPickerComp.switchColorType();
 });
 
 // Event to update the color when the user leaves the hex value box
@@ -513,7 +503,7 @@ document.getElementById('hex_input').addEventListener('blur', function () {
 	// Check to see if the hex is formatted correctly
 	if (hexInput.match(/^#[0-9a-f]{3}([0-9a-f]{3})?([0-9a-f]{2})?$/)) {
 		// Updating the picker
-		updateColorDisplays(hexInput);
+		colorPickerComp.updateColorDisplays(hexInput);
 	}
 });
 
@@ -531,7 +521,7 @@ document.querySelectorAll('.rgba_input').forEach((element) => {
 		if (rgbaInput[3].value > 1) throw 'Value must be equal to or below 1';
 
 		// Updating the picker
-		updateColorDisplays(
+		colorPickerComp.updateColorDisplays(
 			`rgba(${rgbaInput[0].value}, ${rgbaInput[1].value}, ${rgbaInput[2].value}, ${rgbaInput[3].value})`
 		);
 	});
@@ -551,7 +541,7 @@ document.querySelectorAll('.hsla_input').forEach((element) => {
 		if (hslaInput[3].value > 1) throw 'Value must be equal to or below 1';
 
 		// Updating the picker
-		updateColorDisplays(
+		colorPickerComp.updateColorDisplays(
 			`hsla(${hslaInput[0].value}, ${hslaInput[1].value}%, ${hslaInput[2].value}%, ${hslaInput[3].value})`
 		);
 	});
@@ -568,18 +558,18 @@ document.getElementById('custom_colors_box').addEventListener('click', function 
 		// Color
 		const color = event.target.getAttribute('data-custom-color');
 		// Updating the picker with that color
-		updateColorDisplays(color);
+		colorPickerComp.updateColorDisplays(color);
 	}
 });
 
 // Function to add a new custom color
-let addCustomColor = function () {
+colorPickerComp.addCustomColor = function () {
 	// Limiting a custom color to two rows
-	if (window.LSCustomColors[0].length == 27)
+	if (colorPickerComp.LSCustomColors[0].length == 27)
 		document.getElementById('custom_colors_add').style.display = 'none';
 
 	// Getting the color
-	const color = `hsla(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
+	const color = `hsla(${colorPickerComp.hue}, ${colorPickerComp.saturation}%, ${colorPickerComp.lightness}%, ${colorPickerComp.alpha})`;
 
 	// Creating the element
 	let customColorElem = document.createElement('BUTTON');
@@ -590,13 +580,13 @@ let addCustomColor = function () {
 	document.getElementById('custom_colors_box').appendChild(customColorElem);
 
 	// Pushing the color to the top of the array
-	window.LSCustomColors[0].unshift(color);
+	colorPickerComp.LSCustomColors[0].unshift(color);
 
 	// Updating the local storage with the new custom color
-	localStorage.setItem('custom_colors', JSON.stringify(window.LSCustomColors));
+	localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
 };
 document.getElementById('custom_colors_add').addEventListener('mouseup', function () {
-	addCustomColor();
+	colorPickerComp.addCustomColor();
 });
 
 // Event to fire for a context menu
@@ -615,19 +605,19 @@ document.getElementById('custom_colors_box').addEventListener('contextmenu', fun
 		contextMenu.style.left = event.target.getBoundingClientRect().left + 'px';
 
 		// Defining the color selected
-		colorPicker.contextMenuElem = event.target;
+		colorPickerComp.contextMenuElem = event.target;
 	}
 });
 
 // Clears a selected custom color
-let clearSingleCustomColor = function (element) {
-	const elemToRemove = element === undefined ? colorPicker.contextMenuElem : element;
+colorPickerComp.clearSingleCustomColor = function (element) {
+	const elemToRemove = element === undefined ? colorPickerComp.contextMenuElem : element;
 
 	// Removing the element
 	document.getElementById('custom_colors_box').removeChild(elemToRemove);
 
 	// Clearing the variable
-	window.LSCustomColors = { '0': [] };
+	colorPickerComp.LSCustomColors = { '0': [] };
 
 	// Looping through the custom colors to repopulate the variable
 	for (let x in document.getElementsByClassName('custom_colors_preview')) {
@@ -637,7 +627,7 @@ let clearSingleCustomColor = function (element) {
 		}
 
 		// Pushing the colors to the array
-		window.LSCustomColors[0].push(
+		colorPickerComp.LSCustomColors[0].push(
 			document
 				.getElementsByClassName('custom_colors_preview')
 				[x].getAttribute('data-custom-color')
@@ -645,40 +635,40 @@ let clearSingleCustomColor = function (element) {
 	}
 
 	// Updating the local storage
-	localStorage.setItem('custom_colors', JSON.stringify(window.LSCustomColors));
+	localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
 
 	// Making sure the add color button is displaying
 	document.getElementById('custom_colors_add').style.display = 'inline-block';
 };
 document.getElementById('color_clear_single').addEventListener('mousedown', function () {
-	clearSingleCustomColor();
+	colorPickerComp.clearSingleCustomColor();
 });
 
 // Clear single selected color for touch mobile devices
-let clearSingleCustomColorTouch = function (event) {
+colorPickerComp.clearSingleCustomColorTouch = function (event) {
 	if (event.target.className == 'custom_colors_preview') {
 		const now = new Date().getTime();
-		const timeSince = now - colorPicker.doubleTapTime;
+		const timeSince = now - colorPickerComp.doubleTapTime;
 
 		if (timeSince < 200 && timeSince > 0) {
-			clearSingleCustomColor(event.target);
+			colorPickerComp.clearSingleCustomColor(event.target);
 		} else {
-			colorPicker.doubleTapTime = new Date().getTime();
+			colorPickerComp.doubleTapTime = new Date().getTime();
 		}
 	}
 };
 document.getElementById('custom_colors_box').addEventListener(
 	'touchstart',
 	function () {
-		clearSingleCustomColorTouch(event);
+		colorPickerComp.clearSingleCustomColorTouch(event);
 	},
 	{ passive: true }
 );
 
 // Clears all custom colors
-let clearAllCustomColors = function () {
+colorPickerComp.clearAllCustomColors = function () {
 	// Clearing variable
-	window.LSCustomColors = { '0': [] };
+	colorPickerComp.LSCustomColors = { '0': [] };
 
 	// Looping through the custom colors to repopulate the variable
 	while (document.getElementsByClassName('custom_colors_preview').length > 0) {
@@ -688,13 +678,13 @@ let clearAllCustomColors = function () {
 	}
 
 	// Updating the local storage
-	localStorage.setItem('custom_colors', JSON.stringify(window.LSCustomColors));
+	localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
 
 	// Making sure the add color button is displaying
 	document.getElementById('custom_colors_add').style.display = 'inline-block';
 };
 document.getElementById('color_clear_all').addEventListener('mousedown', function () {
-	clearAllCustomColors();
+	colorPickerComp.clearAllCustomColors();
 });
 
 /*
@@ -702,7 +692,7 @@ document.getElementById('color_clear_all').addEventListener('mousedown', functio
  */
 
 // Function to handle changes to the HUE slider
-let colorSliderHandler = function (position) {
+colorPickerComp.colorSliderHandler = function (position) {
 	// Defining the slider and dragger
 	const sliderContainer = document.getElementById('color_slider');
 	const sliderDragger = document.getElementById('color_slider_dragger');
@@ -730,10 +720,10 @@ let colorSliderHandler = function (position) {
 	const HColor = Math.round(359 - (359 / 100) * percent);
 
 	// Updating the Hue value in the data object
-	colorPicker.hue = HColor;
+	colorPickerComp.hue = HColor;
 
 	// Full HSLA color
-	const HSLA = `hsla(${HColor}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
+	const HSLA = `hsla(${HColor}, ${colorPickerComp.saturation}%, ${colorPickerComp.lightness}%, ${colorPickerComp.alpha})`;
 
 	// Updating the color for the color preview
 	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
@@ -744,7 +734,7 @@ let colorSliderHandler = function (position) {
 		.children[1].setAttribute('stop-color', `hsl(${HColor}, 100%, 50%)`);
 
 	// Update the color text values
-	updateColorValueInput();
+	colorPickerComp.updateColorValueInput();
 };
 
 /*
@@ -754,26 +744,26 @@ let colorSliderHandler = function (position) {
 // Start the slider drag
 document.getElementById('color_slider').addEventListener('mousedown', function (event) {
 	// Updating the status in the data object
-	colorPicker.sliderStatus = true;
+	colorPickerComp.sliderStatus = true;
 	// Calling handler function
-	colorSliderHandler(event.pageX);
+	colorPickerComp.colorSliderHandler(event.pageX);
 });
 
 // Moving the slider drag
 document.addEventListener('mousemove', function (event) {
 	// Checking that the drag has started
-	if (colorPicker.sliderStatus === true) {
+	if (colorPickerComp.sliderStatus === true) {
 		// Calling handler function
-		colorSliderHandler(event.pageX);
+		colorPickerComp.colorSliderHandler(event.pageX);
 	}
 });
 
 // End the slider drag
 document.addEventListener('mouseup', function () {
 	// Checking that the drag has started
-	if (colorPicker.sliderStatus === true) {
+	if (colorPickerComp.sliderStatus === true) {
 		// Updating the status in the data object
-		colorPicker.sliderStatus = false;
+		colorPickerComp.sliderStatus = false;
 	}
 });
 
@@ -786,9 +776,9 @@ document.getElementById('color_slider').addEventListener(
 	'touchstart',
 	function (event) {
 		// Updating the status
-		colorPicker.sliderStatusTouch = true;
+		colorPickerComp.sliderStatusTouch = true;
 		// Calling the handler function
-		colorSliderHandler(event.changedTouches[0].clientX);
+		colorPickerComp.colorSliderHandler(event.changedTouches[0].clientX);
 	},
 	{ passive: true }
 );
@@ -798,11 +788,11 @@ document.addEventListener(
 	'touchmove',
 	function () {
 		// Checking that the touch drag has started
-		if (colorPicker.sliderStatusTouch === true) {
+		if (colorPickerComp.sliderStatusTouch === true) {
 			// Prevent page scrolling
 			event.preventDefault();
 			// Calling the handler function
-			colorSliderHandler(event.changedTouches[0].clientX);
+			colorPickerComp.colorSliderHandler(event.changedTouches[0].clientX);
 		}
 	},
 	{ passive: false }
@@ -811,9 +801,9 @@ document.addEventListener(
 // End the slider drag on touch
 document.addEventListener('touchend', function () {
 	// Checking that the touch drag has started
-	if (colorPicker.sliderStatusTouch === true) {
+	if (colorPickerComp.sliderStatusTouch === true) {
 		// Updating the status
-		colorPicker.sliderStatusTouch = false;
+		colorPickerComp.sliderStatusTouch = false;
 	}
 });
 
@@ -822,7 +812,7 @@ document.addEventListener('touchend', function () {
  */
 
 // Function to handle changes to the opacity slider
-let opacitySliderHandler = function (position) {
+colorPickerComp.opacitySliderHandler = function (position) {
 	// Defining the slider and dragger
 	const sliderContainer = document.getElementById('opacity_slider');
 	const sliderDragger = document.getElementById('opacity_slider_dragger');
@@ -851,16 +841,16 @@ let opacitySliderHandler = function (position) {
 	alpha = Number(Math.round(alpha + 'e' + 2) + 'e-' + 2);
 
 	// Updating the data objects
-	colorPicker.alpha = alpha;
+	colorPickerComp.alpha = alpha;
 
 	// Full HSLA color
-	const HSLA = `hsla(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${alpha})`;
+	const HSLA = `hsla(${colorPickerComp.hue}, ${colorPickerComp.saturation}%, ${colorPickerComp.lightness}%, ${alpha})`;
 
 	// Updating the color for the color preview
 	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
 
 	// Update the color text values
-	updateColorValueInput();
+	colorPickerComp.updateColorValueInput();
 };
 
 /*
@@ -870,26 +860,26 @@ let opacitySliderHandler = function (position) {
 // Start the slider drag for opacity
 document.getElementById('opacity_slider').addEventListener('mousedown', function (event) {
 	// Updating the status in the data object
-	colorPicker.opacityStatus = true;
+	colorPickerComp.opacityStatus = true;
 	// Calling the handler function
-	opacitySliderHandler(event.pageX);
+	colorPickerComp.opacitySliderHandler(event.pageX);
 });
 
 // Moving the slider drag for opacity
 document.addEventListener('mousemove', function (event) {
 	// Checking that the drag has started
-	if (colorPicker.opacityStatus === true) {
+	if (colorPickerComp.opacityStatus === true) {
 		// Calling the handler function
-		opacitySliderHandler(event.pageX);
+		colorPickerComp.opacitySliderHandler(event.pageX);
 	}
 });
 
 // End the slider drag
 document.addEventListener('mouseup', function () {
 	// Checking that the drag has started
-	if (colorPicker.opacityStatus === true) {
+	if (colorPickerComp.opacityStatus === true) {
 		// Updating the status in the data object
-		colorPicker.opacityStatus = false;
+		colorPickerComp.opacityStatus = false;
 	}
 });
 
@@ -902,9 +892,9 @@ document.getElementById('opacity_slider').addEventListener(
 	'touchstart',
 	function (event) {
 		// Updating the status
-		colorPicker.opacityStatusTouch = true;
+		colorPickerComp.opacityStatusTouch = true;
 		// Calling the handler function
-		opacitySliderHandler(event.changedTouches[0].clientX);
+		colorPickerComp.opacitySliderHandler(event.changedTouches[0].clientX);
 	},
 	{ passive: true }
 );
@@ -914,11 +904,11 @@ document.addEventListener(
 	'touchmove',
 	function () {
 		// Checking that the touch drag has started
-		if (colorPicker.opacityStatusTouch === true) {
+		if (colorPickerComp.opacityStatusTouch === true) {
 			// Prevent page scrolling
 			event.preventDefault();
 			// Calling the handler function
-			opacitySliderHandler(event.changedTouches[0].clientX);
+			colorPickerComp.opacitySliderHandler(event.changedTouches[0].clientX);
 		}
 	},
 	{ passive: false }
@@ -927,9 +917,9 @@ document.addEventListener(
 // End the slider drag on touch
 document.addEventListener('touchend', function () {
 	// Checking that the touch drag has started
-	if (colorPicker.opacityStatusTouch === true) {
+	if (colorPickerComp.opacityStatusTouch === true) {
 		// Updating the status
-		colorPicker.opacityStatusTouch = false;
+		colorPickerComp.opacityStatusTouch = false;
 	}
 });
 
@@ -938,7 +928,7 @@ document.addEventListener('touchend', function () {
  */
 
 // Function to handle changes to the saturation and lightness box
-let colorBoxHandler = function (positionX, positionY, touch) {
+colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 	// Defining the box and dragger
 	const boxContainer = document.getElementById('color_box');
 	const boxDragger = document.getElementById('box_dragger');
@@ -987,17 +977,17 @@ let colorBoxHandler = function (positionX, positionY, touch) {
 	let LPercent = Math.floor((percentY / 100) * percentX);
 
 	// Applying the Saturation and Lightness to the data object
-	colorPicker.saturation = SPercent;
-	colorPicker.lightness = LPercent;
+	colorPickerComp.saturation = SPercent;
+	colorPickerComp.lightness = LPercent;
 
 	// Full HSLA color
-	const HSLA = `hsla(${colorPicker.hue}, ${SPercent}%, ${LPercent}%, ${colorPicker.alpha})`;
+	const HSLA = `hsla(${colorPickerComp.hue}, ${SPercent}%, ${LPercent}%, ${colorPickerComp.alpha})`;
 
 	// Applying the color to the color preview
 	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
 
 	// Update the color text values
-	updateColorValueInput();
+	colorPickerComp.updateColorValueInput();
 };
 
 /*
@@ -1007,26 +997,26 @@ let colorBoxHandler = function (positionX, positionY, touch) {
 // Start box drag listener
 document.getElementById('color_box').addEventListener('mousedown', function (event) {
 	// Updating the status in the data object
-	colorPicker.boxStatus = true;
+	colorPickerComp.boxStatus = true;
 	// Calling handler function
-	colorBoxHandler(event.pageX, event.pageY);
+	colorPickerComp.colorBoxHandler(event.pageX, event.pageY);
 });
 
 // Moving box drag listener
 document.addEventListener('mousemove', function (event) {
 	// Checking that the drag has started
-	if (colorPicker.boxStatus === true) {
+	if (colorPickerComp.boxStatus === true) {
 		// Calling handler function
-		colorBoxHandler(event.pageX, event.pageY);
+		colorPickerComp.colorBoxHandler(event.pageX, event.pageY);
 	}
 });
 
 // End box drag listener
 document.addEventListener('mouseup', function (event) {
 	// Checking that the drag has started
-	if (colorPicker.boxStatus === true) {
+	if (colorPickerComp.boxStatus === true) {
 		// Updating the status in the data object
-		colorPicker.boxStatus = false;
+		colorPickerComp.boxStatus = false;
 	}
 });
 
@@ -1039,9 +1029,13 @@ document.getElementById('color_box').addEventListener(
 	'touchstart',
 	function (event) {
 		// Updating the status
-		colorPicker.boxStatusTouch = true;
+		colorPickerComp.boxStatusTouch = true;
 		// Calling the handler function
-		colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY, true);
+		colorPickerComp.colorBoxHandler(
+			event.changedTouches[0].clientX,
+			event.changedTouches[0].clientY,
+			true
+		);
 	},
 	{ passive: true }
 );
@@ -1051,11 +1045,15 @@ document.addEventListener(
 	'touchmove',
 	function () {
 		// Checking that the touch drag has started
-		if (colorPicker.boxStatusTouch === true) {
+		if (colorPickerComp.boxStatusTouch === true) {
 			// Prevent page scrolling
 			event.preventDefault();
 			// Calling the handler function
-			colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY, true);
+			colorPickerComp.colorBoxHandler(
+				event.changedTouches[0].clientX,
+				event.changedTouches[0].clientY,
+				true
+			);
 		}
 	},
 	{ passive: false }
@@ -1064,9 +1062,9 @@ document.addEventListener(
 // End box drag on touch
 document.addEventListener('touchend', function () {
 	// Checking that the touch drag has started
-	if (colorPicker.boxStatusTouch === true) {
+	if (colorPickerComp.boxStatusTouch === true) {
 		// Calling the handler function
-		colorPicker.boxStatusTouch = false;
+		colorPickerComp.boxStatusTouch = false;
 	}
 });
 
@@ -1075,18 +1073,18 @@ document.addEventListener('touchend', function () {
  */
 
 // Function to update color displays
-let updateColorDisplays = function (color) {
+colorPickerComp.updateColorDisplays = function (color) {
 	// Checking the color type that has been given
 	if (color.substring(0, 1) == '#') {
 		// Converting the color to HSLA
-		color = hexAToRGBA(color, true);
+		color = colorPickerComp.hexAToRGBA(color, true);
 	} else if (color.substring(0, 1) == 'r') {
 		// Extracting the values
 		const rgb = color.match(/[.?\d]+/g);
 		// Making sure there is a alpha value
 		rgb[3] = rgb[3] == undefined ? 1 : rgb[3];
 		// Converting the color to HSLA
-		color = RGBAToHSLA(rgb[0], rgb[1], rgb[2], rgb[3]);
+		color = colorPickerComp.RGBAToHSLA(rgb[0], rgb[1], rgb[2], rgb[3]);
 	} else {
 		// Extracting the values
 		const hsl = color.match(/[.?\d]+/g);
@@ -1102,13 +1100,13 @@ let updateColorDisplays = function (color) {
 	}
 
 	// Updating the data object
-	colorPicker.hue = color.h;
-	colorPicker.saturation = color.s;
-	colorPicker.lightness = color.l;
-	colorPicker.alpha = color.a;
+	colorPickerComp.hue = color.h;
+	colorPickerComp.saturation = color.s;
+	colorPickerComp.lightness = color.l;
+	colorPickerComp.alpha = color.a;
 
 	// Updating the input values
-	updateColorValueInput();
+	colorPickerComp.updateColorValueInput();
 
 	// Updating color preview and box hue color initially
 	document
@@ -1160,27 +1158,27 @@ let updateColorDisplays = function (color) {
 };
 
 // Update the color value inputs
-let updateColorValueInput = function () {
+colorPickerComp.updateColorValueInput = function () {
 	// Checking the value color type the user has selected
-	if (colorPicker.colorTypeStatus == 'HEXA') {
+	if (colorPickerComp.colorTypeStatus == 'HEXA') {
 		// Converting the value
-		const hexValue = HSLAToRGBA(
-			colorPicker.hue,
-			colorPicker.saturation,
-			colorPicker.lightness,
-			colorPicker.alpha,
+		const hexValue = colorPickerComp.HSLAToRGBA(
+			colorPickerComp.hue,
+			colorPickerComp.saturation,
+			colorPickerComp.lightness,
+			colorPickerComp.alpha,
 			true
 		);
 
 		// Applying the value to the input
 		document.getElementById('hex_input').value = hexValue;
-	} else if (colorPicker.colorTypeStatus == 'RGBA') {
+	} else if (colorPickerComp.colorTypeStatus == 'RGBA') {
 		// Converting the value
-		const RGBAValue = HSLAToRGBA(
-			colorPicker.hue,
-			colorPicker.saturation,
-			colorPicker.lightness,
-			colorPicker.alpha
+		const RGBAValue = colorPickerComp.HSLAToRGBA(
+			colorPickerComp.hue,
+			colorPickerComp.saturation,
+			colorPickerComp.lightness,
+			colorPickerComp.alpha
 		);
 
 		// Applying the value to the inputs
@@ -1190,9 +1188,9 @@ let updateColorValueInput = function () {
 		document.getElementsByClassName('rgba_input')[3].value = RGBAValue.a;
 	} else {
 		// Applying the value to the inputs
-		document.getElementsByClassName('hsla_input')[0].value = colorPicker.hue;
-		document.getElementsByClassName('hsla_input')[1].value = colorPicker.saturation;
-		document.getElementsByClassName('hsla_input')[2].value = colorPicker.lightness;
-		document.getElementsByClassName('hsla_input')[3].value = colorPicker.alpha;
+		document.getElementsByClassName('hsla_input')[0].value = colorPickerComp.hue;
+		document.getElementsByClassName('hsla_input')[1].value = colorPickerComp.saturation;
+		document.getElementsByClassName('hsla_input')[2].value = colorPickerComp.lightness;
+		document.getElementsByClassName('hsla_input')[3].value = colorPickerComp.alpha;
 	}
 };

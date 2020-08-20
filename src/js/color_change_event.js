@@ -3,9 +3,9 @@
  */
 
 // Custom color change event function
-function colorChange(color, elem) {
+colorPickerComp.colorChange = function (color, elem) {
 	// Defining the RGBA value conversion
-	let rgbaValue = HSLAToRGBA(color.h, color.s, color.l, color.a);
+	let rgbaValue = colorPickerComp.HSLAToRGBA(color.h, color.s, color.l, color.a);
 
 	// Creating the event
 	const event = new CustomEvent('colorChange', {
@@ -14,13 +14,13 @@ function colorChange(color, elem) {
 			color: {
 				hsla: `hsla(${color.h}, ${color.s}%, ${color.l}%, ${color.a})`,
 				rgba: `rgba(${rgbaValue.r}, ${rgbaValue.g}, ${rgbaValue.b}, ${rgbaValue.a})`,
-				hexa: HSLAToRGBA(color.h, color.s, color.l, color.a, true)
+				hexa: colorPickerComp.HSLAToRGBA(color.h, color.s, color.l, color.a, true)
 			}
 		}
 	});
 
 	// Defining element
-	const element = elem === undefined ? colorPicker.instance.element : elem;
+	const element = elem === undefined ? colorPickerComp.instance.element : elem;
 
 	// Changing color attributes
 	element.setAttribute('data-color', color);
@@ -28,4 +28,4 @@ function colorChange(color, elem) {
 
 	// Dispatching the event for the active object
 	element.dispatchEvent(event);
-}
+};

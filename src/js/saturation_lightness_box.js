@@ -3,7 +3,7 @@
  */
 
 // Function to handle changes to the saturation and lightness box
-let colorBoxHandler = function (positionX, positionY, touch) {
+colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 	// Defining the box and dragger
 	const boxContainer = document.getElementById('color_box');
 	const boxDragger = document.getElementById('box_dragger');
@@ -52,17 +52,17 @@ let colorBoxHandler = function (positionX, positionY, touch) {
 	let LPercent = Math.floor((percentY / 100) * percentX);
 
 	// Applying the Saturation and Lightness to the data object
-	colorPicker.saturation = SPercent;
-	colorPicker.lightness = LPercent;
+	colorPickerComp.saturation = SPercent;
+	colorPickerComp.lightness = LPercent;
 
 	// Full HSLA color
-	const HSLA = `hsla(${colorPicker.hue}, ${SPercent}%, ${LPercent}%, ${colorPicker.alpha})`;
+	const HSLA = `hsla(${colorPickerComp.hue}, ${SPercent}%, ${LPercent}%, ${colorPickerComp.alpha})`;
 
 	// Applying the color to the color preview
 	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
 
 	// Update the color text values
-	updateColorValueInput();
+	colorPickerComp.updateColorValueInput();
 };
 
 /*
@@ -72,26 +72,26 @@ let colorBoxHandler = function (positionX, positionY, touch) {
 // Start box drag listener
 document.getElementById('color_box').addEventListener('mousedown', function (event) {
 	// Updating the status in the data object
-	colorPicker.boxStatus = true;
+	colorPickerComp.boxStatus = true;
 	// Calling handler function
-	colorBoxHandler(event.pageX, event.pageY);
+	colorPickerComp.colorBoxHandler(event.pageX, event.pageY);
 });
 
 // Moving box drag listener
 document.addEventListener('mousemove', function (event) {
 	// Checking that the drag has started
-	if (colorPicker.boxStatus === true) {
+	if (colorPickerComp.boxStatus === true) {
 		// Calling handler function
-		colorBoxHandler(event.pageX, event.pageY);
+		colorPickerComp.colorBoxHandler(event.pageX, event.pageY);
 	}
 });
 
 // End box drag listener
 document.addEventListener('mouseup', function (event) {
 	// Checking that the drag has started
-	if (colorPicker.boxStatus === true) {
+	if (colorPickerComp.boxStatus === true) {
 		// Updating the status in the data object
-		colorPicker.boxStatus = false;
+		colorPickerComp.boxStatus = false;
 	}
 });
 
@@ -104,9 +104,13 @@ document.getElementById('color_box').addEventListener(
 	'touchstart',
 	function (event) {
 		// Updating the status
-		colorPicker.boxStatusTouch = true;
+		colorPickerComp.boxStatusTouch = true;
 		// Calling the handler function
-		colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY, true);
+		colorPickerComp.colorBoxHandler(
+			event.changedTouches[0].clientX,
+			event.changedTouches[0].clientY,
+			true
+		);
 	},
 	{ passive: true }
 );
@@ -116,11 +120,15 @@ document.addEventListener(
 	'touchmove',
 	function () {
 		// Checking that the touch drag has started
-		if (colorPicker.boxStatusTouch === true) {
+		if (colorPickerComp.boxStatusTouch === true) {
 			// Prevent page scrolling
 			event.preventDefault();
 			// Calling the handler function
-			colorBoxHandler(event.changedTouches[0].clientX, event.changedTouches[0].clientY, true);
+			colorPickerComp.colorBoxHandler(
+				event.changedTouches[0].clientX,
+				event.changedTouches[0].clientY,
+				true
+			);
 		}
 	},
 	{ passive: false }
@@ -129,8 +137,8 @@ document.addEventListener(
 // End box drag on touch
 document.addEventListener('touchend', function () {
 	// Checking that the touch drag has started
-	if (colorPicker.boxStatusTouch === true) {
+	if (colorPickerComp.boxStatusTouch === true) {
 		// Calling the handler function
-		colorPicker.boxStatusTouch = false;
+		colorPickerComp.boxStatusTouch = false;
 	}
 });

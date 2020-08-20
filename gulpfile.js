@@ -2,6 +2,9 @@
  * Gulp File
  */
 
+// TODO: Clear directory before either build. include only min file with prodBuild and fill files in devBuild
+// TODO: Remove e11 directory
+
 // Importing required dependencies
 const gulp = require('gulp');
 const concatJS = require('gulp-concat');
@@ -31,6 +34,8 @@ gulp.task('productionScripts', async function () {
 		.pipe(uglifyJS())
 		.pipe(gulp.dest('build'));
 });
+
+// TODO: Change to have a . instead of _ in css files
 
 // Compiling SASS and minifying files - PRODUCTION BUILD
 gulp.task('productionSass', async function () {
