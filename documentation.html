@@ -14,6 +14,12 @@
 			content="javascript, css, svg, html, lightweight, color, chrome, ui, js, color-picker, picker, colour"
 		/>
 
+		<!-- Favicon -->
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/img/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="./assets/img/favicon-16x16.png" />
+		<link rel="manifest" href="./assets/img/site.webmanifest" />
+
 		<!-- CSS Files -->
 		<link type="text/css" rel="stylesheet" href="./dist/lib.css" />
 		<link type="text/css" rel="stylesheet" href="./dist/docs.css" />
@@ -385,10 +391,12 @@ colorPickerComp.colorChange('#ff0000', button);</code></pre>
 		<script type="text/javascript" src="./dist/docs.js"></script>
 		<script type="text/javascript" src="./dist/documentation.js"></script>
 		<script type="text/javascript">
-			// Removing certain elements
-			$('.link-icon').each(function (x) {
-				$('.link-icon')[x].style.display = 'none';
-			});
+			try {
+				// Removing certain elements
+				$('.link-icon').each(function (x) {
+					$('.link-icon')[x].style.display = 'none';
+				});
+			} catch (e) {}
 		</script>
 	</body>
 </html>

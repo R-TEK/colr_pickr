@@ -14,6 +14,12 @@
 			content="javascript, css, svg, html, lightweight, color, chrome, ui, js, color-picker, picker, colour"
 		/>
 
+		<!-- Favicon -->
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/img/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="./assets/img/favicon-16x16.png" />
+		<link rel="manifest" href="./assets/img/site.webmanifest" />
+
 		<!-- CSS Files -->
 		<link type="text/css" rel="stylesheet" href="./dist/lib.css" />
 		<link type="text/css" rel="stylesheet" href="./dist/markdown.css" />
@@ -92,10 +98,12 @@
 			 * Runs at start to give all code elements a prettyprint class
 			 * So that the color syntax library can change the style of all code elements
 			 */
-			for (x in document.querySelectorAll('CODE')) {
-				const element = document.querySelectorAll('CODE');
-				element[x].setAttribute('class', 'prettyprint');
-			}
+			try {
+				for (x in document.querySelectorAll('CODE')) {
+					const element = document.querySelectorAll('CODE');
+					element[x].setAttribute('class', 'prettyprint');
+				}
+			} catch (e) {}
 		</script>
 		<script type="text/javascript" src="./dist/lib.js"></script>
 		<script type="text/javascript" src="./dist/markdown.js"></script>

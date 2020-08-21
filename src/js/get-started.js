@@ -4,7 +4,7 @@
 
 // Change example background color
 const backgroundNode = document.getElementById('background');
-let background = new ColorPicker(backgroundNode, '#2e5776');
+let background = new ColorPicker(backgroundNode, '#4b0982');
 
 backgroundNode.addEventListener('colorChange', function () {
 	document.getElementById('listener').style.background = event.detail.color.hexa;
@@ -12,7 +12,7 @@ backgroundNode.addEventListener('colorChange', function () {
 
 // Change example border color
 const borderNode = document.getElementById('border');
-let border = new ColorPicker(borderNode, '#4e4376');
+let border = new ColorPicker(borderNode, '#1d0088');
 
 borderNode.addEventListener('colorChange', function () {
 	document.getElementById('listener').style.border = '5px solid ' + event.detail.color.hexa;

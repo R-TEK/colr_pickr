@@ -14,6 +14,12 @@
 			content="javascript, css, svg, html, lightweight, color, chrome, ui, js, color-picker, picker, colour"
 		/>
 
+		<!-- Favicon -->
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/img/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="./assets/img/favicon-16x16.png" />
+		<link rel="manifest" href="./assets/img/site.webmanifest" />
+
 		<!-- CSS Files -->
 		<link type="text/css" rel="stylesheet" href="./dist/lib.css" />
 		<link type="text/css" rel="stylesheet" href="./dist/markdown.css" />
@@ -90,7 +96,7 @@
         <img src="https://badgen.net/github/license/R-TEK/colr_pickr?color=ff0000" alt="license" />
     </a>
     <a href="https://github.com/R-TEK/colr_pickr/graphs/contributors">
-        <img src="https://badgen.net/badge/maintained/Yes?color=008c17">
+        <img src="https://badgen.net/badge/maintained/Yes?color=008c17" alt="maintained">
     </a>
     <a href="https://www.npmjs.com/package/@r-tek/colr_pickr">
         <img src="https://badgen.net/npm/v/@r-tek/colr_pickr?color=7000c5" alt="version" />
@@ -99,7 +105,7 @@
         <img src="https://badgen.net/bundlephobia/minzip/@r-tek/colr_pickr?color=158fcc" alt="minzip size" />
     </a>
     <a href="https://lgtm.com/projects/g/R-TEK/colr_pickr/context:javascript">
-        <img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/R-TEK/colr_pickr.svg?logo=lgtm&logoWidth=18"/>
+        <img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/R-TEK/colr_pickr.svg?logo=lgtm&logoWidth=18"/ alt="code_quality">
     </a>
 </p>
 
@@ -257,10 +263,12 @@ Colr Pickr support all the popular choices, the table below show all supported v
 			 * Runs at start to give all code elements a prettyprint class
 			 * So that the color syntax library can change the style of all code elements
 			 */
-			for (x in document.querySelectorAll('CODE')) {
-				const element = document.querySelectorAll('CODE');
-				element[x].setAttribute('class', 'prettyprint');
-			}
+			try {
+				for (x in document.querySelectorAll('CODE')) {
+					const element = document.querySelectorAll('CODE');
+					element[x].setAttribute('class', 'prettyprint');
+				}
+			} catch (e) {}
 		</script>
 		<script type="text/javascript" src="./dist/lib.js"></script>
 		<script type="text/javascript" src="./dist/markdown.js"></script>
