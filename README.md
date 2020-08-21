@@ -20,7 +20,7 @@
     <a href="https://www.npmjs.com/package/@r-tek/colr_pickr">
         <img src="https://badgen.net/npm/v/@r-tek/colr_pickr?color=7000c5" alt="version" />
     </a>
-    <a href="https://bundlephobia.com/result?p=@r-tek/colr_pickr@1.1.0">
+    <a href="https://bundlephobia.com/result?p=@r-tek/colr_pickr@1.2.0">
         <img src="https://badgen.net/bundlephobia/minzip/@r-tek/colr_pickr?color=158fcc" alt="minzip size" />
     </a>
     <a href="https://lgtm.com/projects/g/R-TEK/colr_pickr/context:javascript">
@@ -77,14 +77,14 @@
     ```html
     <script
     	type="text/javascript"
-    	src="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.1.0/build/colr_pickr.min.js"
+    	src="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.2.0/build/colr_pickr.min.js"
     ></script>
     ```
     ```html
     <link
     	rel="stylesheet"
     	type="text/css"
-    	href="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.1.0/build/colr_pickr.min.css"
+    	href="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.2.0/build/colr_pickr.min.css"
     />
     ```
 
