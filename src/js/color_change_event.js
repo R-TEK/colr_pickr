@@ -18,7 +18,23 @@ colorPickerComp.colorChange = function (color, elem) {
 	const rgbaValue = colorPickerComp.HSLAToRGBA(color.h, color.s, color.l, color.a);
 	const hex = colorPickerComp.HSLAToRGBA(color.h, color.s, color.l, color.a, true);
 
-	// Creating the event
+	/**
+	 * @event colorChange
+	 * @description Event to fire whenever the color picker is closed for new details on the color instance. Calling event.detail will return an object of the following:
+	 * @return {object} color - Object of color values
+	 * @return {string} color.hex - Hex value of chosen color
+	 * @return {string} color.rgb - RGB value of chosen color
+	 * @return {string} color.hsl - HSL value of chosen color
+	 * @return {string} color.hexa - HexAlpha value of chosen color
+	 * @return {string} color.rgba - RGBA value of chosen color
+	 * @return {string} color.hsla - HSLA value of chosen color
+	 *
+	 * @example
+	 * const button = document.getElementById('my_button');
+	 * button.addEventListener('colorChange', function () {
+	 *   const newColor = event.detail.color.hexa;
+	 * });
+	 */
 	const event = new CustomEvent('colorChange', {
 		// Adding the response details
 		detail: {
