@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<title>JSDoc: Source: setup.js</title>
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: setup.js</title>
 
-		<script src="scripts/prettify/prettify.js"></script>
-		<script src="scripts/prettify/lang-css.js"></script>
-		<!--[if lt IE 9]>
-			<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css" />
-		<link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css" />
-	</head>
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
 
-	<body>
-		<div id="main">
-			<h1 class="page-title">Source: setup.js</h1>
+<body>
 
-			<section>
-				<article>
-					<pre class="prettyprint source linenums"><code>/*!
+<div id="main">
+
+    <h1 class="page-title">Source: setup.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*!
  * Colr Pickr
  *
  * R-TEK
@@ -29,48 +36,25 @@
  * MIT License
  */
 
-/*
+/**
  * Set-up
  */
 
 /**
- * All global states and variables needed for reference over the entire project
- *
- * @type {{instance: object | null, boxStatus: boolean, boxStatusTouch: boolean, sliderStatus: boolean, sliderStatusTouch: boolean, opacityStatus: boolean, opacityStatusTouch: boolean, colorTypeStatus: string, hue: number, saturation: number, lightness: number, alpha: number, contextMenuElem: HTMLElement | null, doubleTapTime: number}}
+ * @description Creation of the colorPickerComp object
+ * @namespace colorPickerComp
+ * @type {object}
  */
-let colorPicker = {
-	instance: null,
-	boxStatus: false,
-	boxStatusTouch: false,
-	sliderStatus: false,
-	sliderStatusTouch: false,
-	opacityStatus: false,
-	opacityStatusTouch: false,
-	colorTypeStatus: 'HEXA',
-	hue: 0,
-	saturation: 100,
-	lightness: 50,
-	alpha: 1,
-	contextMenuElem: null,
-	doubleTapTime: 0
-};
+let colorPickerComp = new Object();
 
 /**
- * Custom colors saved to local storage
- *
- * @type {{0: Array}}
- */
-window.LSCustomColors = { 0: [] };
-
-/**
- * Constructor - to create an instance of the color picker
- *
- * @param {Element} element - This is a button element that can launch the color picker
- * @param {string} [color] - To set the default color of this instance (Optional - default is '#ff0000')
+ * @description Colr Pickr Constructor
+ * @param {HTMLElement} element - Define the button that you want to open this instance of the color picker
+ * @param {string} [color] - The default color that the button and color picker instance will start out as
  *
  * @example
- * const launchBtn = document.getElementById('launch_btn');
- * let picker = new ColorPicker(launchBtn, '#ff0000');
+ * const button = document.getElementById('my_button');
+ * let picker = new ColorPicker(button, '#ffffff');
  */
 function ColorPicker(element, color) {
 	// Adding the element to the instance
@@ -86,24 +70,35 @@ function ColorPicker(element, color) {
 	// Click listener to have the button open the color picker interface
 	element.addEventListener('click', function (event) {
 		// Applying the items instance to the color picker object
-		colorPicker.instance = event.target.colorPickerObj;
+		colorPickerComp.instance = event.target.colorPickerObj;
 
 		// Displaying the color picker
 		document.getElementById('color_picker').style.display = 'block';
 		document.getElementById('color_picker_bg').style.display = 'block';
 
 		// Updating the color picker
-		if (event.target.getAttribute('data-color') != 'undefined')
-			updateColorDisplays(event.target.getAttribute('data-color'));
+		colorPickerComp.updateColorDisplays(event.target.getAttribute('data-color'));
 	});
 }
 
-/**
- * @function
- * @description Function to populate the DOM with color picker HTML, and set local storage values
- * @module set-up
- */
 (function () {
+	// Adding items to the color picker object
+	colorPickerComp.instance = null;
+	colorPickerComp.boxStatus = false;
+	colorPickerComp.boxStatusTouch = false;
+	colorPickerComp.sliderStatus = false;
+	colorPickerComp.sliderStatusTouch = false;
+	colorPickerComp.opacityStatus = false;
+	colorPickerComp.opacityStatusTouch = false;
+	colorPickerComp.colorTypeStatus = 'HEXA';
+	colorPickerComp.hue = 0;
+	colorPickerComp.saturation = 100;
+	colorPickerComp.lightness = 50;
+	colorPickerComp.alpha = 1;
+	colorPickerComp.contextMenuElem = null;
+	colorPickerComp.doubleTapTime = 0;
+	colorPickerComp.LSCustomColors = { 0: [] };
+
 	// Creating the HTML content
 	const HTMLContent = `
 		&lt;svg id="color_box" width="348" height="185">
@@ -253,21 +248,21 @@ function ColorPicker(element, color) {
 		localStorage.setItem('custom_colors', '{"0": []}');
 	} else {
 		// If it has then I define the LSCustomColors with the value for this
-		window.LSCustomColors = JSON.parse(localStorage.getItem('custom_colors'));
+		colorPickerComp.LSCustomColors = JSON.parse(localStorage.getItem('custom_colors'));
 
 		// Looping through the data to update the DOM with the custom colors
-		for (let x = window.LSCustomColors[0].length - 1; x >= 0; x--) {
+		for (let x = colorPickerComp.LSCustomColors[0].length - 1; x >= 0; x--) {
 			// Creating the element
 			let customColorElem = document.createElement('BUTTON');
 			customColorElem.className = 'custom_colors_preview';
-			customColorElem.style.background = window.LSCustomColors[0][x];
-			customColorElem.setAttribute('data-custom-color', window.LSCustomColors[0][x]);
+			customColorElem.style.background = colorPickerComp.LSCustomColors[0][x];
+			customColorElem.setAttribute('data-custom-color', colorPickerComp.LSCustomColors[0][x]);
 			// Placing the element in the DOM
 			document.getElementById('custom_colors_box').appendChild(customColorElem);
 		}
 
 		// Check whether to display the add color button
-		if (window.LSCustomColors[0].length == 28)
+		if (colorPickerComp.LSCustomColors[0].length == 28)
 			document.getElementById('custom_colors_add').style.display = 'none';
 	}
 })();
@@ -286,13 +281,15 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 	document.getElementById('color_picker').style.display = 'none';
 	document.getElementById('color_picker_bg').style.display = 'none';
 
+	// Checking if the color for this instance has not been set yet
+	if (colorPickerComp.instance.element.getAttribute('data-color') == 'undefined') return;
+
 	// Calling Event to make all the necessary changes
-<<<<<<< HEAD
-	colorChange({
-		h: colorPicker.hue,
-		s: colorPicker.saturation,
-		l: colorPicker.lightness,
-		a: colorPicker.alpha
+	colorPickerComp.colorChange({
+		h: colorPickerComp.hue,
+		s: colorPickerComp.saturation,
+		l: colorPickerComp.lightness,
+		a: colorPickerComp.alpha
 	});
 });
 </code></pre>
@@ -305,47 +302,16 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-set-up.html">set-up</a></li></ul><h3>Global</h3><ul><li><a href="global.html#colorPicker">colorPicker</a></li><li><a href="global.html#ColorPicker">ColorPicker</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="colorPickerComp.html">colorPickerComp</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ColorPicker">ColorPicker</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Mon Aug 03 2020 16:26:14 GMT+0100 (British Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri Aug 21 2020 21:59:00 GMT+0100 (British Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>
 <script src="scripts/linenumber.js"> </script>
 </body>
-=======
-	colorPickerComp.colorChange(
-		`hsla(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`
-	);
-});
-</code></pre>
-				</article>
-			</section>
-		</div>
-
-		<nav>
-			<h2><a href="index.html">Home</a></h2>
-			<h3>Global</h3>
-			<ul>
-				<li><a href="global.html#colorPicker">colorPicker</a></li>
-			</ul>
-		</nav>
-
-		<br class="clear" />
-
-		<footer>
-			Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on
-			Sat Aug 15 2020 17:49:32 GMT+0100 (British Summer Time)
-		</footer>
-
-		<script>
-			prettyPrint();
-		</script>
-		<script src="scripts/linenumber.js"></script>
-	</body>
->>>>>>> master
 </html>

@@ -12,10 +12,22 @@
  * Set-up
  */
 
-// Creation of the colorPickerComp object
+/**
+ * @description Creation of the colorPickerComp object
+ * @namespace colorPickerComp
+ * @type {object}
+ */
 let colorPickerComp = new Object();
 
-// ColorPicker Constructor
+/**
+ * @description Colr Pickr Constructor
+ * @param {HTMLElement} element - Define the button that you want to open this instance of the color picker
+ * @param {string} [color] - The default color that the button and color picker instance will start out as
+ *
+ * @example
+ * const button = document.getElementById('my_button');
+ * let picker = new ColorPicker(button, '#ffffff');
+ */
 function ColorPicker(element, color) {
 	// Adding the element to the instance
 	this.element = element;

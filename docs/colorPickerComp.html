@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: Namespace: colorPickerComp</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">Namespace: colorPickerComp</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2></h2>
+        <h2>colorPickerComp</h2>
         
     
 </header>
@@ -36,6 +36,8 @@
 <article>
     <div class="container-overview">
     
+        
+            <div class="description"><p>Creation of the colorPickerComp object</p></div>
         
 
         
@@ -67,6 +69,11 @@
 
     
 
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="setup.js.html">setup.js</a>, <a href="setup.js.html#line15">line 15</a>
+    </li></ul></dd>
     
 
     
@@ -104,7 +111,7 @@
     
 
     
-    <h4 class="name" id="ColorPicker"><span class="type-signature"></span>ColorPicker<span class="signature">(element, color<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".colorChange"><span class="type-signature">(static) </span>colorChange<span class="signature">(color, elem)</span><span class="type-signature"></span></h4>
     
 
     
@@ -112,7 +119,7 @@
 
 
 <div class="description">
-    <p>Colr Pickr Constructor</p>
+    <p>Function to change the color of an instance via a JavaScript function</p>
 </div>
 
 
@@ -136,8 +143,6 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
         
 
@@ -146,37 +151,6 @@
     </thead>
 
     <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>element</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">HTMLElement</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Define the button that you want to open this instance of the color picker</p></td>
-        </tr>
-
     
 
         <tr>
@@ -194,20 +168,33 @@
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
 
-                
+            
 
+            <td class="description last"><p>The color you are changing the instance to</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>elem</code></td>
+            
+
+            <td class="type">
+            
                 
-                </td>
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
             
 
             
 
-            <td class="description last"><p>The default color that the button and color picker instance will start out as</p></td>
+            <td class="description last"><p>The button HTMLElement that is a part of the instance</p></td>
         </tr>
 
     
@@ -248,7 +235,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="setup.js.html">setup.js</a>, <a href="setup.js.html#line31">line 31</a>
+        <a href="color_change_event.js.html">color_change_event.js</a>, <a href="color_change_event.js.html#line5">line 5</a>
     </li></ul></dd>
     
 
@@ -280,7 +267,100 @@
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>const button = document.getElementById('my_button');
-let picker = new ColorPicker(button, '#ffffff');</code></pre>
+colorPickerComp.colorChange('#ff0000', button);</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".getCustomColors"><span class="type-signature">(static) </span>getCustomColors<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Gets an array of all the saved custom colors</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="custom_color.js.html">custom_color.js</a>, <a href="custom_color.js.html#line5">line 5</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const savedColor = colorPickerComp.getCustomColors();</code></pre>
 
 
 
