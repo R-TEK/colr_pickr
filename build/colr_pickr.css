@@ -14,6 +14,65 @@
  * Mixins
  */
 /*
+ * Animations
+ */
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 0.5; } }
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 0.5; } }
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 0.5; } }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 0.5; } }
+
+@-webkit-keyframes popUp {
+  0% {
+    transform: scale(1); }
+  50% {
+    transform: scale(1.05); }
+  100% {
+    transform: scale(1); } }
+
+@-moz-keyframes popUp {
+  0% {
+    transform: scale(1); }
+  50% {
+    transform: scale(1.05); }
+  100% {
+    transform: scale(1); } }
+
+@-ms-keyframes popUp {
+  0% {
+    transform: scale(1); }
+  50% {
+    transform: scale(1.05); }
+  100% {
+    transform: scale(1); } }
+
+@keyframes popUp {
+  0% {
+    transform: scale(1); }
+  50% {
+    transform: scale(1.05); }
+  100% {
+    transform: scale(1); } }
+
+/*
  * Styling for inputs
  */
 #color_picker {
@@ -45,12 +104,16 @@
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 10px 0 rgba(1, 1, 1, 0.5);
-  z-index: 99;
+  z-index: 99999;
   user-select: none;
   -webkit-user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none; }
+  -ms-user-select: none;
+  -webkit-animation: popUp ease 0.2s;
+  -moz-animation: popUp ease 0.2s;
+  -ms-animation: popUp ease 0.2s;
+  animation: popUp ease 0.2s; }
 
 #color_picker_bg {
   display: none;
@@ -60,8 +123,12 @@
   top: 0;
   left: 0;
   background-color: #000;
-  opacity: 0.8;
-  z-index: 98; }
+  opacity: 0.5;
+  z-index: 99998;
+  -webkit-animation: fadeIn ease 0.2s;
+  -moz-animation: fadeIn ease 0.2s;
+  -ms-animation: fadeIn ease 0.2s;
+  animation: fadeIn ease 0.2s; }
 
 #color_picker #color_picked_preview {
   display: inline-block;

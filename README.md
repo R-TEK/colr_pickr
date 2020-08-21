@@ -1,5 +1,5 @@
-<h1 align="center" style="color: rgb(7, 128, 228)">
-    <a href="https://r-tek.github.io/colr_pickr/" target="blank">
+<h1 align="center">
+    <a href="https://r-tek.github.io/colr_pickr/" target="blank" style="color: rgb(75, 0, 130)">
         <img height="340" src="/assets/img/interface_view.png"/>
         <br />
         Colr Pickr
@@ -20,7 +20,7 @@
     <a href="https://www.npmjs.com/package/@r-tek/colr_pickr">
         <img src="https://badgen.net/npm/v/@r-tek/colr_pickr?color=7000c5" alt="version" />
     </a>
-    <a href="https://bundlephobia.com/result?p=@r-tek/colr_pickr@1.0.1">
+    <a href="https://bundlephobia.com/result?p=@r-tek/colr_pickr@1.2.0">
         <img src="https://badgen.net/bundlephobia/minzip/@r-tek/colr_pickr?color=158fcc" alt="minzip size" />
     </a>
     <a href="https://lgtm.com/projects/g/R-TEK/colr_pickr/context:javascript">
@@ -35,17 +35,17 @@
 ### Features:
 
 -   Drag interactive color picker allowing for easy use of finding colors, including a Saturation and Lightness box, Hue slider and Opacity slider
--   Reads and outputs HEX(with Alpha), RGBA and HSLA color values
+-   Reads and outputs HEX, RGB, HSL, HEXA, RGBA and HSLA color values
 -   Save custom colors to re-use on return to the color picker
 -   Full Touch Support
 -   ~4kb file size, meaning a super fast component of your application
--   Works on all major browsers (tested on Chrome, Firefox, Edge(Legacy and Chromium version), and more)
+-   Works on all major browsers
 -   Flat and modern design interface, inspired by google chrome dev-tools color picker
 
 ### Examples:
 
--   https://r-tek.github.io/colr_pickr/getting_started.html
--   https://codepen.io/TEK-Projects/pen/BajWXaN
+-   https://r-tek.github.io/colr_pickr/get-started.html
+-   https://codepen.io/TEK-Projects/pen/ExPmEYK
 
 ### Getting Started:
 
@@ -77,14 +77,14 @@
     ```html
     <script
     	type="text/javascript"
-    	src="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.0.1/build/colr_pickr_min.js"
+    	src="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.2.0/build/colr_pickr.min.js"
     ></script>
     ```
     ```html
     <link
     	rel="stylesheet"
     	type="text/css"
-    	href="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.0.1/build/colr_pickr_min.css"
+    	href="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.2.0/build/colr_pickr.min.css"
     />
     ```
 
@@ -102,7 +102,7 @@
 <!-- The rest is in your JavaScript file, or in this case a script tag -->
 
 <script type="text/javascript">
-	/*
+	/**
 	 * Create a new ColorPicker instance, which takes 2 parameters
 	 *
 	 * Parameter 1 [HTMLElement]: the button you want to launch the editor
@@ -112,7 +112,7 @@
 	const button = document.getElementById('my_picker');
 	let picker = new ColorPicker(button, '#ff0000');
 
-	/*
+	/**
 	 * What do you want to do after you have chosen the color?
 	 *
 	 * You can specify this in an EventListener, assigned to your button
@@ -120,12 +120,12 @@
 
 	button.addEventListener('colorChange', function (event) {
 		// This will give you the color you selected
-		const color = event.detail.color;
+		const color = event.detail.color.hexa;
 
 		// Code to do what you want with that color...
 	});
 
-	/*
+	/**
 	 * You can also change the color yourself via JavaScript
 	 *
 	 * If you want to change the selected color for an instance without using the picker
@@ -135,7 +135,7 @@
 	 * Parameter 2 [HTMLElement]: The button that holds the instance / picker launch button
 	 */
 
-	colorChange('#ff00ff', button);
+	colorPickerComp.colorChange('#ff00ff', button);
 </script>
 ```
 
@@ -165,7 +165,7 @@ Read the contribution file for details on developing with the project. You can f
 
 https://github.com/R-TEK/colr_pickr/blob/master/CONTRIBUTION.md
 
-You can also contribute by issuing any bugs you have found or ideas for new features/optimizations to improve the component. You can do this by going to the [issues](https://github.com/R-TEK/colr_pickr/issues) page and posting your bug / feature. Once I have read the issue, I'll add it to a [Trello](https://trello.com/b/cznKuYCL) road map. With the road map you can vote for items I have added if you like that feature too, and you can view what has been accepted/rejected, what I'm working on and what has been completed.
+You can also contribute by issuing any bugs you have found or ideas for new features/optimizations to improve the component. You can do this by going to the [issues](https://github.com/R-TEK/colr_pickr/issues) page and posting your bug / feature. Once I have read the issue, I'll add it to a [Trello](https://trello.com/b/ovPg9LEu) road map. With the road map you can vote for items I have added if you like that feature too, and you can view what has been accepted/rejected, what I'm working on and what has been completed.
 
 ### License:
 

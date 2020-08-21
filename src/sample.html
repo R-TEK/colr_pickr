@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
+		<title>Sample</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta charset="UTF-8" />
+		<meta name="description" content="Free Web tutorials" />
+		<meta name="keywords" content="HTML, CSS, JavaScript" />
+		<meta name="author" content="John Doe" />
 		<link rel="stylesheet" type="text/css" href="../build/colr_pickr.css" />
 	</head>
 
@@ -17,7 +22,11 @@
 			"
 		>
 			<h1 id="ti" style="text-align: center; margin: 5px 0;">Color Selector</h1>
-			<button id="title" style="width: 60px; height: 40px; color: #fff;"></button>
+			<button
+				id="title"
+				style="width: 60px; height: 40px; color: #fff;"
+				name="title"
+			></button>
 			<button
 				id="text"
 				style="
@@ -28,6 +37,7 @@
 					outline: none;
 					cursor: pointer;
 				"
+				name="text"
 			></button>
 			<button
 				id="background"
@@ -39,6 +49,7 @@
 					outline: none;
 					cursor: pointer;
 				"
+				name="background"
 			></button>
 		</div>
 		<p id="te" style="position: relative; top: 124px; z-index: -1;">
@@ -196,18 +207,19 @@
 		<script type="text/javascript" src="../build/colr_pickr.js"></script>
 		<script type="text/javascript">
 			let bob = new ColorPicker(document.getElementById('title'));
-			let text = new ColorPicker(document.getElementById('text'), '#1a00ad');
-			let background = new ColorPicker(document.getElementById('background'), '#ff0000');
-
 			document.getElementById('title').addEventListener('colorChange', function () {
 				console.log(event.detail);
-				document.getElementById('ti').style.color = event.detail.color;
+				document.getElementById('ti').style.color = event.detail.color.hexa;
 			});
+
+			let text = new ColorPicker(document.getElementById('text'), '#1a00ad');
 			document.getElementById('text').addEventListener('colorChange', function () {
-				document.getElementById('te').style.color = event.detail.color;
+				document.getElementById('te').style.color = event.detail.color.hexa;
 			});
+
+			let background = new ColorPicker(document.getElementById('background'), '#ff0000');
 			document.getElementById('background').addEventListener('colorChange', function () {
-				document.getElementById('b').style.background = event.detail.color;
+				document.getElementById('b').style.background = event.detail.color.hexa;
 			});
 		</script>
 	</body>

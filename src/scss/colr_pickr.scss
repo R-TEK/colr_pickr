@@ -8,8 +8,8 @@
  * MIT License
  */
 
-@import 'variables';
-@import 'mixins';
+@import 'config';
+@import 'animations';
 @import 'inputs';
 
 #color_picker {
@@ -22,8 +22,9 @@
 	background-color: #fff;
 	border-radius: 5px;
 	box-shadow: $shadow;
-	z-index: 99;
+	z-index: 99999;
 	@include no-select;
+	@include animation(popUp ease 0.2s);
 }
 
 #color_picker_bg {
@@ -34,8 +35,9 @@
 	top: 0;
 	left: 0;
 	background-color: #000;
-	opacity: 0.8;
-	z-index: 98;
+	opacity: 0.5;
+	z-index: 99998;
+	@include animation(fadeIn ease 0.2s);
 }
 
 #color_picker {

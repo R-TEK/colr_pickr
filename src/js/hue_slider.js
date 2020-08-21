@@ -1,9 +1,9 @@
-/*
+/**
  * Hue Slider
  */
 
 // Function to handle changes to the HUE slider
-let colorSliderHandler = function (position) {
+colorPickerComp.colorSliderHandler = function (position) {
 	// Defining the slider and dragger
 	const sliderContainer = document.getElementById('color_slider');
 	const sliderDragger = document.getElementById('color_slider_dragger');
@@ -31,10 +31,10 @@ let colorSliderHandler = function (position) {
 	const HColor = Math.round(359 - (359 / 100) * percent);
 
 	// Updating the Hue value in the data object
-	colorPicker.hue = HColor;
+	colorPickerComp.hue = HColor;
 
 	// Full HSLA color
-	const HSLA = `hsla(${HColor}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
+	const HSLA = `hsla(${HColor}, ${colorPickerComp.saturation}%, ${colorPickerComp.lightness}%, ${colorPickerComp.alpha})`;
 
 	// Updating the color for the color preview
 	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
@@ -45,40 +45,44 @@ let colorSliderHandler = function (position) {
 		.children[1].setAttribute('stop-color', `hsl(${HColor}, 100%, 50%)`);
 
 	// Update the color text values
-	updateColorValueInput();
+	colorPickerComp.updateColorValueInput();
+
+	// Setting the data-color attribute to a color string
+	// This is so that the color updates properly on instances where the color has not been set
+	colorPickerComp.instance.element.setAttribute('data-color', 'color');
 };
 
-/*
+/**
  * Mouse Events
  */
 
 // Start the slider drag
 document.getElementById('color_slider').addEventListener('mousedown', function (event) {
 	// Updating the status in the data object
-	colorPicker.sliderStatus = true;
+	colorPickerComp.sliderStatus = true;
 	// Calling handler function
-	colorSliderHandler(event.pageX);
+	colorPickerComp.colorSliderHandler(event.pageX);
 });
 
 // Moving the slider drag
 document.addEventListener('mousemove', function (event) {
 	// Checking that the drag has started
-	if (colorPicker.sliderStatus === true) {
+	if (colorPickerComp.sliderStatus === true) {
 		// Calling handler function
-		colorSliderHandler(event.pageX);
+		colorPickerComp.colorSliderHandler(event.pageX);
 	}
 });
 
 // End the slider drag
 document.addEventListener('mouseup', function () {
 	// Checking that the drag has started
-	if (colorPicker.sliderStatus === true) {
+	if (colorPickerComp.sliderStatus === true) {
 		// Updating the status in the data object
-		colorPicker.sliderStatus = false;
+		colorPickerComp.sliderStatus = false;
 	}
 });
 
-/*
+/**
  * Touch Events
  */
 
@@ -87,9 +91,9 @@ document.getElementById('color_slider').addEventListener(
 	'touchstart',
 	function (event) {
 		// Updating the status
-		colorPicker.sliderStatusTouch = true;
+		colorPickerComp.sliderStatusTouch = true;
 		// Calling the handler function
-		colorSliderHandler(event.changedTouches[0].clientX);
+		colorPickerComp.colorSliderHandler(event.changedTouches[0].clientX);
 	},
 	{ passive: true }
 );
@@ -99,11 +103,11 @@ document.addEventListener(
 	'touchmove',
 	function () {
 		// Checking that the touch drag has started
-		if (colorPicker.sliderStatusTouch === true) {
+		if (colorPickerComp.sliderStatusTouch === true) {
 			// Prevent page scrolling
 			event.preventDefault();
 			// Calling the handler function
-			colorSliderHandler(event.changedTouches[0].clientX);
+			colorPickerComp.colorSliderHandler(event.changedTouches[0].clientX);
 		}
 	},
 	{ passive: false }
@@ -112,8 +116,8 @@ document.addEventListener(
 // End the slider drag on touch
 document.addEventListener('touchend', function () {
 	// Checking that the touch drag has started
-	if (colorPicker.sliderStatusTouch === true) {
+	if (colorPickerComp.sliderStatusTouch === true) {
 		// Updating the status
-		colorPicker.sliderStatusTouch = false;
+		colorPickerComp.sliderStatusTouch = false;
 	}
 });

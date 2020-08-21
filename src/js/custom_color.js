@@ -1,6 +1,11 @@
-/*
+/**
  * Custom Colors
  */
+
+// Get custom colors
+colorPickerComp.getCustomColors = function () {
+	return colorPickerComp.LSCustomColors();
+};
 
 // Click on color listener to update the picker
 document.getElementById('custom_colors_box').addEventListener('click', function (event) {
@@ -9,18 +14,18 @@ document.getElementById('custom_colors_box').addEventListener('click', function 
 		// Color
 		const color = event.target.getAttribute('data-custom-color');
 		// Updating the picker with that color
-		updateColorDisplays(color);
+		colorPickerComp.updateColorDisplays(color);
 	}
 });
 
 // Function to add a new custom color
-let addCustomColor = function () {
+colorPickerComp.addCustomColor = function () {
 	// Limiting a custom color to two rows
-	if (window.LSCustomColors[0].length == 27)
+	if (colorPickerComp.LSCustomColors[0].length == 27)
 		document.getElementById('custom_colors_add').style.display = 'none';
 
 	// Getting the color
-	const color = `hsla(${colorPicker.hue}, ${colorPicker.saturation}%, ${colorPicker.lightness}%, ${colorPicker.alpha})`;
+	const color = `hsla(${colorPickerComp.hue}, ${colorPickerComp.saturation}%, ${colorPickerComp.lightness}%, ${colorPickerComp.alpha})`;
 
 	// Creating the element
 	let customColorElem = document.createElement('BUTTON');
@@ -31,13 +36,13 @@ let addCustomColor = function () {
 	document.getElementById('custom_colors_box').appendChild(customColorElem);
 
 	// Pushing the color to the top of the array
-	window.LSCustomColors[0].unshift(color);
+	colorPickerComp.LSCustomColors[0].unshift(color);
 
 	// Updating the local storage with the new custom color
-	localStorage.setItem('custom_colors', JSON.stringify(window.LSCustomColors));
+	localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
 };
 document.getElementById('custom_colors_add').addEventListener('mouseup', function () {
-	addCustomColor();
+	colorPickerComp.addCustomColor();
 });
 
 // Event to fire for a context menu
@@ -56,19 +61,19 @@ document.getElementById('custom_colors_box').addEventListener('contextmenu', fun
 		contextMenu.style.left = event.target.getBoundingClientRect().left + 'px';
 
 		// Defining the color selected
-		colorPicker.contextMenuElem = event.target;
+		colorPickerComp.contextMenuElem = event.target;
 	}
 });
 
 // Clears a selected custom color
-let clearSingleCustomColor = function (element) {
-	const elemToRemove = element === undefined ? colorPicker.contextMenuElem : element;
+colorPickerComp.clearSingleCustomColor = function (element) {
+	const elemToRemove = element === undefined ? colorPickerComp.contextMenuElem : element;
 
 	// Removing the element
 	document.getElementById('custom_colors_box').removeChild(elemToRemove);
 
 	// Clearing the variable
-	window.LSCustomColors = { '0': [] };
+	colorPickerComp.LSCustomColors = { '0': [] };
 
 	// Looping through the custom colors to repopulate the variable
 	for (let x in document.getElementsByClassName('custom_colors_preview')) {
@@ -78,7 +83,7 @@ let clearSingleCustomColor = function (element) {
 		}
 
 		// Pushing the colors to the array
-		window.LSCustomColors[0].push(
+		colorPickerComp.LSCustomColors[0].push(
 			document
 				.getElementsByClassName('custom_colors_preview')
 				[x].getAttribute('data-custom-color')
@@ -86,40 +91,40 @@ let clearSingleCustomColor = function (element) {
 	}
 
 	// Updating the local storage
-	localStorage.setItem('custom_colors', JSON.stringify(window.LSCustomColors));
+	localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
 
 	// Making sure the add color button is displaying
 	document.getElementById('custom_colors_add').style.display = 'inline-block';
 };
 document.getElementById('color_clear_single').addEventListener('mousedown', function () {
-	clearSingleCustomColor();
+	colorPickerComp.clearSingleCustomColor();
 });
 
 // Clear single selected color for touch mobile devices
-let clearSingleCustomColorTouch = function (event) {
+colorPickerComp.clearSingleCustomColorTouch = function (event) {
 	if (event.target.className == 'custom_colors_preview') {
 		const now = new Date().getTime();
-		const timeSince = now - colorPicker.doubleTapTime;
+		const timeSince = now - colorPickerComp.doubleTapTime;
 
 		if (timeSince < 200 && timeSince > 0) {
-			clearSingleCustomColor(event.target);
+			colorPickerComp.clearSingleCustomColor(event.target);
 		} else {
-			colorPicker.doubleTapTime = new Date().getTime();
+			colorPickerComp.doubleTapTime = new Date().getTime();
 		}
 	}
 };
 document.getElementById('custom_colors_box').addEventListener(
 	'touchstart',
 	function () {
-		clearSingleCustomColorTouch(event);
+		colorPickerComp.clearSingleCustomColorTouch(event);
 	},
 	{ passive: true }
 );
 
 // Clears all custom colors
-let clearAllCustomColors = function () {
+colorPickerComp.clearAllCustomColors = function () {
 	// Clearing variable
-	window.LSCustomColors = { '0': [] };
+	colorPickerComp.LSCustomColors = { '0': [] };
 
 	// Looping through the custom colors to repopulate the variable
 	while (document.getElementsByClassName('custom_colors_preview').length > 0) {
@@ -129,11 +134,11 @@ let clearAllCustomColors = function () {
 	}
 
 	// Updating the local storage
-	localStorage.setItem('custom_colors', JSON.stringify(window.LSCustomColors));
+	localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
 
 	// Making sure the add color button is displaying
 	document.getElementById('custom_colors_add').style.display = 'inline-block';
 };
 document.getElementById('color_clear_all').addEventListener('mousedown', function () {
-	clearAllCustomColors();
+	colorPickerComp.clearAllCustomColors();
 });

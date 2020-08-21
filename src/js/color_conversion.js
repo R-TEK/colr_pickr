@@ -1,9 +1,9 @@
-/*
+/**
  * Color Value Converter
  */
 
 // Convert HSLA to RGBA
-let HSLAToRGBA = function (h, s, l, a, toHex) {
+colorPickerComp.HSLAToRGBA = function (h, s, l, a, toHex) {
 	s /= 100;
 	l /= 100;
 
@@ -45,7 +45,7 @@ let HSLAToRGBA = function (h, s, l, a, toHex) {
 	b = Math.round((b + m) * 255);
 
 	if (toHex === true) {
-		return RGBAToHexA(r, g, b, a);
+		return colorPickerComp.RGBAToHexA(r, g, b, a);
 	} else {
 		return {
 			r: r,
@@ -57,7 +57,7 @@ let HSLAToRGBA = function (h, s, l, a, toHex) {
 };
 
 // Convert RGBA to HSLA
-let RGBAToHSLA = function (r, g, b, a) {
+colorPickerComp.RGBAToHSLA = function (r, g, b, a) {
 	r /= 255;
 	g /= 255;
 	b /= 255;
@@ -95,7 +95,7 @@ let RGBAToHSLA = function (r, g, b, a) {
 };
 
 // Convert RGBA to HexA
-let RGBAToHexA = function (r, g, b, a) {
+colorPickerComp.RGBAToHexA = function (r, g, b, a) {
 	r = r.toString(16);
 	g = g.toString(16);
 	b = b.toString(16);
@@ -114,7 +114,7 @@ let RGBAToHexA = function (r, g, b, a) {
 };
 
 // Convert HexA to RGBA
-let hexAToRGBA = function (h, toHSL) {
+colorPickerComp.hexAToRGBA = function (h, toHSL) {
 	if (h.length == 7) h += 'ff';
 	else if (h.length == 4) h += h.substring(1, 4) + 'ff';
 
@@ -138,7 +138,7 @@ let hexAToRGBA = function (h, toHSL) {
 	a = +(a / 255).toFixed(3);
 
 	if (toHSL === true) {
-		return RGBAToHSLA(+r, +g, +b, a);
+		return colorPickerComp.RGBAToHSLA(+r, +g, +b, a);
 	} else {
 		return 'rgba(' + +r + ',' + +g + ',' + +b + ',' + a + ')';
 	}

@@ -8,49 +8,14 @@
  * MIT License
  */
 
-/*
+/**
  * Set-up
  */
 
-/**
- * All global states and variables needed for reference over the entire project
- *
- * @type {{instance: object | null, boxStatus: boolean, boxStatusTouch: boolean, sliderStatus: boolean, sliderStatusTouch: boolean, opacityStatus: boolean, opacityStatusTouch: boolean, colorTypeStatus: string, hue: number, saturation: number, lightness: number, alpha: number, contextMenuElem: HTMLElement | null, doubleTapTime: number}}
- */
-let colorPicker = {
-	instance: null,
-	boxStatus: false,
-	boxStatusTouch: false,
-	sliderStatus: false,
-	sliderStatusTouch: false,
-	opacityStatus: false,
-	opacityStatusTouch: false,
-	colorTypeStatus: 'HEXA',
-	hue: 0,
-	saturation: 100,
-	lightness: 50,
-	alpha: 1,
-	contextMenuElem: null,
-	doubleTapTime: 0
-};
+// Creation of the colorPickerComp object
+let colorPickerComp = new Object();
 
-/**
- * Custom colors saved to local storage
- *
- * @type {{0: Array}}
- */
-window.LSCustomColors = { 0: [] };
-
-/**
- * Constructor - to create an instance of the color picker
- *
- * @param {Element} element - This is a button element that can launch the color picker
- * @param {string} [color] - To set the default color of this instance (Optional - default is '#ff0000')
- *
- * @example
- * const launchBtn = document.getElementById('launch_btn');
- * let picker = new ColorPicker(launchBtn, '#ff0000');
- */
+// ColorPicker Constructor
 function ColorPicker(element, color) {
 	// Adding the element to the instance
 	this.element = element;
@@ -65,24 +30,35 @@ function ColorPicker(element, color) {
 	// Click listener to have the button open the color picker interface
 	element.addEventListener('click', function (event) {
 		// Applying the items instance to the color picker object
-		colorPicker.instance = event.target.colorPickerObj;
+		colorPickerComp.instance = event.target.colorPickerObj;
 
 		// Displaying the color picker
 		document.getElementById('color_picker').style.display = 'block';
 		document.getElementById('color_picker_bg').style.display = 'block';
 
 		// Updating the color picker
-		if (event.target.getAttribute('data-color') != 'undefined')
-			updateColorDisplays(event.target.getAttribute('data-color'));
+		colorPickerComp.updateColorDisplays(event.target.getAttribute('data-color'));
 	});
 }
 
-/**
- * @function
- * @description Function to populate the DOM with color picker HTML, and set local storage values
- * @module set-up
- */
 (function () {
+	// Adding items to the color picker object
+	colorPickerComp.instance = null;
+	colorPickerComp.boxStatus = false;
+	colorPickerComp.boxStatusTouch = false;
+	colorPickerComp.sliderStatus = false;
+	colorPickerComp.sliderStatusTouch = false;
+	colorPickerComp.opacityStatus = false;
+	colorPickerComp.opacityStatusTouch = false;
+	colorPickerComp.colorTypeStatus = 'HEXA';
+	colorPickerComp.hue = 0;
+	colorPickerComp.saturation = 100;
+	colorPickerComp.lightness = 50;
+	colorPickerComp.alpha = 1;
+	colorPickerComp.contextMenuElem = null;
+	colorPickerComp.doubleTapTime = 0;
+	colorPickerComp.LSCustomColors = { 0: [] };
+
 	// Creating the HTML content
 	const HTMLContent = `
 		<svg id="color_box" width="348" height="185">
@@ -232,21 +208,21 @@ function ColorPicker(element, color) {
 		localStorage.setItem('custom_colors', '{"0": []}');
 	} else {
 		// If it has then I define the LSCustomColors with the value for this
-		window.LSCustomColors = JSON.parse(localStorage.getItem('custom_colors'));
+		colorPickerComp.LSCustomColors = JSON.parse(localStorage.getItem('custom_colors'));
 
 		// Looping through the data to update the DOM with the custom colors
-		for (let x = window.LSCustomColors[0].length - 1; x >= 0; x--) {
+		for (let x = colorPickerComp.LSCustomColors[0].length - 1; x >= 0; x--) {
 			// Creating the element
 			let customColorElem = document.createElement('BUTTON');
 			customColorElem.className = 'custom_colors_preview';
-			customColorElem.style.background = window.LSCustomColors[0][x];
-			customColorElem.setAttribute('data-custom-color', window.LSCustomColors[0][x]);
+			customColorElem.style.background = colorPickerComp.LSCustomColors[0][x];
+			customColorElem.setAttribute('data-custom-color', colorPickerComp.LSCustomColors[0][x]);
 			// Placing the element in the DOM
 			document.getElementById('custom_colors_box').appendChild(customColorElem);
 		}
 
 		// Check whether to display the add color button
-		if (window.LSCustomColors[0].length == 28)
+		if (colorPickerComp.LSCustomColors[0].length == 28)
 			document.getElementById('custom_colors_add').style.display = 'none';
 	}
 })();
@@ -265,11 +241,14 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 	document.getElementById('color_picker').style.display = 'none';
 	document.getElementById('color_picker_bg').style.display = 'none';
 
+	// Checking if the color for this instance has not been set yet
+	if (colorPickerComp.instance.element.getAttribute('data-color') == 'undefined') return;
+
 	// Calling Event to make all the necessary changes
-	colorChange({
-		h: colorPicker.hue,
-		s: colorPicker.saturation,
-		l: colorPicker.lightness,
-		a: colorPicker.alpha
+	colorPickerComp.colorChange({
+		h: colorPickerComp.hue,
+		s: colorPickerComp.saturation,
+		l: colorPickerComp.lightness,
+		a: colorPickerComp.alpha
 	});
 });

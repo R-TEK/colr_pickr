@@ -1,0 +1,57 @@
+/*
+ * Variables
+ */
+
+// Backgrounds
+$shadow: 0 0 10px 0 rgba(1, 1, 1, 0.5);
+$hoverEnlarge: scale(1.1);
+
+// Texts
+$font: Arial, Helvetica, sans-serif;
+$dark-text: #111;
+$light-text: #555;
+
+// Effects
+$quickTransition: all 0.2s;
+
+/*
+ * Mixins
+ */
+
+// User-select for different browsers
+@mixin no-select {
+	user-select: none;
+	-webkit-user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+// Adding prefixes to animation creations
+@mixin keyframes($animationName) {
+	@-webkit-keyframes #{$animationName} {
+		$browser: '-webkit-' !global;
+		@content;
+	}
+	@-moz-keyframes #{$animationName} {
+		$browser: '-moz-' !global;
+		@content;
+	}
+	@-ms-keyframes #{$animationName} {
+		$browser: '-moz-' !global;
+		@content;
+	}
+	@keyframes #{$animationName} {
+		$browser: '' !global;
+		@content;
+	}
+}
+$browser: null;
+
+// Adding prefixes to the animation properties
+@mixin animation($animation) {
+	-webkit-animation: $animation;
+	-moz-animation: $animation;
+	-ms-animation: $animation;
+	animation: $animation;
+}
