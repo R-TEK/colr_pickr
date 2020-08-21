@@ -4,6 +4,10 @@ For information on features, optimizations and bugs states, check out the Colr P
 
 https://trello.com/b/ovPg9LEu
 
+// TODO: Add testing step and link to test case google sheet
+// TODO: Make a test if new feature or bug
+// TODO: Make a new branch for your item
+
 ---
 
 ### Get the project:
