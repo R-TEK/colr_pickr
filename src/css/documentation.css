@@ -50,6 +50,10 @@ h2 {
 	text-decoration: underline;
 }
 
+h5 {
+	margin: 20px 0 !important;
+}
+
 #article {
 	position: relative;
 	margin: 30px 15px;

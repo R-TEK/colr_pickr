@@ -15,7 +15,7 @@ const borderNode = document.getElementById('border');
 let border = new ColorPicker(borderNode, '#4e4376');
 
 borderNode.addEventListener('colorChange', function () {
-	document.getElementById('listener').style.border = '1px solid ' + event.detail.color.hexa;
+	document.getElementById('listener').style.border = '5px solid ' + event.detail.color.hexa;
 });
 
 // Change example text color
