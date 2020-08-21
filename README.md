@@ -34,9 +34,9 @@
 
 -   ###### Update package.json
 
--   ###### Add favicon
-
 -   ###### Go through TODO Tree
+
+-   ###### Add favicon
 
 -   ###### Remove console.log()
 

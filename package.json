@@ -1,8 +1,5 @@
 {
-	"name": "template-doc-site",
 	"author": "R-TEK",
-	"version": "0.0.0",
-	"scripts": {},
 	"devDependencies": {
 		"gulp": "^4.0.2",
 		"gulp-concat": "^2.6.1",
