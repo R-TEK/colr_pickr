@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Get Started - Colr Pickr</title>
+		<!-- TODO: Fill in meta -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+		<meta name="keywords" content="" />
+
+		<!-- CSS Files -->
+		<link type="text/css" rel="stylesheet" href="./dist/lib.css" />
+		<link type="text/css" rel="stylesheet" href="./dist/markdown.css" />
+		<link type="text/css" rel="stylesheet" href="./dist/get-started.css" />
+	</head>
+
+	<body id="page-top">
+		<!-- Nav Bar -->
+		<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+			<div class="container">
+				<a class="navbar-brand js-scroll-trigger" href="#page-top">Colr Pickr</a>
+				<button
+					class="navbar-toggler navbar-toggler-right"
+					type="button"
+					data-toggle="collapse"
+					data-target="#navbarResponsive"
+					aria-controls="navbarResponsive"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					Menu
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a class="nav-link js-scroll-trigger" href="./index.html">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link js-scroll-trigger" href="./get-started.html"
+								>Get Started</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link js-scroll-trigger" href="./documentation.html"
+								>Documentation</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Get Started Main Body -->
+		<article>
+			<section id="example">
+				<h2>EXAMPLE:</h2>
+				<p class="example_p">
+					Use these button below to open the Color Picker and change the colors of the
+					preview:
+				</p>
+				<button id="background" class="btn-primary" name="Click button to open picker">
+					Background
+				</button>
+				<button id="border" class="btn-primary" name="Click button to open picker">
+					Border
+				</button>
+				<button id="text" class="btn-primary" name="Click button to open picker">
+					Text
+				</button>
+				<p class="example_p">Preview:</p>
+				<div id="listener">
+					AaBbCcAaBbCcAaBbCcAaBbCcAaBbCcAaBbCcAaBbCcAaBbCcAaBbCcAaBbCcAaBbCcAaBbCcAaBbCc
+				</div>
+			</section>
+			<section id="readme">
+				<h2>READ ME:</h2>
+				<div class="markdown-body">
+					
+				</div>
+			</section>
+		</article>
+
+		<!-- JavaScript Files -->
+		<script>
+			/*
+			 * Runs at start to give all code elements a prettyprint class
+			 * So that the color syntax library can change the style of all code elements
+			 */
+			for (x in document.querySelectorAll('CODE')) {
+				const element = document.querySelectorAll('CODE');
+				element[x].setAttribute('class', 'prettyprint');
+			}
+		</script>
+		<script type="text/javascript" src="./dist/lib.js"></script>
+		<script type="text/javascript" src="./dist/markdown.js"></script>
+		<script type="text/javascript" src="./dist/get-started.js"></script>
+	</body>
+</html>

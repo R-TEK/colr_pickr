@@ -1,19 +1,8 @@
 {
-	"name": "colr_pickr_website",
-	"version": "1.0.0",
-	"description": "Colr Pickr Website",
+	"name": "template-doc-site",
 	"author": "R-TEK",
-	"homepage": "https://r-tek.github.io/colr_pickr/",
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/R-TEK/colr_picker.git"
-	},
-	"scripts": {
-		"readme": "node generatereadme.js",
-		"site": "gulp productionSite"
-	},
-	"dependencies": {},
+	"version": "0.0.0",
+	"scripts": {},
 	"devDependencies": {
 		"gulp": "^4.0.2",
 		"gulp-concat": "^2.6.1",
