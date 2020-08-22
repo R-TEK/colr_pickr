@@ -4,10 +4,10 @@
 	"description": "Colr Pickr, a vanilla JavaScript color picker component built with SVGs, with features like saving colors. Similar design to the chrome-dev-tools color picker.",
 	"author": "R-TEK",
 	"homepage": "https://r-tek.github.io/colr_pickr/",
-	"main": "build/colr_pickr_min.js",
-	"module": "build/colr_pickr_min.js",
-	"unpkg": "build/colr_pickr_min.js",
-	"browser": "build/colr_pickr_min.js",
+	"main": "build/colr_pickr.min.js",
+	"module": "build/colr_pickr.min.js",
+	"unpkg": "build/colr_pickr.min.js",
+	"browser": "build/colr_pickr.min.js",
 	"license": "MIT",
 	"scripts": {
 		"build": "gulp productionBuild",
@@ -19,7 +19,7 @@
 		"url": "git+https://github.com/R-TEK/colr_pickr.git"
 	},
 	"bugs": {
-		"url": "https://r-tek.github.io/colr_pickr/"
+		"url": "https://github.com/R-TEK/colr_pickr/issues"
 	},
 	"keywords": [
 		"vanilla",
@@ -56,6 +56,5 @@
 		"gulp-uglifycss": "^1.1.0",
 		"jsdoc": "^3.6.4",
 		"node-sass": "^4.14.1"
-	},
-	"dependencies": {}
+	}
 }

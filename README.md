@@ -139,6 +139,12 @@
 </script>
 ```
 
+### API Documentation:
+
+For more details on functions shown in the example, and others, check out the API document on the project website:
+
+https://r-tek.github.io/colr_pickr/documentation.html
+
 ### Color Value Information:
 
 When you give the Color Picker a color value to read, it has to be a supported value format.
