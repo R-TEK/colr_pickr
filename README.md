@@ -26,6 +26,7 @@
     <a href="https://lgtm.com/projects/g/R-TEK/colr_pickr/context:javascript">
         <img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/R-TEK/colr_pickr.svg?logo=lgtm&logoWidth=18"/>
     </a>
+	[![](https://data.jsdelivr.com/v1/package/npm/@r-tek/colr_pickr/badge)](https://www.jsdelivr.com/package/npm/@r-tek/colr_pickr)
 </p>
 
 <br/>
