@@ -2,6 +2,10 @@
 
 ---
 
+### 1.2.1
+
+-   Fix issue with not handling users manually changing colors for instances using the colorChange() function
+
 ### 1.2.0
 
 -   Add function to get an array of saved colors
