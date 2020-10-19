@@ -14,6 +14,12 @@
  * colorPickerComp.colorChange('#ff0000', button);
  */
 colorPickerComp.colorChange = function (color, elem) {
+	// If the user send a string manually...
+	if (typeof color == 'string') {
+		// Change it to the expected value of a HSLA object
+		color = colorPickerComp.hexAToRGBA(color, true);
+	}
+
 	// Defining the RGBA value conversion
 	const rgbaValue = colorPickerComp.HSLAToRGBA(color.h, color.s, color.l, color.a);
 	const hex = colorPickerComp.HSLAToRGBA(color.h, color.s, color.l, color.a, true);

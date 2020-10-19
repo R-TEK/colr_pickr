@@ -118,6 +118,8 @@ colorPickerComp.hexAToRGBA = function (h, toHSL) {
 	if (h.length == 7) h += 'ff';
 	else if (h.length == 4) h += h.substring(1, 4) + 'ff';
 
+	console.log(h)
+
 	let r = 0,
 		g = 0,
 		b = 0,
