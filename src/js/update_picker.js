@@ -53,11 +53,6 @@ colorPickerComp.updateColorDisplays = function (color) {
 	// Updating the input values
 	colorPickerComp.updateColorValueInput();
 
-	// Updating color preview and box hue color initially
-	document
-		.getElementById('color_picked_preview')
-		.children[0].setAttribute('fill', `hsla(${color.h}, ${color.s}%, ${color.l}%, ${color.a}`);
-
 	// Updating the Hue color in the Saturation and lightness box
 	document
 		.getElementById('saturation')

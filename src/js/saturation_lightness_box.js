@@ -58,8 +58,6 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 	// Full HSLA color
 	const HSLA = `hsla(${colorPickerComp.hue}, ${SPercent}%, ${LPercent}%, ${colorPickerComp.alpha})`;
 
-	// Applying the color to the color preview
-	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
 
 	// Update the color text values
 	colorPickerComp.updateColorValueInput();

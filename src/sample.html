@@ -10,13 +10,6 @@
 		<link rel="stylesheet" type="text/css" href="../build/colr_pickr.css" />
 	</head>
 
-	<style>
-		button {
-			width: 100px;
-			height: 30px;
-		}
-	</style>
-
 	<body id="b" style="margin: 0">
 		<div
 			style="
@@ -55,7 +48,7 @@
 				name="background"
 			></button>
 		</div>
-		<p id="te" style="position: relative; top: 124px; z-index: -1">
+		<p id="te" style="position: relative; top: 124px;">
 			Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget
 			malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
 			cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
@@ -228,14 +221,8 @@
 			});
 
 			let space = new ColorPicker(document.getElementById('space'), '#ffff00');
-			document.getElementById('space').addEventListener('colorChange', function () {
-				document.getElementById('b').style.background = event.detail.color.hexa;
-			});
 
 			let mars = new ColorPicker(document.getElementById('mars'), '#ff00ff');
-			document.getElementById('mars').addEventListener('colorChange', function () {
-				document.getElementById('b').style.background = event.detail.color.hexa;
-			});
 		</script>
 	</body>
 </html>

@@ -36,9 +36,6 @@ colorPickerComp.colorSliderHandler = function (position) {
 	// Full HSLA color
 	const HSLA = `hsla(${HColor}, ${colorPickerComp.saturation}%, ${colorPickerComp.lightness}%, ${colorPickerComp.alpha})`;
 
-	// Updating the color for the color preview
-	document.getElementById('color_picked_preview').children[0].setAttribute('fill', HSLA);
-
 	// Updating the Hue color in the Saturation and lightness box
 	document
 		.getElementById('saturation')

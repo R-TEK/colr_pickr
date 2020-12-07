@@ -15,8 +15,7 @@
 #color_picker {
 	display: none;
 	position: fixed;
-	width: 350px;
-	min-height: 400px;
+	width: 290px;
 	left: calc(50% - 175px);
 	top: calc(50% - 205px);
 	background-color: #fff;
@@ -41,12 +40,6 @@
 }
 
 #color_picker {
-	#color_picked_preview {
-		display: inline-block;
-		margin: 0 1px 0 7px;
-		border-radius: 50%;
-	}
-
 	#sliders {
 		display: inline-block;
 		width: 285px;
@@ -73,14 +66,11 @@
 		border: none;
 		outline: none;
 		cursor: pointer;
-		transition: $quickTransition;
-	}
-
-	#switch_color_type:hover {
-		transform: $hoverEnlarge;
 	}
 
 	.label_text {
+		position: relative;
+		top: 2px;
 		font-family: $font;
 		font-size: 12px;
 		color: $light-text;
@@ -101,33 +91,28 @@
 		width: 35px;
 	}
 
-	#custom_colors_title {
-		margin: 12px 5px;
-		font-family: $font;
-		font-size: 12px;
-		font-weight: 400;
-		color: $light-text;
+	#custom_colors_header {
+		height: 35px;
 	}
 
-	#custom_colors_box {
-		padding: 0 5px 5px 8px;
+	#custom_colors_pallet_icon {
+		margin: 8px 11px;
 	}
 
 	#custom_colors_add {
 		display: inline-block;
 		position: absolute;
-		margin: -28px 0 0 0;
+		margin: 8px 0;
 		padding: 0;
-		right: 12px;
+		right: 15px;
 		background: none;
 		border: none;
 		outline: none;
 		cursor: pointer;
-		transition: $quickTransition;
 	}
 
-	#custom_colors_add:hover {
-		transform: $hoverEnlarge;
+	#custom_colors_box {
+		padding: 0 0 0 15px;
 	}
 
 	.custom_colors_preview {
