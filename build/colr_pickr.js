@@ -772,15 +772,16 @@ colorPickerComp.colorSliderHandler = function (position) {
 		eventX = 11;
 	}
 
-	if (eventX > 277) {
-		eventX = 277;
+	if (eventX > 255) {
+		eventX = 255;
 	}
 
 	// Updating the X property of the dragger
 	sliderDragger.attributes.x.nodeValue = eventX;
 
 	// Percentage of the dragger on the X axis
-	const percent = ((eventX - 11) / 266) * 100;
+	const percent = ((eventX - 11) / 244) * 100;
+
 	// Calculating the color
 	// Max number for hue colors is 359, I find the percentage of this, from the percent variable
 	// I take it away from the max number because the slider should work backwards
@@ -789,6 +790,7 @@ colorPickerComp.colorSliderHandler = function (position) {
 	// Updating the Hue value in the data object
 	colorPickerComp.hue = HColor;
 
+	//TODO: do I need this??
 	// Full HSLA color
 	const HSLA = `hsla(${HColor}, ${colorPickerComp.saturation}%, ${colorPickerComp.lightness}%, ${colorPickerComp.alpha})`;
 
@@ -893,15 +895,15 @@ colorPickerComp.opacitySliderHandler = function (position) {
 		eventX = 11;
 	}
 
-	if (eventX > 277) {
-		eventX = 277;
+	if (eventX > 255) {
+		eventX = 255;
 	}
 
 	// Update the X property of the dragger
 	sliderDragger.attributes.x.nodeValue = eventX;
 
 	// Percentage of the dragger on the X axis
-	const percent = ((eventX - 11) / 266) * 100;
+	const percent = ((eventX - 11) / 244) * 100;
 
 	// Finding the value for the percentage of 1
 	let alpha = (1 / 100) * percent;
@@ -1016,16 +1018,16 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 		eventX = 14;
 	}
 
-	if (eventX > 336) {
-		eventX = 336;
+	if (eventX > 252) {
+		eventX = 252;
 	}
 
 	if (eventY < 14) {
 		eventY = 14;
 	}
 
-	if (eventY > 173) {
-		eventY = 173;
+	if (eventY > 119) {
+		eventY = 119;
 	}
 
 	// Changes X and Y properties of the dragger
@@ -1035,11 +1037,11 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 	// Calculating the Saturation Percent value
 	// SPercent is just the percent of where the dragger is on the X axis
 	// 322 is the max number of pixels the dragger can move
-	const SPercent = Math.round(((eventX - 15) / 322) * 100);
+	const SPercent = Math.round(((eventX - 15) / 238) * 100);
 
 	// Calculating the X and Y Percent Values
 	const percentX = 100 - SPercent / 2;
-	const percentY = 100 - ((eventY - 15) / 159) * 100;
+	const percentY = 100 - ((eventY - 15) / 105) * 100;
 
 	// Calculating the LPercent
 	// LPercent is the the X percentage of the of the Y percentage of the dragger
@@ -1049,9 +1051,9 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 	colorPickerComp.saturation = SPercent;
 	colorPickerComp.lightness = LPercent;
 
+	//TODO: Do I need this
 	// Full HSLA color
 	const HSLA = `hsla(${colorPickerComp.hue}, ${SPercent}%, ${LPercent}%, ${colorPickerComp.alpha})`;
-
 
 	// Update the color text values
 	colorPickerComp.updateColorValueInput();
@@ -1203,14 +1205,12 @@ colorPickerComp.updateColorDisplays = function (color) {
 	// Defining the box and dragger
 	const boxDragger = document.getElementById('box_dragger');
 
-	let x, y;
+	// Calculating x value
+	let x = (238 / 100) * color.s + 14;
 
 	// Calculating y value
 	const percentY = 100 - (color.l / (100 - color.s / 2)) * 100;
-	y = (159 / 100) * percentY + 14;
-
-	// Calculating x value
-	x = (322 / 100) * color.s + 14;
+	let y = (105 / 100) * percentY + 14;
 
 	// Making changes the the UI
 	boxDragger.attributes.x.nodeValue = x;
@@ -1222,7 +1222,7 @@ colorPickerComp.updateColorDisplays = function (color) {
 
 	// Calculating x value
 	let percentHue = 100 - (color.h / 359) * 100;
-	let hueX = (266 / 100) * percentHue + 11;
+	let hueX = (244 / 100) * percentHue + 11;
 
 	// Making changes the the UI
 	hueSliderDragger.attributes.x.nodeValue = hueX;
@@ -1232,7 +1232,7 @@ colorPickerComp.updateColorDisplays = function (color) {
 	const alphaSliderDragger = document.getElementById('opacity_slider_dragger');
 
 	// Calculating x value
-	let alphaX = (266 / 100) * (color.a * 100) + 11;
+	let alphaX = (244 / 100) * (color.a * 100) + 11;
 
 	// Making changes the the UI
 	alphaSliderDragger.attributes.x.nodeValue = alphaX;

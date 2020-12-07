@@ -22,16 +22,16 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 		eventX = 14;
 	}
 
-	if (eventX > 336) {
-		eventX = 336;
+	if (eventX > 252) {
+		eventX = 252;
 	}
 
 	if (eventY < 14) {
 		eventY = 14;
 	}
 
-	if (eventY > 173) {
-		eventY = 173;
+	if (eventY > 119) {
+		eventY = 119;
 	}
 
 	// Changes X and Y properties of the dragger
@@ -41,11 +41,11 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 	// Calculating the Saturation Percent value
 	// SPercent is just the percent of where the dragger is on the X axis
 	// 322 is the max number of pixels the dragger can move
-	const SPercent = Math.round(((eventX - 15) / 322) * 100);
+	const SPercent = Math.round(((eventX - 15) / 238) * 100);
 
 	// Calculating the X and Y Percent Values
 	const percentX = 100 - SPercent / 2;
-	const percentY = 100 - ((eventY - 15) / 159) * 100;
+	const percentY = 100 - ((eventY - 15) / 105) * 100;
 
 	// Calculating the LPercent
 	// LPercent is the the X percentage of the of the Y percentage of the dragger
@@ -55,9 +55,9 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 	colorPickerComp.saturation = SPercent;
 	colorPickerComp.lightness = LPercent;
 
+	//TODO: Do I need this
 	// Full HSLA color
 	const HSLA = `hsla(${colorPickerComp.hue}, ${SPercent}%, ${LPercent}%, ${colorPickerComp.alpha})`;
-
 
 	// Update the color text values
 	colorPickerComp.updateColorValueInput();

@@ -16,15 +16,15 @@ colorPickerComp.opacitySliderHandler = function (position) {
 		eventX = 11;
 	}
 
-	if (eventX > 277) {
-		eventX = 277;
+	if (eventX > 255) {
+		eventX = 255;
 	}
 
 	// Update the X property of the dragger
 	sliderDragger.attributes.x.nodeValue = eventX;
 
 	// Percentage of the dragger on the X axis
-	const percent = ((eventX - 11) / 266) * 100;
+	const percent = ((eventX - 11) / 244) * 100;
 
 	// Finding the value for the percentage of 1
 	let alpha = (1 / 100) * percent;

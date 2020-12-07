@@ -62,14 +62,12 @@ colorPickerComp.updateColorDisplays = function (color) {
 	// Defining the box and dragger
 	const boxDragger = document.getElementById('box_dragger');
 
-	let x, y;
+	// Calculating x value
+	let x = (238 / 100) * color.s + 14;
 
 	// Calculating y value
 	const percentY = 100 - (color.l / (100 - color.s / 2)) * 100;
-	y = (159 / 100) * percentY + 14;
-
-	// Calculating x value
-	x = (322 / 100) * color.s + 14;
+	let y = (105 / 100) * percentY + 14;
 
 	// Making changes the the UI
 	boxDragger.attributes.x.nodeValue = x;
@@ -81,7 +79,7 @@ colorPickerComp.updateColorDisplays = function (color) {
 
 	// Calculating x value
 	let percentHue = 100 - (color.h / 359) * 100;
-	let hueX = (266 / 100) * percentHue + 11;
+	let hueX = (244 / 100) * percentHue + 11;
 
 	// Making changes the the UI
 	hueSliderDragger.attributes.x.nodeValue = hueX;
@@ -91,7 +89,7 @@ colorPickerComp.updateColorDisplays = function (color) {
 	const alphaSliderDragger = document.getElementById('opacity_slider_dragger');
 
 	// Calculating x value
-	let alphaX = (266 / 100) * (color.a * 100) + 11;
+	let alphaX = (244 / 100) * (color.a * 100) + 11;
 
 	// Making changes the the UI
 	alphaSliderDragger.attributes.x.nodeValue = alphaX;

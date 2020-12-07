@@ -16,15 +16,16 @@ colorPickerComp.colorSliderHandler = function (position) {
 		eventX = 11;
 	}
 
-	if (eventX > 277) {
-		eventX = 277;
+	if (eventX > 255) {
+		eventX = 255;
 	}
 
 	// Updating the X property of the dragger
 	sliderDragger.attributes.x.nodeValue = eventX;
 
 	// Percentage of the dragger on the X axis
-	const percent = ((eventX - 11) / 266) * 100;
+	const percent = ((eventX - 11) / 244) * 100;
+
 	// Calculating the color
 	// Max number for hue colors is 359, I find the percentage of this, from the percent variable
 	// I take it away from the max number because the slider should work backwards
@@ -33,6 +34,7 @@ colorPickerComp.colorSliderHandler = function (position) {
 	// Updating the Hue value in the data object
 	colorPickerComp.hue = HColor;
 
+	//TODO: do I need this??
 	// Full HSLA color
 	const HSLA = `hsla(${HColor}, ${colorPickerComp.saturation}%, ${colorPickerComp.lightness}%, ${colorPickerComp.alpha})`;
 
