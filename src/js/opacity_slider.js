@@ -12,13 +12,9 @@ colorPickerComp.opacitySliderHandler = function (position) {
 	let eventX = position - sliderContainer.getBoundingClientRect().left;
 
 	// Making conditions so that the user don't drag outside the box
-	if (eventX < 11) {
-		eventX = 11;
-	}
+	if (eventX < 11) eventX = 11;
 
-	if (eventX > 255) {
-		eventX = 255;
-	}
+	if (eventX > 255) eventX = 255;
 
 	// Update the X property of the dragger
 	sliderDragger.attributes.x.nodeValue = eventX;
@@ -34,15 +30,15 @@ colorPickerComp.opacitySliderHandler = function (position) {
 	// Updating the data objects
 	colorPickerComp.alpha = alpha;
 
-	// Full HSLA color
-	const HSLA = `hsla(${colorPickerComp.hue}, ${colorPickerComp.saturation}%, ${colorPickerComp.lightness}%, ${alpha})`;
-
 	// Update the color text values
 	colorPickerComp.updateColorValueInput();
 
 	// Setting the data-color attribute to a color string
 	// This is so that the color updates properly on instances where the color has not been set
 	colorPickerComp.instance.element.setAttribute('data-color', 'color');
+
+	// Update
+	updatePicker();
 };
 
 /**

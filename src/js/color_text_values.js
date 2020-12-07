@@ -73,6 +73,9 @@ document.getElementById('hex_input').addEventListener('blur', function () {
 	if (hexInput.match(/^#[0-9a-f]{3}([0-9a-f]{3})?([0-9a-f]{2})?$/)) {
 		// Updating the picker
 		colorPickerComp.updateColorDisplays(hexInput);
+
+		// Update
+		updatePicker();
 	}
 });
 
@@ -93,6 +96,9 @@ document.querySelectorAll('.rgba_input').forEach((element) => {
 		colorPickerComp.updateColorDisplays(
 			`rgba(${rgbaInput[0].value}, ${rgbaInput[1].value}, ${rgbaInput[2].value}, ${rgbaInput[3].value})`
 		);
+
+		// Update
+		updatePicker();
 	});
 });
 
@@ -113,5 +119,8 @@ document.querySelectorAll('.hsla_input').forEach((element) => {
 		colorPickerComp.updateColorDisplays(
 			`hsla(${hslaInput[0].value}, ${hslaInput[1].value}%, ${hslaInput[2].value}%, ${hslaInput[3].value})`
 		);
+
+		// Update
+		updatePicker();
 	});
 });

@@ -293,6 +293,12 @@ let closePicker = function () {
 	// Checking if the color for this instance has not been set yet
 	if (colorPickerComp.instance.element.getAttribute('data-color') == 'undefined') return;
 
+	// Update
+	updatePicker();
+};
+
+// Handles updates
+let updatePicker = function () {
 	// Calling Event to make all the necessary changes
 	colorPickerComp.colorChange({
 		h: colorPickerComp.hue,
@@ -300,7 +306,7 @@ let closePicker = function () {
 		l: colorPickerComp.lightness,
 		a: colorPickerComp.alpha
 	});
-};
+}
 
 // Click the darken background to close the color picker
 document.addEventListener('mousedown', function () {
@@ -628,6 +634,9 @@ document.getElementById('hex_input').addEventListener('blur', function () {
 	if (hexInput.match(/^#[0-9a-f]{3}([0-9a-f]{3})?([0-9a-f]{2})?$/)) {
 		// Updating the picker
 		colorPickerComp.updateColorDisplays(hexInput);
+
+		// Update
+		updatePicker();
 	}
 });
 
@@ -648,6 +657,9 @@ document.querySelectorAll('.rgba_input').forEach((element) => {
 		colorPickerComp.updateColorDisplays(
 			`rgba(${rgbaInput[0].value}, ${rgbaInput[1].value}, ${rgbaInput[2].value}, ${rgbaInput[3].value})`
 		);
+
+		// Update
+		updatePicker();
 	});
 });
 
@@ -668,6 +680,9 @@ document.querySelectorAll('.hsla_input').forEach((element) => {
 		colorPickerComp.updateColorDisplays(
 			`hsla(${hslaInput[0].value}, ${hslaInput[1].value}%, ${hslaInput[2].value}%, ${hslaInput[3].value})`
 		);
+
+		// Update
+		updatePicker();
 	});
 });
 
@@ -693,8 +708,12 @@ document.getElementById('custom_colors_box').addEventListener('click', function 
 	if (event.target.className == 'custom_colors_preview') {
 		// Color
 		const color = event.target.getAttribute('data-custom-color');
+
 		// Updating the picker with that color
 		colorPickerComp.updateColorDisplays(color);
+
+		// Update
+		updatePicker();
 	}
 });
 
@@ -721,7 +740,7 @@ colorPickerComp.addCustomColor = function () {
 	// Updating the local storage with the new custom color
 	localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
 };
-document.getElementById('custom_colors_add').addEventListener('mouseup', function () {
+document.getElementById('custom_colors_add').addEventListener('click', function () {
 	colorPickerComp.addCustomColor();
 });
 
@@ -753,7 +772,7 @@ colorPickerComp.clearSingleCustomColor = function (element) {
 	document.getElementById('custom_colors_box').removeChild(elemToRemove);
 
 	// Clearing the variable
-	colorPickerComp.LSCustomColors = { '0': [] };
+	colorPickerComp.LSCustomColors = { 0: [] };
 
 	// Looping through the custom colors to repopulate the variable
 	for (let x in document.getElementsByClassName('custom_colors_preview')) {
@@ -804,7 +823,7 @@ document.getElementById('custom_colors_box').addEventListener(
 // Clears all custom colors
 colorPickerComp.clearAllCustomColors = function () {
 	// Clearing variable
-	colorPickerComp.LSCustomColors = { '0': [] };
+	colorPickerComp.LSCustomColors = { 0: [] };
 
 	// Looping through the custom colors to repopulate the variable
 	while (document.getElementsByClassName('custom_colors_preview').length > 0) {
@@ -837,13 +856,9 @@ colorPickerComp.colorSliderHandler = function (position) {
 	let eventX = position - sliderContainer.getBoundingClientRect().left;
 
 	// Making conditions so that the user don't drag outside the box
-	if (eventX < 11) {
-		eventX = 11;
-	}
+	if (eventX < 11) eventX = 11;
 
-	if (eventX > 255) {
-		eventX = 255;
-	}
+	if (eventX > 255) eventX = 255;
 
 	// Updating the X property of the dragger
 	sliderDragger.attributes.x.nodeValue = eventX;
@@ -859,14 +874,13 @@ colorPickerComp.colorSliderHandler = function (position) {
 	// Updating the Hue value in the data object
 	colorPickerComp.hue = HColor;
 
-	//TODO: do I need this??
-	// Full HSLA color
-	const HSLA = `hsla(${HColor}, ${colorPickerComp.saturation}%, ${colorPickerComp.lightness}%, ${colorPickerComp.alpha})`;
-
 	// Updating the Hue color in the Saturation and lightness box
 	document
 		.getElementById('saturation')
-		.children[1].setAttribute('stop-color', `hsl(${HColor}, 100%, 50%)`);
+		.children[1].setAttribute(
+			'stop-color',
+			`hsla(${HColor}, 100%, 50%, ${colorPickerComp.alpha})`
+		);
 
 	// Update the color text values
 	colorPickerComp.updateColorValueInput();
@@ -874,6 +888,9 @@ colorPickerComp.colorSliderHandler = function (position) {
 	// Setting the data-color attribute to a color string
 	// This is so that the color updates properly on instances where the color has not been set
 	colorPickerComp.instance.element.setAttribute('data-color', 'color');
+
+	// Update
+	updatePicker();
 };
 
 /**
@@ -960,13 +977,9 @@ colorPickerComp.opacitySliderHandler = function (position) {
 	let eventX = position - sliderContainer.getBoundingClientRect().left;
 
 	// Making conditions so that the user don't drag outside the box
-	if (eventX < 11) {
-		eventX = 11;
-	}
+	if (eventX < 11) eventX = 11;
 
-	if (eventX > 255) {
-		eventX = 255;
-	}
+	if (eventX > 255) eventX = 255;
 
 	// Update the X property of the dragger
 	sliderDragger.attributes.x.nodeValue = eventX;
@@ -982,15 +995,15 @@ colorPickerComp.opacitySliderHandler = function (position) {
 	// Updating the data objects
 	colorPickerComp.alpha = alpha;
 
-	// Full HSLA color
-	const HSLA = `hsla(${colorPickerComp.hue}, ${colorPickerComp.saturation}%, ${colorPickerComp.lightness}%, ${alpha})`;
-
 	// Update the color text values
 	colorPickerComp.updateColorValueInput();
 
 	// Setting the data-color attribute to a color string
 	// This is so that the color updates properly on instances where the color has not been set
 	colorPickerComp.instance.element.setAttribute('data-color', 'color');
+
+	// Update
+	updatePicker();
 };
 
 /**
@@ -1083,21 +1096,13 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 			  document.getElementsByTagName('HTML')[0].scrollTop;
 
 	// Making conditions so that the user don'-t drag outside the box
-	if (eventX < 14) {
-		eventX = 14;
-	}
+	if (eventX < 14) eventX = 14;
 
-	if (eventX > 252) {
-		eventX = 252;
-	}
+	if (eventX > 252) eventX = 252;
 
-	if (eventY < 14) {
-		eventY = 14;
-	}
+	if (eventY < 14) eventY = 14;
 
-	if (eventY > 119) {
-		eventY = 119;
-	}
+	if (eventY > 119) eventY = 119;
 
 	// Changes X and Y properties of the dragger
 	boxDragger.attributes.y.nodeValue = eventY;
@@ -1114,15 +1119,11 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 
 	// Calculating the LPercent
 	// LPercent is the the X percentage of the of the Y percentage of the dragger
-	let LPercent = Math.floor((percentY / 100) * percentX);
+	const LPercent = Math.floor((percentY / 100) * percentX);
 
 	// Applying the Saturation and Lightness to the data object
 	colorPickerComp.saturation = SPercent;
 	colorPickerComp.lightness = LPercent;
-
-	//TODO: Do I need this
-	// Full HSLA color
-	const HSLA = `hsla(${colorPickerComp.hue}, ${SPercent}%, ${LPercent}%, ${colorPickerComp.alpha})`;
 
 	// Update the color text values
 	colorPickerComp.updateColorValueInput();
@@ -1130,6 +1131,9 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 	// Setting the data-color attribute to a color string
 	// This is so that the color updates properly on instances where the color has not been set
 	colorPickerComp.instance.element.setAttribute('data-color', 'color');
+
+	// Update
+	updatePicker();
 };
 
 /**

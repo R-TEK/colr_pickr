@@ -12,13 +12,9 @@ colorPickerComp.colorSliderHandler = function (position) {
 	let eventX = position - sliderContainer.getBoundingClientRect().left;
 
 	// Making conditions so that the user don't drag outside the box
-	if (eventX < 11) {
-		eventX = 11;
-	}
+	if (eventX < 11) eventX = 11;
 
-	if (eventX > 255) {
-		eventX = 255;
-	}
+	if (eventX > 255) eventX = 255;
 
 	// Updating the X property of the dragger
 	sliderDragger.attributes.x.nodeValue = eventX;
@@ -34,14 +30,13 @@ colorPickerComp.colorSliderHandler = function (position) {
 	// Updating the Hue value in the data object
 	colorPickerComp.hue = HColor;
 
-	//TODO: do I need this??
-	// Full HSLA color
-	const HSLA = `hsla(${HColor}, ${colorPickerComp.saturation}%, ${colorPickerComp.lightness}%, ${colorPickerComp.alpha})`;
-
 	// Updating the Hue color in the Saturation and lightness box
 	document
 		.getElementById('saturation')
-		.children[1].setAttribute('stop-color', `hsl(${HColor}, 100%, 50%)`);
+		.children[1].setAttribute(
+			'stop-color',
+			`hsla(${HColor}, 100%, 50%, ${colorPickerComp.alpha})`
+		);
 
 	// Update the color text values
 	colorPickerComp.updateColorValueInput();
@@ -49,6 +44,9 @@ colorPickerComp.colorSliderHandler = function (position) {
 	// Setting the data-color attribute to a color string
 	// This is so that the color updates properly on instances where the color has not been set
 	colorPickerComp.instance.element.setAttribute('data-color', 'color');
+
+	// Update
+	updatePicker();
 };
 
 /**

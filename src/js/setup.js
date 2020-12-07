@@ -293,6 +293,12 @@ let closePicker = function () {
 	// Checking if the color for this instance has not been set yet
 	if (colorPickerComp.instance.element.getAttribute('data-color') == 'undefined') return;
 
+	// Update
+	updatePicker();
+};
+
+// Handles updates
+let updatePicker = function () {
 	// Calling Event to make all the necessary changes
 	colorPickerComp.colorChange({
 		h: colorPickerComp.hue,
@@ -300,7 +306,7 @@ let closePicker = function () {
 		l: colorPickerComp.lightness,
 		a: colorPickerComp.alpha
 	});
-};
+}
 
 // Click the darken background to close the color picker
 document.addEventListener('mousedown', function () {

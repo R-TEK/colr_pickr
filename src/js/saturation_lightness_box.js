@@ -18,21 +18,13 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 			  document.getElementsByTagName('HTML')[0].scrollTop;
 
 	// Making conditions so that the user don'-t drag outside the box
-	if (eventX < 14) {
-		eventX = 14;
-	}
+	if (eventX < 14) eventX = 14;
 
-	if (eventX > 252) {
-		eventX = 252;
-	}
+	if (eventX > 252) eventX = 252;
 
-	if (eventY < 14) {
-		eventY = 14;
-	}
+	if (eventY < 14) eventY = 14;
 
-	if (eventY > 119) {
-		eventY = 119;
-	}
+	if (eventY > 119) eventY = 119;
 
 	// Changes X and Y properties of the dragger
 	boxDragger.attributes.y.nodeValue = eventY;
@@ -49,15 +41,11 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 
 	// Calculating the LPercent
 	// LPercent is the the X percentage of the of the Y percentage of the dragger
-	let LPercent = Math.floor((percentY / 100) * percentX);
+	const LPercent = Math.floor((percentY / 100) * percentX);
 
 	// Applying the Saturation and Lightness to the data object
 	colorPickerComp.saturation = SPercent;
 	colorPickerComp.lightness = LPercent;
-
-	//TODO: Do I need this
-	// Full HSLA color
-	const HSLA = `hsla(${colorPickerComp.hue}, ${SPercent}%, ${LPercent}%, ${colorPickerComp.alpha})`;
 
 	// Update the color text values
 	colorPickerComp.updateColorValueInput();
@@ -65,6 +53,9 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 	// Setting the data-color attribute to a color string
 	// This is so that the color updates properly on instances where the color has not been set
 	colorPickerComp.instance.element.setAttribute('data-color', 'color');
+
+	// Update
+	updatePicker();
 };
 
 /**
