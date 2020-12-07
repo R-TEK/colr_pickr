@@ -98,8 +98,6 @@
   display: none;
   position: fixed;
   width: 265px;
-  left: calc(50% - 175px);
-  top: calc(50% - 205px);
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 10px 0 rgba(1, 1, 1, 0.5);
@@ -114,21 +112,6 @@
   -ms-animation: popUp ease 0.2s;
   animation: popUp ease 0.2s; }
 
-#color_picker_bg {
-  display: none;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background-color: #000;
-  opacity: 0.5;
-  z-index: 99998;
-  -webkit-animation: fadeIn ease 0.2s;
-  -moz-animation: fadeIn ease 0.2s;
-  -ms-animation: fadeIn ease 0.2s;
-  animation: fadeIn ease 0.2s; }
-
 #color_picker #sliders {
   display: inline-block;
   width: 285px;
@@ -139,7 +122,7 @@
   bottom: 1px; }
 
 #color_picker #color_text_values {
-  padding: 3px 0 6px 0;
+  padding: 3px 0 2px 0;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   text-align: center; }
@@ -169,19 +152,19 @@
 
 #color_picker .rgba_input,
 #color_picker .hsla_input {
-  margin: 0 5px;
+  margin: 0 1px;
   width: 35px; }
 
 #color_picker #custom_colors_header {
   height: 35px; }
 
 #color_picker #custom_colors_pallet_icon {
-  margin: 8px 11px; }
+  margin: 9px 11px; }
 
 #color_picker #custom_colors_add {
   display: inline-block;
   position: absolute;
-  margin: 8px 0;
+  margin: 9px 0;
   padding: 0;
   right: 15px;
   background: none;

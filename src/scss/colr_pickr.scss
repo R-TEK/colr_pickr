@@ -16,27 +16,12 @@
 	display: none;
 	position: fixed;
 	width: 265px;
-	left: calc(50% - 175px);
-	top: calc(50% - 205px);
 	background-color: #fff;
 	border-radius: 5px;
 	box-shadow: $shadow;
 	z-index: 99999;
 	@include no-select;
 	@include animation(popUp ease 0.2s);
-}
-
-#color_picker_bg {
-	display: none;
-	position: fixed;
-	width: 100vw;
-	height: 100vh;
-	top: 0;
-	left: 0;
-	background-color: #000;
-	opacity: 0.5;
-	z-index: 99998;
-	@include animation(fadeIn ease 0.2s);
 }
 
 #color_picker {
@@ -52,7 +37,7 @@
 	}
 
 	#color_text_values {
-		padding: 3px 0 6px 0;
+		padding: 3px 0 2px 0;
 		border-top: 1px solid #ccc;
 		border-bottom: 1px solid #ccc;
 		text-align: center;
@@ -87,7 +72,7 @@
 
 	.rgba_input,
 	.hsla_input {
-		margin: 0 5px;
+		margin: 0 1px;
 		width: 35px;
 	}
 
@@ -96,13 +81,13 @@
 	}
 
 	#custom_colors_pallet_icon {
-		margin: 8px 11px;
+		margin: 9px 11px;
 	}
 
 	#custom_colors_add {
 		display: inline-block;
 		position: absolute;
-		margin: 8px 0;
+		margin: 9px 0;
 		padding: 0;
 		right: 15px;
 		background: none;
