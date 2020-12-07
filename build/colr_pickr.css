@@ -97,7 +97,7 @@
 #color_picker {
   display: none;
   position: fixed;
-  width: 290px;
+  width: 265px;
   left: calc(50% - 175px);
   top: calc(50% - 205px);
   background-color: #fff;
@@ -139,7 +139,7 @@
   bottom: 1px; }
 
 #color_picker #color_text_values {
-  padding: 9px 0 6px 0;
+  padding: 3px 0 6px 0;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   text-align: center; }

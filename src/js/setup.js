@@ -75,7 +75,7 @@ function ColorPicker(element, color) {
 
 	// Creating the HTML content
 	const HTMLContent = `
-		<svg id="color_box" width="288" height="155">
+		<svg id="color_box" width="263" height="130">
 			<defs>
 				<linearGradient id="saturation" x1="0%" y1="0%" x2="100%" y2="0%">
 					<stop offset="0%" stop-color="#fff"></stop>
@@ -98,7 +98,7 @@ function ColorPicker(element, color) {
 		</svg>
 		<br>
 		<div id="sliders">
-			<svg id="color_slider" width="285" height="20">
+			<svg id="color_slider" width="263" height="20">
 				<defs>
 					<linearGradient id="hue" x1="100%" y1="0%" x2="0%" y2="0%">
 						<stop offset="0%" stop-color="#f00"></stop>
@@ -110,20 +110,20 @@ function ColorPicker(element, color) {
 						<stop offset="100%" stop-color="#f00"></stop>
 					</linearGradient>
 				</defs>
-				<rect rx="5" ry="5" x="1" y="1" width="285" height="20" stroke="#fff" stroke-width="2" fill="url(#hue)"></rect>
+				<rect rx="5" ry="5" x="1" y="1" width="263" height="20" stroke="#fff" stroke-width="2" fill="url(#hue)"></rect>
 				<svg id="color_slider_dragger" x="277" y="11" style="overflow: visible;">
 					<circle r="7" fill="none" stroke="#000" stroke-width="2"></circle>
 					<circle r="5" fill="none" stroke="#fff" stroke-width="2"></circle>
 				</svg>
 			</svg>
-			<svg id="opacity_slider" width="285" height="20">
+			<svg id="opacity_slider" width="263" height="20">
 				<defs>
 					<linearGradient id="opacity" x1="100%" y1="0%" x2="0%" y2="0%">
 						<stop offset="0%" stop-color="#000"></stop>
 						<stop offset="100%" stop-color="#fff"></stop>
 					</linearGradient>
 				</defs>
-				<rect rx="5" ry="5" x="1" y="6" width="285" height="10" stroke="#fff" stroke-width="2" fill="url(#opacity)"></rect>
+				<rect rx="5" ry="5" x="1" y="6" width="263" height="10" stroke="#fff" stroke-width="2" fill="url(#opacity)"></rect>
 				<svg id="opacity_slider_dragger" x="277" y="11" style="overflow: visible;">
 					<circle r="7" fill="none" stroke="#000" stroke-width="2"></circle>
 					<circle r="5" fill="none" stroke="#fff" stroke-width="2"></circle>
