@@ -321,6 +321,18 @@ document.addEventListener('mousedown', function () {
 	}
 });
 
+// When scrolling
+document.addEventListener('scroll', function () {
+	// If picker is open...
+	if (colorPickerComp.pickerOpen) closePicker(); // Close picker
+});
+
+// When using mouse wheel
+document.addEventListener('mousewheel', function () {
+	// If picker is open...
+	if (colorPickerComp.pickerOpen) closePicker(); // Close picker
+});
+
 /**
  * Custom Color Change Event
  */
