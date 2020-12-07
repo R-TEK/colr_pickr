@@ -45,6 +45,9 @@ function ColorPicker(element, color) {
 		// Applying the items instance to the color picker object
 		colorPickerComp.instance = this.colorPickerObj;
 
+		// Update state
+		colorPickerComp.pickerOpen = true;
+
 		// Define picker
 		const picker = document.getElementById('color_picker');
 
@@ -55,12 +58,27 @@ function ColorPicker(element, color) {
 		let top = this.getBoundingClientRect().top;
 		let left = this.getBoundingClientRect().left;
 
-		// Taking in height so the picker is underneath
-		top = top + this.offsetHeight + 2;
+		// If the picker will go off bottom of screen...
+		if (top + picker.offsetHeight > window.innerHeight) {
+			// Place it above the button
+			top = top - picker.offsetHeight - 2;
+		}
+		// If the picker will go off top of screen...
+		else {
+			// Place it beneath the button
+			top = top + this.offsetHeight + 2;
+		}
 
-		console.log(top)
-		console.log(left)
+		// If the picker will go off the right of screen...
+		if (left + picker.offsetWidth > window.innerWidth - 20) {
+			// Calculate the difference
+			let difference = left + picker.offsetWidth - window.innerWidth;
 
+			// Move the picker back by the difference
+			left = left - difference - 20;
+		}
+
+		// Applying the position
 		picker.style.top = top + 'px';
 		picker.style.left = left + 'px';
 
@@ -71,6 +89,7 @@ function ColorPicker(element, color) {
 
 (function () {
 	// Adding items to the color picker object
+	colorPickerComp.pickerOpen = false;
 	colorPickerComp.instance = null;
 	colorPickerComp.boxStatus = false;
 	colorPickerComp.boxStatusTouch = false;
@@ -259,13 +278,13 @@ document.addEventListener('mousedown', function () {
 	}
 });
 
-//TODO: needs to be converted to a click anywhere to shut the color picker
-/*
-// Click the darken background to close the color picker
-document.getElementById('color_picker_bg').addEventListener('click', function () {
+// Close the picker
+let closePicker = function () {
+	// Update state
+	colorPickerComp.pickerOpen = false;
+
 	// Hiding elements
 	document.getElementById('color_picker').style.display = 'none';
-	document.getElementById('color_picker_bg').style.display = 'none';
 
 	// Checking if the color for this instance has not been set yet
 	if (colorPickerComp.instance.element.getAttribute('data-color') == 'undefined') return;
@@ -277,5 +296,27 @@ document.getElementById('color_picker_bg').addEventListener('click', function ()
 		l: colorPickerComp.lightness,
 		a: colorPickerComp.alpha
 	});
+};
+
+// Click the darken background to close the color picker
+document.addEventListener('mousedown', function () {
+	// Define the target
+	let target = event.target;
+
+	// If picker is open...
+	if (colorPickerComp.pickerOpen) {
+		// Looping through the parent to check if we are under the picker of window
+		while (target != document.getElementById('color_picker')) {
+			// If we are under the window...
+			if (target.tagName == 'HTML') {
+				// Close the picker
+				closePicker();
+
+				break;
+			}
+
+			// If not, then go to next parent
+			target = target.parentNode;
+		}
+	}
 });
-*/
