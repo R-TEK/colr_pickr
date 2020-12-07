@@ -10,7 +10,14 @@
 		<link rel="stylesheet" type="text/css" href="../build/colr_pickr.css" />
 	</head>
 
-	<body id="b" style="margin: 0;">
+	<style>
+		button {
+			width: 100px;
+			height: 30px;
+		}
+	</style>
+
+	<body id="b" style="margin: 0">
 		<div
 			style="
 				padding: 10px;
@@ -21,12 +28,8 @@
 				top: 0;
 			"
 		>
-			<h1 id="ti" style="text-align: center; margin: 5px 0;">Color Selector</h1>
-			<button
-				id="title"
-				style="width: 60px; height: 40px; color: #fff;"
-				name="title"
-			></button>
+			<h1 id="ti" style="text-align: center; margin: 5px 0">Color Selector</h1>
+			<button id="title" style="width: 60px; height: 40px; color: #fff" name="title"></button>
 			<button
 				id="text"
 				style="
@@ -52,7 +55,7 @@
 				name="background"
 			></button>
 		</div>
-		<p id="te" style="position: relative; top: 124px; z-index: -1;">
+		<p id="te" style="position: relative; top: 124px; z-index: -1">
 			Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget
 			malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
 			cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
@@ -67,6 +70,26 @@
 			Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci
 			porta dapibus. Cras ultricies ligula sed magna dictum porta.
 			<br />
+			<br />
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
+			id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.
+			<br />
+			<br />
+			Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget
+			malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+			cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
+			ligula.
+			<br />
+			<br />
+			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu
+			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
+			imperdiet et, porttitor at sem.
+			<br />
+			<br />
+			Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci
+			porta dapibus. Cras ultricies ligula sed magna dictum porta.
+			<br />
+			<button id="space"></button>
 			<br />
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
 			id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.
@@ -124,25 +147,7 @@
 			Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci
 			porta dapibus. Cras ultricies ligula sed magna dictum porta.
 			<br />
-			<br />
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
-			id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.
-			<br />
-			<br />
-			Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget
-			malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-			cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
-			ligula.
-			<br />
-			<br />
-			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu
-			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
-			imperdiet et, porttitor at sem.
-			<br />
-			<br />
-			Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci
-			porta dapibus. Cras ultricies ligula sed magna dictum porta.
-			<br />
+			<button id="mars"></button>
 			<br />
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
 			id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.
@@ -219,6 +224,16 @@
 
 			let background = new ColorPicker(document.getElementById('background'), '#ff0000');
 			document.getElementById('background').addEventListener('colorChange', function () {
+				document.getElementById('b').style.background = event.detail.color.hexa;
+			});
+
+			let space = new ColorPicker(document.getElementById('space'), '#ffff00');
+			document.getElementById('space').addEventListener('colorChange', function () {
+				document.getElementById('b').style.background = event.detail.color.hexa;
+			});
+
+			let mars = new ColorPicker(document.getElementById('mars'), '#ff00ff');
+			document.getElementById('mars').addEventListener('colorChange', function () {
 				document.getElementById('b').style.background = event.detail.color.hexa;
 			});
 		</script>
