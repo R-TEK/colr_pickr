@@ -260,8 +260,12 @@ function ColorPicker(element, color) {
 			customColorElem.className = 'custom_colors_preview';
 			customColorElem.style.background = colorPickerComp.LSCustomColors[0][x];
 			customColorElem.setAttribute('data-custom-color', colorPickerComp.LSCustomColors[0][x]);
+
 			// Placing the element in the DOM
 			document.getElementById('custom_colors_box').appendChild(customColorElem);
+
+			// If custom colors have reaches their limit...
+			if (x == 19) document.getElementById('custom_colors_add').style.display = 'none'; // Hide add button
 		}
 
 		// Check whether to display the add color button
@@ -328,7 +332,7 @@ document.addEventListener('scroll', function () {
 });
 
 // When using mouse wheel
-document.addEventListener('mousewheel', function () {
+window.addEventListener('resize', function () {
 	// If picker is open...
 	if (colorPickerComp.pickerOpen) closePicker(); // Close picker
 });

@@ -173,11 +173,11 @@
   cursor: pointer; }
 
 #color_picker #custom_colors_box {
-  padding: 0 0 0 15px; }
+  padding: 0 0 0 10px; }
 
 #color_picker .custom_colors_preview {
   position: relative;
-  margin: 0 6px 6px 0;
+  margin: 0 7px 6px 0;
   width: 18px;
   height: 18px;
   top: 1px;

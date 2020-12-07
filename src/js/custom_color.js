@@ -28,7 +28,7 @@ document.getElementById('custom_colors_box').addEventListener('click', function 
 // Function to add a new custom color
 colorPickerComp.addCustomColor = function () {
 	// Limiting a custom color to two rows
-	if (colorPickerComp.LSCustomColors[0].length == 27)
+	if (colorPickerComp.LSCustomColors[0].length == 19)
 		document.getElementById('custom_colors_add').style.display = 'none';
 
 	// Getting the color
