@@ -214,11 +214,13 @@
 
 			let text = new ColorPicker(document.getElementById('text'), '#1a00ad');
 			document.getElementById('text').addEventListener('colorChange', function () {
+				console.log(event.detail);
 				document.getElementById('te').style.color = event.detail.color.hexa;
 			});
 
 			let background = new ColorPicker(document.getElementById('background'), '#ff0000');
 			document.getElementById('background').addEventListener('colorChange', function () {
+				console.log(event.detail);
 				document.getElementById('b').style.background = event.detail.color.hexa;
 			});
 
