@@ -29,7 +29,6 @@ let colorPickerComp = new Object();
  * let picker = new ColorPicker(button, '#ffffff');
  */
 function ColorPicker(element, color) {
-	console.log(element);
 	// Adding the element to the instance
 	this.element = element;
 
@@ -299,8 +298,6 @@ colorPickerComp.keyShortcuts = function (event) {
 
 	// Define key code
 	const key = event.keyCode;
-
-	console.log(key);
 
 	// Check for key code
 	switch (key) {
