@@ -50,10 +50,6 @@
 		cursor: pointer;
 	}
 
-	#switch_color_type:focus {
-		outline: 1px solid #007cff;
-	}
-
 	.label_text {
 		position: relative;
 		top: 2px;
@@ -97,10 +93,6 @@
 		border: none;
 		outline: none;
 		cursor: pointer;
-	}
-
-	#custom_colors_add:focus {
-		outline: 1px solid #007cff;
 	}
 
 	#custom_colors_box {
@@ -155,5 +147,13 @@
 	#color_clear_single:hover,
 	#color_clear_all:hover {
 		background-color: #ececec;
+	}
+
+	.add_outline:focus {
+		outline: 1px solid #007cff !important;
+	}
+
+	.remove_outline {
+		outline: none;
 	}
 }

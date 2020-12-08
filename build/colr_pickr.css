@@ -134,9 +134,6 @@
   border: none;
   cursor: pointer; }
 
-#color_picker #switch_color_type:focus {
-  outline: 1px solid #007cff; }
-
 #color_picker .label_text {
   position: relative;
   top: 2px;
@@ -174,9 +171,6 @@
   border: none;
   outline: none;
   cursor: pointer; }
-
-#color_picker #custom_colors_add:focus {
-  outline: 1px solid #007cff; }
 
 #color_picker #custom_colors_box {
   padding: 0 0 0 10px; }
@@ -224,3 +218,9 @@
 #color_picker #color_clear_single:hover,
 #color_picker #color_clear_all:hover {
   background-color: #ececec; }
+
+#color_picker .add_outline:focus {
+  outline: 1px solid #007cff !important; }
+
+#color_picker .remove_outline {
+  outline: none; }
