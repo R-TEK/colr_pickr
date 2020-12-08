@@ -8,7 +8,7 @@
  * MIT License
  */
 
- //TODO: improve accessibility
+//TODO: improve accessibility
 
 /**
  * Set-up
@@ -88,7 +88,7 @@ function ColorPicker(element, color) {
 		colorPickerComp.updateColorDisplays(this.getAttribute('data-color'));
 
 		// Focus on a picker item
-		document.getElementById('hex_input').focus();
+		document.getElementById('color_text_values').focus();
 	});
 }
 
@@ -168,12 +168,7 @@ function ColorPicker(element, color) {
 				</svg>
 			</svg>
 		</div>
-		<div id="color_text_values">
-			<button id="switch_color_type" name="switch-color-type">
-				<svg viewBox="0 0 24 24" width="20" height="20">
-					<path fill="#555" d="M6 11v-4l-6 5 6 5v-4h12v4l6-5-6-5v4z"/>
-				</svg>
-			</button>
+		<div id="color_text_values" tabindex="0">
 			<div id="hexa">
 				<input id="hex_input" name="hex_input" type="text" maxlength="9" spellcheck="false" />
 				<br>
@@ -223,6 +218,11 @@ function ColorPicker(element, color) {
 					<label for="a" class="label_text">A</label>
 				</div>
 			</div>
+			<button id="switch_color_type" name="switch-color-type">
+				<svg viewBox="0 -2 24 24" width="20" height="20">
+					<path fill="#555" d="M6 11v-4l-6 5 6 5v-4h12v4l6-5-6-5v4z"/>
+				</svg>
+			</button>
 		</div>
 		<div id="custom_colors">
 			<div id="custom_colors_header">
@@ -311,7 +311,7 @@ let updatePicker = function () {
 		l: colorPickerComp.lightness,
 		a: colorPickerComp.alpha
 	});
-}
+};
 
 // Click the darken background to close the color picker
 document.addEventListener('mousedown', function () {

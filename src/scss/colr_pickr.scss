@@ -25,12 +25,6 @@
 }
 
 #color_picker {
-	#sliders {
-		display: inline-block;
-		width: 285px;
-		height: 55px;
-	}
-
 	#color_slider {
 		position: relative;
 		bottom: 1px;
@@ -40,17 +34,24 @@
 		padding: 3px 0 2px 0;
 		border-top: 1px solid #ccc;
 		border-bottom: 1px solid #ccc;
+		outline: none;
 		text-align: center;
 	}
 
 	#switch_color_type {
 		position: absolute;
-		margin: 14px 0;
-		right: 5px;
+		padding: 0;
+		right: 9px;
+		width: 24px;
+		height: 23px;
+		top: 200px;
 		background: none;
 		border: none;
-		outline: none;
 		cursor: pointer;
+	}
+
+	#switch_color_type:focus {
+		outline: 1px solid #007cff;
 	}
 
 	.label_text {
@@ -87,13 +88,19 @@
 	#custom_colors_add {
 		display: inline-block;
 		position: absolute;
-		margin: 9px 0;
+		margin: 7px 0;
 		padding: 0;
-		right: 15px;
+		width: 24px;
+		height: 23px;
+		right: 9px;
 		background: none;
 		border: none;
 		outline: none;
 		cursor: pointer;
+	}
+
+	#custom_colors_add:focus {
+		outline: 1px solid #007cff;
 	}
 
 	#custom_colors_box {
@@ -114,6 +121,10 @@
 	}
 
 	.custom_colors_preview:hover {
+		transform: $hoverEnlarge;
+	}
+
+	.custom_colors_preview:focus {
 		transform: $hoverEnlarge;
 	}
 
