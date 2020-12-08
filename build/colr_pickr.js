@@ -1155,7 +1155,7 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 			  boxContainer.getBoundingClientRect().top -
 			  document.getElementsByTagName('HTML')[0].scrollTop;
 
-	// Making conditions so that the user don'-t drag outside the box
+	// Making conditions so that the user don't drag outside the box
 	if (eventX < 14) eventX = 14;
 
 	if (eventX > 252) eventX = 252;
@@ -1344,6 +1344,15 @@ colorPickerComp.updateColorDisplays = function (color) {
 	// Calculating y value
 	const percentY = 100 - (color.l / (100 - color.s / 2)) * 100;
 	let y = (105 / 100) * percentY + 14;
+
+	// Making conditions so that the user don't drag outside the box
+	if (x < 14) x = 14;
+
+	if (x > 252) x = 252;
+
+	if (y < 14) y = 14;
+
+	if (y > 119) y = 119;
 
 	// Making changes the the UI
 	boxDragger.attributes.x.nodeValue = x;

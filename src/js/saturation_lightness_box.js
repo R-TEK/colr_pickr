@@ -17,7 +17,7 @@ colorPickerComp.colorBoxHandler = function (positionX, positionY, touch) {
 			  boxContainer.getBoundingClientRect().top -
 			  document.getElementsByTagName('HTML')[0].scrollTop;
 
-	// Making conditions so that the user don'-t drag outside the box
+	// Making conditions so that the user don't drag outside the box
 	if (eventX < 14) eventX = 14;
 
 	if (eventX > 252) eventX = 252;

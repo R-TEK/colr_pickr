@@ -69,6 +69,15 @@ colorPickerComp.updateColorDisplays = function (color) {
 	const percentY = 100 - (color.l / (100 - color.s / 2)) * 100;
 	let y = (105 / 100) * percentY + 14;
 
+	// Making conditions so that the user don't drag outside the box
+	if (x < 14) x = 14;
+
+	if (x > 252) x = 252;
+
+	if (y < 14) y = 14;
+
+	if (y > 119) y = 119;
+
 	// Making changes the the UI
 	boxDragger.attributes.x.nodeValue = x;
 	boxDragger.attributes.y.nodeValue = y;
