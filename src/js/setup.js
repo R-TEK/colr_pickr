@@ -8,8 +8,6 @@
  * MIT License
  */
 
-//TODO: improve accessibility
-
 /**
  * Set-up
  */
