@@ -8,6 +8,8 @@
  * MIT License
  */
 
+ //TODO: improve accessibility
+
 /**
  * Set-up
  */
@@ -84,6 +86,9 @@ function ColorPicker(element, color) {
 
 		// Updating the color picker
 		colorPickerComp.updateColorDisplays(this.getAttribute('data-color'));
+
+		// Focus on a picker item
+		document.getElementById('hex_input').focus();
 	});
 }
 
