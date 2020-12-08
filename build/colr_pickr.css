@@ -99,8 +99,8 @@
   position: fixed;
   width: 265px;
   background-color: #fff;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 0 10px 0 rgba(1, 1, 1, 0.4);
   z-index: 99999;
   user-select: none;
   -webkit-user-select: none;
@@ -165,7 +165,7 @@
 #color_picker #custom_colors_add {
   display: inline-block;
   position: absolute;
-  margin: 7px 0;
+  margin: 6px 0;
   padding: 0;
   width: 24px;
   height: 23px;
@@ -205,8 +205,8 @@
   padding: 3px 0;
   width: 115px;
   background: #fff;
-  border: 1px solid #d2d2d2;
-  box-shadow: 0 0 10px 0 rgba(1, 1, 1, 0.4); }
+  border: 1px solid #ccc;
+  border-radius: 5px; }
 
 #color_picker #color_clear_single,
 #color_picker #color_clear_all {
@@ -224,27 +224,3 @@
 #color_picker #color_clear_single:hover,
 #color_picker #color_clear_all:hover {
   background-color: #ececec; }
-
-/*
- * Media Queries
- */
-/*
- * Media Query for screen sizes 366 pixels or less
- */
-@media only screen and (max-width: 366px) {
-  #color_picker {
-    min-height: 488px;
-    top: calc(50% - 244px); }
-  #color_picker #sliders {
-    margin: 0 0 0 32px; }
-  #color_picker #switch_color_type {
-    right: 20px; }
-  #color_picker #custom_colors {
-    padding: 0 24px; }
-  #color_picker #custom_colors_title {
-    margin: 14px 5px; }
-  #color_picker #custom_colors_add {
-    right: 40px; }
-  #color_picker #custom_colors_preview {
-    width: 20px;
-    height: 20px; } }

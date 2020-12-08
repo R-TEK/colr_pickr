@@ -111,27 +111,6 @@ document.getElementById('color_clear_single').addEventListener('mousedown', func
 	colorPickerComp.clearSingleCustomColor();
 });
 
-// Clear single selected color for touch mobile devices
-colorPickerComp.clearSingleCustomColorTouch = function (event) {
-	if (event.target.className == 'custom_colors_preview') {
-		const now = new Date().getTime();
-		const timeSince = now - colorPickerComp.doubleTapTime;
-
-		if (timeSince < 200 && timeSince > 0) {
-			colorPickerComp.clearSingleCustomColor(event.target);
-		} else {
-			colorPickerComp.doubleTapTime = new Date().getTime();
-		}
-	}
-};
-document.getElementById('custom_colors_box').addEventListener(
-	'touchstart',
-	function () {
-		colorPickerComp.clearSingleCustomColorTouch(event);
-	},
-	{ passive: true }
-);
-
 // Clears all custom colors
 colorPickerComp.clearAllCustomColors = function () {
 	// Clearing variable

@@ -17,8 +17,8 @@
 	position: fixed;
 	width: 265px;
 	background-color: #fff;
+	border: 1px solid #ccc;
 	border-radius: 5px;
-	box-shadow: $shadow;
 	z-index: 99999;
 	@include no-select;
 	@include animation(popUp ease 0.2s);
@@ -88,7 +88,7 @@
 	#custom_colors_add {
 		display: inline-block;
 		position: absolute;
-		margin: 7px 0;
+		margin: 6px 0;
 		padding: 0;
 		width: 24px;
 		height: 23px;
@@ -134,8 +134,8 @@
 		padding: 3px 0;
 		width: 115px;
 		background: #fff;
-		border: 1px solid #d2d2d2;
-		box-shadow: $shadow;
+		border: 1px solid #ccc;
+		border-radius: 5px;
 	}
 
 	#color_clear_single,
@@ -157,9 +157,3 @@
 		background-color: #ececec;
 	}
 }
-
-/*
- * Media Queries
- */
-
-@import '366px_mq';

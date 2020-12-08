@@ -8,6 +8,8 @@
  * MIT License
  */
 
+//TODO: remove double tap to delete colors, see if hold to open context menu works
+
 /**
  * Set-up
  */
@@ -276,6 +278,47 @@ function ColorPicker(element, color) {
 			document.getElementById('custom_colors_add').style.display = 'none';
 	}
 })();
+
+// Keypress shortcuts
+colorPickerComp.keyShortcuts = function (event) {
+	// Loop through inputs element
+	for (let x in document.getElementsByTagName('INPUT')) {
+		// If iteration number is not longer a number...
+		if (isNaN(x)) continue; // Move on
+
+		// If input is active...
+		if (document.getElementsByTagName('INPUT')[x] === document.activeElement) return; // Stop function
+	}
+
+	// Loop through input elements
+	for (let y in document.getElementsByTagName('TEXTAREA')) {
+		// If iteration number is not longer a number...
+		if (isNaN(y)) continue; // Move on
+
+		// If input is active...
+		if (document.getElementsByTagName('TEXTAREA')[y] === document.activeElement) return; // Stop function
+	}
+
+	// Define key code
+	const key = event.keyCode;
+
+	console.log(key);
+
+	// Check for key code
+	switch (key) {
+		case 46:
+			// If focused element is a custom color...
+			if (document.activeElement.className == 'custom_colors_preview')
+				// Delete it
+				colorPickerComp.clearSingleCustomColor(document.activeElement);
+			break;
+		case 27:
+			// If picker is open...
+			if (colorPickerComp.pickerOpen) closePicker(); // Close picker
+			break;
+	}
+};
+document.addEventListener('keydown', colorPickerComp.keyShortcuts.bind(event));
 
 // Click anywhere to close a pop-up
 document.addEventListener('mousedown', function () {
@@ -801,27 +844,6 @@ colorPickerComp.clearSingleCustomColor = function (element) {
 document.getElementById('color_clear_single').addEventListener('mousedown', function () {
 	colorPickerComp.clearSingleCustomColor();
 });
-
-// Clear single selected color for touch mobile devices
-colorPickerComp.clearSingleCustomColorTouch = function (event) {
-	if (event.target.className == 'custom_colors_preview') {
-		const now = new Date().getTime();
-		const timeSince = now - colorPickerComp.doubleTapTime;
-
-		if (timeSince < 200 && timeSince > 0) {
-			colorPickerComp.clearSingleCustomColor(event.target);
-		} else {
-			colorPickerComp.doubleTapTime = new Date().getTime();
-		}
-	}
-};
-document.getElementById('custom_colors_box').addEventListener(
-	'touchstart',
-	function () {
-		colorPickerComp.clearSingleCustomColorTouch(event);
-	},
-	{ passive: true }
-);
 
 // Clears all custom colors
 colorPickerComp.clearAllCustomColors = function () {
