@@ -8,8 +8,6 @@
  * MIT License
  */
 
-//TODO: remove double tap to delete colors, see if hold to open context menu works
-
 /**
  * Set-up
  */
