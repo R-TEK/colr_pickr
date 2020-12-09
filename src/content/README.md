@@ -12,12 +12,13 @@
     <a href="https://www.npmjs.com/package/@r-tek/colr_pickr">
         <img src="https://badgen.net/npm/v/@r-tek/colr_pickr?color=7000c5" alt="version" />
     </a>
-    <a href="https://bundlephobia.com/result?p=@r-tek/colr_pickr@1.2.0">
+    <a href="https://bundlephobia.com/result?p=@r-tek/colr_pickr@2.0.0">
         <img src="https://badgen.net/bundlephobia/minzip/@r-tek/colr_pickr?color=158fcc" alt="minzip size" />
     </a>
     <a href="https://lgtm.com/projects/g/R-TEK/colr_pickr/context:javascript">
         <img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/R-TEK/colr_pickr.svg?logo=lgtm&logoWidth=18"/>
     </a>
+	<a href="https://www.jsdelivr.com/package/npm/@r-tek/colr_pickr"><img src="https://data.jsdelivr.com/v1/package/npm/@r-tek/colr_pickr/badge"></a>
 </p>
 
 <br/>
@@ -30,14 +31,14 @@
 -   Reads and outputs HEX, RGB, HSL, HEXA, RGBA and HSLA color values
 -   Save custom colors to re-use on return to the color picker
 -   Full Touch Support
--   ~4kb file size, meaning a super fast component of your application
+-   ~5kb file size, meaning a super fast component of your application
 -   Works on all major browsers
 -   Flat and modern design interface, inspired by google chrome dev-tools color picker
 
 ### Examples:
 
 -   https://r-tek.github.io/colr_pickr/get-started.html
--   https://codepen.io/TEK-Projects/pen/ExPmEYK
+-   https://codepen.io/TEK-Projects/pen/NWRRgRv
 
 ### Getting Started:
 
@@ -69,14 +70,14 @@
     ```html
     <script
     	type="text/javascript"
-    	src="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.2.0/build/colr_pickr.min.js"
+    	src="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@2.0.0/build/colr_pickr.min.js"
     ></script>
     ```
     ```html
     <link
     	rel="stylesheet"
     	type="text/css"
-    	href="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@1.2.0/build/colr_pickr.min.css"
+    	href="https://cdn.jsdelivr.net/npm/@r-tek/colr_pickr@2.0.0/build/colr_pickr.min.css"
     />
     ```
 
