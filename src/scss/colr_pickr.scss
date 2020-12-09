@@ -25,6 +25,10 @@
 }
 
 #color_picker {
+	#sliders {
+		width: 263px;
+	}
+
 	#color_slider {
 		position: relative;
 		bottom: 1px;
@@ -52,6 +56,7 @@
 
 	.label_text {
 		position: relative;
+		margin: 0 !important;
 		top: 2px;
 		font-family: $font;
 		font-size: 12px;
@@ -71,6 +76,10 @@
 	.hsla_input {
 		margin: 0 1px;
 		width: 35px;
+	}
+
+	#custom_colors {
+		text-align: left;
 	}
 
 	#custom_colors_header {
