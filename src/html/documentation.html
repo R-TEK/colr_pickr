@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<!-- Title -->
 		<title>Get Started - Template</title>
+
+		<!-- Meta -->
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<meta
@@ -25,60 +28,17 @@
 		<link type="text/css" rel="stylesheet" href="./dist/docs.css" />
 		<link type="text/css" rel="stylesheet" href="./dist/documentation.css" />
 	</head>
-
-	<body id="page-top">
-		<!-- Nav Bar -->
-		<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-			<div class="container">
-				<a class="navbar-brand js-scroll-trigger" href="#page-top">Colr Pickr</a>
-				<button
-					class="navbar-toggler navbar-toggler-right"
-					type="button"
-					data-toggle="collapse"
-					data-target="#navbarResponsive"
-					aria-controls="navbarResponsive"
-					aria-expanded="false"
-					aria-label="Toggle navigation"
-				>
-					Menu
-				</button>
-				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item">
-							<a class="nav-link js-scroll-trigger" href="./index.html">Home</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link js-scroll-trigger" href="./get-started.html"
-								>Get Started</a
-							>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link js-scroll-trigger" href="./documentation.html"
-								>Documentation</a
-							>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-
-		<!-- Documentation Main Body -->
+	<body>
+		<!-- Main -->
+		<header></header>
 		<article id="article">
-			<div class="markdown-body">
-				@@include('../content/jsdoc.html')
-			</div>
+			<section class="markdown-body">@@include('../content/jsdoc.html')</section>
 		</article>
+		<footer></footer>
 
+		<!-- JavaScript Files -->
 		<script type="text/javascript" src="./dist/lib.js"></script>
 		<script type="text/javascript" src="./dist/docs.js"></script>
 		<script type="text/javascript" src="./dist/documentation.js"></script>
-		<script type="text/javascript">
-			try {
-				// Removing certain elements
-				$('.link-icon').each(function (x) {
-					$('.link-icon')[x].style.display = 'none';
-				});
-			} catch (e) {}
-		</script>
 	</body>
 </html>

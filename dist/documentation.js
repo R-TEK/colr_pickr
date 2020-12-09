@@ -1,1 +1,0 @@
-document.addEventListener("DOMContentLoaded",(function(){const e=document.querySelectorAll(".details");for(x in e)try{e[x].style.display="none"}catch(e){}}));
