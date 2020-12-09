@@ -46,7 +46,7 @@
 ### Examples:
 
 -   https://r-tek.github.io/colr_pickr/get-started.html
--   https://codepen.io/TEK-Projects/pen/ExPmEYK
+-   https://codepen.io/TEK-Projects/pen/NWRRgRv
 
 ### Getting Started:
 
