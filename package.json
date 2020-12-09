@@ -2,10 +2,12 @@
 	"author": "R-TEK",
 	"devDependencies": {
 		"gulp": "^4.0.2",
-		"gulp-concat": "^2.6.1",
 		"gulp-file-include": "^2.2.2",
+		"marked": "^1.1.0",
+		"gulp-concat": "^2.6.1",
 		"gulp-uglify-es": "^2.0.0",
 		"gulp-uglifycss": "^1.1.0",
-		"marked": "^1.1.0"
+		"gulp-sass": "^4.1.0",
+		"node-sass": "^4.14.1"
 	}
 }
