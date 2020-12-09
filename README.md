@@ -39,7 +39,7 @@
 -   Reads and outputs HEX, RGB, HSL, HEXA, RGBA and HSLA color values
 -   Save custom colors to re-use on return to the color picker
 -   Full Touch Support
--   ~4kb file size, meaning a super fast component of your application
+-   ~5kb file size, meaning a super fast component of your application
 -   Works on all major browsers
 -   Flat and modern design interface, inspired by google chrome dev-tools color picker
 
