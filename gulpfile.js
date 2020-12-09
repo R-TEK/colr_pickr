@@ -55,10 +55,7 @@ gulp.task('productionStyles', async function () {
 
 // Moving, concatenating and minifying library scripts (.js) files
 gulp.task('productionLibrariesJS', async function () {
-	gulp.src(['./src/lib/jquery.js', './src/lib/*.js'])
-		.pipe(concatJS('lib.js'))
-		.pipe(uglifyJS())
-		.pipe(gulp.dest('./dist'));
+	gulp.src('./src/lib/*.js').pipe(concatJS('lib.js')).pipe(uglifyJS()).pipe(gulp.dest('./dist'));
 });
 
 // Moving, concatenating and minifying my own scripts (.js) files
