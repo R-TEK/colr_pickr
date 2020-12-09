@@ -1,3 +1,8 @@
+/* TODO: remove this when issue with bootstrap messing with svgs is fixed in the color picker */
+svg {
+	vertical-align: top !important;
+}
+
 body {
 	overflow-y: scroll;
 }
