@@ -2,6 +2,22 @@
 
 ---
 
+### 2.0.0
+
+-   Made the Colr Pickr a popup (meaning it will appear next to the button that launched it)
+
+-   Remove the color preview, replaced by the button changing color (also, the color box dragger can be used to see the color)
+
+-   Significantly reduced the size of the color picker
+
+-   Color change events are now triggered while changing the color, instead of when the picker is closed
+
+-   Improved accessibility (specifically, tabbing through the picker)
+
+-   Added keyboard shortcuts to make using the keyboard more usable
+
+-   Many style changes
+
 ### 1.2.1
 
 -   Fix issue with not handling users manually changing colors for instances using the colorChange() function
