@@ -1,0 +1,154 @@
+@import 'config';
+
+* {
+	box-sizing: border-box;
+}
+
+header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 10px 20px;
+	width: 100%;
+	height: 50px;
+	background-color: #282c34;
+}
+
+header {
+	* {
+		align-self: center;
+	}
+
+	#logo {
+		display: flex;
+		flex-direction: row;
+	}
+
+	#logo {
+		img {
+			width: 28px;
+			height: 28px;
+		}
+
+		h1 {
+			margin: 0 0 0 5px;
+			font-family: $font;
+			font-size: 20px;
+			font-weight: 800;
+			color: #fff;
+		}
+	}
+
+	#drop_down_nav {
+		button {
+			background: none;
+			border: none;
+			outline: none;
+			cursor: pointer;
+		}
+
+		nav {
+			display: none;
+			position: absolute;
+			width: 200px;
+			top: 52px;
+			right: 10px;
+			background-color: #282c34;
+			border-radius: 3px;
+		}
+
+		a {
+			display: block;
+			padding: 10px 10px;
+			font-family: $font;
+			font-size: 14px;
+			font-weight: 600;
+			color: #fff;
+			user-select: none;
+			cursor: pointer;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+	}
+
+	#fixed_nav {
+		display: none;
+	}
+
+	#fixed_nav {
+		a {
+			margin: 0 15px 0 0;
+			font-family: $font;
+			font-size: 16px;
+			font-weight: 600;
+			color: #fff;
+			cursor: pointer;
+		}
+	}
+}
+
+article {
+	#basic_sample {
+		padding: 20px;
+		background-color: #460082;
+		text-align: center;
+	}
+
+	#basic_sample {
+		h2,
+		p {
+			font-family: $font;
+			font-size: 14px;
+			font-weight: 600;
+			line-height: 20px;
+			color: #fff;
+		}
+
+		p {
+			margin: 20px 0 10px 0;
+		}
+
+		button {
+			width: 265px;
+			height: 40px;
+			border: 2px solid #fff;
+			border-radius: 3px;
+			font-size: 14px;
+			font-weight: 600;
+			color: #fff;
+			cursor: pointer;
+		}
+	}
+}
+
+.code_example {
+	padding: 20px 0;
+}
+
+.code_example {
+	h3 {
+		padding: 0 20px;
+		font-family: $font;
+		font-size: 18px;
+		font-weight: 600;
+	}
+
+	p {
+		padding: 0 20px;
+		margin: 15px 0;
+		font-family: $font;
+		font-size: 14px;
+		color: #222;
+	}
+}
+
+.future_examples {
+	padding: 20px;
+	font-family: $font;
+	font-size: 14px;
+	font-style: italic;
+	text-align: center;
+	color: #222;
+}

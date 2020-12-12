@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<!-- Title -->
-		<title>Home - Colr Pickr</title>
+		<title>Colr Pickr</title>
 
 		<!-- Meta -->
 		<meta charset="utf-8" />
@@ -35,9 +35,103 @@
 	</head>
 	<body>
 		<!-- Main -->
-		<header></header>
-		<article></article>
-		<footer></footer>
+		<header>
+			<div id="logo">
+				<img src="./assets/img/project_logo.svg" alt="Project logo" />
+				<h1>Colr Pickr</h1>
+			</div>
+			<div id="drop_down_nav">
+				<button id="open_nav">
+					<svg viewBox="0 -1 24 24" width="24" height="24">
+						<path
+							d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"
+							fill="#fff"
+						/>
+					</svg>
+				</button>
+				<nav id="opened_nav">
+					<a>Home</a>
+					<a>Get started</a>
+					<a>Documentation</a>
+					<a>Github</a>
+					<a>v2.0.0</a>
+				</nav>
+			</div>
+			<div id="fixed_nav">
+				<nav>
+					<a>Home</a>
+					<a>Get started</a>
+					<a>Documentation</a>
+					<a>v2.0.0</a>
+				</nav>
+			</div>
+		</header>
+		<article>
+			<section id="basic_sample">
+				<h2>
+					Colr Pickr, a vanilla JavaScript color picker component built with SVGs, with
+					features like saving colors. Similar design to the chrome-dev-tools color
+					picker.
+				</h2>
+				<p>See how it works:</p>
+				<button id="sample">Press me</button>
+			</section>
+			<section class="code_example">
+				<h3>Simple:</h3>
+				<p>A basic example of the core color picker purpose.</p>
+				<iframe
+					height="450"
+					style="width: 100%"
+					scrolling="no"
+					title="oNzYOoY"
+					src="https://codepen.io/TEK-Projects/embed/oNzYOoY?height=265&theme-id=dark&default-tab=js,result"
+					frameborder="no"
+					loading="lazy"
+					allowtransparency="true"
+					allowfullscreen="true"
+				>
+					See the Pen
+					<a href="https://codepen.io/TEK-Projects/pen/oNzYOoY">oNzYOoY</a> by R-TEK (<a
+						href="https://codepen.io/TEK-Projects"
+						>@TEK-Projects</a
+					>) on <a href="https://codepen.io">CodePen</a>.
+				</iframe>
+			</section>
+			<section class="code_example">
+				<h3>Embedded Color Pallet:</h3>
+				<p>
+					An example of embedding the color pallet (saved colors) into the your web app.
+				</p>
+				<iframe
+					height="450"
+					style="width: 100%"
+					scrolling="no"
+					title="Embedded Color Pallet  [For Project Site]"
+					src="https://codepen.io/TEK-Projects/embed/LYRbvay?height=265&theme-id=dark&default-tab=js,result"
+					frameborder="no"
+					loading="lazy"
+					allowtransparency="true"
+					allowfullscreen="true"
+				>
+					See the Pen
+					<a href="https://codepen.io/TEK-Projects/pen/LYRbvay"
+						>Embedded Color Pallet [For Project Site]</a
+					>
+					by R-TEK (<a href="https://codepen.io/TEK-Projects">@TEK-Projects</a>) on
+					<a href="https://codepen.io">CodePen</a>.
+				</iframe>
+			</section>
+			<p class="future_examples">More examples of new features coming soon...</p>
+		</article>
+		<footer>
+			<div id="footer_nav">
+				<a>Home</a>
+				<a>Get started</a>
+				<a>Documentation</a>
+				<a>Github</a>
+				<a>v2.0.0</a>
+			</div>
+		</footer>
 
 		<!-- JavaScript Files -->
 		<script type="text/javascript" src="./dist/lib.js"></script>
