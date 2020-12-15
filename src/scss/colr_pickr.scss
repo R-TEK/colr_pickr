@@ -37,7 +37,6 @@
 	#color_text_values {
 		padding: 3px 0 2px 0;
 		border-top: 1px solid #ccc;
-		border-bottom: 1px solid #ccc;
 		outline: none;
 		text-align: center;
 	}
@@ -80,6 +79,7 @@
 	}
 
 	#custom_colors {
+		border-top: 1px solid #ccc;
 		text-align: left;
 	}
 

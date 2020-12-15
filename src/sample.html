@@ -7,15 +7,34 @@
 		<meta name="keywords" content="HTML, CSS, JavaScript" />
 		<meta name="author" content="John Doe" />
 		<link rel="stylesheet" type="text/css" href="../build/colr_pickr.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+			integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+			crossorigin="anonymous"
+		/>
 	</head>
 
-	<body id="b" style="margin: 0; overflow-x: hidden; text-align: center;">
+	<body id="b" style="margin: 0; overflow-x: hidden; text-align: center">
 		<div style="padding: 10px; text-align: center; width: 100%; background: #fff; top: 0">
 			<h1 id="ti" style="text-align: center; margin: 5px 0">Color Selector</h1>
-			<button id="title" style="width: 60px; height: 40px; color: #000000" name="title">
-				<span>Center</span>
-			</button>
+			<span style="font-size: 16px; font-weight: 600; line-height: 50px"
+				>Pickers with attached colorChange event listener:</span
+			>
+			<br />
+			<button
+				id="title"
+				style="
+					width: 30px;
+					height: 30px;
+					background-color: #000;
+					border-radius: 5px;
+					border: none;
+					outline: none;
+					cursor: pointer;
+				"
+				name="title"
+			></button>
 			<button
 				id="text"
 				style="
@@ -33,13 +52,18 @@
 				style="
 					width: 30px;
 					height: 30px;
-					border-radius: 50%;
+					border-radius: 5px;
 					border: none;
 					outline: none;
 					cursor: pointer;
 				"
 				name="background"
 			></button>
+			<br />
+			<span style="font-size: 16px; font-weight: 600; line-height: 50px"
+				>Browsers color picker:</span
+			>
+			<br />
 			<input type="color" />
 		</div>
 		<p id="te">
@@ -52,6 +76,16 @@
 			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
 			imperdiet et, porttitor at sem.
 			<br />
+			<span style="font-size: 16px; font-weight: 600; line-height: 50px"
+				>Buttons with hidden components:</span
+			>
+			<br />
+			<button id="has_all">Has all</button>
+			<button id="text_values">Has text values</button>
+			<button id="color_pallet">Has color pallet</button>
+			<button id="only_color_component">Has only color component</button>
+			<br />
+			<br />
 			Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci
 			porta dapibus. Cras ultricies ligula sed magna dictum porta.
 			<br />
@@ -69,46 +103,51 @@
 			<br />
 			Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci
 			porta dapibus. Cras ultricies ligula sed magna dictum porta.
+			<br />
+			<br />
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
+			id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.
+			<br />
+			Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget
+			malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+			cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
+			ligula.
+			<br />
+			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu
+			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
+			imperdiet et, porttitor at sem.
+			<br />
+			Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci
+			porta dapibus. Cras ultricies ligula sed magna dictum porta.
+			<br />
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
+			id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.
+			<br />
+			Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget
+			malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+			cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
+			ligula.
+			<br />
+			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu
+			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
+			imperdiet et, porttitor at sem.
+			<br />
+			Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci
+			porta dapibus. Cras ultricies ligula sed magna dictum porta.
+			<br />
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
+			id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.
+			<br />
+			Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget
+			malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+			cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
+			ligula.
+			<br />
+			<span style="font-size: 16px; font-weight: 600; line-height: 50px"
+				>When page is scrolled:</span
+			>
 			<br />
 			<button id="space" style="width: 100px; height: 30px"></button>
-			<br />
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
-			id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.
-			<br />
-			Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget
-			malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-			cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
-			ligula.
-			<br />
-			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu
-			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
-			imperdiet et, porttitor at sem.
-			<br />
-			Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci
-			porta dapibus. Cras ultricies ligula sed magna dictum porta.
-			<br />
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
-			id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.
-			<br />
-			Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget
-			malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-			cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
-			ligula.
-			<br />
-			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu
-			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
-			imperdiet et, porttitor at sem.
-			<br />
-			Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci
-			porta dapibus. Cras ultricies ligula sed magna dictum porta.
-			<br />
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
-			id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.
-			<br />
-			Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget
-			malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-			cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
-			ligula.
 			<br />
 			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu
 			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
@@ -157,8 +196,6 @@
 			Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci
 			porta dapibus. Cras ultricies ligula sed magna dictum porta.
 			<br />
-			<button id="mars" style="width: 100px; height: 30px"></button>
-			<br />
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
 			id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.
 			<br />
@@ -170,6 +207,34 @@
 			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu
 			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
 			imperdiet et, porttitor at sem.
+			<br />
+			<span style="font-size: 16px; font-weight: 600; line-height: 50px"
+				>When page and div is scrolled:</span
+			>
+			<br />
+			<button id="mars" style="width: 100px; height: 30px"></button>
+			<br />
+			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu
+			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
+			<br />
+			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu
+			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
+			<br />
+			Vestibulum ac diam sit amet quam vehurewgner gerg neirng erngnern gerig nerig icula
+			elementum sed sit amet dui. Curabitur arcu erat, accumsan id imperdiet et, porttitor at
+			sem. Curabitur arcu erat, accumsan id
+			<br />
+			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu
+			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id i
+			<br />
+			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu
+			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id im
+			<br />
+			Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur arcu
+			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
+			imperdiet et, porttitor at semperdiet et, porttitor at semmperdiet et, porttitor at
+			semimperdiet et, porttitor at sem imperdiet et, porttitor at sem imperdiet et, porttitor
+			at sem
 		</div>
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
@@ -225,7 +290,25 @@
 				document.getElementById('b').style.background = event.detail.color.hexa;
 			});
 
-			let space = new ColorPicker(document.getElementById('space'), '#ffff00');
+			let hasAll = new ColorPicker(document.getElementById('has_all'), '#1aefc8');
+
+			let hasTextValues = new ColorPicker(document.getElementById('text_values'), '#7eef1a', {
+				hasColorPallet: false
+			});
+
+			let hasColorPallet = new ColorPicker(
+				document.getElementById('color_pallet'),
+				'#ff7700',
+				{ hasNumberValues: false }
+			);
+
+			let hasOnlyColorComponent = new ColorPicker(
+				document.getElementById('only_color_component'),
+				'#ffe100',
+				{ hasNumberValues: false, hasColorPallet: false }
+			);
+
+			let space = new ColorPicker(document.getElementById('space'), '#00853a');
 
 			let mars = new ColorPicker(document.getElementById('mars'), '#ff00ff');
 		</script>

@@ -28,7 +28,7 @@ let colorPickerComp = new Object();
  * const button = document.getElementById('my_button');
  * let picker = new ColorPicker(button, '#ffffff');
  */
-function ColorPicker(element, color) {
+function ColorPicker(element, color, options) {
 	// Adding the element to the instance
 	this.element = element;
 
@@ -41,6 +41,7 @@ function ColorPicker(element, color) {
 
 	// Click listener to have the button open the color picker interface
 	element.addEventListener('click', function () {
+		console.log(options);
 		// Applying the items instance to the color picker object
 		colorPickerComp.instance = this.colorPickerObj;
 
@@ -75,6 +76,34 @@ function ColorPicker(element, color) {
 
 			// Move the picker back by the difference
 			left = left - difference - 20;
+		}
+
+		// Reset styles
+
+		// Defining to text values component
+		const colorTextValues = document.getElementById('color_text_values');
+
+		// Define custom colors
+		const customColors = document.getElementById('custom_colors');
+
+		// Show it
+		customColors.style.display = 'block';
+
+		// Show it
+		colorTextValues.style.display = 'block';
+
+		if (options !== undefined) {
+			// If the color text values components has been hidden...
+			if (options.hasNumberValues === false) {
+				// Hide it
+				colorTextValues.style.display = 'none';
+			}
+
+			// If the custom colors components has been hidden...
+			if (options.hasColorPallet === false) {
+				// Hide it
+				customColors.style.display = 'none';
+			}
 		}
 
 		// Applying the position
