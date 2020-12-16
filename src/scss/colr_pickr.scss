@@ -114,21 +114,23 @@
 	}
 
 	#custom_colors_header {
+		display: flex;
+		justify-content: space-between;
 		height: 35px;
 	}
 
 	.pallet_icon {
 		margin: 9px 11px;
+		width: 15px;
+		height: 18px;
 	}
 
 	#custom_colors_add {
 		display: inline-block;
-		position: absolute;
-		margin: 6px 0;
+		margin: 9px 11px;
 		padding: 0;
-		width: 24px;
-		height: 23px;
-		right: 9px;
+		width: 15px;
+		height: 18px;
 		background: none;
 		border: none;
 		outline: none;
