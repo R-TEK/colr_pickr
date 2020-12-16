@@ -4,6 +4,10 @@
 
 ### 2.0.0
 
+-   Added feature to hide components
+
+### 2.0.0
+
 -   Made the Colr Pickr a popup (meaning it will appear next to the button that launched it)
 
 -   Remove the color preview, replaced by the button changing color (also, the color box dragger can be used to see the color)

@@ -15,7 +15,7 @@
 #color_picker {
 	display: none;
 	position: fixed;
-	width: 265px;
+	width: 267px;
 	background-color: #fff;
 	border: 1px solid #ccc;
 	border-radius: 5px;
@@ -28,6 +28,7 @@
 #color_picker {
 	#sliders {
 		width: 263px;
+		height: 48px;
 	}
 
 	#color_slider {

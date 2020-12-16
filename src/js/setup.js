@@ -8,6 +8,9 @@
  * MIT License
  */
 
+
+//TODO: make sure to change the logic after ive just changed to width and position of the picker
+
 /**
  * Set-up
  */
@@ -154,7 +157,7 @@ function ColorPicker(element, color, options) {
 					<rect x="0" y="0" width="100%" height="100%" fill="url(#brightness)"></rect>
 				</pattern>
 			</defs>
-			<rect rx="5" ry="5" x="1" y="1" width="263" height="130" stroke="#fff" stroke-width="2" fill="url(#pattern_config)"></rect>
+			<rect rx="5" ry="5" x="0" y="2" width="263" height="130" stroke="#fff" stroke-width="2" fill="url(#pattern_config)"></rect>
 			<svg id="box_dragger" x="336" y="14" style="overflow: visible;">
 				<circle r="9" fill="none" stroke="#000" stroke-width="2"></circle>
 				<circle r="7" fill="none" stroke="#fff" stroke-width="2"></circle>
@@ -174,7 +177,7 @@ function ColorPicker(element, color, options) {
 						<stop offset="100%" stop-color="#f00"></stop>
 					</linearGradient>
 				</defs>
-				<rect rx="5" ry="5" x="1" y="1" width="263" height="20" stroke="#fff" stroke-width="2" fill="url(#hue)"></rect>
+				<rect rx="5" ry="5" x="2" y="1" width="262" height="20" stroke="#fff" stroke-width="2" fill="url(#hue)"></rect>
 				<svg id="color_slider_dragger" x="277" y="11" style="overflow: visible;">
 					<circle r="7" fill="none" stroke="#000" stroke-width="2"></circle>
 					<circle r="5" fill="none" stroke="#fff" stroke-width="2"></circle>
@@ -187,7 +190,7 @@ function ColorPicker(element, color, options) {
 						<stop offset="100%" stop-color="#fff"></stop>
 					</linearGradient>
 				</defs>
-				<rect rx="5" ry="5" x="1" y="6" width="263" height="10" stroke="#fff" stroke-width="2" fill="url(#opacity)"></rect>
+				<rect rx="5" ry="5" x="2" y="6" width="262" height="10" stroke="#fff" stroke-width="2" fill="url(#opacity)"></rect>
 				<svg id="opacity_slider_dragger" x="277" y="11" style="overflow: visible;">
 					<circle r="7" fill="none" stroke="#000" stroke-width="2"></circle>
 					<circle r="5" fill="none" stroke="#fff" stroke-width="2"></circle>
