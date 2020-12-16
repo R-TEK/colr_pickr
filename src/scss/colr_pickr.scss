@@ -26,6 +26,10 @@
 }
 
 #color_picker {
+	#box_dragger {
+		overflow: visible;
+	}
+
 	#sliders {
 		width: 263px;
 		height: 48px;
@@ -34,6 +38,14 @@
 	#color_slider {
 		position: relative;
 		bottom: 1px;
+	}
+
+	#color_slider_dragger {
+		overflow: visible;
+	}
+
+	#opacity_slider_dragger {
+		overflow: visible;
 	}
 
 	#color_text_values {
@@ -55,13 +67,14 @@
 		cursor: pointer;
 	}
 
-	.label_text {
+	label {
 		position: relative;
 		margin: 0 !important;
 		height: 15px;
 		top: 2px;
 		font-family: $font;
 		font-size: 12px;
+		font-weight: 400;
 		color: $light-text;
 	}
 
@@ -69,9 +82,24 @@
 		width: 100px;
 	}
 
-	.rgba_divider,
-	.hsla_divider {
-		display: inline-block;
+	#rgba {
+		display: none;
+	}
+
+	#rgba {
+		div {
+			display: inline-block;
+		}
+	}
+
+	#hsla {
+		display: none;
+	}
+
+	#hsla {
+		div {
+			display: inline-block;
+		}
 	}
 
 	.rgba_input,
@@ -89,7 +117,7 @@
 		height: 35px;
 	}
 
-	#custom_colors_pallet_icon {
+	.pallet_icon {
 		margin: 9px 11px;
 	}
 

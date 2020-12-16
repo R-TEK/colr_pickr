@@ -113,6 +113,9 @@
   -ms-animation: popUp ease 0.2s;
   animation: popUp ease 0.2s; }
 
+#color_picker #box_dragger {
+  overflow: visible; }
+
 #color_picker #sliders {
   width: 263px;
   height: 48px; }
@@ -120,6 +123,12 @@
 #color_picker #color_slider {
   position: relative;
   bottom: 1px; }
+
+#color_picker #color_slider_dragger {
+  overflow: visible; }
+
+#color_picker #opacity_slider_dragger {
+  overflow: visible; }
 
 #color_picker #color_text_values {
   padding: 3px 0 2px 0;
@@ -138,20 +147,29 @@
   border: none;
   cursor: pointer; }
 
-#color_picker .label_text {
+#color_picker label {
   position: relative;
   margin: 0 !important;
   height: 15px;
   top: 2px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
+  font-weight: 400;
   color: #555; }
 
 #color_picker #hex_input {
   width: 100px; }
 
-#color_picker .rgba_divider,
-#color_picker .hsla_divider {
+#color_picker #rgba {
+  display: none; }
+
+#color_picker #rgba div {
+  display: inline-block; }
+
+#color_picker #hsla {
+  display: none; }
+
+#color_picker #hsla div {
   display: inline-block; }
 
 #color_picker .rgba_input,
@@ -166,7 +184,7 @@
 #color_picker #custom_colors_header {
   height: 35px; }
 
-#color_picker #custom_colors_pallet_icon {
+#color_picker .pallet_icon {
   margin: 9px 11px; }
 
 #color_picker #custom_colors_add {
