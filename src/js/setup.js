@@ -250,7 +250,7 @@ function ColorPicker(element, color, options) {
 				</div>
 			</div>
 			<button id="switch_color_type" class="remove_outline" name="switch-color-type">
-				<svg viewBox="0 -2 24 24" width="20" height="20">
+				<svg viewBox="0 0 24 24" width="20" height="24">
 					<path fill="#555" d="M6 11v-4l-6 5 6 5v-4h12v4l6-5-6-5v4z"/>
 				</svg>
 			</button>

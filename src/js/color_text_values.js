@@ -11,7 +11,7 @@ colorPickerComp.switchColorType = function () {
 
 		// Displaying the correct elements
 		document.getElementById('hexa').style.display = 'none';
-		document.getElementById('rgba').style.display = 'block';
+		document.getElementById('rgba').style.display = 'inline-block';
 
 		// Converting the value
 		const RGBAValue = colorPickerComp.HSLAToRGBA(
@@ -32,7 +32,7 @@ colorPickerComp.switchColorType = function () {
 
 		// Displaying the correct elements
 		document.getElementById('rgba').style.display = 'none';
-		document.getElementById('hsla').style.display = 'block';
+		document.getElementById('hsla').style.display = 'inline-block';
 
 		// Applying the value to the inputs
 		document.getElementsByClassName('hsla_input')[0].value = colorPickerComp.hue;
@@ -45,7 +45,7 @@ colorPickerComp.switchColorType = function () {
 
 		// Displaying the correct elements
 		document.getElementById('hsla').style.display = 'none';
-		document.getElementById('hexa').style.display = 'block';
+		document.getElementById('hexa').style.display = 'inline-block';
 
 		// Converting the value
 		const hexValue = colorPickerComp.HSLAToRGBA(

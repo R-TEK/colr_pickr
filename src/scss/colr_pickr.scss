@@ -55,27 +55,8 @@
 		text-align: center;
 	}
 
-	#switch_color_type {
-		position: absolute;
-		padding: 0;
-		right: 9px;
-		width: 24px;
-		height: 23px;
-		top: 200px;
-		background: none;
-		border: none;
-		cursor: pointer;
-	}
-
-	label {
-		position: relative;
-		margin: 0 !important;
-		height: 15px;
-		top: 2px;
-		font-family: $font;
-		font-size: 12px;
-		font-weight: 400;
-		color: $light-text;
+	#hexa {
+		display: inline-block;
 	}
 
 	#hex_input {
@@ -83,6 +64,7 @@
 	}
 
 	#rgba {
+		display: inline-block;
 		display: none;
 	}
 
@@ -93,6 +75,7 @@
 	}
 
 	#hsla {
+		display: inline-block;
 		display: none;
 	}
 
@@ -106,6 +89,29 @@
 	.hsla_input {
 		margin: 0 1px;
 		width: 35px;
+	}
+
+	label {
+		position: relative;
+		margin: 0 !important;
+		height: 15px;
+		top: 2px;
+		font-family: $font;
+		font-size: 12px;
+		font-weight: 400;
+		color: $light-text;
+	}
+
+	#switch_color_type {
+		position: absolute;
+		margin: 14px 0 12px 0;
+		padding: 0;
+		right: 9px;
+		width: 24px;
+		height: 24px;
+		background: none;
+		border: none;
+		cursor: pointer;
 	}
 
 	#custom_colors {
