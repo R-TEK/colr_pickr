@@ -99,6 +99,7 @@
 		font-family: $font;
 		font-size: 12px;
 		font-weight: 400;
+		line-height: 18px;
 		color: $light-text;
 	}
 
@@ -135,11 +136,12 @@
 		display: inline-block;
 		margin: 9px 11px;
 		padding: 0;
-		width: 15px;
+		width: 18px;
 		height: 18px;
 		background: none;
 		border: none;
 		outline: none;
+		outline-offset: 3px;
 		cursor: pointer;
 	}
 
@@ -198,7 +200,7 @@
 	}
 
 	.add_outline:focus {
-		outline: 1px solid #007cff !important;
+		outline: 2px solid #9c9c9c !important;
 	}
 
 	.remove_outline {

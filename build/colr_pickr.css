@@ -86,7 +86,7 @@
     color: #333;
     text-align: center; }
   #color_picker input:focus {
-    border: 1px solid #007cff; }
+    outline: 2px solid #9c9c9c !important; }
   #color_picker input::-webkit-outer-spin-button,
   #color_picker input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -169,6 +169,7 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   font-weight: 400;
+  line-height: 18px;
   color: #555; }
 
 #color_picker #switch_color_type {
@@ -200,11 +201,12 @@
   display: inline-block;
   margin: 9px 11px;
   padding: 0;
-  width: 15px;
+  width: 18px;
   height: 18px;
   background: none;
   border: none;
   outline: none;
+  outline-offset: 3px;
   cursor: pointer; }
 
 #color_picker #custom_colors_box {
@@ -255,7 +257,7 @@
   background-color: #ececec; }
 
 #color_picker .add_outline:focus {
-  outline: 1px solid #007cff !important; }
+  outline: 2px solid #9c9c9c !important; }
 
 #color_picker .remove_outline {
   outline: none; }
