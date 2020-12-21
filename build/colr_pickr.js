@@ -843,6 +843,7 @@ colorPickerComp.addCustomColor = function () {
 	customColorElem.className = 'custom_colors_preview';
 	customColorElem.style.background = color;
 	customColorElem.setAttribute('data-custom-color', color);
+
 	// Placing the element in the DOM
 	document.getElementById('custom_colors_box').appendChild(customColorElem);
 
@@ -868,7 +869,7 @@ document.getElementById('custom_colors_box').addEventListener('contextmenu', fun
 
 		// Updating the styling of the menu
 		contextMenu.style.display = 'block';
-		contextMenu.style.top = event.target.getBoundingClientRect().top + 25 + 'px';
+		contextMenu.style.top = event.target.getBoundingClientRect().top - 65 + 'px';
 		contextMenu.style.left = event.target.getBoundingClientRect().left + 'px';
 
 		// Defining the color selected
