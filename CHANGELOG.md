@@ -2,7 +2,9 @@
 
 ---
 
-### 2.0.0
+### 2.0.1
+
+Improvements features and fixing bugs from the big v2.0.0 release
 
 -   Added feature to hide components
 
