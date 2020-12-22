@@ -11,7 +11,7 @@
  * const savedColor = colorPickerComp.getCustomColors();
  */
 colorPickerComp.getCustomColors = function () {
-	return colorPickerComp.LSCustomColors();
+	return colorPickerComp.LSCustomColors[0];
 };
 
 // Click on color listener to update the picker

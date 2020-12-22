@@ -59,30 +59,6 @@ function ColorPicker(element, color, options) {
 		// Displaying the color picker
 		picker.style.display = 'block';
 
-		// Find position of button
-		let top = this.getBoundingClientRect().top;
-		let left = this.getBoundingClientRect().left;
-
-		// If the picker will go off bottom of screen...
-		if (top + picker.offsetHeight > window.innerHeight) {
-			// Place it above the button
-			top = top - picker.offsetHeight - 2;
-		}
-		// If the picker will go off top of screen...
-		else {
-			// Place it beneath the button
-			top = top + this.offsetHeight + 2;
-		}
-
-		// If the picker will go off the right of screen...
-		if (left + picker.offsetWidth > window.innerWidth) {
-			// Calculate the difference
-			let difference = left + picker.offsetWidth - window.innerWidth;
-
-			// Move the picker back by the difference
-			left = left - difference - 20;
-		}
-
 		// Reset styles
 
 		// Defining to text values component
@@ -109,6 +85,30 @@ function ColorPicker(element, color, options) {
 				// Hide it
 				customColors.style.display = 'none';
 			}
+		}
+
+		// Find position of button
+		let top = this.getBoundingClientRect().top;
+		let left = this.getBoundingClientRect().left;
+
+		// If the picker will go off bottom of screen...
+		if (top + picker.offsetHeight > window.innerHeight) {
+			// Place it above the button
+			top = top - picker.offsetHeight - 2;
+		}
+		// If the picker will go off top of screen...
+		else {
+			// Place it beneath the button
+			top = top + this.offsetHeight + 2;
+		}
+
+		// If the picker will go off the right of screen...
+		if (left + picker.offsetWidth > window.innerWidth) {
+			// Calculate the difference
+			let difference = left + picker.offsetWidth - window.innerWidth;
+
+			// Move the picker back by the difference
+			left = left - difference - 20;
 		}
 
 		// Applying the position

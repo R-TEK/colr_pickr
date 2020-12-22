@@ -13,14 +13,59 @@
 			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 			crossorigin="anonymous"
 		/>
-	</head>
+		<style>
+			body {
+				margin: 0;
+				overflow-x: hidden;
+				text-align: center;
+			}
 
-	<body id="b" style="margin: 0; overflow-x: hidden; text-align: center">
-		<div style="padding: 10px; text-align: center; width: 100%; background: #fff; top: 0">
-			<h1 id="ti" style="text-align: center; margin: 5px 0">Color Selector</h1>
-			<span style="font-size: 16px; font-weight: 600; line-height: 50px"
-				>Pickers with attached colorChange event listener:</span
-			>
+			h1 {
+				text-align: center;
+				margin: 5px 0;
+			}
+
+			span {
+				font-size: 16px;
+				font-weight: 600;
+				line-height: 50px;
+			}
+
+			ul {
+				margin: 0;
+				padding: 0;
+			}
+
+			.top_banner {
+				padding: 10px;
+				text-align: center;
+				width: 100%;
+				background: #fff;
+				top: 0;
+			}
+
+			.cc-item {
+				display: inline-block;
+				margin: 5px;
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+			}
+
+			.middle-section {
+				height: 300px;
+				width: 100%;
+				background-color: #000000;
+				color: #fff;
+				overflow: scroll;
+				overflow-x: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="top-banner">
+			<h1 id="ti">Color Selector</h1>
+			<span>Pickers with attached colorChange event listener:</span>
 			<br />
 			<button
 				id="title"
@@ -60,9 +105,11 @@
 				name="background"
 			></button>
 			<br />
-			<span style="font-size: 16px; font-weight: 600; line-height: 50px"
-				>Browsers color picker:</span
-			>
+			<span>Custom colors:</span>
+			<ul id="cc"></ul>
+			<button onclick="savedColors()">Refresh</button>
+			<br />
+			<span>Browsers color picker:</span>
 			<br />
 			<input type="color" />
 		</div>
@@ -76,9 +123,7 @@
 			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
 			imperdiet et, porttitor at sem.
 			<br />
-			<span style="font-size: 16px; font-weight: 600; line-height: 50px"
-				>Buttons with hidden components:</span
-			>
+			<span>Buttons with hidden components:</span>
 			<br />
 			<button id="has_all">Has all</button>
 			<button id="text_values">Has text values</button>
@@ -143,9 +188,7 @@
 			cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
 			ligula.
 			<br />
-			<span style="font-size: 16px; font-weight: 600; line-height: 50px"
-				>When page is scrolled:</span
-			>
+			<span>When page is scrolled:</span>
 			<br />
 			<button id="space" style="width: 100px; height: 30px"></button>
 			<br />
@@ -171,16 +214,7 @@
 			Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci
 			porta dapibus. Cras ultricies ligula sed magna dictum porta.
 		</p>
-		<div
-			style="
-				height: 300px;
-				width: 100%;
-				overflow: scroll;
-				background-color: #000000;
-				color: #fff;
-				overflow-x: hidden;
-			"
-		>
+		<div class="middle-section">
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
 			id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.
 			<br />
@@ -208,9 +242,7 @@
 			erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id
 			imperdiet et, porttitor at sem.
 			<br />
-			<span style="font-size: 16px; font-weight: 600; line-height: 50px"
-				>When page and div is scrolled:</span
-			>
+			<span>When page and div is scrolled:</span>
 			<br />
 			<button id="mars" style="width: 100px; height: 30px"></button>
 			<br />
@@ -272,45 +304,69 @@
 		</p>
 		<script type="text/javascript" src="../build/colr_pickr.js"></script>
 		<script type="text/javascript">
+			// Title color
 			let bob = new ColorPicker(document.getElementById('title'));
 			document.getElementById('title').addEventListener('colorChange', function () {
 				console.log(event.detail);
 				document.getElementById('ti').style.color = event.detail.color.hexa;
 			});
 
+			// Body text color
 			let text = new ColorPicker(document.getElementById('text'), '#1a00ad');
 			document.getElementById('text').addEventListener('colorChange', function () {
 				console.log(event.detail);
 				document.getElementById('te').style.color = event.detail.color.hexa;
 			});
 
+			// Body background color
 			let background = new ColorPicker(document.getElementById('background'), '#ff0000');
 			document.getElementById('background').addEventListener('colorChange', function () {
 				console.log(event.detail);
-				document.getElementById('b').style.background = event.detail.color.hexa;
+				document.getElementsByTagName('BODY')[0].style.background = event.detail.color.hexa;
 			});
 
+			// Picker with all components
 			let hasAll = new ColorPicker(document.getElementById('has_all'), '#1aefc8');
 
+			// Picker with just text values and main picker
 			let hasTextValues = new ColorPicker(document.getElementById('text_values'), '#7eef1a', {
 				hasColorPallet: false
 			});
 
+			// Picker with just pallet and main picker
 			let hasColorPallet = new ColorPicker(
 				document.getElementById('color_pallet'),
 				'#ff7700',
 				{ hasNumberValues: false }
 			);
 
+			// Picker with only main picker component
 			let hasOnlyColorComponent = new ColorPicker(
 				document.getElementById('only_color_component'),
 				'#ffe100',
 				{ hasNumberValues: false, hasColorPallet: false }
 			);
 
+			// Window scrolled picker
 			let space = new ColorPicker(document.getElementById('space'), '#00853a');
 
+			// Div scrolled picker
 			let mars = new ColorPicker(document.getElementById('mars'), '#ff00ff');
+
+			// Show saved color pallet
+			function savedColors() {
+				let colors = colorPickerComp.getCustomColors();
+
+				document.getElementById('cc').innerHTML = '';
+
+				for (let x in colors) {
+					let elem = document.createElement('LI');
+					elem.className = 'cc-item';
+					elem.style.background = colors[x];
+					document.getElementById('cc').appendChild(elem);
+				}
+			}
+			savedColors();
 		</script>
 	</body>
 </html>
