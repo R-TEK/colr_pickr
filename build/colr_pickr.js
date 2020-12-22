@@ -1114,11 +1114,16 @@ picker.opacitySliderHandler = function (position) {
 
 	// Finding the value for the percentage of 1
 	let alpha = (1 / 100) * percent;
+
 	// Rounding the value to the nearest 2 decimals
 	alpha = Number(Math.round(alpha + 'e' + 2) + 'e-' + 2);
 
 	// Updating the data objects
 	picker.alpha = alpha;
+
+	// Changing the opacity of the color box and slider
+	document.getElementById('color_box').children[1].style.opacity = alpha;
+	document.getElementById('color_slider').children[1].style.opacity = alpha;
 
 	// Update the color text values
 	picker.updateColorValueInput();
@@ -1398,6 +1403,10 @@ picker.updateColorDisplays = function (color) {
 	document
 		.getElementById('saturation')
 		.children[1].setAttribute('stop-color', `hsl(${color.h}, 100%, 50%)`);
+
+	// Updating color box and sliders opacity
+	document.getElementById('color_box').children[1].style.opacity = color.a;
+	document.getElementById('color_slider').children[1].style.opacity = color.a;
 
 	// Color box (saturation and lightness) config
 	// Defining the box and dragger

@@ -58,6 +58,10 @@ picker.updateColorDisplays = function (color) {
 		.getElementById('saturation')
 		.children[1].setAttribute('stop-color', `hsl(${color.h}, 100%, 50%)`);
 
+	// Updating color box and sliders opacity
+	document.getElementById('color_box').children[1].style.opacity = color.a;
+	document.getElementById('color_slider').children[1].style.opacity = color.a;
+
 	// Color box (saturation and lightness) config
 	// Defining the box and dragger
 	const boxDragger = document.getElementById('box_dragger');

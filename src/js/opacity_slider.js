@@ -24,11 +24,16 @@ picker.opacitySliderHandler = function (position) {
 
 	// Finding the value for the percentage of 1
 	let alpha = (1 / 100) * percent;
+
 	// Rounding the value to the nearest 2 decimals
 	alpha = Number(Math.round(alpha + 'e' + 2) + 'e-' + 2);
 
 	// Updating the data objects
 	picker.alpha = alpha;
+
+	// Changing the opacity of the color box and slider
+	document.getElementById('color_box').children[1].style.opacity = alpha;
+	document.getElementById('color_slider').children[1].style.opacity = alpha;
 
 	// Update the color text values
 	picker.updateColorValueInput();
