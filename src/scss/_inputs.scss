@@ -28,4 +28,9 @@
 	input[type='number'] {
 		-moz-appearance: textfield;
 	}
+
+	input:invalid,
+	input:-moz-ui-valid {
+		box-shadow: none;
+	}
 }

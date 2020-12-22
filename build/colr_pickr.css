@@ -93,6 +93,9 @@
     margin: 0; }
   #color_picker input[type='number'] {
     -moz-appearance: textfield; }
+  #color_picker input:invalid,
+  #color_picker input:-moz-ui-valid {
+    box-shadow: none; }
 
 #color_picker {
   display: none;
