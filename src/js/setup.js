@@ -87,12 +87,19 @@ function ColorPicker(element, color, options) {
 			}
 		}
 
+		// Position
+
 		// Find position of button
 		let top = this.getBoundingClientRect().top;
 		let left = this.getBoundingClientRect().left;
 
+		// If theres no room for the picker to go above the button...
+		if (colorPicker.offsetHeight > top) {
+			// Place it beneath the button
+			top = top + this.offsetHeight + 2;
+		}
 		// If the picker will go off bottom of screen...
-		if (top + colorPicker.offsetHeight > window.innerHeight) {
+		else if (top + colorPicker.offsetHeight > window.innerHeight) {
 			// Place it above the button
 			top = top - colorPicker.offsetHeight - 2;
 		}
