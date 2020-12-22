@@ -281,13 +281,25 @@ function ColorPicker(element, color, options) {
 	colorPickerContainer.innerHTML = HTMLContent;
 	document.getElementsByTagName('BODY')[0].appendChild(colorPickerContainer);
 
+	// Set up custom colors variables
+	let customColors = null;
+
+	// Try get the saved colors from local storage
+	try {
+		customColors = localStorage.getItem('custom_colors');
+	}
+	catch {}
+
 	// Checking if a local storage variable has been set
-	if (localStorage.getItem('custom_colors') === null) {
-		// If not then I set one
-		localStorage.setItem('custom_colors', '{"0": []}');
+	if (customColors === null) {
+		// If not then try I set one
+		try {
+			localStorage.setItem('custom_colors', '{"0": []}');
+		}
+		catch {}
 	} else {
 		// If it has then I define the LSCustomColors with the value for this
-		colorPickerComp.LSCustomColors = JSON.parse(localStorage.getItem('custom_colors'));
+		colorPickerComp.LSCustomColors = JSON.parse(customColors);
 
 		// Looping through the data to update the DOM with the custom colors
 		for (let x = colorPickerComp.LSCustomColors[0].length - 1; x >= 0; x--) {
@@ -850,8 +862,11 @@ colorPickerComp.addCustomColor = function () {
 	// Pushing the color to the top of the array
 	colorPickerComp.LSCustomColors[0].unshift(color);
 
-	// Updating the local storage with the new custom color
-	localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
+	// Try updating the local storage with the new custom color
+	try {
+		localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
+	}
+	catch {}
 };
 document.getElementById('custom_colors_add').addEventListener('click', function () {
 	colorPickerComp.addCustomColor();
@@ -912,8 +927,11 @@ colorPickerComp.clearSingleCustomColor = function (element) {
 		);
 	}
 
-	// Updating the local storage
-	localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
+	// Try updating the local storage
+	try {
+		localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
+	}
+	catch {}
 
 	// Making sure the add color button is displaying
 	document.getElementById('custom_colors_add').style.display = 'inline-block';
@@ -934,8 +952,11 @@ colorPickerComp.clearAllCustomColors = function () {
 			.removeChild(document.getElementsByClassName('custom_colors_preview')[0]);
 	}
 
-	// Updating the local storage
-	localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
+	// Try updating the local storage
+	try {
+		localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
+	}
+	catch {}
 
 	// Making sure the add color button is displaying
 	document.getElementById('custom_colors_add').style.display = 'inline-block';
