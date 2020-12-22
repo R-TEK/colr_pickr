@@ -359,7 +359,7 @@ picker.keyShortcuts = function (event) {
 		// Esc
 		case 27:
 			// If picker is open...
-			if (picker.pickerOpen) closePicker(); // Close picker
+			if (picker.pickerOpen) picker.closePicker(); // Close picker
 			break;
 		// Tab
 		case 9:
@@ -409,7 +409,7 @@ document.addEventListener('mousedown', function () {
 });
 
 // Close the picker
-let closePicker = function () {
+picker.closePicker = function () {
 	// Update state
 	picker.pickerOpen = false;
 
@@ -446,7 +446,7 @@ document.addEventListener('mousedown', function () {
 			// If we are under the window...
 			if (target.tagName == 'HTML') {
 				// Close the picker
-				closePicker();
+				picker.closePicker();
 
 				break;
 			}
@@ -460,11 +460,11 @@ document.addEventListener('mousedown', function () {
 // When scrolling
 document.addEventListener('scroll', function () {
 	// If picker is open...
-	if (picker.pickerOpen) closePicker(); // Close picker
+	if (picker.pickerOpen) picker.closePicker(); // Close picker
 });
 
 // When using mouse wheel
 window.addEventListener('resize', function () {
 	// If picker is open...
-	if (picker.pickerOpen) closePicker(); // Close picker
+	if (picker.pickerOpen) picker.closePicker(); // Close picker
 });
