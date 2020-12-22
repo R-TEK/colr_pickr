@@ -16,11 +16,11 @@
  */
 
 /**
- * @description Creation of the colorPickerComp object
- * @namespace colorPickerComp
+ * @description Creation of the picker object
+ * @namespace picker
  * @type {object}
  */
-let colorPickerComp = new Object();
+let picker = new Object();
 
 // TODO: add jsdoc for options
 
@@ -48,16 +48,16 @@ function ColorPicker(element, color, options) {
 	element.addEventListener('click', function () {
 		console.log(options);
 		// Applying the items instance to the color picker object
-		colorPickerComp.instance = this.colorPickerObj;
+		picker.instance = this.colorPickerObj;
 
 		// Update state
-		colorPickerComp.pickerOpen = true;
+		picker.pickerOpen = true;
 
 		// Define picker
-		const picker = document.getElementById('color_picker');
+		const colorPicker = document.getElementById('color_picker');
 
 		// Displaying the color picker
-		picker.style.display = 'block';
+		colorPicker.style.display = 'block';
 
 		// Reset styles
 
@@ -92,9 +92,9 @@ function ColorPicker(element, color, options) {
 		let left = this.getBoundingClientRect().left;
 
 		// If the picker will go off bottom of screen...
-		if (top + picker.offsetHeight > window.innerHeight) {
+		if (top + colorPicker.offsetHeight > window.innerHeight) {
 			// Place it above the button
-			top = top - picker.offsetHeight - 2;
+			top = top - colorPicker.offsetHeight - 2;
 		}
 		// If the picker will go off top of screen...
 		else {
@@ -103,44 +103,46 @@ function ColorPicker(element, color, options) {
 		}
 
 		// If the picker will go off the right of screen...
-		if (left + picker.offsetWidth > window.innerWidth) {
+		if (left + colorPicker.offsetWidth > window.innerWidth) {
 			// Calculate the difference
-			let difference = left + picker.offsetWidth - window.innerWidth;
+			let difference = left + colorPicker.offsetWidth - window.innerWidth;
 
 			// Move the picker back by the difference
 			left = left - difference - 20;
 		}
 
 		// Applying the position
-		picker.style.top = top + 'px';
-		picker.style.left = left + 'px';
+		colorPicker.style.top = top + 'px';
+		colorPicker.style.left = left + 'px';
 
 		// Updating the color picker
-		colorPickerComp.updateColorDisplays(this.getAttribute('data-color'));
+		picker.updateColorDisplays(this.getAttribute('data-color'));
 
 		// Focus on a picker item
 		document.getElementById('color_text_values').focus();
 	});
 }
 
+//TODO: check if all these are needed to be predefined
+
 (function () {
 	// Adding items to the color picker object
-	colorPickerComp.pickerOpen = false;
-	colorPickerComp.instance = null;
-	colorPickerComp.boxStatus = false;
-	colorPickerComp.boxStatusTouch = false;
-	colorPickerComp.sliderStatus = false;
-	colorPickerComp.sliderStatusTouch = false;
-	colorPickerComp.opacityStatus = false;
-	colorPickerComp.opacityStatusTouch = false;
-	colorPickerComp.colorTypeStatus = 'HEXA';
-	colorPickerComp.hue = 0;
-	colorPickerComp.saturation = 100;
-	colorPickerComp.lightness = 50;
-	colorPickerComp.alpha = 1;
-	colorPickerComp.contextMenuElem = null;
-	colorPickerComp.doubleTapTime = 0;
-	colorPickerComp.LSCustomColors = { 0: [] };
+	picker.pickerOpen = false;
+	picker.instance = null;
+	picker.boxStatus = false;
+	picker.boxStatusTouch = false;
+	picker.sliderStatus = false;
+	picker.sliderStatusTouch = false;
+	picker.opacityStatus = false;
+	picker.opacityStatusTouch = false;
+	picker.colorTypeStatus = 'HEXA';
+	picker.hue = 0;
+	picker.saturation = 100;
+	picker.lightness = 50;
+	picker.alpha = 1;
+	picker.contextMenuElem = null;
+	picker.doubleTapTime = 0;
+	picker.LSCustomColors = { 0: [] };
 
 	// Creating the HTML content
 	const HTMLContent = `
@@ -299,15 +301,15 @@ function ColorPicker(element, color, options) {
 		catch {}
 	} else {
 		// If it has then I define the LSCustomColors with the value for this
-		colorPickerComp.LSCustomColors = JSON.parse(customColors);
+		picker.LSCustomColors = JSON.parse(customColors);
 
 		// Looping through the data to update the DOM with the custom colors
-		for (let x = colorPickerComp.LSCustomColors[0].length - 1; x >= 0; x--) {
+		for (let x = picker.LSCustomColors[0].length - 1; x >= 0; x--) {
 			// Creating the element
 			let customColorElem = document.createElement('BUTTON');
 			customColorElem.className = 'custom_colors_preview';
-			customColorElem.style.background = colorPickerComp.LSCustomColors[0][x];
-			customColorElem.setAttribute('data-custom-color', colorPickerComp.LSCustomColors[0][x]);
+			customColorElem.style.background = picker.LSCustomColors[0][x];
+			customColorElem.setAttribute('data-custom-color', picker.LSCustomColors[0][x]);
 
 			// Placing the element in the DOM
 			document.getElementById('custom_colors_box').appendChild(customColorElem);
@@ -317,13 +319,13 @@ function ColorPicker(element, color, options) {
 		}
 
 		// Check whether to display the add color button
-		if (colorPickerComp.LSCustomColors[0].length == 28)
+		if (picker.LSCustomColors[0].length == 28)
 			document.getElementById('custom_colors_add').style.display = 'none';
 	}
 })();
 
 // Keypress shortcuts
-colorPickerComp.keyShortcuts = function (event) {
+picker.keyShortcuts = function (event) {
 	// Loop through inputs element
 	for (let x in document.getElementsByTagName('INPUT')) {
 		// If iteration number is not longer a number...
@@ -352,12 +354,12 @@ colorPickerComp.keyShortcuts = function (event) {
 			// If focused element is a custom color...
 			if (document.activeElement.className == 'custom_colors_preview')
 				// Delete it
-				colorPickerComp.clearSingleCustomColor(document.activeElement);
+				picker.clearSingleCustomColor(document.activeElement);
 			break;
 		// Esc
 		case 27:
 			// If picker is open...
-			if (colorPickerComp.pickerOpen) closePicker(); // Close picker
+			if (picker.pickerOpen) closePicker(); // Close picker
 			break;
 		// Tab
 		case 9:
@@ -378,7 +380,7 @@ colorPickerComp.keyShortcuts = function (event) {
 			break;
 	}
 };
-document.addEventListener('keydown', colorPickerComp.keyShortcuts.bind(event));
+document.addEventListener('keydown', picker.keyShortcuts.bind(event));
 
 // Remove outline from tabbing
 document.addEventListener('mousedown', function () {
@@ -409,13 +411,13 @@ document.addEventListener('mousedown', function () {
 // Close the picker
 let closePicker = function () {
 	// Update state
-	colorPickerComp.pickerOpen = false;
+	picker.pickerOpen = false;
 
 	// Hiding elements
 	document.getElementById('color_picker').style.display = 'none';
 
 	// Checking if the color for this instance has not been set yet
-	if (colorPickerComp.instance.element.getAttribute('data-color') == 'undefined') return;
+	if (picker.instance.element.getAttribute('data-color') == 'undefined') return;
 
 	// Update
 	updatePicker();
@@ -424,11 +426,11 @@ let closePicker = function () {
 // Handles updates
 let updatePicker = function () {
 	// Calling Event to make all the necessary changes
-	colorPickerComp.colorChange({
-		h: colorPickerComp.hue,
-		s: colorPickerComp.saturation,
-		l: colorPickerComp.lightness,
-		a: colorPickerComp.alpha
+	picker.colorChange({
+		h: picker.hue,
+		s: picker.saturation,
+		l: picker.lightness,
+		a: picker.alpha
 	});
 };
 
@@ -438,7 +440,7 @@ document.addEventListener('mousedown', function () {
 	let target = event.target;
 
 	// If picker is open...
-	if (colorPickerComp.pickerOpen) {
+	if (picker.pickerOpen) {
 		// Looping through the parent to check if we are under the picker of window
 		while (target != document.getElementById('color_picker')) {
 			// If we are under the window...
@@ -458,11 +460,11 @@ document.addEventListener('mousedown', function () {
 // When scrolling
 document.addEventListener('scroll', function () {
 	// If picker is open...
-	if (colorPickerComp.pickerOpen) closePicker(); // Close picker
+	if (picker.pickerOpen) closePicker(); // Close picker
 });
 
 // When using mouse wheel
 window.addEventListener('resize', function () {
 	// If picker is open...
-	if (colorPickerComp.pickerOpen) closePicker(); // Close picker
+	if (picker.pickerOpen) closePicker(); // Close picker
 });

@@ -3,7 +3,7 @@
  */
 
 // Function to update color displays
-colorPickerComp.updateColorDisplays = function (color) {
+picker.updateColorDisplays = function (color) {
 	// Checking if color picker has not been set
 	if (color == 'undefined') {
 		// Setting the default color positioning of the player to red
@@ -17,7 +17,7 @@ colorPickerComp.updateColorDisplays = function (color) {
 		// Checking the color type that has been given
 		if (color.substring(0, 1) == '#') {
 			// Converting the color to HSLA
-			color = colorPickerComp.hexAToRGBA(color, true);
+			color = picker.hexAToRGBA(color, true);
 		} else if (color.substring(0, 1) == 'r') {
 			// Extracting the values
 			const rgb = color.match(/[.?\d]+/g);
@@ -26,7 +26,7 @@ colorPickerComp.updateColorDisplays = function (color) {
 			rgb[3] = rgb[3] == undefined ? 1 : rgb[3];
 
 			// Converting the color to HSLA
-			color = colorPickerComp.RGBAToHSLA(rgb[0], rgb[1], rgb[2], rgb[3]);
+			color = picker.RGBAToHSLA(rgb[0], rgb[1], rgb[2], rgb[3]);
 		} else {
 			// Extracting the values
 			const hsl = color.match(/[.?\d]+/g);
@@ -45,13 +45,13 @@ colorPickerComp.updateColorDisplays = function (color) {
 	}
 
 	// Updating the data object
-	colorPickerComp.hue = color.h;
-	colorPickerComp.saturation = color.s;
-	colorPickerComp.lightness = color.l;
-	colorPickerComp.alpha = color.a;
+	picker.hue = color.h;
+	picker.saturation = color.s;
+	picker.lightness = color.l;
+	picker.alpha = color.a;
 
 	// Updating the input values
-	colorPickerComp.updateColorValueInput();
+	picker.updateColorValueInput();
 
 	// Updating the Hue color in the Saturation and lightness box
 	document
@@ -105,27 +105,27 @@ colorPickerComp.updateColorDisplays = function (color) {
 };
 
 // Update the color value inputs
-colorPickerComp.updateColorValueInput = function () {
+picker.updateColorValueInput = function () {
 	// Checking the value color type the user has selected
-	if (colorPickerComp.colorTypeStatus == 'HEXA') {
+	if (picker.colorTypeStatus == 'HEXA') {
 		// Converting the value
-		const hexValue = colorPickerComp.HSLAToRGBA(
-			colorPickerComp.hue,
-			colorPickerComp.saturation,
-			colorPickerComp.lightness,
-			colorPickerComp.alpha,
+		const hexValue = picker.HSLAToRGBA(
+			picker.hue,
+			picker.saturation,
+			picker.lightness,
+			picker.alpha,
 			true
 		);
 
 		// Applying the value to the input
 		document.getElementById('hex_input').value = hexValue;
-	} else if (colorPickerComp.colorTypeStatus == 'RGBA') {
+	} else if (picker.colorTypeStatus == 'RGBA') {
 		// Converting the value
-		const RGBAValue = colorPickerComp.HSLAToRGBA(
-			colorPickerComp.hue,
-			colorPickerComp.saturation,
-			colorPickerComp.lightness,
-			colorPickerComp.alpha
+		const RGBAValue = picker.HSLAToRGBA(
+			picker.hue,
+			picker.saturation,
+			picker.lightness,
+			picker.alpha
 		);
 
 		// Applying the value to the inputs
@@ -135,9 +135,9 @@ colorPickerComp.updateColorValueInput = function () {
 		document.getElementsByClassName('rgba_input')[3].value = RGBAValue.a;
 	} else {
 		// Applying the value to the inputs
-		document.getElementsByClassName('hsla_input')[0].value = colorPickerComp.hue;
-		document.getElementsByClassName('hsla_input')[1].value = colorPickerComp.saturation;
-		document.getElementsByClassName('hsla_input')[2].value = colorPickerComp.lightness;
-		document.getElementsByClassName('hsla_input')[3].value = colorPickerComp.alpha;
+		document.getElementsByClassName('hsla_input')[0].value = picker.hue;
+		document.getElementsByClassName('hsla_input')[1].value = picker.saturation;
+		document.getElementsByClassName('hsla_input')[2].value = picker.lightness;
+		document.getElementsByClassName('hsla_input')[3].value = picker.alpha;
 	}
 };

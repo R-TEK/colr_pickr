@@ -3,7 +3,7 @@
  */
 
 // Function to handle changes to the opacity slider
-colorPickerComp.opacitySliderHandler = function (position) {
+picker.opacitySliderHandler = function (position) {
 	// Defining the slider and dragger
 	const sliderContainer = document.getElementById('opacity_slider');
 	const sliderDragger = document.getElementById('opacity_slider_dragger');
@@ -28,14 +28,14 @@ colorPickerComp.opacitySliderHandler = function (position) {
 	alpha = Number(Math.round(alpha + 'e' + 2) + 'e-' + 2);
 
 	// Updating the data objects
-	colorPickerComp.alpha = alpha;
+	picker.alpha = alpha;
 
 	// Update the color text values
-	colorPickerComp.updateColorValueInput();
+	picker.updateColorValueInput();
 
 	// Setting the data-color attribute to a color string
 	// This is so that the color updates properly on instances where the color has not been set
-	colorPickerComp.instance.element.setAttribute('data-color', 'color');
+	picker.instance.element.setAttribute('data-color', 'color');
 
 	// Update
 	updatePicker();
@@ -48,26 +48,26 @@ colorPickerComp.opacitySliderHandler = function (position) {
 // Start the slider drag for opacity
 document.getElementById('opacity_slider').addEventListener('mousedown', function (event) {
 	// Updating the status in the data object
-	colorPickerComp.opacityStatus = true;
+	picker.opacityStatus = true;
 	// Calling the handler function
-	colorPickerComp.opacitySliderHandler(event.pageX);
+	picker.opacitySliderHandler(event.pageX);
 });
 
 // Moving the slider drag for opacity
 document.addEventListener('mousemove', function (event) {
 	// Checking that the drag has started
-	if (colorPickerComp.opacityStatus === true) {
+	if (picker.opacityStatus === true) {
 		// Calling the handler function
-		colorPickerComp.opacitySliderHandler(event.pageX);
+		picker.opacitySliderHandler(event.pageX);
 	}
 });
 
 // End the slider drag
 document.addEventListener('mouseup', function () {
 	// Checking that the drag has started
-	if (colorPickerComp.opacityStatus === true) {
+	if (picker.opacityStatus === true) {
 		// Updating the status in the data object
-		colorPickerComp.opacityStatus = false;
+		picker.opacityStatus = false;
 	}
 });
 
@@ -80,9 +80,9 @@ document.getElementById('opacity_slider').addEventListener(
 	'touchstart',
 	function (event) {
 		// Updating the status
-		colorPickerComp.opacityStatusTouch = true;
+		picker.opacityStatusTouch = true;
 		// Calling the handler function
-		colorPickerComp.opacitySliderHandler(event.changedTouches[0].clientX);
+		picker.opacitySliderHandler(event.changedTouches[0].clientX);
 	},
 	{ passive: true }
 );
@@ -92,11 +92,11 @@ document.addEventListener(
 	'touchmove',
 	function () {
 		// Checking that the touch drag has started
-		if (colorPickerComp.opacityStatusTouch === true) {
+		if (picker.opacityStatusTouch === true) {
 			// Prevent page scrolling
 			event.preventDefault();
 			// Calling the handler function
-			colorPickerComp.opacitySliderHandler(event.changedTouches[0].clientX);
+			picker.opacitySliderHandler(event.changedTouches[0].clientX);
 		}
 	},
 	{ passive: false }
@@ -105,8 +105,8 @@ document.addEventListener(
 // End the slider drag on touch
 document.addEventListener('touchend', function () {
 	// Checking that the touch drag has started
-	if (colorPickerComp.opacityStatusTouch === true) {
+	if (picker.opacityStatusTouch === true) {
 		// Updating the status
-		colorPickerComp.opacityStatusTouch = false;
+		picker.opacityStatusTouch = false;
 	}
 });

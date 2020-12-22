@@ -3,7 +3,7 @@
  */
 
 /**
- * @memberof colorPickerComp
+ * @memberof picker
  * @method colorChange
  * @description Function to change the color of an instance via a JavaScript function
  * @param {string} color - The color you are changing the instance to
@@ -11,18 +11,18 @@
  *
  * @example
  * const button = document.getElementById('my_button');
- * colorPickerComp.colorChange('#ff0000', button);
+ * picker.colorChange('#ff0000', button);
  */
-colorPickerComp.colorChange = function (color, elem) {
+picker.colorChange = function (color, elem) {
 	// If the user send a string manually...
 	if (typeof color == 'string') {
 		// Change it to the expected value of a HSLA object
-		color = colorPickerComp.hexAToRGBA(color, true);
+		color = picker.hexAToRGBA(color, true);
 	}
 
 	// Defining the RGBA value conversion
-	const rgbaValue = colorPickerComp.HSLAToRGBA(color.h, color.s, color.l, color.a);
-	const hex = colorPickerComp.HSLAToRGBA(color.h, color.s, color.l, color.a, true);
+	const rgbaValue = picker.HSLAToRGBA(color.h, color.s, color.l, color.a);
+	const hex = picker.HSLAToRGBA(color.h, color.s, color.l, color.a, true);
 
 	/**
 	 * @event colorChange
@@ -56,7 +56,7 @@ colorPickerComp.colorChange = function (color, elem) {
 	});
 
 	// Defining element
-	const element = elem === undefined ? colorPickerComp.instance.element : elem;
+	const element = elem === undefined ? picker.instance.element : elem;
 
 	// Defining color
 
