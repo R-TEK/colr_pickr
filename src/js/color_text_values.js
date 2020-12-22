@@ -75,7 +75,7 @@ document.getElementById('hex_input').addEventListener('blur', function () {
 		picker.updateColorDisplays(hexInput);
 
 		// Update
-		updatePicker();
+		picker.updatePicker();
 	}
 });
 
@@ -98,7 +98,7 @@ document.querySelectorAll('.rgba_input').forEach((element) => {
 		);
 
 		// Update
-		updatePicker();
+		picker.updatePicker();
 	});
 });
 
@@ -121,6 +121,6 @@ document.querySelectorAll('.hsla_input').forEach((element) => {
 		);
 
 		// Update
-		updatePicker();
+		picker.updatePicker();
 	});
 });

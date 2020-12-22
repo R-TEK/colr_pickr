@@ -55,7 +55,7 @@ picker.colorBoxHandler = function (positionX, positionY, touch) {
 	picker.instance.element.setAttribute('data-color', 'color');
 
 	// Update
-	updatePicker();
+	picker.updatePicker();
 };
 
 /**

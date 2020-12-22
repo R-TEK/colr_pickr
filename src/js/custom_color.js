@@ -25,7 +25,7 @@ document.getElementById('custom_colors_box').addEventListener('click', function 
 		picker.updateColorDisplays(color);
 
 		// Update
-		updatePicker();
+		picker.updatePicker();
 	}
 });
 

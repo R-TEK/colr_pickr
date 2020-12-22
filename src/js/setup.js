@@ -427,11 +427,11 @@ picker.closePicker = function () {
 	if (picker.instance.element.getAttribute('data-color') == 'undefined') return;
 
 	// Update
-	updatePicker();
+	picker.updatePicker();
 };
 
 // Handles updates
-let updatePicker = function () {
+picker.updatePicker = function () {
 	// Calling Event to make all the necessary changes
 	picker.colorChange({
 		h: picker.hue,

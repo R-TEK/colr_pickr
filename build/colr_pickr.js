@@ -427,11 +427,11 @@ picker.closePicker = function () {
 	if (picker.instance.element.getAttribute('data-color') == 'undefined') return;
 
 	// Update
-	updatePicker();
+	picker.updatePicker();
 };
 
 // Handles updates
-let updatePicker = function () {
+picker.updatePicker = function () {
 	// Calling Event to make all the necessary changes
 	picker.colorChange({
 		h: picker.hue,
@@ -769,7 +769,7 @@ document.getElementById('hex_input').addEventListener('blur', function () {
 		picker.updateColorDisplays(hexInput);
 
 		// Update
-		updatePicker();
+		picker.updatePicker();
 	}
 });
 
@@ -792,7 +792,7 @@ document.querySelectorAll('.rgba_input').forEach((element) => {
 		);
 
 		// Update
-		updatePicker();
+		picker.updatePicker();
 	});
 });
 
@@ -815,7 +815,7 @@ document.querySelectorAll('.hsla_input').forEach((element) => {
 		);
 
 		// Update
-		updatePicker();
+		picker.updatePicker();
 	});
 });
 
@@ -846,7 +846,7 @@ document.getElementById('custom_colors_box').addEventListener('click', function 
 		picker.updateColorDisplays(color);
 
 		// Update
-		updatePicker();
+		picker.updatePicker();
 	}
 });
 
@@ -1022,7 +1022,7 @@ picker.colorSliderHandler = function (position) {
 	picker.instance.element.setAttribute('data-color', 'color');
 
 	// Update
-	updatePicker();
+	picker.updatePicker();
 };
 
 /**
@@ -1140,7 +1140,7 @@ picker.opacitySliderHandler = function (position) {
 	picker.instance.element.setAttribute('data-color', 'color');
 
 	// Update
-	updatePicker();
+	picker.updatePicker();
 };
 
 /**
@@ -1270,7 +1270,7 @@ picker.colorBoxHandler = function (positionX, positionY, touch) {
 	picker.instance.element.setAttribute('data-color', 'color');
 
 	// Update
-	updatePicker();
+	picker.updatePicker();
 };
 
 /**

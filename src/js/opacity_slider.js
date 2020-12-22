@@ -43,7 +43,7 @@ picker.opacitySliderHandler = function (position) {
 	picker.instance.element.setAttribute('data-color', 'color');
 
 	// Update
-	updatePicker();
+	picker.updatePicker();
 };
 
 /**
