@@ -65,12 +65,22 @@ document.getElementById('custom_colors_box').addEventListener('contextmenu', fun
 		event.preventDefault();
 
 		// Defining the context menu
+		const picker = document.getElementById('color_picker');
 		const contextMenu = document.getElementById('color_context_menu');
+
+		// Defining position
+		let top = event.target.getBoundingClientRect().top - 62;
+		let left = event.target.getBoundingClientRect().left;
+
+		// If the context menu will show up offscreen...
+		if (left + 115 > picker.getBoundingClientRect().left + picker.offsetWidth)
+			// Move it back
+			left = event.target.getBoundingClientRect().left - 96;
 
 		// Updating the styling of the menu
 		contextMenu.style.display = 'block';
-		contextMenu.style.top = event.target.getBoundingClientRect().top - 65 + 'px';
-		contextMenu.style.left = event.target.getBoundingClientRect().left + 'px';
+		contextMenu.style.top = top + 'px';
+		contextMenu.style.left = left + 'px';
 
 		// Defining the color selected
 		colorPickerComp.contextMenuElem = event.target;

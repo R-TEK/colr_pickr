@@ -75,7 +75,7 @@ function ColorPicker(element, color, options) {
 		}
 
 		// If the picker will go off the right of screen...
-		if (left + picker.offsetWidth > window.innerWidth - 20) {
+		if (left + picker.offsetWidth > window.innerWidth) {
 			// Calculate the difference
 			let difference = left + picker.offsetWidth - window.innerWidth;
 
