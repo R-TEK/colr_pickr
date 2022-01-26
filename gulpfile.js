@@ -9,6 +9,7 @@ const concatJS = require('gulp-concat');
 const uglifyJS = require('gulp-uglify-es').default;
 const concatCSS = require('gulp-concat-css');
 const uglifyCSS = require('gulp-uglifycss');
+const inject = require('gulp-inject-string');
 const sass = require('gulp-sass');
 sass.compiler = require('node-sass');
 
@@ -20,6 +21,8 @@ sass.compiler = require('node-sass');
 gulp.task('devScripts', async function () {
 	gulp.src(['./src/js/setup.js', './src/js/*.js'])
 		.pipe(concatJS('colr_pickr.js'))
+        .pipe(inject.prepend('document.addEventListener("DOMContentLoaded", function () {'))
+        .pipe(inject.append('window.ColorPicker = ColorPicker;window.colorPickerComp = colorPickerComp;});'))
 		.pipe(gulp.dest('./build'));
 });
 
@@ -44,6 +47,8 @@ gulp.task('productionScripts', async function () {
 	gulp.src(['./src/js/setup.js', './src/js/*.js'])
 		.pipe(concatJS('colr_pickr.min.js'))
 		.pipe(uglifyJS())
+        .pipe(inject.prepend('document.addEventListener("DOMContentLoaded", function () {'))
+        .pipe(inject.append('window.ColorPicker = ColorPicker;window.colorPickerComp = colorPickerComp;});'))
 		.pipe(gulp.dest('./build'));
 });
 
