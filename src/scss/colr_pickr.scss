@@ -105,6 +105,20 @@
 		cursor: pointer;
 	}
 
+    #custom_colors_del {
+        display: inline-block;
+        position: absolute;
+        margin: 6px 0;
+        padding: 0;
+        width: 24px;
+        height: 23px;
+        right: 36px;
+        background: none;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
 	#custom_colors_box {
 		padding: 0 0 0 10px;
 	}

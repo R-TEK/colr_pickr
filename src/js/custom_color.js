@@ -26,6 +26,10 @@ document.getElementById('custom_colors_box').addEventListener('click', function 
 
 		// Update
 		updatePicker();
+
+        // Show delete button
+        document.getElementById('custom_colors_del').style.display = 'inline-block';
+
 	}
 });
 
@@ -38,6 +42,11 @@ colorPickerComp.addCustomColor = function () {
 	// Getting the color
 	const color = `hsla(${colorPickerComp.hue}, ${colorPickerComp.saturation}%, ${colorPickerComp.lightness}%, ${colorPickerComp.alpha})`;
 
+    // Check if color is already present
+    for (let i = 0; i < colorPickerComp.LSCustomColors[0].length; i++)
+        if (colorPickerComp.LSCustomColors[0][i] == color)
+            return;
+
 	// Creating the element
 	let customColorElem = document.createElement('BUTTON');
 	customColorElem.className = 'custom_colors_preview';
@@ -47,13 +56,32 @@ colorPickerComp.addCustomColor = function () {
 	document.getElementById('custom_colors_box').appendChild(customColorElem);
 
 	// Pushing the color to the top of the array
-	colorPickerComp.LSCustomColors[0].unshift(color);
+    colorPickerComp.LSCustomColors[0].push(color);
 
 	// Updating the local storage with the new custom color
 	localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
 };
 document.getElementById('custom_colors_add').addEventListener('click', function () {
 	colorPickerComp.addCustomColor();
+});
+
+// Function to remove an existing custom color
+colorPickerComp.removeCustomColor = function () {
+    // Update status of remove button
+    const color = `hsla(${colorPickerComp.hue}, ${colorPickerComp.saturation}%, ${colorPickerComp.lightness}%, ${colorPickerComp.alpha})`;
+
+    // Check if color is already present
+    let isCustomColor = false;
+    for (let i = 0; i < colorPickerComp.LSCustomColors[0].length; i++)
+        if (colorPickerComp.LSCustomColors[0][i] == color) {
+            let elem = document.getElementById('custom_colors_box').getElementsByClassName('custom_colors_preview')[i];
+            colorPickerComp.clearSingleCustomColor(elem);
+            document.getElementById('custom_colors_del').style.display = 'none';
+            return;
+        }
+};
+document.getElementById('custom_colors_del').addEventListener('click', function () {
+    colorPickerComp.removeCustomColor();
 });
 
 // Event to fire for a context menu

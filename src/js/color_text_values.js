@@ -67,7 +67,7 @@ document.getElementById('switch_color_type').addEventListener('click', function 
 // Event to update the color when the user leaves the hex value box
 document.getElementById('hex_input').addEventListener('blur', function () {
 	// Value
-	const hexInput = this.value;
+    const hexInput = this.value.toLowerCase();
 
 	// Check to see if the hex is formatted correctly
 	if (hexInput.match(/^#[0-9a-f]{3}([0-9a-f]{3})?([0-9a-f]{2})?$/)) {

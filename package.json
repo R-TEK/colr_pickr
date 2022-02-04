@@ -11,6 +11,7 @@
 	"license": "MIT",
 	"scripts": {
         "devBuild": "gulp devBuild",
+        "devWatch": "gulp watch",
 		"build": "gulp productionBuild",
 		"doc": "jsdoc -c jsdoc.json",
 		"test": "echo \"Error: no test specified\" && exit 1"
