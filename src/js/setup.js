@@ -252,13 +252,23 @@ function ColorPicker(element, color) {
 	colorPickerContainer.innerHTML = HTMLContent;
 	document.getElementsByTagName('BODY')[0].appendChild(colorPickerContainer);
 
+    // Set up custom colors variables
+    let customColors = null;
+
+    // Try get the saved colors from local storage
+    try {
+        customColors = localStorage.getItem('custom_colors');
+    } catch {}
+
 	// Checking if a local storage variable has been set
-	if (localStorage.getItem('custom_colors') === null) {
-		// If not then I set one
+    if (customColors === null) {
+        // If not then try I set one
+        try {
 		localStorage.setItem('custom_colors', '{"0": []}');
+        } catch {}
 	} else {
 		// If it has then I define the LSCustomColors with the value for this
-		colorPickerComp.LSCustomColors = JSON.parse(localStorage.getItem('custom_colors'));
+        colorPickerComp.LSCustomColors = JSON.parse(customColors);
 
 		// Looping through the data to update the DOM with the custom colors
         for (let x = 0; x < colorPickerComp.LSCustomColors[0].length; x++) {

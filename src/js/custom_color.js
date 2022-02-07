@@ -59,7 +59,9 @@ colorPickerComp.addCustomColor = function () {
     colorPickerComp.LSCustomColors[0].push(color);
 
 	// Updating the local storage with the new custom color
+    try {
 	localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
+    } catch (e) {}
 };
 document.getElementById('custom_colors_add').addEventListener('click', function () {
 	colorPickerComp.addCustomColor();
@@ -130,7 +132,9 @@ colorPickerComp.clearSingleCustomColor = function (element) {
 	}
 
 	// Updating the local storage
+    try {
 	localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
+    } catch (e) {}
 
 	// Making sure the add color button is displaying
 	document.getElementById('custom_colors_add').style.display = 'inline-block';
@@ -152,7 +156,9 @@ colorPickerComp.clearAllCustomColors = function () {
 	}
 
 	// Updating the local storage
+    try {
 	localStorage.setItem('custom_colors', JSON.stringify(colorPickerComp.LSCustomColors));
+    } catch (e) {}
 
 	// Making sure the add color button is displaying
 	document.getElementById('custom_colors_add').style.display = 'inline-block';
