@@ -258,14 +258,14 @@ function ColorPicker(element, color) {
     // Try get the saved colors from local storage
     try {
         customColors = localStorage.getItem('custom_colors');
-    } catch {}
+    } catch (e) {}
 
 	// Checking if a local storage variable has been set
     if (customColors === null) {
         // If not then try I set one
         try {
 		localStorage.setItem('custom_colors', '{"0": []}');
-        } catch {}
+        } catch (e) {}
 	} else {
 		// If it has then I define the LSCustomColors with the value for this
         colorPickerComp.LSCustomColors = JSON.parse(customColors);
