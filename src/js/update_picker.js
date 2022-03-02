@@ -44,6 +44,14 @@ colorPickerComp.updateColorDisplays = function (color) {
 		}
 	}
 
+    //formulas from https://stackoverflow.com/a/54116681/4228964
+    let v = color.l / 100 + color.s / 100 * Math.min(color.l, 100 - color.l) / 100;
+    let hsv = {
+        h: color.h,
+        s: v == 0 ? 0 : 2 - 2 * color.l / 100 / v,
+        v: v
+    };
+
 	// Updating the data object
 	colorPickerComp.hue = color.h;
 	colorPickerComp.saturation = color.s;
@@ -63,10 +71,12 @@ colorPickerComp.updateColorDisplays = function (color) {
 	const boxDragger = document.getElementById('box_dragger');
 
 	// Calculating x value
-	let x = (238 / 100) * color.s + 14;
+    //let x = (238 / 100) * color.s + 14;
+    let x = 238 * hsv.s + 14;
 
 	// Calculating y value
-	const percentY = 100 - (color.l / (100 - color.s / 2)) * 100;
+    //const percentY = 100 - (color.l / (100 - color.s / 2)) * 100;
+    const percentY = 100 - (hsv.v * 100);
 	let y = (105 / 100) * percentY + 14;
 
 	// Making conditions so that the user don't drag outside the box
@@ -140,4 +150,15 @@ colorPickerComp.updateColorValueInput = function () {
 		document.getElementsByClassName('hsla_input')[2].value = colorPickerComp.lightness;
 		document.getElementsByClassName('hsla_input')[3].value = colorPickerComp.alpha;
 	}
+
+    // Update status of remove button
+    const color = `hsla(${colorPickerComp.hue}, ${colorPickerComp.saturation}%, ${colorPickerComp.lightness}%, ${colorPickerComp.alpha})`;
+
+    // Check if color is already present
+    let isCustomColor = false;
+    for (let i = 0; i < colorPickerComp.LSCustomColors[0].length; i++)
+        if (colorPickerComp.LSCustomColors[0][i] == color)
+            isCustomColor = true;
+    document.getElementById('custom_colors_del').style.display = isCustomColor ? 'inline-block' : 'none';
+
 };

@@ -7,6 +7,7 @@
 		<meta name="keywords" content="HTML, CSS, JavaScript" />
 		<meta name="author" content="John Doe" />
 		<link rel="stylesheet" type="text/css" href="../build/colr_pickr.css" />
+		<script type="text/javascript" src="../build/colr_pickr.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	</head>
 
@@ -205,8 +206,8 @@
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan
 			id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus.
 		</p>
-		<script type="text/javascript" src="../build/colr_pickr.js"></script>
 		<script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
 			let bob = new ColorPicker(document.getElementById('title'));
 			document.getElementById('title').addEventListener('colorChange', function () {
 				console.log(event.detail);
@@ -228,6 +229,7 @@
 			let space = new ColorPicker(document.getElementById('space'), '#ffff00');
 
 			let mars = new ColorPicker(document.getElementById('mars'), '#ff00ff');
+        });
 		</script>
 	</body>
 </html>

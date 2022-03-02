@@ -10,6 +10,8 @@
 	"browser": "build/colr_pickr.min.js",
 	"license": "MIT",
 	"scripts": {
+        "devBuild": "gulp devBuild",
+        "devWatch": "gulp watch",
 		"build": "gulp productionBuild",
 		"doc": "jsdoc -c jsdoc.json",
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -49,6 +51,7 @@
 		"gulp": "^4.0.2",
 		"gulp-concat": "^2.6.1",
 		"gulp-concat-css": "^3.1.0",
+        "gulp-inject-string": "^1.1.2",
 		"gulp-markdown": "^5.0.1",
 		"gulp-rimraf": "^1.0.0",
 		"gulp-sass": "^4.1.0",
